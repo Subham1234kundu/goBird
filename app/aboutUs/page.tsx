@@ -30,7 +30,7 @@ const AboutUs = () => {
                   We build <br /> technology that <br /> builds businesses
                 </h1>
                 <h3 className="text-white font-light text-xs sm:text-sm md:text-base lg:text-xl w-full lg:w-[35%] leading-relaxed ">
-                  Whether you're rethinking IT infrastructure, building custom software, or scaling digital products we help you move with speed and confidence.
+                  Whether you&apos;re rethinking IT infrastructure, building custom software, or scaling digital products we help you move with speed and confidence.
                 </h3>
               </div>
 
@@ -69,7 +69,7 @@ const AboutUs = () => {
           <div className="w-full lg:w-[63%] relative rounded-lg overflow-hidden h-64 sm:h-80 lg:h-auto">
             <Image src="/Images/visonbackgroundblack.png" alt="Vision Background" width={600} height={200} className="w-full h-full object-cover" />
             <Image src="/Images/minibird.png" alt="Mini Bird" width={100} height={100} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 object-contain" />
-            <p className="absolute bottom-4 sm:bottom-6 right-2 sm:right-4 text-white text-sm sm:text-xl font-inter font-light text-end opacity-42">From vision to velocity that's <br /> the Grobird way</p>
+            <p className="absolute bottom-4 sm:bottom-6 right-2 sm:right-4 text-white text-sm sm:text-xl font-inter font-light text-end opacity-42">From vision to velocity that&apos;s <br /> the Grobird way</p>
           </div>
           
         </div>

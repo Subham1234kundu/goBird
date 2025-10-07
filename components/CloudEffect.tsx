@@ -17,12 +17,12 @@ const CloudEffect = () => {
         const delay = index * 4000
         
         setTimeout(() => {
-          cloud.style.transform = `translateX(${window.innerWidth + 200}px)`
-          cloud.style.transition = `transform ${duration}ms linear`
+          (cloud as HTMLElement).style.transform = `translateX(${window.innerWidth + 200}px)`
+          ;(cloud as HTMLElement).style.transition = `transform ${duration}ms linear`
           
           setTimeout(() => {
-            cloud.style.transform = 'translateX(-200px)'
-            cloud.style.transition = 'none'
+            (cloud as HTMLElement).style.transform = 'translateX(-200px)'
+            ;(cloud as HTMLElement).style.transition = 'none'
             setTimeout(animateCloud, 100)
           }, duration)
         }, delay)

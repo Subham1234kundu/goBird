@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useRef, useState, useEffect } from 'react'
-import { Mesh, Vector3 } from 'three'
+import { Mesh } from 'three'
 import { useTexture } from '@react-three/drei'
 
 interface CloudProps {
@@ -73,13 +73,13 @@ const CloudLayers3D = () => {
     return () => window.removeEventListener('resize', updateViewport)
   }, [])
 
-  const [clouds, setClouds] = useState([
+  const [clouds, setClouds] = useState<CloudProps[]>([
     { position: [-0.7, -1, -2.5], scale: 5, opacity: 0.4, speed: 0.3, texture: '/Images/clouds/c1.png' },
     { position: [-2.5, -0.6, -2], scale: 5, opacity: 1, speed: 0.4, texture: '/Images/clouds/c2.png' },
     { position: [0, -2.5, -0.5], scale: 4, opacity: 0.8, speed: 0.2, texture: '/Images/clouds/c3.png' },
     { position: [5.4, -0.2, 1.8], scale: 2, opacity: 0.4, speed: 0.35, texture: '/Images/clouds/c4.png' },
     { position: [-7, -0.5, -1.2], scale: 6, opacity: 0.3, speed: 1, texture: '/Images/clouds/c1.png' },
-  ] as const)
+  ])
 
   useEffect(() => {
     const updateClouds = () => {
