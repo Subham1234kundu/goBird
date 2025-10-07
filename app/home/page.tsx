@@ -15,8 +15,8 @@ const Home = () => {
         <CloudLayers3D />
         
         <div className="flex flex-col items-center mt-16 sm:mt-18 md:mt-16 lg:mt-18 xl:mt-14 2xl:mt-20 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10">
-          <h1 className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2">
-            Transforming Ideas into <br className="hidden sm:block" /> Scalable Digital Solutions
+          <h1 className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2">
+            Transforming Ideas into <br className="hidden " /> Scalable Digital Solutions
           </h1>
           <p className="text-white font-thin text-base sm:text-base md:text-md lg:text-md xl:text-lg 2xl:text-2xl leading-relaxed max-w-4xl 2xl:max-w-6xl mb-6 sm:mb-7 xl:mb-8 2xl:mb-10 px-4">
             Grobird accelerates innovation through IT consulting, software <br className="hidden sm:block" /> development, and cloud solutions.
@@ -30,8 +30,10 @@ const Home = () => {
             </button>
           </div>
 
+
+
           <div className="w-full relative aspect-[2/1] sm:aspect-[2.5/1] md:aspect-[3/1] xl:aspect-[3.2/1] 2xl:aspect-[4/1] mt-8 xl:mt-10 2xl:mt-12">
-            <Image src="/Images/boxes.png" alt="Boxes" width={800} height={300} className="absolute bottom-50 left-1/2 -translate-x-1/2 w-[120%] sm:w-[110%] md:w-full lg:w-full xl:w-[95%] 2xl:w-[90%] h-full object-contain opacity-25" />
+            <Image src="/Images/boxes.png" alt="Boxes" width={800} height={300} className="absolute bottom-50 left-1/2 -translate-x-1/2 w-[120%] sm:w-[110%] md:w-full lg:w-full xl:w-[95%] 2xl:w-[90%] h-full object-contain opacity-50" />
           </div>
         </div>
         

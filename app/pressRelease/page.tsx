@@ -198,7 +198,7 @@ const PressRelease = () => {
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-2 leading-tight">Empowering Startups and <br /> Enterprises Alike – Join Us</h2>
           </div>
           <div className="text-white text-center lg:text-right">
-            <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-6 lg:mb-8 leading-relaxed">Let's Build Software That <br /> Works for You</h3>
+            <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-6 lg:mb-8 leading-relaxed">Let&apos;s Build Software That <br /> Works for You</h3>
             <button className="bg-white border-2 border-white text-black px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 rounded-full hover:bg-transparent hover:text-white transition-colors text-sm sm:text-base">
               Contact Us
             </button>

@@ -85,7 +85,7 @@ const AboutUs = () => {
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
               </div>
-              <p className="text-[#0B0B0B] text-sm sm:text-base font-medium leading-relaxed">Grobird turned our early-stage idea into a fully functional product within months. Their team felt like an extension of ours fast, responsive, and genuinely invested in our success.</p>
+              <p className="text-[#0B0B0B] text-sm sm:text-base font-medium leading-relaxed">Grobird turned our early-stage idea into a fully functional product within months. Their team felt like an extension of ours — fast, responsive, and genuinely invested in our success.</p>
             </div>
             <div className="mt-4">
               <p className="text-[#0B0B0B] text-sm sm:text-base font-semibold">Ankit Sharma</p>
@@ -101,7 +101,7 @@ const AboutUs = () => {
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
               </div>
-              <p className="text-[#0B0B0B] text-sm sm:text-base font-medium leading-relaxed">What impressed us most was Grobird's ability to balance speed with quality. They helped us scale our platform without downtime, and their support didn't stop after launch.</p>
+              <p className="text-[#0B0B0B] text-sm sm:text-base font-medium leading-relaxed">What impressed us most was Grobird&apos;s ability to balance speed with quality. They helped us scale our platform without downtime, and their support didn&apos;t stop after launch.</p>
             </div>
             <div className="mt-4">
               <p className="text-[#0B0B0B] text-sm sm:text-base font-semibold">Ankit Sharma</p>
@@ -133,7 +133,7 @@ const AboutUs = () => {
             </h2>
             <div className="flex flex-col gap-6 sm:gap-8 w-full lg:w-[65%]">
               <p className="text-sm sm:text-base lg:text-xl">GroBird began with a simple belief — technology should not just solve problems, it should inspire growth. What started as a small team of passionate engineers and designers has now evolved into a full-scale digital partner trusted by businesses worldwide.</p>
-              <p className="text-[#3D3D3DDB] text-sm sm:text-base lg:text-xl">Over the years, we've delivered 100+ transformative projects, empowered 50+ global clients, and expanded our expertise across consulting, development, hosting, and design. But at the heart of every milestone lies one constant — our commitment to crafting human-centered solutions that create lasting impact.</p>
+              <p className="text-[#3D3D3DDB] text-sm sm:text-base lg:text-xl">Over the years, we&apos;ve delivered 100+ transformative projects, empowered 50+ global clients, and expanded our expertise across consulting, development, hosting, and design. But at the heart of every milestone lies one constant — our commitment to crafting human-centered solutions that create lasting impact.</p>
               <p className="text-[#3D3D3DDB] text-sm sm:text-base lg:text-xl">From our very first line of code to the innovative platforms we build today, GroBird has always been about more than technology. We are about people, ideas, and the journeys that shape them.</p>
             </div>
         </div>
@@ -313,7 +313,7 @@ const AboutUs = () => {
           <div className="flex flex-col lg:flex-row min-h-[300px] lg:h-[441px]">
             <div className="w-full lg:w-[75%] bg-gradient-to-br from-[#F6F6F6] to-[#EAEAEA] p-6 sm:p-8 lg:p-10 lg:pl-12 flex flex-col justify-between">
               <div>
-                <h3 className="text-[#000000] text-xl sm:text-2xl lg:text-4xl font-medium mb-8 sm:mb-10 lg:mb-14">Tell Us Your Vision, <br /> Let's Make It Real</h3>
+                <h3 className="text-[#000000] text-xl sm:text-2xl lg:text-4xl font-medium mb-8 sm:mb-10 lg:mb-14">Tell Us Your Vision, <br /> Let&apos;s Make It Real</h3>
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-4 sm:mb-5">
                   <input type="text" placeholder="Your Name" className="flex-1 bg-transparent border-b border-[#CACACA] pb-3 sm:pb-4 text-xs sm:text-sm text-[#000000] placeholder-[#000000] focus:outline-none" />
                   <input type="email" placeholder="Email Address" className="flex-1 bg-transparent border-b border-[#CACACA] pb-3 sm:pb-4 text-xs sm:text-sm text-[#000000] placeholder-[#000000] focus:outline-none" />
