@@ -57,7 +57,7 @@ const Services = () => {
       boxes.forEach((box, index) => {
         gsap.set(box, { opacity: 0, x: 100 })
         gsap.to(box, {
-          opacity: index === 0 ? 0.05 : index === 1 ? 0.25 : index === 2 ? 0.4 : index === 3 ? 0.62 : index === 4 ? 0.7 : index === 5 ? 0.58 : index === 6 ? 0.4 : 0.3,
+          opacity: index === 0 ? 0.05 : index === 1 ? 0.25 : index === 2 ? 0.4 : index === 3 ? 0.62 : index === 4 ? 0.7 : index === 5 ? 0.58 : index === 6 ? 0.4 : index === 7 ? 0.3 : 0.2,
           x: 0,
           duration: 1,
           delay: 0.1 * index,
@@ -674,16 +674,17 @@ const Services = () => {
       <div>
         {/* heading */}
         <div className="bg-custom-bg w-full h-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-9 pt-6 sm:pt-8 md:pt-12 lg:pt-16 relative">
-          {/* 8 boxes on the right side */}
+          {/* 9 boxes on the right side */}
           <div className="flex absolute right-0 top-0 h-full">
             <div ref={el => { if (el) headerBoxesRef.current[0] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 30%)', opacity: 0.05 }}></div>
-            <div ref={el => { if (el) headerBoxesRef.current[1] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 50%)', opacity: 0.25 }}></div>
-            <div ref={el => { if (el) headerBoxesRef.current[2] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 60%)', opacity: 0.4 }}></div>
-            <div ref={el => { if (el) headerBoxesRef.current[3] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 75%)', opacity: 0.62 }}></div>
-            <div ref={el => { if (el) headerBoxesRef.current[4] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 85%)', opacity: 0.7 }}></div>
-            <div ref={el => { if (el) headerBoxesRef.current[5] = el }} className="hidden sm:block h-full w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 78%)', opacity: 0.58 }}></div>
-            <div ref={el => { if (el) headerBoxesRef.current[6] = el }} className="hidden md:block h-full w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 70%)', opacity: 0.4 }}></div>
-            <div ref={el => { if (el) headerBoxesRef.current[7] = el }} className="hidden md:block h-full w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 55%)', opacity: 0.3 }}></div>
+            <div ref={el => { if (el) headerBoxesRef.current[1] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 25%, #000A1B 65%)', opacity: 0.2 }}></div>
+            <div ref={el => { if (el) headerBoxesRef.current[2] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 37%, #000A1B 70%)', opacity: 0.4 }}></div>
+            <div ref={el => { if (el) headerBoxesRef.current[3] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 75%)', opacity: 0.52 }}></div>
+            <div ref={el => { if (el) headerBoxesRef.current[4] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 38%, #000A1B 73%)', opacity: 0.67 }}></div>
+            <div ref={el => { if (el) headerBoxesRef.current[5] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 35%, #000A1B 71%)', opacity: 0.72 }}></div>
+            <div ref={el => { if (el) headerBoxesRef.current[6] = el }} className="hidden sm:block h-full w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 30%, #000A1B 69%)', opacity: 0.49 }}></div>
+            <div ref={el => { if (el) headerBoxesRef.current[7] = el }} className="hidden md:block h-full w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 25%, #000A1B 65%)', opacity: 0.3 }}></div>
+            <div ref={el => { if (el) headerBoxesRef.current[8] = el }} className="hidden md:block h-full w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 10%, #000A1B 50%)', opacity: 0.2 }}></div>
           </div>
 
           {/* Service Bird Image - Right Top */}
