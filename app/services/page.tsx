@@ -720,45 +720,55 @@ const Services = () => {
             </h2>
 
             {/* Startup Company Images Row */}
-            <div className="flex justify-center items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 overflow-x-auto pb-2">
-              <div className="relative w-12 h-6 xs:w-16 xs:h-8 sm:w-20 sm:h-10 md:w-24 md:h-12 lg:w-28 lg:h-14 flex-shrink-0">
+            <div className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-14 overflow-x-auto pb-2">
+              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company1.png"
                   alt="Startup Company 1"
                   fill
                   className="object-contain"
+                  priority
+                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-12 h-6 xs:w-16 xs:h-8 sm:w-20 sm:h-10 md:w-24 md:h-12 lg:w-28 lg:h-14 flex-shrink-0">
+              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company2.png"
                   alt="Startup Company 2"
                   fill
                   className="object-contain"
+                  priority
+                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-12 h-6 xs:w-16 xs:h-8 sm:w-20 sm:h-10 md:w-24 md:h-12 lg:w-28 lg:h-14 flex-shrink-0">
+              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company3.png"
                   alt="Startup Company 3"
                   fill
                   className="object-contain"
+                  priority
+                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-12 h-6 xs:w-16 xs:h-8 sm:w-20 sm:h-10 md:w-24 md:h-12 lg:w-28 lg:h-14 flex-shrink-0">
+              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company4.png"
                   alt="Startup Company 4"
                   fill
                   className="object-contain"
+                  priority
+                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-12 h-6 xs:w-16 xs:h-8 sm:w-20 sm:h-10 md:w-24 md:h-12 lg:w-28 lg:h-14 flex-shrink-0">
+              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company5.png"
                   alt="Startup Company 5"
                   fill
                   className="object-contain"
+                  priority
+                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
             </div>
