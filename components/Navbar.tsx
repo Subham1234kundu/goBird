@@ -8,7 +8,7 @@ import { useState } from "react"
 const Navbar = () => {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  
+
   return (
     <nav className="bg-custom-bg text-white border-b-[0.5px] border-gray-700">
       <div className="flex items-stretch">
@@ -20,37 +20,37 @@ const Navbar = () => {
         <div className="hidden lg:flex flex-1 justify-end">
           <Link href="/aboutUs" className={`hover:text-gray-300 border-l-[0.5px] border-gray-700 px-4 flex flex-col justify-center min-w-[140px] ${pathname === '/aboutUs' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">What we Believe</span>
-            <div className="flex items-center justify-between">
-              <span>About Us</span>
-              <Image src="/Images/sideArrow.png" alt="" width={12} height={12} />
+            <div className="flex items-center justify-between gap-2">
+              <span className="lg:text-xs xl:text-xs">About Us</span>
+              <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </Link>
           <Link href="/services" className={`hover:text-gray-300 border-x-[0.5px] border-gray-700 px-4 flex flex-col justify-center min-w-[140px] ${pathname === '/services' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">What we Offer</span>
-            <div className="flex items-center justify-between">
-              <span>Services</span>
-              <Image src="/Images/sideArrow.png" alt="" width={12} height={12} />
+            <div className="flex items-center justify-between gap-2">
+              <span className="lg:text-xs xl:text-xs">Services</span>
+              <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </Link>
           <Link href="/insights" className={`hover:text-gray-300 border-r-[0.5px] border-gray-700 px-4 flex flex-col justify-center min-w-[140px] ${pathname === '/insights' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">Our Learnings</span>
-            <div className="flex items-center justify-between">
-              <span>Insights</span>
-              <Image src="/Images/sideArrow.png" alt="" width={12} height={12} />
+            <div className="flex items-center justify-between gap-2">
+              <span className="lg:text-xs xl:text-xs">Insights</span>
+              <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </Link>
           <Link href="/pressRelease" className={`hover:text-gray-300 border-r-[0.5px] border-gray-700 px-4 flex flex-col justify-center min-w-[160px] ${pathname === '/pressRelease' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">What we Did</span>
-            <div className="flex items-center justify-between">
-              <span>Press Release</span>
-              <Image src="/Images/sideArrow.png" alt="" width={12} height={12} />
+            <div className="flex items-center justify-between gap-2">
+              <span className="lg:text-xs xl:text-xs">Press Release</span>
+              <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </Link>
           <Link href="/contact" className={`hover:text-gray-300 px-4 flex flex-col justify-center min-w-[140px] ${pathname === '/contact' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">Get in touch</span>
-            <div className="flex items-center justify-between w-full">
-              <span>Contact</span>
-              <Image src="/Images/sideArrow.png" alt="" width={12} height={12} />
+            <div className="flex items-center justify-between gap-2 w-full">
+              <span className="lg:text-xs xl:text-xs">Contact</span>
+              <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </Link>
         </div>
@@ -70,7 +70,7 @@ const Navbar = () => {
       
       {/* Mobile Menu - Full Screen Overlay */}
       {isMenuOpen && (
-        <div className="lg:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50">
+        <div className="lg:hidden absolute inset-0 bg-black/80 backdrop-blur-sm z-50 min-h-screen">
           <div className="flex items-stretch border-b-[0.5px] border-gray-700">
             <Link href="/home" className="flex items-center border-r-[0.5px] border-gray-700 px-8 py-2">
               <Image src="/Images/navLogo.png" alt="Logo" width={120} height={40} />

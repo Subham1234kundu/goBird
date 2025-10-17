@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useRouter } from "next/navigation"
+import FooterSimple from "@/app/components/FooterSimple"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -1333,6 +1334,8 @@ const Services = () => {
 
       </div>
 
+      
+
       {/* footer image */}
       <div ref={footerSectionRef} className="w-full relative ">
         <Image
@@ -1365,11 +1368,12 @@ const Services = () => {
               <p className="text-white text-md">Watch video</p>
             </div>
           </div>
-        
+
 
       </div>
 
-
+      {/* Footer */}
+      <FooterSimple />
 
       </div>
     </div>

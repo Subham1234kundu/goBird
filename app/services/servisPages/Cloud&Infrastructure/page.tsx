@@ -5,6 +5,15 @@ import { useRouter } from "next/navigation"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import TwoBoxSection from "@/app/components/service/TwoBoxSection"
+import StatisticsRow from "@/app/components/service/StatisticsRow"
+import DualTextSection from "@/app/components/service/DualTextSection"
+import IndustriesWeServeSection from "@/app/components/service/IndustriesWeServeSection"
+import MarketContextSection from "@/app/components/service/MarketContextSection"
+import WeBuildSection from "@/app/components/service/WeBuildSection"
+import WhyChooseSection from "@/app/components/service/WhyChooseSection"
+import InsightsSection from "@/app/components/service/InsightsSection"
+import FooterSimple from "@/app/components/FooterSimple"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -160,126 +169,180 @@ const CloudInfrastructure = () => {
         </div>
       </div>
 
-      {/* Overview Section */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8" style={{ fontWeight: 300 }}>
-            Empower Your Business with Cloud Technology
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6">
-            In today's digital world, cloud infrastructure is the backbone of agile, scalable businesses. At Grobird, we help you leverage the power of cloud computing to reduce costs, improve performance, and accelerate innovation.
-          </p>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-            From migration planning to ongoing management, our cloud experts ensure your infrastructure is optimized for performance, security, and cost-efficiency across AWS, Azure, Google Cloud, and more.
-          </p>
-        </div>
-      </div>
+      {/* Why Choose Section */}
+      <WhyChooseSection
+        title="Why Choose"
+        titleHighlight="Grobird for"
+        subtitle="Cloud & Infrastructure"
+        items={[
+          {
+            text: "Our team combines deep technical expertise with a user-first mindset, ensuring solutions that are intuitive, scalable, and future-ready. With an agile and transparent process, you’re always in the loop, from idea to launch and beyond."
+          },
+          {
+            text: "Optimized for Performance & Cost",
+            highlighted: true
+          },
+          {
+            text: "Secure & Compliant",
+            highlighted: false
+          },
+          {
+            text: "Scalable & Future-Ready",
+            highlighted: false
+          },
 
-      {/* Services List - 9 boxes with #EDED4A gradient and consistent height */}
-      <div className="w-full bg-gray-50 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-12" style={{ fontWeight: 300 }}>
-            Our Cloud Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div ref={el => { if (el) serviceBoxesRef.current[0] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #EDED4A 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Cloud Migration</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Seamlessly migrate your applications and data to the cloud with minimal downtime and maximum efficiency.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[1] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #EDED4A 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Cloud Architecture Design</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Design scalable, resilient cloud architectures tailored to your specific business requirements.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[2] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #EDED4A 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Infrastructure as Code</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Automate infrastructure provisioning and management with Terraform, CloudFormation, and other IaC tools.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[3] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #EDED4A 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Container Orchestration</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Deploy and manage containerized applications with Kubernetes, Docker, and other orchestration platforms.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[4] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #EDED4A 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">DevOps & CI/CD</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Implement modern DevOps practices and automated CI/CD pipelines for faster, more reliable deployments.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[5] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #EDED4A 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Cloud Security & Compliance</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Protect your cloud infrastructure with enterprise-grade security measures and compliance frameworks.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[6] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #EDED4A 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Cloud Cost Optimization</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Reduce cloud spending while maintaining performance through intelligent resource management and optimization.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[7] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #EDED4A 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Monitoring & Observability</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Gain deep insights into your infrastructure with comprehensive monitoring, logging, and alerting solutions.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[8] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #EDED4A 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Disaster Recovery</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Ensure business continuity with robust backup, recovery, and failover strategies.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+        ]}
+        imageSrc="/Images/serviseImages/customSoftware.jpg"
+        imageAlt="Custom Software Development"
+        overlayImageSrc="/Images/serviseImages/seviseBird.png"
+        overlayImageAlt="Grobird Logo"
+      />
 
-      {/* Cloud Providers Section */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8" style={{ fontWeight: 300 }}>
-            Cloud Platforms We Support
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-12">
-            We have deep expertise across all major cloud providers, helping you choose and leverage the right platform for your needs.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 p-8 rounded-lg text-center">
-              <h3 className="text-2xl font-medium mb-4">Amazon Web Services (AWS)</h3>
-              <p className="text-gray-700">EC2, S3, Lambda, RDS, ECS, EKS, and more</p>
-            </div>
-            <div className="bg-gray-50 p-8 rounded-lg text-center">
-              <h3 className="text-2xl font-medium mb-4">Microsoft Azure</h3>
-              <p className="text-gray-700">Virtual Machines, Azure Functions, AKS, Cosmos DB, and more</p>
-            </div>
-            <div className="bg-gray-50 p-8 rounded-lg text-center">
-              <h3 className="text-2xl font-medium mb-4">Google Cloud Platform</h3>
-              <p className="text-gray-700">Compute Engine, Cloud Functions, GKE, BigQuery, and more</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* We Build Section */}
+      <WeBuildSection
+        heading="What We Build"
+        description="At Grobird, we create software that adapts to the way your business works not the other way around. From sleek web applications and engaging mobile apps to enterprise platforms and SaaS products, our solutions are built to solve real problems and deliver measurable results."
+        buttonText="Let’s Build Your"
+        items={[
+          {
+            imageSrc: "/Images/serviseImages/webApp.jpg",
+            title: "Web Applications"
+          },
+          {
+            imageSrc: "/Images/serviseImages/mobileApp.jpg",
+            title: "Mobile Applications"
+          },
+          {
+            imageSrc: "/Images/serviseImages/enterprise.jpg",
+            title: "Enterprise Systems"
+          },
+          {
+            imageSrc: "/Images/serviseImages/saas.jpg",
+            title: "SaaS Platforms"
+          },
+          {
+            imageSrc: "/Images/serviseImages/ecommerce.jpg",
+            title: "E-Commerce Solutions"
+          }
+        ]}
+        onButtonClick={() => router.push('/portfolio')}
+      />
 
-      {/* CTA Section */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8" style={{ fontWeight: 300 }}>
-            Ready to Move to the Cloud?
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
-            Let's discuss how cloud infrastructure can transform your business operations and drive growth.
-          </p>
-          <button className="bg-[#FF662A] text-white px-8 py-3 rounded-sm hover:bg-[#E55A25] transition-colors">
-            See Cloud Services
-          </button>
-        </div>
-      </div>
+      {/* Market Context Section */}
+      <MarketContextSection
+        title="Market Context &"
+        titleHighlight="Opportunity"
+        marketDescription="The global cloud computing market is experiencing rapid expansion, with projections indicating a surge from USD 752 billion in 2024 to over USD 2.39 trillion by 2030, reflecting a robust CAGR of 20.4%"
+        marketProjectionLabel="Market Projection"
+        marketProjectionValue="USD 2.39 trillion"
+        marketProjectionYear=" by 2030"
+        imageSrc="/Images/serviseImages/market.jpg"
+        imageAlt="Custom Software Market"
+        measurableTitle="Industries We"
+        measurableTitleHighlight="Serve"
+        measurableDescription="Every industry has its own challenges, and at Grobird we tailor software to meet those unique needs. From building engaging e-learning platforms for education to creating secure fintech solutions, our expertise spans across multiple domains."
+      />
+
+
+      {/* Industries We Serve Section */}
+      <IndustriesWeServeSection
+        title=""
+        titleHighlight=""
+        description=""
+        industries={[
+          {
+            imageSrc: "/Images/serviseImages/serve/s1.jpg",
+            name: "Education"
+          },
+          {
+            imageSrc: "/Images/serviseImages/serve/s2.jpg",
+            name: "Fintech"
+          },
+          {
+            imageSrc: "/Images/serviseImages/serve/s3.jpg",
+            name: "Healthcare"
+          },
+          {
+            imageSrc: "/Images/serviseImages/serve/s4.jpg",
+            name: "Retail & E-commerce"
+          }
+        ]}
+      />
+
+      {/* Dual Text Section */}
+      <DualTextSection
+        title="Measurable"
+        titleHighlight="Outcomes"
+        description="We focus on outcomes like faster time-to-market, reduced operational costs, improved user engagement, and increased revenue."
+      />
+      
+      {/* Statistics Row */}
+      <StatisticsRow
+        statistics={[
+          {
+            value: 40,
+            suffix: '%',
+            color: 'text-[#000A1B]',
+            description: 'ROI after cloud migration'
+          },
+          {
+            value: 35,
+            suffix: '%',
+            color: 'text-[#FE4C00]',
+            description: 'services cost savings'
+          },
+          {
+            value: 5,
+            suffix: 'X',
+            color: 'text-[#000A1B]',
+            description: 'Faster deployment'
+          },
+          {
+            value: 50,
+            suffix: '%',
+            color: 'text-[#FE4C00]',
+            description: 'reduction in operational costs'
+          }
+        ]}
+      />
+
+
+          {/* Insights */}
+          <InsightsSection
+            title="All"
+            titleHighlight="Insights"
+            buttonText="More articles"
+            insights={[
+              {
+                imageSrc: "/Images/insights1.png",
+                title: "The art of storytelling in branding and advertising",
+                category: "Branding",
+                date: "Mar 1, 2025",
+                readTime: "8min read",
+                imageAlt: "The art of storytelling in branding and advertising"
+              },
+              {
+                imageSrc: "/Images/insights2.png",
+                title: "The art of storytelling in branding and advertising",
+                category: "Branding",
+                date: "Mar 1, 2025",
+                readTime: "8min read",
+                imageAlt: "The art of storytelling in branding and advertising"
+              },
+              {
+                imageSrc: "/Images/insights1.png",
+                title: "The art of storytelling in branding and advertising",
+                category: "Branding",
+                date: "Mar 1, 2025",
+                readTime: "8min read",
+                imageAlt: "The art of storytelling in branding and advertising"
+              }
+            ]}
+          />
+
+      {/* Footer */}
+      <FooterSimple />
+
     </div>
   )
 }

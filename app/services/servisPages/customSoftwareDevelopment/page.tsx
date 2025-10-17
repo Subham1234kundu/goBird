@@ -5,6 +5,15 @@ import { useRouter } from "next/navigation"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import WhyChooseSection from "@/app/components/service/WhyChooseSection"
+import WeBuildSection from "@/app/components/service/WeBuildSection"
+import MarketContextSection from "@/app/components/service/MarketContextSection"
+import IndustriesWeServeSection from "@/app/components/service/IndustriesWeServeSection"
+import TwoBoxSection from "@/app/components/service/TwoBoxSection"
+import StatisticsRow from "@/app/components/service/StatisticsRow"
+import DualTextSection from "@/app/components/service/DualTextSection"
+import InsightsSection from "@/app/components/service/InsightsSection"
+import FooterSimple from "@/app/components/FooterSimple"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,7 +22,6 @@ const CustomSoftwareDevelopment = () => {
   const headerBoxesRef = useRef<HTMLDivElement[]>([])
   const headerBirdRef = useRef<HTMLDivElement>(null)
   const headerContentRef = useRef<HTMLDivElement>(null)
-  const serviceBoxesRef = useRef<HTMLDivElement[]>([])
 
   // Header section initial animation - same as Services page
   useEffect(() => {
@@ -91,34 +99,6 @@ const CustomSoftwareDevelopment = () => {
     }
   }, [])
 
-  // Service boxes scroll animation
-  useEffect(() => {
-    const boxes = serviceBoxesRef.current.filter(Boolean)
-
-    if (boxes.length > 0) {
-      boxes.forEach((box, index) => {
-        gsap.set(box, { opacity: 0, y: 50, scale: 0.9 })
-        gsap.to(box, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          delay: 0.1 * index,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: boxes[0],
-            start: 'top 75%',
-            once: true
-          }
-        })
-      })
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    }
-  }, [])
-
   return (
     <div className="w-full overflow-x-hidden">
       {/* Hero Section - Same style as Services page */}
@@ -160,132 +140,188 @@ const CustomSoftwareDevelopment = () => {
         </div>
       </div>
 
-      {/* Overview Section */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8" style={{ fontWeight: 300 }}>
-            Build Software That Works for You
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6">
-            Every business is unique, and off-the-shelf solutions don't always fit. At Grobird, we specialize in building custom software that perfectly aligns with your workflows, processes, and goals.
-          </p>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-            From web applications to mobile apps, from enterprise systems to APIs, we deliver scalable, secure, and maintainable software solutions that drive real business value.
-          </p>
-        </div>
-      </div>
+      {/* Why Choose Section */}
+      <WhyChooseSection
+        title="Why Choose"
+        titleHighlight=""
+        subtitle="Grobird"
+        items={[
+          {
+            text: "Our team combines deep technical expertise with a user-first mindset, ensuring solutions that are intuitive, scalable, and future-ready. With an agile and transparent process, you’re always in the loop, from idea to launch and beyond."
+          },
+          {
+            text: "Built Around You, Not Templates",
+            highlighted: true
+          },
+          {
+            text: "Scalable by Design",
+            highlighted: false
+          },
+          {
+            text: "Agile & Transparent",
+            highlighted: false
+          },
 
-      {/* Services List - 9 boxes with #93AAFC gradient and consistent height */}
-      <div className="w-full bg-gray-50 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-12" style={{ fontWeight: 300 }}>
-            Our Development Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div ref={el => { if (el) serviceBoxesRef.current[0] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #93AAFC 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Web Application Development</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Build responsive, scalable web applications using modern frameworks like React, Next.js, and Node.js.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[1] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #93AAFC 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Mobile App Development</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Create native and cross-platform mobile applications for iOS and Android with seamless user experiences.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[2] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #93AAFC 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Enterprise Software Solutions</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Develop robust enterprise systems that streamline operations and improve organizational efficiency.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[3] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #93AAFC 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">API Development & Integration</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Build secure APIs and integrate third-party services to extend your software capabilities.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[4] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #93AAFC 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Legacy System Modernization</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Transform outdated systems into modern, maintainable solutions without disrupting business operations.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[5] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #93AAFC 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">SaaS Development</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Build multi-tenant SaaS platforms with subscription management, billing, and analytics.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[6] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #93AAFC 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">E-Commerce Solutions</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Create powerful online stores with payment processing, inventory management, and customer analytics.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[7] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #93AAFC 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Custom CRM & ERP</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Design tailored CRM and ERP systems that match your business processes and workflow requirements.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[8] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #93AAFC 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">DevOps & Automation</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Streamline development workflows with CI/CD pipelines, automated testing, and infrastructure as code.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+        ]}
+        imageSrc="/Images/serviseImages/customSoftware.jpg"
+        imageAlt="Custom Software Development"
+        overlayImageSrc="/Images/serviseImages/seviseBird.png"
+        overlayImageAlt="Grobird Logo"
+      />
 
-      {/* Technology Stack Section */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8" style={{ fontWeight: 300 }}>
-            Technologies We Work With
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-12">
-            We leverage cutting-edge technologies and proven frameworks to deliver high-quality software solutions.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            <div className="bg-gray-50 p-4 rounded text-center">
-              <p className="font-medium">React</p>
-            </div>
-            <div className="bg-gray-50 p-4 rounded text-center">
-              <p className="font-medium">Next.js</p>
-            </div>
-            <div className="bg-gray-50 p-4 rounded text-center">
-              <p className="font-medium">Node.js</p>
-            </div>
-            <div className="bg-gray-50 p-4 rounded text-center">
-              <p className="font-medium">Python</p>
-            </div>
-            <div className="bg-gray-50 p-4 rounded text-center">
-              <p className="font-medium">TypeScript</p>
-            </div>
-            <div className="bg-gray-50 p-4 rounded text-center">
-              <p className="font-medium">PostgreSQL</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* We Build Section */}
+      <WeBuildSection
+        heading="What We Build"
+        description="At Grobird, we create software that adapts to the way your business works not the other way around. From sleek web applications and engaging mobile apps to enterprise platforms and SaaS products, our solutions are built to solve real problems and deliver measurable results."
+        buttonText="Let’s Build Your"
+        items={[
+          {
+            imageSrc: "/Images/serviseImages/webApp.jpg",
+            title: "Web Applications"
+          },
+          {
+            imageSrc: "/Images/serviseImages/mobileApp.jpg",
+            title: "Mobile Applications"
+          },
+          {
+            imageSrc: "/Images/serviseImages/enterprise.jpg",
+            title: "Enterprise Systems"
+          },
+          {
+            imageSrc: "/Images/serviseImages/saas.jpg",
+            title: "SaaS Platforms"
+          },
+          {
+            imageSrc: "/Images/serviseImages/ecommerce.jpg",
+            title: "E-Commerce Solutions"
+          }
+        ]}
+        onButtonClick={() => router.push('/portfolio')}
+      />
 
-      {/* CTA Section */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8" style={{ fontWeight: 300 }}>
-            Let's Build Something Great Together
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
-            Have a software project in mind? Let's discuss how we can bring your vision to life with custom-built solutions.
-          </p>
-          <button className="bg-[#FF662A] text-white px-8 py-3 rounded-sm hover:bg-[#E55A25] transition-colors">
-            Request a Proposal
-          </button>
-        </div>
-      </div>
+      {/* Market Context Section */}
+      <MarketContextSection
+        title="Market Context &"
+        titleHighlight="Opportunity"
+        marketDescription="The global custom software development market is experiencing explosive growth, valued at $53.02 billion in 2025 and projected to reach $334.49 billion by 2034 at a 22.71% CAGR. This growth is driven by digital transformation initiatives, AI integration, and the need for tailored solutions"
+        marketProjectionLabel="Market Projection"
+        marketProjectionValue="$334.49 billion"
+        marketProjectionYear=" by 2034"
+        imageSrc="/Images/serviseImages/market.jpg"
+        imageAlt="Custom Software Market"
+        measurableTitle="Industries We"
+        measurableTitleHighlight="Serve"
+        measurableDescription="Every industry has its own challenges, and at Grobird we tailor software to meet those unique needs. From building engaging e-learning platforms for education to creating secure fintech solutions, our expertise spans across multiple domains."
+      />
+
+
+      {/* Industries We Serve Section */}
+      <IndustriesWeServeSection
+        title=""
+        titleHighlight=""
+        description=""
+        industries={[
+          {
+            imageSrc: "/Images/serviseImages/serve/s1.jpg",
+            name: "Education"
+          },
+          {
+            imageSrc: "/Images/serviseImages/serve/s2.jpg",
+            name: "Fintech"
+          },
+          {
+            imageSrc: "/Images/serviseImages/serve/s3.jpg",
+            name: "Healthcare"
+          },
+          {
+            imageSrc: "/Images/serviseImages/serve/s4.jpg",
+            name: "Retail & E-commerce"
+          }
+        ]}
+      />
+
+      {/* Dual Text Section */}
+      <DualTextSection
+        title="Measurable"
+        titleHighlight="Outcomes"
+        description="We focus on outcomes like faster time-to-market, reduced operational costs, improved user engagement, and increased revenue."
+      />
+      
+      {/* Statistics Row */}
+      <StatisticsRow
+        statistics={[
+          {
+            value: 50,
+            suffix: '%',
+            color: 'text-[#000A1B]',
+            description: 'operational cost reduction'
+          },
+          {
+            value: 75,
+            suffix: '%',
+            color: 'text-[#FE4C00]',
+            description: 'reduction in manual processes'
+          },
+          {
+            value: 3,
+            suffix: 'X',
+            color: 'text-[#000A1B]',
+            description: 'faster development cycles'
+          },
+          {
+            value: 6,
+            suffix: ' mon',
+            color: 'text-[#FE4C00]',
+            description: 'Measurable ROI '
+          }
+        ]}
+      />
+
+
+      {/* Two Box Section */}
+      <TwoBoxSection
+        leftImageSrc="/Images/serviseImages/servemore/twoBox/tb1.png"
+        leftImageAlt="IT Consulting Box 1"
+        rightImageSrc="/Images/serviseImages/servemore/twoBox/tb2.jpg"
+        rightImageAlt="IT Consulting Box 2"
+      />
+
+          {/* Insights */}
+          <InsightsSection
+            title="All"
+            titleHighlight="Insights"
+            buttonText="More articles"
+            insights={[
+              {
+                imageSrc: "/Images/insights1.png",
+                title: "The art of storytelling in branding and advertising",
+                category: "Branding",
+                date: "Mar 1, 2025",
+                readTime: "8min read",
+                imageAlt: "The art of storytelling in branding and advertising"
+              },
+              {
+                imageSrc: "/Images/insights2.png",
+                title: "The art of storytelling in branding and advertising",
+                category: "Branding",
+                date: "Mar 1, 2025",
+                readTime: "8min read",
+                imageAlt: "The art of storytelling in branding and advertising"
+              },
+              {
+                imageSrc: "/Images/insights1.png",
+                title: "The art of storytelling in branding and advertising",
+                category: "Branding",
+                date: "Mar 1, 2025",
+                readTime: "8min read",
+                imageAlt: "The art of storytelling in branding and advertising"
+              }
+            ]}
+          />
+
+      {/* Footer */}
+      <FooterSimple />
+
     </div>
   )
 }

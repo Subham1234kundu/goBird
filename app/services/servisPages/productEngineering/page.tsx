@@ -5,6 +5,14 @@ import { useRouter } from "next/navigation"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import TwoBoxSection from "@/app/components/service/TwoBoxSection"
+import StatisticsRow from "@/app/components/service/StatisticsRow"
+import DualTextSection from "@/app/components/service/DualTextSection"
+import IndustriesWeServeSection from "@/app/components/service/IndustriesWeServeSection"
+import MarketContextSection from "@/app/components/service/MarketContextSection"
+import WeBuildSection from "@/app/components/service/WeBuildSection"
+import WhyChooseSection from "@/app/components/service/WhyChooseSection"
+import FooterSimple from "@/app/components/FooterSimple"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -160,139 +168,146 @@ const ProductEngineering = () => {
         </div>
       </div>
 
-      {/* Overview Section */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8" style={{ fontWeight: 300 }}>
-            Engineering Products That Scale
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6">
-            Great products require more than just great code. At Grobird, we combine technical excellence with user-centered design, agile methodologies, and data-driven insights to build digital products that solve real problems and delight users.
-          </p>
-          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-            Whether you're launching a new product, scaling an existing one, or pivoting to meet market demands, our product engineering team brings the expertise and experience to turn your vision into reality.
-          </p>
-        </div>
-      </div>
+      {/* Why Choose Section */}
+      <WhyChooseSection
+        title="Why Choose"
+        titleHighlight="Grobird for"
+        subtitle="Product Engineering"
+        items={[
+          {
+            text: "Our team combines deep technical expertise with a user-first mindset, ensuring solutions that are intuitive, scalable, and future-ready. With an agile and transparent process, you’re always in the loop, from idea to launch and beyond."
+          },
+          {
+            text: "End-to-End Product Development",
+            highlighted: true
+          },
+          {
+            text: "User-Centric Design",
+            highlighted: false
+          },
+          {
+            text: "Agile & Iterative Process",
+            highlighted: false
+          },
 
-      {/* Services List - 9 boxes with #FF662AA8 gradient and consistent height */}
-      <div className="w-full bg-gray-50 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-12" style={{ fontWeight: 300 }}>
-            Our Product Engineering Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div ref={el => { if (el) serviceBoxesRef.current[0] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #FF662AA8 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Product Strategy & Discovery</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Define your product vision, validate market fit, and create a roadmap for success through research and analysis.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[1] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #FF662AA8 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">UI/UX Design</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Create intuitive, beautiful interfaces that provide exceptional user experiences and drive engagement.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[2] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #FF662AA8 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">MVP Development</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Rapidly build and launch minimum viable products to test your ideas and gather user feedback.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[3] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #FF662AA8 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Full-Stack Product Development</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Build complete, production-ready products with scalable architecture and modern technology stacks.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[4] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #FF662AA8 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Product Scaling & Optimization</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Optimize performance, improve infrastructure, and scale your product to handle growing user demands.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[5] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #FF662AA8 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Analytics & Insights</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Implement analytics frameworks to track user behavior, measure KPIs, and drive data-informed decisions.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[6] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #FF662AA8 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Product Maintenance & Support</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Provide ongoing maintenance, bug fixes, and feature enhancements to keep your product running smoothly.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[7] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #FF662AA8 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Quality Assurance & Testing</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Ensure product quality with comprehensive testing strategies, automated tests, and continuous integration.
-              </p>
-            </div>
-            <div ref={el => { if (el) serviceBoxesRef.current[8] = el }} className="p-8 rounded-lg shadow-sm h-[280px] flex flex-col" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #FF662AA8 100%)' }}>
-              <h3 className="text-2xl font-medium mb-4">Product Modernization</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Refresh and modernize existing products with new features, improved UX, and updated technology.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+        ]}
+        imageSrc="/Images/serviseImages/customSoftware.jpg"
+        imageAlt="Custom Software Development"
+        overlayImageSrc="/Images/serviseImages/seviseBird.png"
+        overlayImageAlt="Grobird Logo"
+      />
 
-      {/* Process Section */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8" style={{ fontWeight: 300 }}>
-            Our Product Development Process
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-            <div>
-              <div className="bg-[#FF662A] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">
-                1
-              </div>
-              <h3 className="text-xl font-medium mb-3">Discovery</h3>
-              <p className="text-gray-700">Research, ideation, and validation to define product requirements and goals.</p>
-            </div>
-            <div>
-              <div className="bg-[#FF662A] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">
-                2
-              </div>
-              <h3 className="text-xl font-medium mb-3">Design</h3>
-              <p className="text-gray-700">Create wireframes, prototypes, and high-fidelity designs focused on user experience.</p>
-            </div>
-            <div>
-              <div className="bg-[#FF662A] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">
-                3
-              </div>
-              <h3 className="text-xl font-medium mb-3">Development</h3>
-              <p className="text-gray-700">Build the product using agile methodologies with continuous feedback and iteration.</p>
-            </div>
-            <div>
-              <div className="bg-[#FF662A] text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4">
-                4
-              </div>
-              <h3 className="text-xl font-medium mb-3">Launch & Iterate</h3>
-              <p className="text-gray-700">Deploy to production, gather user feedback, and continuously improve the product.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* We Build Section */}
+      <WeBuildSection
+        heading="What We Build"
+        description="At Grobird, we create software that adapts to the way your business works not the other way around. From sleek web applications and engaging mobile apps to enterprise platforms and SaaS products, our solutions are built to solve real problems and deliver measurable results."
+        buttonText="Let’s Build Your"
+        items={[
+          {
+            imageSrc: "/Images/serviseImages/webApp.jpg",
+            title: "Web Applications"
+          },
+          {
+            imageSrc: "/Images/serviseImages/mobileApp.jpg",
+            title: "Mobile Applications"
+          },
+          {
+            imageSrc: "/Images/serviseImages/enterprise.jpg",
+            title: "Enterprise Systems"
+          },
+          {
+            imageSrc: "/Images/serviseImages/saas.jpg",
+            title: "SaaS Platforms"
+          },
+          {
+            imageSrc: "/Images/serviseImages/ecommerce.jpg",
+            title: "E-Commerce Solutions"
+          }
+        ]}
+        onButtonClick={() => router.push('/portfolio')}
+      />
 
-      {/* CTA Section */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-16 sm:py-20 md:py-24">
-        <div className="max-w-[1400px] mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-8" style={{ fontWeight: 300 }}>
-            Let's Build Your Next Product
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
-            Ready to bring your product idea to life? Let's discuss how we can help you build, launch, and scale a successful digital product.
-          </p>
-          <button className="bg-[#FF662A] text-white px-8 py-3 rounded-sm hover:bg-[#E55A25] transition-colors">
-            Explore Product Engineering
-          </button>
-        </div>
-      </div>
+      {/* Market Context Section */}
+      <MarketContextSection
+        title="Market Context &"
+        titleHighlight="Opportunity"
+        marketDescription="The global IT Product Engineering Services market is experiencing robust growth, projected to expand from approximately USD 1.26 trillion in 2024 to USD 1.81 trillion by 2030"
+        marketProjectionLabel="Market Projection"
+        marketProjectionValue="USD 1.81 trillion"
+        marketProjectionYear=" by 2030"
+        imageSrc="/Images/serviseImages/market.jpg"
+        imageAlt="Custom Software Market"
+        measurableTitle="Industries We"
+        measurableTitleHighlight="Serve"
+        measurableDescription="Grobird brings deep expertise across multiple industries, tailoring product engineering solutions to each sector’s unique challenges. From building interactive e-learning platforms for education to developing secure fintech applications, our team delivers products that drive efficiency, engagement, and growth."
+      />
+
+
+      {/* Industries We Serve Section */}
+      <IndustriesWeServeSection
+        title=""
+        titleHighlight=""
+        description=""
+        industries={[
+          {
+            imageSrc: "/Images/serviseImages/serve/s1.jpg",
+            name: "Education"
+          },
+          {
+            imageSrc: "/Images/serviseImages/serve/s2.jpg",
+            name: "Fintech"
+          },
+          {
+            imageSrc: "/Images/serviseImages/serve/s3.jpg",
+            name: "Healthcare"
+          },
+          {
+            imageSrc: "/Images/serviseImages/serve/s4.jpg",
+            name: "Retail & E-commerce"
+          }
+        ]}
+      />
+
+      {/* Dual Text Section */}
+      <DualTextSection
+        title="Measurable"
+        titleHighlight="Outcomes"
+        description="With Grobird’s product engineering services, your ideas are converted into high-quality, scalable products that drive results."
+      />
+      
+      {/* Statistics Row */}
+      <StatisticsRow
+        statistics={[
+          {
+            value: 40,
+            suffix: '%',
+            color: 'text-[#000A1B]',
+            description: 'operational cost reduction'
+          },
+          {
+            value: 25,
+            suffix: '%',
+            color: 'text-[#FE4C00]',
+            description: 'reduction in manual processes'
+          },
+          {
+            value: 5,
+            suffix: 'X',
+            color: 'text-[#000A1B]',
+            description: 'faster development cycles'
+          },
+          {
+            value: 40,
+            suffix: '%',
+            color: 'text-[#FE4C00]',
+            description: 'Measurable ROI '
+          }
+        ]}
+      />
+
+      {/* Footer */}
+      <FooterSimple />
+
     </div>
   )
 }
