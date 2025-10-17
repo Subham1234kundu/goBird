@@ -161,7 +161,7 @@ const CloudInfrastructure = () => {
             Cloud & Infrastructure
           </h1>
           <p className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl w-full sm:w-[80%] md:w-[75%] lg:w-[65%] leading-relaxed mb-8" style={{ fontWeight: 300 }}>
-            Grobird helps businesses design, deploy, and manage cloud infrastructure that's secure, scalable, and cost-efficient enabling your teams to focus on innovation, not maintenance.
+            Grobird helps businesses design, deploy, and manage cloud infrastructure that&apos;s secure, scalable, and cost-efficient enabling your teams to focus on innovation, not maintenance.
           </p>
 
           <button className="text-black w-[50%] md:w-[30%] lg:w-[25%] bg-white rounded-full p-2 px-3 lg:mb-2 text-sm">Talk to a Cloud Expert</button>

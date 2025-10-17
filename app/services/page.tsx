@@ -1347,7 +1347,7 @@ const Services = () => {
         />
         <div className="footer-quote absolute inset-0 flex items-center w-[50%] ml-[2%] mb-44 justify-start">
           <p className="text-4xl  md:text-5xl lg:text-3xl xl:text-3xl text-white text-start px-4 font-extralight ">
-            "Looking for process improvements, <br /> we found a solution that <br /> transformed our entire data <br /> strategy. The depth of insights was <br /> remarkable."
+            &ldquo;Looking for process improvements, <br /> we found a solution that <br /> transformed our entire data <br /> strategy. The depth of insights was <br /> remarkable.&rdquo;
           </p>
         </div>
 
