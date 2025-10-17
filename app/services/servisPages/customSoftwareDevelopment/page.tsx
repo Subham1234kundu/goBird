@@ -133,7 +133,7 @@ const CustomSoftwareDevelopment = () => {
             Custom Software Development
           </h1>
           <p className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl w-full sm:w-[80%] md:w-[75%] lg:w-[65%] leading-relaxed mb-8" style={{ fontWeight: 300 }}>
-            At Grobird, we design and build tailored software solutions that solve your unique challenges. Whether you're launching a new product, modernizing legacy systems, or scaling your digital operations, we deliver technology that adapts to your vision.
+            At Grobird, we design and build tailored software solutions that solve your unique challenges. Whether you&apos;re launching a new product, modernizing legacy systems, or scaling your digital operations, we deliver technology that adapts to your vision.
           </p>
 
           <button className="text-black w-[50%] md:w-[30%] lg:w-[20%] bg-white rounded-full p-2 px-3 lg:mb-2 text-sm">Request a Proposal</button>

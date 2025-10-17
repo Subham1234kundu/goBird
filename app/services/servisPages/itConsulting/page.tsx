@@ -18,7 +18,6 @@ import FooterSimple from "@/app/components/FooterSimple"
 gsap.registerPlugin(ScrollTrigger)
 
 const ITConsulting = () => {
-  const router = useRouter()
   const headerBoxesRef = useRef<HTMLDivElement[]>([])
   const headerBirdRef = useRef<HTMLDivElement>(null)
   const headerContentRef = useRef<HTMLDivElement>(null)

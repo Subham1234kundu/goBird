@@ -1323,7 +1323,7 @@ const Services = () => {
       {/* roadmap */}
       <div ref={roadmapSectionRef} className="w-full py-20 gap-8 items-start flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
         <div className="roadmap-heading flex items-start text-2xl sm:text-3xl md:text-5xl font-medium text-black flex-col gap-2 ">
-              <p>Let's design the right technology </p>
+              <p>Let&apos;s design the right technology </p>
               <p className="text-[#3B3B3D73]">roadmap for your business.</p>
         </div>
 

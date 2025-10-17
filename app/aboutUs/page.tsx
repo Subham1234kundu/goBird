@@ -10,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger)
 
 const AboutUs = () => {
   const textRef = useRef<HTMLDivElement>(null)
-  const headerRef = useRef<HTMLDivElement>(null)
   const headingRef = useRef<HTMLHeadingElement>(null)
   const subheadingRef = useRef<HTMLHeadingElement>(null)
   const boxesRef = useRef<HTMLImageElement>(null)
