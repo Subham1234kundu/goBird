@@ -6,6 +6,8 @@ import Navbar from "@/components/Navbar";
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,14 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"  className="light">
+    <html lang="en" className={`${montserrat.variable} light`} style={{ fontFamily: 'var(--font-montserrat), -apple-system, BlinkMacSystemFont, sans-serif' }}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
       </head>
       <body
-        className={`${montserrat.variable} antialiased font-sans`}
+        className={`${montserrat.variable} antialiased`}
         suppressHydrationWarning
-        style={{ fontFamily: 'var(--font-montserrat)' }}
+        style={{ fontFamily: 'var(--font-montserrat), -apple-system, BlinkMacSystemFont, sans-serif' }}
       >
         <Navbar />
         {children}

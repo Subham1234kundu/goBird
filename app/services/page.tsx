@@ -441,145 +441,154 @@ const Services = () => {
 
   // Serve section, Roadmap, and Footer scroll-triggered animations
   useEffect(() => {
-    const serveHeading = serveHeadingRef.current
-    const serveImages = serveImagesRef.current.filter(Boolean)
-    const serveSection = serveSectionRef.current
-    const roadmapSection = roadmapSectionRef.current
-    const footerSection = footerSectionRef.current
+    // Use a small delay to ensure DOM is ready
+    const initAnimations = () => {
+      const serveHeading = serveHeadingRef.current
+      const serveImages = serveImagesRef.current.filter(Boolean)
+      const serveSection = serveSectionRef.current
+      const roadmapSection = roadmapSectionRef.current
+      const footerSection = footerSectionRef.current
 
-    // Serve heading animation
-    if (serveHeading && serveSection) {
-      gsap.set(serveHeading, { opacity: 0, y: 50 })
-      gsap.to(serveHeading, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: serveSection,
-          start: 'top 70%',
-          once: true
-        }
-      })
-    }
-
-    // Serve images staggered animation
-    if (serveImages.length > 0 && serveSection) {
-      serveImages.forEach((img) => {
-        gsap.set(img, { opacity: 0, x: -100, scale: 0.9 })
-      })
-
-      serveImages.forEach((img, index) => {
-        gsap.to(img, {
+      // Serve heading animation
+      if (serveHeading && serveSection) {
+        gsap.set(serveHeading, { opacity: 0, y: 50 })
+        gsap.to(serveHeading, {
           opacity: 1,
-          x: 0,
-          scale: 1,
+          y: 0,
           duration: 1,
-          delay: 0.15 * index,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: serveSection,
-            start: 'top 60%',
+            start: 'top 70%',
             once: true
           }
         })
-      })
+      }
+
+      // Serve images staggered animation
+      if (serveImages.length > 0 && serveSection) {
+        serveImages.forEach((img) => {
+          gsap.set(img, { opacity: 0, x: -100, scale: 0.9 })
+        })
+
+        serveImages.forEach((img, index) => {
+          gsap.to(img, {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 1,
+            delay: 0.15 * index,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: serveSection,
+              start: 'top 60%',
+              once: true
+            }
+          })
+        })
+      }
+
+      // Roadmap section animation
+      if (roadmapSection) {
+        const heading = roadmapSection.querySelector('.roadmap-heading')
+        const button = roadmapSection.querySelector('button')
+
+        if (heading) {
+          gsap.set(heading, { opacity: 0, y: 60, scale: 0.9 })
+          gsap.to(heading, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: roadmapSection,
+              start: 'top 70%',
+              once: true
+            }
+          })
+        }
+
+        if (button) {
+          gsap.set(button, { opacity: 0, scale: 0.8, y: 20 })
+          gsap.to(button, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.3,
+            ease: 'back.out(2)',
+            scrollTrigger: {
+              trigger: roadmapSection,
+              start: 'top 70%',
+              once: true
+            }
+          })
+        }
+      }
+
+      // Footer section animation
+      if (footerSection) {
+        const quote = footerSection.querySelector('.footer-quote')
+        const author = footerSection.querySelector('.footer-author')
+        const playButton = footerSection.querySelector('.footer-play')
+
+        if (quote) {
+          gsap.set(quote, { opacity: 0, x: -80 })
+          gsap.to(quote, {
+            opacity: 1,
+            x: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: footerSection,
+              start: 'top 70%',
+              once: true
+            }
+          })
+        }
+
+        if (author) {
+          gsap.set(author, { opacity: 0, y: 30 })
+          gsap.to(author, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.4,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: footerSection,
+              start: 'top 70%',
+              once: true
+            }
+          })
+        }
+
+        if (playButton) {
+          gsap.set(playButton, { opacity: 0, scale: 0.8 })
+          gsap.to(playButton, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            delay: 0.6,
+            ease: 'back.out(2)',
+            scrollTrigger: {
+              trigger: footerSection,
+              start: 'top 70%',
+              once: true
+            }
+          })
+        }
+      }
     }
 
-    // Roadmap section animation
-    if (roadmapSection) {
-      const heading = roadmapSection.querySelector('.roadmap-heading')
-      const button = roadmapSection.querySelector('button')
-
-      if (heading) {
-        gsap.set(heading, { opacity: 0, y: 60, scale: 0.9 })
-        gsap.to(heading, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: roadmapSection,
-            start: 'top 70%',
-            once: true
-          }
-        })
-      }
-
-      if (button) {
-        gsap.set(button, { opacity: 0, scale: 0.8, y: 20 })
-        gsap.to(button, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.3,
-          ease: 'back.out(2)',
-          scrollTrigger: {
-            trigger: roadmapSection,
-            start: 'top 70%',
-            once: true
-          }
-        })
-      }
-    }
-
-    // Footer section animation
-    if (footerSection) {
-      const quote = footerSection.querySelector('.footer-quote')
-      const author = footerSection.querySelector('.footer-author')
-      const playButton = footerSection.querySelector('.footer-play')
-
-      if (quote) {
-        gsap.set(quote, { opacity: 0, x: -80 })
-        gsap.to(quote, {
-          opacity: 1,
-          x: 0,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: footerSection,
-            start: 'top 70%',
-            once: true
-          }
-        })
-      }
-
-      if (author) {
-        gsap.set(author, { opacity: 0, y: 30 })
-        gsap.to(author, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: 0.4,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: footerSection,
-            start: 'top 70%',
-            once: true
-          }
-        })
-      }
-
-      if (playButton) {
-        gsap.set(playButton, { opacity: 0, scale: 0.8 })
-        gsap.to(playButton, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          delay: 0.6,
-          ease: 'back.out(2)',
-          scrollTrigger: {
-            trigger: footerSection,
-            start: 'top 70%',
-            once: true
-          }
-        })
-      }
-    }
+    // Wait for DOM to be ready before initializing animations
+    const timer = setTimeout(() => {
+      initAnimations()
+    }, 100)
 
     return () => {
+      clearTimeout(timer)
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
     }
   }, [])

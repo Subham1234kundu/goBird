@@ -34,52 +34,32 @@ const InsightsSection = ({
 }: InsightsSectionProps) => {
   const insightItemsRef = useRef<HTMLDivElement[]>([])
 
-  // Insights scroll animation
+  // Insights scroll animation - disabled for Locomotive Scroll compatibility
   useEffect(() => {
-    const items = insightItemsRef.current.filter(Boolean)
-
-    if (items.length > 0) {
-      items.forEach((item, index) => {
-        gsap.set(item, { opacity: 0, x: -50, scale: 0.95 })
-        gsap.to(item, {
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          duration: 0.8,
-          delay: 0.1 * index,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: items[0],
-            start: 'top 75%',
-            once: true
-          }
-        })
-      })
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    }
+    // Animation disabled to ensure visibility with Locomotive Scroll
+    // Items will be visible immediately
   }, [])
 
   return (
-    <>
+    <div className="w-full bg-transparent">
       {/* Insights Header */}
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-3 sm:py-5 md:py-8 lg:py-12 mx-auto items-start sm:items-center justify-between mt-7">
-        <h2 className="text-[#000A1B] flex text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium leading-tight w-full lg:w-[80%]">
-          <span className="text-[#3B3B3D73] mr-3">{title}</span>
-          <span className="text-[#0B0B0B]">{titleHighlight}</span>
-        </h2>
-        {buttonText && (
-          <Button onClick={onButtonClick} className="self-start sm:self-auto">
-            {buttonText}
-          </Button>
-        )}
-      </div>
+      {(title || titleHighlight) && (
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-3 sm:py-5 md:py-8 lg:py-12 mx-auto items-start sm:items-center justify-between mt-7">
+          <h2 className="text-[#000A1B] flex text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium leading-tight w-full lg:w-[80%]">
+            <span className="text-[#3B3B3D73] mr-3">{title}</span>
+            <span className="text-[#0B0B0B]">{titleHighlight}</span>
+          </h2>
+          {buttonText && (
+            <Button onClick={onButtonClick} className="self-start sm:self-auto">
+              {buttonText}
+            </Button>
+          )}
+        </div>
+      )}
 
       {/* Insights Side Scroll */}
       <div
-        className="overflow-x-auto px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-6 sm:pb-8 md:pb-12 lg:pb-16"
+        className="overflow-x-auto px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-6 sm:pb-8 md:pb-12 lg:pb-16 mt-8"
         style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
       >
         <style jsx>{`
@@ -116,7 +96,7 @@ const InsightsSection = ({
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
