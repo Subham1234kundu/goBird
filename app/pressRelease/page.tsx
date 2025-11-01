@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image"
 import { useState } from "react"
+import FooterSimple from "@/app/components/FooterSimple"
 
 const PressRelease = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -205,7 +206,42 @@ const PressRelease = () => {
           </div>
         </div>
       </div>
-     
+
+      {/* footer image */}
+      <div className="w-full relative">
+        <Image
+          src="/Images/serviseImages/footer.jpg"
+          alt="Footer Image"
+          width={1920}
+          height={800}
+          className="object-cover w-full h-[800px]"
+        />
+        <div className="absolute inset-0 flex items-center w-[50%] ml-[2%] mb-44 justify-start">
+          <p className="text-4xl md:text-5xl lg:text-3xl xl:text-3xl text-white text-start px-4 font-extralight">
+            &ldquo;Looking for process improvements, <br /> we found a solution that <br /> transformed our entire data <br /> strategy. The depth of insights was <br /> remarkable.&rdquo;
+          </p>
+        </div>
+
+        <div className="absolute inset-0 flex items-end mx-[3%] my-[1%] justify-between">
+          <p className="text-white text-xs">
+            Maya Singh <br /> Product Strategy Lead
+          </p>
+
+          <div className="flex items-center gap-2">
+            <Image
+              src="/Images/serviseImages/play.png"
+              width={40}
+              alt="video play"
+              height={40}
+            />
+            <p className="text-white text-md">Watch video</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <FooterSimple />
+
     </div>
   )
 }
