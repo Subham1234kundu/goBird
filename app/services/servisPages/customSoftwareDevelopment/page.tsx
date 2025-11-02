@@ -22,6 +22,11 @@ const CustomSoftwareDevelopment = () => {
   const headerBoxesRef = useRef<HTMLDivElement[]>([])
   const headerBirdRef = useRef<HTMLDivElement>(null)
   const headerContentRef = useRef<HTMLDivElement>(null)
+  const customSectionRef = useRef<HTMLDivElement>(null)
+  const customImageRef = useRef<HTMLDivElement>(null)
+  const customBirdRef = useRef<HTMLDivElement>(null)
+  const customTextRef = useRef<HTMLDivElement>(null)
+  const customButtonRef = useRef<HTMLButtonElement>(null)
 
   // Header section initial animation - same as Services page
   useEffect(() => {
@@ -99,6 +104,78 @@ const CustomSoftwareDevelopment = () => {
     }
   }, [])
 
+  // Custom section scroll animation
+  useEffect(() => {
+    const section = customSectionRef.current
+    const image = customImageRef.current
+    const text = customTextRef.current
+    const button = customButtonRef.current
+
+    if (section) {
+      if (image) {
+        gsap.set(image, { opacity: 0, scale: 0.8 })
+        gsap.to(image, {
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            once: true
+          }
+        })
+      }
+
+      if (customBirdRef.current) {
+        gsap.set(customBirdRef.current, { opacity: 0, x: 100 })
+        gsap.to(customBirdRef.current, {
+          opacity: 1,
+          x: 0,
+          duration: 1.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            once: true
+          }
+        })
+      }
+
+      if (text) {
+        gsap.set(text, { opacity: 0, x: -50 })
+        gsap.to(text, {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          delay: 0.3,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            once: true
+          }
+        })
+      }
+
+      if (button) {
+        gsap.set(button, { opacity: 0, scale: 0.8 })
+        gsap.to(button, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          delay: 0.6,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            once: true
+          }
+        })
+      }
+    }
+  }, [])
+
   return (
     <div className="w-full overflow-x-hidden">
       {/* Hero Section - Same style as Services page */}
@@ -163,9 +240,9 @@ const CustomSoftwareDevelopment = () => {
           },
 
         ]}
-        imageSrc="/Images/serviseImages/customSoftware.jpg"
+        imageSrc="/Images/serviseImages/CSD/choose.jpg"
         imageAlt="Custom Software Development"
-        overlayImageSrc="/Images/serviseImages/seviseBird.png"
+        overlayImageSrc="/Images/serviseImages/servemore/bird.png"
         overlayImageAlt="Grobird Logo"
       />
 
@@ -176,12 +253,12 @@ const CustomSoftwareDevelopment = () => {
         buttonText="Let’s Build Your"
         items={[
           {
-            imageSrc: "/Images/serviseImages/webApp.jpg",
-            title: "Web Applications"
+            imageSrc: "/Images/serviseImages/CSD/build1.png",
+            title: "Cloud Strategy & Migration"
           },
           {
-            imageSrc: "/Images/serviseImages/mobileApp.jpg",
-            title: "Mobile Applications"
+            imageSrc: "/Images/serviseImages/CSD/build2.png",
+            title: "DevOps & CI/CD"
           },
           {
             imageSrc: "/Images/serviseImages/enterprise.jpg",
@@ -207,7 +284,7 @@ const CustomSoftwareDevelopment = () => {
         marketProjectionLabel="Market Projection"
         marketProjectionValue="$334.49 billion"
         marketProjectionYear=" by 2034"
-        imageSrc="/Images/serviseImages/market.jpg"
+        imageSrc="/Images/serviseImages/CSD/market.png"
         imageAlt="Custom Software Market"
         measurableTitle="Industries We"
         measurableTitleHighlight="Serve"
@@ -226,11 +303,11 @@ const CustomSoftwareDevelopment = () => {
             name: "Education"
           },
           {
-            imageSrc: "/Images/serviseImages/serve/s2.jpg",
+            imageSrc: "/Images/serviseImages/CSD/FineTech.jpg",
             name: "Fintech"
           },
           {
-            imageSrc: "/Images/serviseImages/serve/s3.jpg",
+            imageSrc: "/Images/serviseImages/CSD/Healthcare.jpg",
             name: "Healthcare"
           },
           {
@@ -280,9 +357,9 @@ const CustomSoftwareDevelopment = () => {
 
       {/* Two Box Section */}
       <TwoBoxSection
-        leftImageSrc="/Images/serviseImages/servemore/twoBox/tb1.png"
+        leftImageSrc="/Images/serviseImages/CSD/left.png"
         leftImageAlt="IT Consulting Box 1"
-        rightImageSrc="/Images/serviseImages/servemore/twoBox/tb2.jpg"
+        rightImageSrc="/Images/serviseImages/CSD/right.png"
         rightImageAlt="IT Consulting Box 2"
       />
 
@@ -318,6 +395,43 @@ const CustomSoftwareDevelopment = () => {
               }
             ]}
           />
+
+      {/* Custom Section with f1 Image */}
+      <div ref={customSectionRef} className="w-full flex flex-col lg:flex-row items-center justify-between min-h-[500px] sm:min-h-[550px] md:min-h-[600px] lg:min-h-[650px] xl:h-[700px] relative overflow-hidden">
+        {/* Background Image */}
+        <div ref={customImageRef} className="absolute inset-0 w-full h-full">
+          <Image
+            src="/Images/serviseImages/servemore/footer/f1.jpg"
+            alt="Software Development"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        {/* Bird Footer Image - Right Side */}
+        <div ref={customBirdRef} className="absolute right-0 inset-y-0 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 h-full z-[5]">
+          <Image
+            src="/Images/serviseImages/servemore/footer/birdFoot2.png"
+            alt="Bird Footer Background"
+            fill
+            className="object-contain object-right"
+            priority
+          />
+        </div>
+
+        {/* Content Overlay */}
+        <div className="w-full h-full flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 sm:py-10 md:py-12 lg:py-8 relative z-10">
+          <h2 ref={customTextRef} className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-center lg:text-left leading-tight w-full lg:w-[40%]">
+            Trusted by Businesses to Deliver 99% On-Time, Impactful Software
+          </h2>
+          <div className="w-full lg:w-[60%] flex justify-center lg:justify-end">
+            <button ref={customButtonRef} className="bg-white text-black px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium hover:opacity-90 transition-opacity border border-gray-200 whitespace-nowrap">
+              Start Building Today
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
       <FooterSimple />

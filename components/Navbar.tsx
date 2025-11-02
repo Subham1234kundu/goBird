@@ -20,35 +20,35 @@ const Navbar = () => {
         <div className="hidden lg:flex flex-1 justify-end">
           <Link href="/aboutUs" className={`hover:text-gray-300 border-l-[0.5px] border-gray-700 px-4 flex flex-col justify-center min-w-[140px] ${pathname === '/aboutUs' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">What we Believe</span>
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center justify-between">
               <span className="lg:text-xs xl:text-xs">About Us</span>
               <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </Link>
           <Link href="/services" className={`hover:text-gray-300 border-x-[0.5px] border-gray-700 px-4 flex flex-col justify-center min-w-[140px] ${pathname === '/services' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">What we Offer</span>
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center justify-between">
               <span className="lg:text-xs xl:text-xs">Services</span>
               <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </Link>
           <Link href="/insights" className={`hover:text-gray-300 border-r-[0.5px] border-gray-700 px-4 flex flex-col justify-center min-w-[140px] ${pathname === '/insights' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">Our Learnings</span>
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center justify-between">
               <span className="lg:text-xs xl:text-xs">Insights</span>
               <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </Link>
           <Link href="/pressRelease" className={`hover:text-gray-300 border-r-[0.5px] border-gray-700 px-4 flex flex-col justify-center min-w-[160px] ${pathname === '/pressRelease' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">What we Did</span>
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center justify-between">
               <span className="lg:text-xs xl:text-xs">Press Release</span>
               <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>
           </Link>
           <Link href="/contact" className={`hover:text-gray-300 px-4 flex flex-col justify-center min-w-[140px] ${pathname === '/contact' ? 'bg-gradient-to-br from-[#010917] to-[#006BCB]' : ''}`}>
             <span className="text-[10px] text-gray-400 mb-1">Get in touch</span>
-            <div className="flex items-center justify-between gap-2 w-full">
+            <div className="flex items-center justify-between w-full">
               <span className="lg:text-xs xl:text-xs">Contact</span>
               <i className="fa-solid fa-arrow-right text-xs"></i>
             </div>

@@ -98,23 +98,23 @@ const PaperBirdModel = () => {
       let baseScale = 0.82, scaleReduction = 0.65
 
       if (width < 640) { // Mobile
-        startX = -0.5
-        startY = 0
-        startZ = 0.6
-        endX = 4
-        endY = 5
-        endZ = -7
-        baseScale = 0.62
-        scaleReduction = 0.48
+        startX = -0.3
+        startY = 0.2
+        startZ = 0.5
+        endX = 3.5
+        endY = 4.5
+        endZ = -6
+        baseScale = 0.55
+        scaleReduction = 0.42
       } else if (width < 1024) { // Tablet
-        startX = -0.6
-        startY = 0
-        startZ = 0.55
-        endX = 5.5
-        endY = 6.5
-        endZ = -8
-        baseScale = 0.72
-        scaleReduction = 0.56
+        startX = -0.4
+        startY = 0.1
+        startZ = 0.5
+        endX = 5
+        endY = 5.5
+        endZ = -7
+        baseScale = 0.65
+        scaleReduction = 0.50
       } else if (width < 1440) { // Laptop
         startX = 0
         startY = 0.8
@@ -234,23 +234,23 @@ const PaperBirdLeftModel = () => {
       let baseScale = 0.88, scaleReduction = 0.72
 
       if (width < 640) { // Mobile
-        startX = -1.8
-        startY = -0.2
-        startZ = 0.9
-        endX = 4
-        endY = 5
-        endZ = -7
-        baseScale = 0.68
-        scaleReduction = 0.54
+        startX = -1.5
+        startY = -0.5
+        startZ = 0.8
+        endX = 3.5
+        endY = 4.5
+        endZ = -6
+        baseScale = 0.60
+        scaleReduction = 0.47
       } else if (width < 1024) { // Tablet
-        startX = -2.3
-        startY = -0.3
+        startX = -2.0
+        startY = -0.6
         startZ = 1.0
-        endX = 5.5
-        endY = 6.5
-        endZ = -8
-        baseScale = 0.78
-        scaleReduction = 0.63
+        endX = 5
+        endY = 5.5
+        endZ = -7
+        baseScale = 0.70
+        scaleReduction = 0.55
       } else if (width < 1440) { // Laptop
         startX = -2.8
         startY = -0.5
@@ -367,23 +367,23 @@ const PaperBirdBottomModel = () => {
       let baseScale = 1.0, scaleReduction = 0.80
 
       if (width < 640) { // Mobile
-        startX = 0
-        startY = -2.5
-        startZ = 1.6
-        endX = 4
-        endY = 5
-        endZ = -7
-        baseScale = 0.75
-        scaleReduction = 0.60
+        startX = -0.4
+        startY = -2.8
+        startZ = 1.4
+        endX = 3.5
+        endY = 4.5
+        endZ = -6
+        baseScale = 0.68
+        scaleReduction = 0.53
       } else if (width < 1024) { // Tablet
-        startX = 0
-        startY = -3.0
-        startZ = 1.9
-        endX = 5.5
-        endY = 6.5
-        endZ = -8
-        baseScale = 0.88
-        scaleReduction = 0.70
+        startX = -0.2
+        startY = -3.2
+        startZ = 1.8
+        endX = 5
+        endY = 5.5
+        endZ = -7
+        baseScale = 0.80
+        scaleReduction = 0.63
       } else if (width < 1440) { // Laptop
         startX = 0
         startY = -3.5
@@ -499,23 +499,23 @@ const PaperBirdRightModel = () => {
       let baseScale = 0.88, scaleReduction = 0.72
 
       if (width < 640) { // Mobile
-        startX = 1.4
-        startY = -1.0
-        startZ = 1.0
-        endX = 4
-        endY = 5
-        endZ = -7
-        baseScale = 0.68
-        scaleReduction = 0.54
-      } else if (width < 1024) { // Tablet
-        startX = 1.8
+        startX = 1.3
         startY = -1.2
-        startZ = 1.1
-        endX = 5.5
-        endY = 6.5
-        endZ = -8
-        baseScale = 0.78
-        scaleReduction = 0.63
+        startZ = 0.9
+        endX = 3.5
+        endY = 4.5
+        endZ = -6
+        baseScale = 0.60
+        scaleReduction = 0.47
+      } else if (width < 1024) { // Tablet
+        startX = 1.6
+        startY = -1.4
+        startZ = 1.0
+        endX = 5
+        endY = 5.5
+        endZ = -7
+        baseScale = 0.70
+        scaleReduction = 0.55
       } else if (width < 1440) { // Laptop
         startX = 2.2
         startY = -1.5
@@ -728,14 +728,15 @@ const Cloud3D = ({ position, scale, speed = 0.5, opacity = 0.4, width, depth }: 
 
 const PaperBird3D = () => {
   const [viewport, setViewport] = useState({ cameraZ: 6, cameraY: 0, fov: 60 })
+  const { width } = useWindowSize()
 
   useEffect(() => {
     const updateViewport = () => {
       const width = window.innerWidth
       if (width < 640) {
-        setViewport({ cameraZ: 8, cameraY: 0, fov: 75 })
+        setViewport({ cameraZ: 7, cameraY: -0.3, fov: 70 })
       } else if (width < 1024) {
-        setViewport({ cameraZ: 7, cameraY: 0, fov: 65 })
+        setViewport({ cameraZ: 6.5, cameraY: -0.2, fov: 65 })
       } else if (width < 1440) {
         setViewport({ cameraZ: 6, cameraY: 0, fov: 62 })
       } else if (width < 1920) {
@@ -770,12 +771,12 @@ const PaperBird3D = () => {
 
        
 
-        {/* Premium flock formation - 5 birds fly in natural sequence to top-right corner */}
+        {/* Premium flock formation - 4 birds on mobile/tablet, 5 on desktop */}
         <PaperBirdModel />            {/* Bird 1: Top-Center, starts immediately (0.00) */}
         <PaperBirdLeftModel />        {/* Bird 2: Left-Middle, starts at 0.05 */}
         <PaperBirdBottomModel />      {/* Bird 3: Bottom-Center (largest), starts at 0.20 */}
         <PaperBirdRightModel />       {/* Bird 4: Right-Bottom, starts at 0.20 */}
-        <PaperBirdBottomLeftModel />  {/* Bird 5: Bottom-Left corner, starts at 0.20 */}
+        {width >= 1024 && <PaperBirdBottomLeftModel />}  {/* Bird 5: Bottom-Left corner, only on desktop */}
       </Canvas>
     </div>
   )

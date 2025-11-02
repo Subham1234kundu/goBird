@@ -22,6 +22,10 @@ const CloudInfrastructure = () => {
   const headerBirdRef = useRef<HTMLDivElement>(null)
   const headerContentRef = useRef<HTMLDivElement>(null)
   const serviceBoxesRef = useRef<HTMLDivElement[]>([])
+  const footerSectionRef = useRef<HTMLDivElement>(null)
+  const footerImageRef = useRef<HTMLDivElement>(null)
+  const footerBirdRef = useRef<HTMLDivElement>(null)
+  const footerContentRef = useRef<HTMLDivElement>(null)
 
   // Header section initial animation - same as Services page
   useEffect(() => {
@@ -127,6 +131,88 @@ const CloudInfrastructure = () => {
     }
   }, [])
 
+  // Footer section scroll animation
+  useEffect(() => {
+    const section = footerSectionRef.current
+    const image = footerImageRef.current
+    const bird = footerBirdRef.current
+    const content = footerContentRef.current
+
+    if (section) {
+      // Animate left image
+      if (image) {
+        gsap.set(image, { opacity: 0, x: -100, scale: 0.8 })
+        gsap.to(image, {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            once: true
+          }
+        })
+      }
+
+      // Animate bird background
+      if (bird) {
+        gsap.set(bird, { opacity: 0, x: 100 })
+        gsap.to(bird, {
+          opacity: 1,
+          x: 0,
+          duration: 1.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+            once: true
+          }
+        })
+      }
+
+      // Animate content
+      if (content) {
+        const heading = content.querySelector('h2')
+        const button = content.querySelector('button')
+
+        if (heading) {
+          gsap.set(heading, { opacity: 0, y: 50 })
+          gsap.to(heading, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.3,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 70%',
+              once: true
+            }
+          })
+        }
+
+        if (button) {
+          gsap.set(button, { opacity: 0, scale: 0.8, y: 30 })
+          gsap.to(button, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.6,
+            ease: 'back.out(1.7)',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 70%',
+              once: true
+            }
+          })
+        }
+      }
+    }
+  }, [])
+
   return (
     <div className="w-full overflow-x-hidden">
       {/* Hero Section - Same style as Services page */}
@@ -191,10 +277,10 @@ const CloudInfrastructure = () => {
           },
 
         ]}
-        imageSrc="/Images/serviseImages/customSoftware.jpg"
-        imageAlt="Custom Software Development"
-        overlayImageSrc="/Images/serviseImages/seviseBird.png"
-        overlayImageAlt="Grobird Logo"
+        imageSrc="/Images/serviseImages/servemore/productchoose.png"
+        imageAlt="Cloud Infrastructure"
+        overlayImageSrc="/Images/serviseImages/servemore/bird.png"
+        overlayImageAlt="Service Bird"
       />
 
       {/* We Build Section */}
@@ -204,12 +290,12 @@ const CloudInfrastructure = () => {
         buttonText="Let’s Build Your"
         items={[
           {
-            imageSrc: "/Images/serviseImages/webApp.jpg",
-            title: "Web Applications"
+            imageSrc: "/Images/serviseImages/servemore/offer/cloud/offer1.jpg",
+            title: "Cloud Strategy & Migration"
           },
           {
-            imageSrc: "/Images/serviseImages/mobileApp.jpg",
-            title: "Mobile Applications"
+            imageSrc: "/Images/serviseImages/servemore/offer/cloud/offer2.jpg",
+            title: "DevOps & CI/CD"
           },
           {
             imageSrc: "/Images/serviseImages/enterprise.jpg",
@@ -235,8 +321,8 @@ const CloudInfrastructure = () => {
         marketProjectionLabel="Market Projection"
         marketProjectionValue="USD 2.39 trillion"
         marketProjectionYear=" by 2030"
-        imageSrc="/Images/serviseImages/market.jpg"
-        imageAlt="Custom Software Market"
+        imageSrc="/Images/serviseImages/servemore/market/m3.png"
+        imageAlt="Cloud Infrastructure Market"
         measurableTitle="Industries We"
         measurableTitleHighlight="Serve"
         measurableDescription="Every industry has its own challenges, and at Grobird we tailor software to meet those unique needs. From building engaging e-learning platforms for education to creating secure fintech solutions, our expertise spans across multiple domains."
@@ -338,6 +424,43 @@ const CloudInfrastructure = () => {
               }
             ]}
           />
+
+      {/* custom section before footer  */}
+      <div ref={footerSectionRef} className="w-full flex flex-col lg:flex-row items-center justify-center lg:justify-between min-h-[450px] sm:min-h-[550px] md:min-h-[600px] lg:min-h-[650px] xl:h-[700px] relative overflow-hidden" style={{ backgroundColor: '#FAFAFA' }}>
+        {/* Bird Footer Image - Right Side */}
+        <div ref={footerBirdRef} className="absolute right-0 inset-y-0 w-full opacity-30 sm:opacity-50 md:opacity-70 lg:opacity-100 sm:w-3/4 md:w-2/3 lg:w-1/2 h-full">
+          <Image
+            src="/Images/serviseImages/servemore/footer/birdFoot.png"
+            alt="Bird Footer Background"
+            fill
+            className="object-contain object-right"
+            priority
+          />
+        </div>
+
+        {/* Left Box with f3 Image */}
+        <div ref={footerImageRef} className="w-full lg:w-[45%] xl:w-[40%] flex items-center justify-center py-6 sm:py-8 md:py-10 lg:py-0 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-0 relative z-10">
+          <div className="relative w-full max-w-[220px] sm:max-w-[300px] md:max-w-[380px] lg:max-w-[450px] xl:max-w-[500px] h-[200px] sm:h-[270px] md:h-[340px] lg:h-[400px] xl:h-[450px]">
+            <Image
+              src="/Images/serviseImages/servemore/footer/f3.png"
+              alt="Cloud Services"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Right Content */}
+        <div ref={footerContentRef} className="w-full lg:w-[55%] xl:w-[60%] flex flex-col items-center lg:items-start justify-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-6 sm:py-8 md:py-10 lg:py-8 relative z-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-center lg:text-left mb-5 sm:mb-6 md:mb-7 lg:mb-8 leading-snug sm:leading-tight max-w-[90%] sm:max-w-full">
+            Seamless, Secure, and <br className="hidden sm:block" />Scalable Cloud Tailored for <br className="hidden sm:block" /> Your Business
+          </h2>
+          <button className="bg-[#FF662A] text-white px-6 sm:px-7 md:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium hover:opacity-90 transition-opacity">
+            Talk to Our Cloud Experts
+          </button>
+        </div>
+      </div>
 
       {/* Footer */}
       <FooterSimple />

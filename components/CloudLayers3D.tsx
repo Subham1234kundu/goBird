@@ -86,9 +86,17 @@ const CloudLayers3D = () => {
       const width = window.innerWidth
       if (width < 640) {
         setClouds([
-          { position: [-1.5, -2.3, -2], scale: 1, opacity: 0.4, speed: 0.3, texture: '/Images/clouds/c4.png' },
-          { position: [1.5, 0, -2], scale: 3, opacity: 0.5, speed: 0.35, texture: '/Images/clouds/c1.png' },
-          { position: [0, -3, -1], scale: 6, opacity: 1, speed: 0.4, texture: '/Images/clouds/c2.png' }
+          { position: [-1.8, 1.5, 0.5], scale: 3.5, opacity: 0.5, speed: 0.3, texture: '/Images/clouds/c4.png' },
+          { position: [2.5, 1.5, 0.5], scale: 3.5, opacity: 0.5, speed: 0.35, texture: '/Images/clouds/c1.png' },
+          { position: [-0.5, -3, 1.2], scale: 6.5, opacity: 0.8, speed: 0.4, texture: '/Images/clouds/c2.png' },
+          { position: [0, 0.8, 0.8], scale: 3, opacity: 0.6, speed: 0.32, texture: '/Images/clouds/c3.png' }
+        ])
+      } else if (width < 1024) {
+        setClouds([
+          { position: [-1.8, 1.5, 0.5], scale: 3.5, opacity: 0.5, speed: 0.3, texture: '/Images/clouds/c4.png' },
+          { position: [2.5, 1.5, 0.5], scale: 3.5, opacity: 0.5, speed: 0.35, texture: '/Images/clouds/c1.png' },
+          { position: [-0.5, -3, 1.2], scale: 6.5, opacity: 0.8, speed: 0.4, texture: '/Images/clouds/c2.png' },
+          { position: [0, 0.8, 0.8], scale: 3, opacity: 0.6, speed: 0.32, texture: '/Images/clouds/c3.png' }
         ])
       } else {
         setClouds([

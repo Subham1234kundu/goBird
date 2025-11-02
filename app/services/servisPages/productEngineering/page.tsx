@@ -11,6 +11,7 @@ import IndustriesWeServeSection from "@/app/components/service/IndustriesWeServe
 import MarketContextSection from "@/app/components/service/MarketContextSection"
 import WeBuildSection from "@/app/components/service/WeBuildSection"
 import WhyChooseSection from "@/app/components/service/WhyChooseSection"
+import InsightsSection from "@/app/components/service/InsightsSection"
 import FooterSimple from "@/app/components/FooterSimple"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -21,6 +22,9 @@ const ProductEngineering = () => {
   const headerBirdRef = useRef<HTMLDivElement>(null)
   const headerContentRef = useRef<HTMLDivElement>(null)
   const serviceBoxesRef = useRef<HTMLDivElement[]>([])
+  const customSectionRef = useRef<HTMLDivElement>(null)
+  const customTextRef = useRef<HTMLDivElement>(null)
+  const customImageRef = useRef<HTMLDivElement>(null)
 
   // Header section initial animation - same as Services page
   useEffect(() => {
@@ -126,6 +130,45 @@ const ProductEngineering = () => {
     }
   }, [])
 
+  // Custom section animation
+  useEffect(() => {
+    if (customTextRef.current && customSectionRef.current) {
+      gsap.set(customTextRef.current, { opacity: 0, x: -80 })
+      gsap.to(customTextRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: customSectionRef.current,
+          start: 'top 70%',
+          once: true
+        }
+      })
+    }
+
+    if (customImageRef.current && customSectionRef.current) {
+      gsap.set(customImageRef.current, { opacity: 0, x: 100, scale: 0.9 })
+      gsap.to(customImageRef.current, {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 1.2,
+        delay: 0.3,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: customSectionRef.current,
+          start: 'top 70%',
+          once: true
+        }
+      })
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   return (
     <div className="w-full overflow-x-hidden">
       {/* Hero Section - Same style as Services page */}
@@ -190,10 +233,10 @@ const ProductEngineering = () => {
           },
 
         ]}
-        imageSrc="/Images/serviseImages/customSoftware.jpg"
-        imageAlt="Custom Software Development"
-        overlayImageSrc="/Images/serviseImages/seviseBird.png"
-        overlayImageAlt="Grobird Logo"
+        imageSrc="/Images/serviseImages/PE/choose.png"
+        imageAlt="Product Engineering"
+        overlayImageSrc="/Images/serviseImages/servemore/bird.png"
+        overlayImageAlt="Service Bird"
       />
 
       {/* We Build Section */}
@@ -203,12 +246,12 @@ const ProductEngineering = () => {
         buttonText="Let’s Build Your"
         items={[
           {
-            imageSrc: "/Images/serviseImages/webApp.jpg",
-            title: "Web Applications"
+            imageSrc: "/Images/serviseImages/servemore/offer/PE/offer1.jpg",
+            title: "UI/UX Design & Prototyping"
           },
           {
-            imageSrc: "/Images/serviseImages/mobileApp.jpg",
-            title: "Mobile Applications"
+            imageSrc: "/Images/serviseImages/servemore/offer/PE/offer2.jpg",
+            title: "Architecture & System Design"
           },
           {
             imageSrc: "/Images/serviseImages/enterprise.jpg",
@@ -234,8 +277,8 @@ const ProductEngineering = () => {
         marketProjectionLabel="Market Projection"
         marketProjectionValue="USD 1.81 trillion"
         marketProjectionYear=" by 2030"
-        imageSrc="/Images/serviseImages/market.jpg"
-        imageAlt="Custom Software Market"
+        imageSrc="/Images/serviseImages/servemore/market/m4.jpg"
+        imageAlt="Product Engineering Market"
         measurableTitle="Industries We"
         measurableTitleHighlight="Serve"
         measurableDescription="Grobird brings deep expertise across multiple industries, tailoring product engineering solutions to each sector’s unique challenges. From building interactive e-learning platforms for education to developing secure fintech applications, our team delivers products that drive efficiency, engagement, and growth."
@@ -283,7 +326,7 @@ const ProductEngineering = () => {
             color: 'text-[#000A1B]',
             description: 'operational cost reduction'
           },
-          {
+          { 
             value: 25,
             suffix: '%',
             color: 'text-[#FE4C00]',
@@ -303,6 +346,59 @@ const ProductEngineering = () => {
           }
         ]}
       />
+
+      {/* Insights Section */}
+      <InsightsSection
+        title="All"
+        titleHighlight="Insights"
+        buttonText="More articles"
+        insights={[
+          {
+            imageSrc: "/Images/insights1.png",
+            title: "The art of storytelling in branding and advertising",
+            category: "Branding",
+            date: "Mar 1, 2025",
+            readTime: "8min read",
+            imageAlt: "The art of storytelling in branding and advertising"
+          },
+          {
+            imageSrc: "/Images/insights2.png",
+            title: "The art of storytelling in branding and advertising",
+            category: "Branding",
+            date: "Mar 1, 2025",
+            readTime: "8min read",
+            imageAlt: "The art of storytelling in branding and advertising"
+          },
+          {
+            imageSrc: "/Images/insights1.png",
+            title: "The art of storytelling in branding and advertising",
+            category: "Branding",
+            date: "Mar 1, 2025",
+            readTime: "8min read",
+            imageAlt: "The art of storytelling in branding and advertising"
+          }
+        ]}
+      />
+
+      {/* Custom Section Before Footer*/}
+      <div ref={customSectionRef} className="w-full flex flex-col lg:flex-row items-center mt-10 sm:mt-16 lg:mt-20 mb-10 justify-between min-h-[400px] sm:min-h-[500px] lg:h-[600px]" style={{ backgroundColor: '#F5F9FE' }}>
+        <div ref={customTextRef} className="flex flex-col gap-4 sm:gap-6 w-full lg:w-[35%] px-6 sm:px-10 md:px-16 lg:ml-20 py-8 lg:py-0">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-black">
+            Accelerating Time-to-Market by 50% with Scalable Engineering
+          </h2>
+          <button className="bg-black text-white rounded-full px-6 sm:px-8 py-2.5 sm:py-3 w-fit text-xs sm:text-sm font-medium hover:bg-gray-800 transition-colors">
+            Connect Now!
+          </button>
+        </div>
+        <div ref={customImageRef} className="w-full lg:w-[60%] h-[300px] sm:h-[400px] lg:h-full relative">
+          <Image
+            src="/Images/serviseImages/servemore/footer/f4.png"
+            alt="Engineering"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </div>
 
       {/* Footer */}
       <FooterSimple />

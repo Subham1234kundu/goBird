@@ -53,7 +53,7 @@ const BirdCarousel = () => {
     const updateViewport = () => {
       const width = window.innerWidth
       if (width < 640) {
-        setViewport({ radius: 3.5, birdSize: 1.0, cameraZ: 4.5, cameraY: 1.5, fov: 75 })
+        setViewport({ radius: 4.5, birdSize: 1.2, cameraZ: 5, cameraY: 0.5, fov: 70 })
       } else if (width < 1024) {
         setViewport({ radius: 4.2, birdSize: 1.0, cameraZ: 5.5, cameraY: 1.5, fov: 65 })
       } else if (width < 1440) {

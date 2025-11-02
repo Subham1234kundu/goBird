@@ -161,7 +161,7 @@ const WeBuildSection = ({
                   quality={90}
                 />
               </div>
-              <p className="text-white text-xs sm:text-sm md:text-base lg:text-xl xl:text-3xl" style={{ fontWeight: 400 }}>
+              <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" style={{ fontWeight: 400 }}>
                 {item.title}
               </p>
             </div>
