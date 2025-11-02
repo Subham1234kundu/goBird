@@ -21,6 +21,18 @@ export const metadata: Metadata = {
     shortcut: '/Images/logo.png',
     apple: '/Images/logo.png',
   },
+  openGraph: {
+    title: "Grobird - Transforming Ideas into Scalable Digital Solutions",
+    description: "Grobird accelerates innovation through IT consulting, software development, and cloud solutions.",
+    images: ['/Images/logo.png'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Grobird - Transforming Ideas into Scalable Digital Solutions",
+    description: "Grobird accelerates innovation through IT consulting, software development, and cloud solutions.",
+    images: ['/Images/logo.png'],
+  },
 };
 
 export default function RootLayout({
@@ -37,6 +49,8 @@ export default function RootLayout({
         <link rel="icon" href="/Images/logo.png" type="image/png" sizes="32x32" />
         <link rel="icon" href="/Images/logo.png" type="image/png" sizes="16x16" />
         <link rel="shortcut icon" href="/Images/logo.png" type="image/png" />
+        <meta property="og:image" content="/Images/logo.png" />
+        <meta name="twitter:image" content="/Images/logo.png" />
       </head>
       <body
         className={`${montserrat.variable} antialiased`}

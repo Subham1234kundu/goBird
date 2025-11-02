@@ -525,6 +525,9 @@ const Home = () => {
       })
     }
 
+    // Refresh ScrollTrigger after all animations are set up
+    ScrollTrigger.refresh()
+
     // Cleanup
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
@@ -533,7 +536,7 @@ const Home = () => {
 
   return (
     <>
-      <div style={{ width: '100%', minHeight: '100vh', fontFamily: 'Montserrat, -apple-system, BlinkMacSystemFont, sans-serif' }}>
+      <div style={{ width: '100%', minHeight: '100vh', fontFamily: 'Montserrat, -apple-system, BlinkMacSystemFont, sans-serif', overflowX: 'hidden' }}>
         {/* header */}
         <div
           ref={heroSectionRef}

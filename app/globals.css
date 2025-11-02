@@ -126,6 +126,7 @@
     @apply bg-background text-foreground;
     font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     background: white;
+    overflow-x: hidden;
   }
 
   /* Completely hide scrollbar - no white bar */
