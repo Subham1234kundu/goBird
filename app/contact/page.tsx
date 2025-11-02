@@ -376,7 +376,7 @@ const Contact = () => {
             <p className="text-black">Questions</p>
           </div>
           <p className="text-[#2D2C2C] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl w-full lg:w-[40%] leading-relaxed">
-            From setup to security, here's everything you need to know before getting started.
+            From setup to security, here&apos;s everything you need to know before getting started.
           </p>
         </div>
 

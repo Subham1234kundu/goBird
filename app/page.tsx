@@ -649,7 +649,7 @@ const Home = () => {
                 <div className="mt-2 flex justify-between items-end gap-4">
                   <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
                     Designed to help businesses navigate<br className="hidden md:block" />
-                    the complexities of today's fast-paced
+                    the complexities of today&apos;s fast-paced
                   </p>
                   <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
                 </div>
