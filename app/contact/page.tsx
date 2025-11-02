@@ -9,14 +9,7 @@ const Contact = () => {
   const imagesRef = useRef<HTMLDivElement[]>([])
   const mediumImagesRef = useRef<HTMLDivElement[]>([])
   const textRef = useRef<HTMLDivElement[]>([])
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const titles = [
-    'IT Consulting',
-    'Custom Software Development',
-    'Cloud & Infrastructure',
-    'Product Engineering'
-  ]
+  const [, setCurrentIndex] = useState(0)
 
   useEffect(() => {
     const images = imagesRef.current.filter(Boolean)

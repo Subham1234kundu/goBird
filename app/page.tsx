@@ -6,7 +6,6 @@ import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import InsightsSection from "@/app/components/service/InsightsSection"
-import Footer from "./components/Footer"
 import FooterSimple from "./components/FooterSimple"
 
 // Register GSAP ScrollTrigger plugin
@@ -161,7 +160,7 @@ const Home = () => {
     }
 
     // Service Items Stagger
-    serviceItemsRef.current.forEach((item, index) => {
+    serviceItemsRef.current.forEach((item) => {
       if (item) {
         gsap.from(item, {
           x: -30,
@@ -219,7 +218,6 @@ const Home = () => {
       // Animate stat numbers with counter effect
       const statNumbers = statsCardsRef.current.querySelectorAll('h1')
       statNumbers.forEach((stat) => {
-        const fullHTML = stat.innerHTML
         const text = stat.textContent || ''
         const numberMatch = text.match(/\d+/)
 
@@ -544,7 +542,7 @@ const Home = () => {
             background: 'linear-gradient(to bottom, #010917 1%, #006BCB 85%, #ffffff 100%)'
           }}>
         {/* Image at the very top */}
-        <div className="absolute top-30 left-0 w-full h-[50vh] z-0">
+        <div className="absolute top-[120px] left-0 w-full h-[50vh] z-0">
           <Image src="/Images/boxes.png" alt="Boxes" width={3000} height={1000} className="w-[90%] h-[120%] object-cover opacity-20" />
         </div>
 
@@ -983,7 +981,7 @@ const Home = () => {
                   <p className="text-black">Questions</p>
                 </div>
                 <p className="text-[#2D2C2C] text-sm md:text-base lg:text-lg w-full lg:w-[40%] xl:text-3xl leading-relaxed">
-                From setup to security, here's everything you
+                From setup to security, here&apos;s everything you
                 need to know before getting started.
                 </p>
             </div>

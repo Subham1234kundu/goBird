@@ -59,7 +59,7 @@ const PaperBirdModel = () => {
       }, 150)
     }
 
-    const handleLocomotiveScroll = (e: any) => {
+    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
       setScrollY(e.detail)
       setIsScrolling(true)
 
@@ -73,11 +73,11 @@ const PaperBirdModel = () => {
     }
 
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll)
+    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll)
+      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
@@ -195,7 +195,7 @@ const PaperBirdLeftModel = () => {
       }, 150)
     }
 
-    const handleLocomotiveScroll = (e: any) => {
+    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
       setScrollY(e.detail)
       setIsScrolling(true)
 
@@ -209,11 +209,11 @@ const PaperBirdLeftModel = () => {
     }
 
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll)
+    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll)
+      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
@@ -328,7 +328,7 @@ const PaperBirdBottomModel = () => {
       }, 150)
     }
 
-    const handleLocomotiveScroll = (e: any) => {
+    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
       setScrollY(e.detail)
       setIsScrolling(true)
 
@@ -342,11 +342,11 @@ const PaperBirdBottomModel = () => {
     }
 
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll)
+    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll)
+      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
@@ -460,7 +460,7 @@ const PaperBirdRightModel = () => {
       }, 150)
     }
 
-    const handleLocomotiveScroll = (e: any) => {
+    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
       setScrollY(e.detail)
       setIsScrolling(true)
 
@@ -474,11 +474,11 @@ const PaperBirdRightModel = () => {
     }
 
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll)
+    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll)
+      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
@@ -592,7 +592,7 @@ const PaperBirdBottomLeftModel = () => {
       }, 150)
     }
 
-    const handleLocomotiveScroll = (e: any) => {
+    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
       setScrollY(e.detail)
       setIsScrolling(true)
 
@@ -606,11 +606,11 @@ const PaperBirdBottomLeftModel = () => {
     }
 
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll)
+    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll)
+      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }

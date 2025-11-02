@@ -23,8 +23,6 @@ const StylizedCloud = ({
   
   // Create a stylized cloud using multiple soft spheres
   const cloudParts = useMemo(() => {
-    const parts = []
-    
     // Create cloud puffs with varying sizes and positions
     const cloudData = [
       { pos: [0, 0, 0], scale: 1.5 },

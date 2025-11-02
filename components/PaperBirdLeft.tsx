@@ -51,7 +51,7 @@ const PaperBirdLeftModel = () => {
     }
   }, [])
 
-  useFrame(({ clock }, _delta) => {
+  useFrame(({ clock }) => {
     if (groupRef.current && mixer) {
       const time = clock.getElapsedTime()
 

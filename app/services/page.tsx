@@ -796,7 +796,7 @@ const Services = () => {
             className="w-full h-full"
           >
               <Image
-                src="/Images/srtviseImages/BigImage/b1.png"
+                src="/Images/serviseImages/BigImage/b1.png"
                 alt="Startup Image 1"
                 fill
                 className="object-cover"
@@ -809,7 +809,7 @@ const Services = () => {
               className="w-full h-full"
             >
               <Image
-                src="/Images/srtviseImages/BigImage/b2.png"
+                src="/Images/serviseImages/BigImage/b2.png"
                 alt="Startup Image 2"
                 fill
                 className="object-cover"
@@ -821,7 +821,7 @@ const Services = () => {
               className="w-full h-full"
             >
               <Image
-                src="/Images/srtviseImages/BigImage/b3.png"
+                src="/Images/serviseImages/BigImage/b3.png"
                 alt="Startup Image 3"
                 fill
                 className="object-cover"
@@ -833,7 +833,7 @@ const Services = () => {
               className="w-full h-full"
             >
               <Image
-                src="/Images/srtviseImages/BigImage/b4.png"
+                src="/Images/serviseImages/BigImage/b4.png"
                 alt="Startup Image 4"
                 fill
                 className="object-cover"
@@ -849,7 +849,7 @@ const Services = () => {
               className="w-full h-full relative"
             >
               <Image
-                src="/Images/srtviseImages/MediumImage/m1.png"
+                src="/Images/serviseImages/mediumImage/m1.png"
                 alt="Service Image M1"
                 fill
                 className="object-cover"
@@ -891,7 +891,7 @@ const Services = () => {
               className="w-full h-full"
             >
               <Image
-                src="/Images/srtviseImages/MediumImage/m2.png"
+                src="/Images/serviseImages/mediumImage/m2.png"
                 alt="Service Image M2"
                 fill
                 className="object-cover"
@@ -905,7 +905,7 @@ const Services = () => {
               className="w-full h-full"
             >
               <Image
-                src="/Images/srtviseImages/MediumImage/m3.png"
+                src="/Images/serviseImages/mediumImage/m3.png"
                 alt="Service Image M3"
                 fill
                 className="object-cover"
@@ -919,7 +919,7 @@ const Services = () => {
               className="w-full h-full"
             >
               <Image
-                src="/Images/srtviseImages/MediumImage/m4.png"
+                src="/Images/serviseImages/mediumImage/m4.png"
                 alt="Service Image M4"
                 fill
                 className="object-cover"
