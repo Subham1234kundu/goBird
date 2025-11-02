@@ -8,7 +8,7 @@ import { SkeletonUtils } from 'three-stdlib'
 
 // Hook to get responsive screen size
 const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({ width: 1920, height: 1080 })
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
     const handleResize = () => {
@@ -234,8 +234,8 @@ const PaperBirdLeftModel = () => {
       let baseScale = 0.88, scaleReduction = 0.72
 
       if (width < 640) { // Mobile
-        startX = -1.5
-        startY = -0.5
+        startX = -1.8
+        startY = -0.9
         startZ = 0.8
         endX = 3.5
         endY = 4.5
@@ -499,14 +499,14 @@ const PaperBirdRightModel = () => {
       let baseScale = 0.88, scaleReduction = 0.72
 
       if (width < 640) { // Mobile
-        startX = 1.3
+        startX = 1.7
         startY = -1.2
         startZ = 0.9
         endX = 3.5
         endY = 4.5
         endZ = -6
         baseScale = 0.60
-        scaleReduction = 0.47
+        scaleReduction = 0.7
       } else if (width < 1024) { // Tablet
         startX = 1.6
         startY = -1.4
@@ -690,13 +690,11 @@ const PaperBirdBottomLeftModel = () => {
 }
 
 // 3D Cloud Component
-const Cloud3D = ({ position, scale, speed = 0.5, opacity = 0.4, width, depth }: {
+const Cloud3D = ({ position, scale, speed = 0.5, opacity = 0.4 }: {
   position: [number, number, number],
   scale: number,
   speed?: number,
-  opacity?: number,
-  width?: number,
-  depth?: number
+  opacity?: number
 }) => {
   const cloudRef = useRef<Group>(null)
 
@@ -713,12 +711,10 @@ const Cloud3D = ({ position, scale, speed = 0.5, opacity = 0.4, width, depth }: 
   })
 
   return (
-    <group ref={cloudRef} position={position}>
+    <group ref={cloudRef} position={position} scale={scale}>
       <Cloud
         opacity={opacity}
         speed={0.2}
-        width={width || scale * 8}
-        depth={depth || scale * 2}
         segments={30}
         color="#ffffff"
       />
@@ -760,14 +756,10 @@ const PaperBird3D = () => {
         <pointLight position={[-5, 5, 5]} intensity={0.5} />
 
         {/* 3D Clouds - Background Layer */}
-        
-        
-     
-        
-        <Cloud3D position={[0, -4, -8]} scale={2.5} speed={0.2} opacity={0.4} />
-        <Cloud3D position={[-9, 0, -8]} scale={10} speed={0.45} opacity={0.2} />
-        <Cloud3D position={[9, 0, -16]} scale={1.5} speed={0.35} opacity={0.05} />
-         <Cloud3D position={[-1, 10, 50]} scale={2.5} speed={0.15} opacity={0.5} width={35} depth={1.5} />
+        <Cloud3D position={[0, -4, -8]} scale={0.8} speed={0.2} opacity={0.4} />
+        <Cloud3D position={[-9, 0, -8]} scale={1.1} speed={0.45} opacity={0.2} />
+        <Cloud3D position={[9, 0, -16]} scale={0.9} speed={0.35} opacity={0.05} />
+        <Cloud3D position={[-1, 10, 50]} scale={1.8} speed={0.15} opacity={0.5} />
 
        
 
