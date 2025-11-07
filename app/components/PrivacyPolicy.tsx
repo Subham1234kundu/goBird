@@ -27,7 +27,7 @@ const PrivacyPolicy = () => {
             Privacy Policy
           </h1>
           <p className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-w-4xl leading-relaxed mb-8" style={{ fontWeight: 300 }}>
-            We're committed to safeguarding your personal information with transparency, security, and trust at every step
+            We&apos;re committed to safeguarding your personal information with transparency, security, and trust at every step
           </p>
         
         </div>

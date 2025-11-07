@@ -2,10 +2,8 @@
 import Image from "next/image"
 import FooterSimple from "@/app/components/FooterSimple"
 import PaperBird3D from "@/components/PaperBird3D"
-import { useRouter } from "next/navigation"
 
 export default function NotFound() {
-  const router = useRouter()
 
   return (
     <div className="w-full min-h-screen flex flex-col">

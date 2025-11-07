@@ -13,7 +13,6 @@ const Contact = () => {
   const mediumImagesRef = useRef<HTMLDivElement[]>([])
   const textRef = useRef<HTMLDivElement[]>([])
   const [, setCurrentIndex] = useState(0)
-  const headerRef = useRef<HTMLDivElement>(null)
   const headerTextRef = useRef<HTMLDivElement>(null)
   const startupsHeadingRef = useRef<HTMLHeadingElement>(null)
   const startupLogosRef = useRef<HTMLDivElement>(null)
