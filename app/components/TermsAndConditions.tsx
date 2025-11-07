@@ -81,7 +81,7 @@ const TermsAndConditions = () => {
 
         <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extralight mb-4 sm:mb-6 mt-12 sm:mt-16 md:mt-20">7. Disclaimer of Warranties</h2>
         <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8">
-          Our services are provided "as is" and "as available." We make no warranties, express or implied, regarding accuracy, reliability, or suitability for a particular purpose.
+          Our services are provided &quot;as is&quot; and &quot;as available.&quot; We make no warranties, express or implied, regarding accuracy, reliability, or suitability for a particular purpose.
         </p>
 
         <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extralight mb-4 sm:mb-6 mt-12 sm:mt-16 md:mt-20">8. Limitation of Liability</h2>
