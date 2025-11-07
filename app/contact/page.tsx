@@ -3,13 +3,27 @@
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import FooterSimple from "@/app/components/FooterSimple"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Contact = () => {
   const imagesRef = useRef<HTMLDivElement[]>([])
   const mediumImagesRef = useRef<HTMLDivElement[]>([])
   const textRef = useRef<HTMLDivElement[]>([])
   const [, setCurrentIndex] = useState(0)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const headerTextRef = useRef<HTMLDivElement>(null)
+  const startupsHeadingRef = useRef<HTMLHeadingElement>(null)
+  const startupLogosRef = useRef<HTMLDivElement>(null)
+  const contactFormRef = useRef<HTMLDivElement>(null)
+  const contactInfoRef = useRef<HTMLDivElement>(null)
+  const strategicPartnerRef = useRef<HTMLDivElement>(null)
+  const statsRefs = useRef<HTMLDivElement[]>([])
+  const faqHeadingRef = useRef<HTMLDivElement>(null)
+  const faqItemsRef = useRef<HTMLDivElement[]>([])
+  const ctaSectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const images = imagesRef.current.filter(Boolean)
@@ -151,6 +165,166 @@ const Contact = () => {
     }
   }, [])
 
+  useEffect(() => {
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    gsap.killTweensOf('*')
+
+    if (headerTextRef.current) {
+      gsap.set(headerTextRef.current.children, { opacity: 0, y: 60 })
+      gsap.to(headerTextRef.current.children, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.3,
+        delay: 0.3,
+        ease: 'power3.out'
+      })
+    }
+
+    if (startupsHeadingRef.current) {
+      gsap.set(startupsHeadingRef.current, { opacity: 0, y: 30 })
+      gsap.to(startupsHeadingRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: startupsHeadingRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      })
+    }
+
+    if (startupLogosRef.current) {
+      gsap.set(startupLogosRef.current.children, { opacity: 0, y: 30 })
+      gsap.to(startupLogosRef.current.children, {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: startupLogosRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      })
+    }
+
+    if (contactInfoRef.current) {
+      gsap.set(contactInfoRef.current, { opacity: 0, x: -50 })
+      gsap.to(contactInfoRef.current, {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: contactInfoRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
+      })
+    }
+
+    if (contactFormRef.current) {
+      gsap.set(contactFormRef.current, { opacity: 0, x: 50 })
+      gsap.to(contactFormRef.current, {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: contactFormRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
+      })
+    }
+
+    if (strategicPartnerRef.current) {
+      gsap.set(strategicPartnerRef.current, { opacity: 0, y: 50 })
+      gsap.to(strategicPartnerRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: strategicPartnerRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
+      })
+    }
+
+    const stats = statsRefs.current.filter(Boolean)
+    if (stats.length > 0) {
+      stats.forEach((stat, index) => {
+        gsap.set(stat, { opacity: 0, scale: 0.8, y: 50 })
+        gsap.to(stat, {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.1 * index,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: stats[0],
+            start: 'top 75%',
+            toggleActions: 'play none none none'
+          }
+        })
+      })
+    }
+
+    if (faqHeadingRef.current) {
+      gsap.set(faqHeadingRef.current, { opacity: 0, y: 50 })
+      gsap.to(faqHeadingRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: faqHeadingRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
+      })
+    }
+
+    faqItemsRef.current.forEach((item, index) => {
+      if (item) {
+        gsap.set(item, { opacity: 0, x: -30 })
+        gsap.to(item, {
+          x: 0,
+          opacity: 1,
+          duration: 0.6,
+          delay: index * 0.05,
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+          }
+        })
+      }
+    })
+
+    if (ctaSectionRef.current) {
+      gsap.set(ctaSectionRef.current, { opacity: 0, y: 50 })
+      gsap.to(ctaSectionRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: ctaSectionRef.current,
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
+      })
+    }
+
+    ScrollTrigger.refresh()
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+      gsap.killTweensOf('*')
+    }
+  }, [])
+
   return (
     <div className="w-full">
       {/* Header Section */}
@@ -178,7 +352,7 @@ const Contact = () => {
         </div>
 
         {/* Text content */}
-        <div className="flex-1 mt-8 sm:mt-12 md:mt-16 lg:mt-20 px-4 sm:px-6 md:px-0 relative z-10">
+        <div ref={headerTextRef} className="flex-1 mt-8 sm:mt-12 md:mt-16 lg:mt-20 px-4 sm:px-6 md:px-0 relative z-10">
           <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-light leading-tight mb-6 sm:mb-8 md:mb-12" style={{ fontWeight: 300 }}>
             92% of our clients return <br className="hidden sm:block" /> with new projects start <br className="hidden sm:block" /> your first today.
           </h1>
@@ -191,12 +365,12 @@ const Contact = () => {
       {/* Startups Section */}
       <div className="w-full py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-10 lg:px-16">
         <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-black text-base sm:text-lg md:text-xl lg:text-2xl text-center mb-6 sm:mb-8">
+          <h2 ref={startupsHeadingRef} className="text-black text-base sm:text-lg md:text-xl lg:text-2xl text-center mb-6 sm:mb-8">
             The startups shaping tomorrow trust Grobird
           </h2>
 
           {/* Startup Company Images Row */}
-          <div className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-14 overflow-x-auto pb-2">
+          <div ref={startupLogosRef} className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-14 overflow-x-auto pb-2">
             <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
               <Image
                 src="/Images/startups/company1.png"
@@ -256,7 +430,7 @@ const Contact = () => {
         <div className="mx-auto">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-24 justify-between w-full">
             {/* Left Side - Contact Information */}
-            <div className="flex-1 flex flex-col justify-between h-full">
+            <div ref={contactInfoRef} className="flex-1 flex flex-col justify-between h-full">
               <div>
                 <h2 className="text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light leading-tight mb-8 sm:mb-10 md:mb-12" style={{ fontWeight: 300 }}>
                   We&apos;d love to hear from you. Drop us a message and our team will get back within 24 hours.
@@ -282,7 +456,7 @@ const Contact = () => {
             </div>
 
             {/* Right Side - Contact Form */}
-            <div className="flex-1">
+            <div ref={contactFormRef} className="flex-1">
               <form className="flex flex-col h-full gap-4 sm:gap-6 border rounded-lg p-4 sm:p-6 md:p-8" style={{ borderColor: '#B7B7B7' }}>
                 <div>
                   <label className="block text-black text-sm sm:text-base md:text-lg font-medium mb-2">Name</label>
@@ -337,7 +511,7 @@ const Contact = () => {
       </div>
 
       {/* Strategic Partner Section */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-6 sm:py-8 md:py-10 lg:py-12 mx-auto items-start sm:items-center justify-between">
+          <div ref={strategicPartnerRef} className="flex flex-col sm:flex-row gap-4 sm:gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-6 sm:py-8 md:py-10 lg:py-12 mx-auto items-start sm:items-center justify-between">
             <h2 className="text-[#000A1B] flex flex-col text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium leading-tight w-full lg:w-[80%]">
               <span className="text-[#3B3B3D73]">More than a service</span>
                <span className="text-[#0B0B0B]">A strategic design<br className="hidden sm:block" />partner.</span>
@@ -347,21 +521,21 @@ const Contact = () => {
 
          {/* more than a service boxes */}
          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-3 sm:gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-6 sm:pb-8 md:pb-10 lg:pb-12 mx-auto">
-            <Image src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain" />
-            <div className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 className="flex text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">10<span className="text-[#F95524]">x</span></h3>
+            <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain" />
+            <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
+              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">10<span className="text-[#F95524]">x</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm">Higher Client Retention</p>
             </div>
-             <div className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 className="flex text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">200<span className="text-[#F95524]">+</span></h3>
+             <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
+              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">200<span className="text-[#F95524]">+</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm">Successfully delivered high-quality projects</p>
             </div>
-            <div className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 className="flex text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">97<span className="text-[#F95524]">%</span></h3>
+            <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
+              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">97<span className="text-[#F95524]">%</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm">Client satisfaction based on surveys</p>
             </div>
-            <div className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 className="flex text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">5<span className="text-[#F95524]">+</span></h3>
+            <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
+              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">5<span className="text-[#F95524]">+</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm">Continents Served</p>
             </div>
           </div>
@@ -370,7 +544,7 @@ const Contact = () => {
       <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 px-4 sm:px-6 md:px-8 lg:px-[4%] py-10 sm:py-12 md:py-16 lg:py-20 my-6 sm:my-8 md:my-12 lg:my-16" style={{
         background: 'linear-gradient(to bottom, #FFFFFF 0%, #F4F4F4 100%)'
       }}>
-        <div className="flex flex-col lg:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8">
+        <div ref={faqHeadingRef} className="flex flex-col lg:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8">
           <div className="flex w-full lg:w-[60%] items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-[#3B3B3D73] flex-col gap-2">
             <p>Frequently Asked</p>
             <p className="text-black">Questions</p>
@@ -381,7 +555,7 @@ const Contact = () => {
         </div>
 
         <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-4">
-          <div className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+          <div ref={el => { if (el) faqItemsRef.current[0] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
             <p className="text-[#111111] text-sm md:text-base">What kind of teams use Relay?</p>
             <Image
               src="/Images/serviseImages/plus.png"
@@ -392,7 +566,7 @@ const Contact = () => {
             />
           </div>
 
-          <div className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+          <div ref={el => { if (el) faqItemsRef.current[1] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
             <p className="text-[#111111] text-sm md:text-base">Does Relay work with Slack and Microsoft Teams?</p>
             <Image
               src="/Images/serviseImages/plus.png"
@@ -403,7 +577,7 @@ const Contact = () => {
             />
           </div>
 
-          <div className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+          <div ref={el => { if (el) faqItemsRef.current[2] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
             <p className="text-[#111111] text-sm md:text-base">Is there a free trial?</p>
             <Image
               src="/Images/serviseImages/plus.png"
@@ -414,7 +588,7 @@ const Contact = () => {
             />
           </div>
 
-          <div className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+          <div ref={el => { if (el) faqItemsRef.current[3] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
             <p className="text-[#111111] text-sm md:text-base">Is my data secure?</p>
             <Image
               src="/Images/serviseImages/plus.png"
@@ -425,7 +599,7 @@ const Contact = () => {
             />
           </div>
 
-          <div className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+          <div ref={el => { if (el) faqItemsRef.current[4] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
             <p className="text-[#111111] text-sm md:text-base">Can I collaborate with my engineering team inside Relay?</p>
             <Image
               src="/Images/serviseImages/plus.png"
@@ -436,7 +610,7 @@ const Contact = () => {
             />
           </div>
 
-          <div className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+          <div ref={el => { if (el) faqItemsRef.current[5] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
             <p className="text-[#111111] text-sm md:text-base">Does Relay support multi-channel communication?</p>
             <Image
               src="/Images/serviseImages/plus.png"
@@ -447,7 +621,7 @@ const Contact = () => {
             />
           </div>
 
-          <div className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+          <div ref={el => { if (el) faqItemsRef.current[6] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
             <p className="text-[#111111] text-sm md:text-base">Can I customize how Relay works for my team?</p>
             <Image
               src="/Images/serviseImages/plus.png"
@@ -461,7 +635,7 @@ const Contact = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 px-4 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-10 md:py-12 lg:py-16">
+      <div ref={ctaSectionRef} className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 px-4 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-10 md:py-12 lg:py-16">
         <h2 className="text-black text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium leading-tight text-center sm:text-left">
           Driving 30% Cost Reductions Through <br className="hidden lg:block" />Smarter IT Decisions
         </h2>

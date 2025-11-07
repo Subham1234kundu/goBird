@@ -10,14 +10,15 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="bg-custom-bg text-white border-b-[0.5px] border-gray-700">
+    <nav className="bg-custom-bg  text-white border-b-[0.5px] border-gray-700">
       <div className="flex items-stretch">
-        <a 
-          href="https://www.grobird.in" 
+        <Link 
+          href="/" 
           className="flex items-center border-r-[0.5px] border-gray-700 px-8 py-2"
+          onClick={() => window.scrollTo(0, 0)}
         >
           <Image src="/Images/navLogo.png" alt="Logo" width={120} height={40} />
-        </a>
+        </Link>
         
         {/* Desktop Navigation */}
         <div className="hidden lg:flex flex-1 justify-end">
@@ -75,9 +76,9 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="lg:hidden absolute inset-0 bg-black/80 backdrop-blur-sm z-50 min-h-screen">
           <div className="flex items-stretch border-b-[0.5px] border-gray-700">
-            <a href="https://www.grobird.in" className="flex items-center border-r-[0.5px] border-gray-700 px-8 py-2">
+            <Link href="/" className="flex items-center border-r-[0.5px] border-gray-700 px-8 py-2" onClick={() => { setIsMenuOpen(false); window.scrollTo(0, 0); }}>
               <Image src="/Images/navLogo.png" alt="Logo" width={120} height={40} />
-            </a>
+            </Link>
             <div className="flex items-center justify-end flex-1 px-4">
               <button 
                 onClick={() => setIsMenuOpen(false)}

@@ -117,13 +117,13 @@ const PaperBirdModel = () => {
         scaleReduction = 0.50
       } else if (width < 1440) { // Laptop
         startX = 0
-        startY = 0.8
+        startY = 0.6
         startZ = 0.5
         endX = 7
         endY = 6
         endZ = -9
-        baseScale = 0.82
-        scaleReduction = 0.65
+        baseScale = 0.70
+        scaleReduction = 0.95
       }
 
       // Interpolate position from start to end

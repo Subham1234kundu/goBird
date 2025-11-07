@@ -7,11 +7,13 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import InsightsSection from "@/app/components/service/InsightsSection"
 import FooterSimple from "./components/FooterSimple"
+import { useRouter } from "next/navigation"
 
 // Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
 
 const Home = () => {
+  const router = useRouter()
   // Refs for all animated sections
   const heroHeadingRef = useRef<HTMLHeadingElement>(null)
   const heroDescRef = useRef<HTMLParagraphElement>(null)
@@ -57,6 +59,73 @@ const Home = () => {
   }
 
   useEffect(() => {
+    // Kill existing ScrollTrigger animations only
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    
+    // Reset all animated elements to initial visible state
+    const resetElements = [
+      heroHeadingRef.current,
+      heroDescRef.current,
+      startupsHeadingRef.current,
+      developIdeaRef.current,
+      successHeadingRef.current,
+      statsCardsRef.current,
+      boldMovesHeadingRef.current,
+      testimonialsHeadingRef.current,
+      testimonialImageRef.current,
+      insightsHeadingRef.current
+    ]
+    
+    resetElements.forEach(el => {
+      if (el) gsap.set(el, { clearProps: "all" })
+    })
+    
+    // Reset arrays of elements
+    serviceItemsRef.current.forEach(el => {
+      if (el) gsap.set(el, { clearProps: "all" })
+    })
+    
+    boldMovesRef.current.forEach(el => {
+      if (el) gsap.set(el, { clearProps: "all" })
+    })
+    
+    faqItemsRef.current.forEach(el => {
+      if (el) gsap.set(el, { clearProps: "all" })
+    })
+    
+    if (heroButtonsRef.current) gsap.set(heroButtonsRef.current.children, { clearProps: "all" })
+    if (heroContentWrapperRef.current) gsap.set(heroContentWrapperRef.current, { clearProps: "all" })
+    if (startupLogosRef.current) gsap.set(startupLogosRef.current.children, { clearProps: "all" })
+    
+    // Ensure CTA section elements are always visible - set inline styles
+    if (ctaBirdRef.current) {
+      ctaBirdRef.current.style.opacity = '1'
+      ctaBirdRef.current.style.visibility = 'visible'
+    }
+    if (ctaContentRef.current) {
+      ctaContentRef.current.style.opacity = '1'
+      ctaContentRef.current.style.visibility = 'visible'
+      const children = ctaContentRef.current.querySelectorAll('*')
+      children.forEach((child: Element) => {
+        if (child instanceof HTMLElement) {
+          child.style.opacity = '1'
+          child.style.visibility = 'visible'
+        }
+      })
+    }
+    if (ctaCloudLeftRef.current) {
+      ctaCloudLeftRef.current.style.opacity = '1'
+      ctaCloudLeftRef.current.style.visibility = 'visible'
+    }
+    if (ctaCloudRightRef.current) {
+      ctaCloudRightRef.current.style.opacity = '1'
+      ctaCloudRightRef.current.style.visibility = 'visible'
+    }
+    if (ctaCloudBottomRef.current) {
+      ctaCloudBottomRef.current.style.opacity = '1'
+      ctaCloudBottomRef.current.style.visibility = 'visible'
+    }
+
     // Hero Section Animations
     const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } })
 
@@ -131,32 +200,14 @@ const Home = () => {
       })
     }
 
-    // Services Section
+    // Services Section - keep visible without animation
     if (servicesHeadingRef.current) {
-      gsap.from(servicesHeadingRef.current.children, {
-        x: -50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: servicesHeadingRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse"
-        }
-      })
+      gsap.set(servicesHeadingRef.current, { opacity: 1, x: 0 })
     }
 
+    // IT Consulting section - keep visible without animation
     if (itConsultingRef.current) {
-      gsap.from(itConsultingRef.current, {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: itConsultingRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse"
-        }
-      })
+      gsap.set(itConsultingRef.current, { opacity: 1, y: 0 })
     }
 
     // Service Items Stagger
@@ -323,20 +374,12 @@ const Home = () => {
       })
     }
 
-    // FAQ Section
+    // FAQ Section - keep visible without animation
     if (faqHeadingRef.current) {
-      gsap.from(faqHeadingRef.current.children, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: faqHeadingRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse"
-        }
-      })
+      gsap.set(faqHeadingRef.current, { opacity: 1, y: 0 })
     }
+
+    // FAQ Items animation removed - keeping FAQ heading always visible
 
     faqItemsRef.current.forEach((item, index) => {
       if (item) {
@@ -357,49 +400,27 @@ const Home = () => {
     // CTA Section - Bird with floating animation
     if (ctaBirdRef.current) {
       const birdImg = ctaBirdRef.current.querySelector('img')
+      if (birdImg instanceof HTMLElement) {
+        birdImg.style.opacity = '1'
+        birdImg.style.visibility = 'visible'
+      }
 
-      // Initial entrance animation
-      gsap.from(birdImg, {
-        y: 150,
-        x: -50,
-        opacity: 0,
-        scale: 0.8,
-        rotation: -15,
-        duration: 1.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ctaBirdRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse"
-        }
-      })
-
-      // Continuous floating animation
+      // Continuous floating animation only
       gsap.to(birdImg, {
-        y: -20,
-        duration: 3,
+        y: -30,
+        duration: 3.5,
         ease: "sine.inOut",
         repeat: -1,
-        yoyo: true,
-        scrollTrigger: {
-          trigger: ctaBirdRef.current,
-          start: "top 80%",
-          toggleActions: "play pause resume pause"
-        }
+        yoyo: true
       })
 
       // Subtle rotation animation
       gsap.to(birdImg, {
-        rotation: 3,
-        duration: 4,
+        rotation: 5,
+        duration: 3.5,
         ease: "sine.inOut",
         repeat: -1,
-        yoyo: true,
-        scrollTrigger: {
-          trigger: ctaBirdRef.current,
-          start: "top 80%",
-          toggleActions: "play pause resume pause"
-        }
+        yoyo: true
       })
     }
 
@@ -530,7 +551,11 @@ const Home = () => {
 
     // Cleanup
     return () => {
+      // Kill all ScrollTrigger instances
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+      
+      // Kill all GSAP tweens
+      gsap.killTweensOf("*")
     }
   }, [])
 
@@ -550,17 +575,17 @@ const Home = () => {
         </div>
 
         <div ref={heroContentWrapperRef} className="flex flex-col items-center mt-16 sm:mt-18 md:mt-16 lg:mt-18 xl:mt-14 2xl:mt-20 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10">
-          <h1 ref={heroHeadingRef} className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2">
+          <h1 ref={heroHeadingRef} className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-7xl 2xl:text-7xl font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2">
             Transforming Ideas into <br /> Scalable Digital Solutions
           </h1>
           <p ref={heroDescRef} className="text-white font-thin text-base sm:text-base md:text-md lg:text-md xl:text-lg 2xl:text-2xl leading-relaxed max-w-4xl 2xl:max-w-6xl mb-6 sm:mb-7 xl:mb-8 2xl:mb-10 px-4">
             Grobird accelerates innovation through IT consulting, software <br className="hidden sm:block" /> development, and cloud solutions.
           </p>
           <div ref={heroButtonsRef} className="flex flex-row gap-3 sm:gap-4 items-center justify-center">
-            <button className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-12 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm hover:bg-[#e55a24] transition-colors">
+            <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-12 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm hover:bg-[#e55a24] transition-colors">
               Talk to Us
             </button>
-            <button className="bg-white text-black px-4 sm:px-6 lg:px-12 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors">
+            <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-12 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors">
               Explore Services
             </button>
           </div>
@@ -679,7 +704,12 @@ const Home = () => {
 
               </div>
 
-              <button className="text-white bg-[#FF662A] px-6 py-3 mt-2 md:mt-4 lg:mt-5 xl:mt-7 text-sm md:text-base rounded-md hover:bg-[#e55a24] transition-colors">View all services</button>
+              <button 
+                onClick={() => router.push('/services')}
+                className="text-white bg-[#FF662A] px-6 py-3 mt-2 md:mt-4 lg:mt-5 xl:mt-7 text-sm md:text-base rounded-md hover:bg-[#e55a24] transition-colors"
+              >
+                View all services
+              </button>
 
             </div>
 
@@ -969,7 +999,10 @@ const Home = () => {
 
           {/* More Articles Button */}
           <div className="flex justify-center items-center mx-[4%] mb-12 md:mb-16 lg:mb-20">
-            <button className="bg-[#FF662A] text-white px-6 py-3 text-sm flex items-center gap-2 hover:bg-[#e55a24] transition-colors rounded-md">
+            <button 
+              onClick={() => router.push('/insights')}
+              className="bg-[#FF662A] text-white px-6 py-3 text-sm flex items-center gap-2 hover:bg-[#e55a24] transition-colors rounded-md"
+            >
               More articles
               <Image src="/Images/arrow.png" alt="Arrow" width={20} height={20} className="object-contain" />
             </button>
@@ -1094,10 +1127,10 @@ const Home = () => {
                 From concept to code, we transform bold visions into living digital experiences that soar.
               </p>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 items-center mt-2 md:mt-4 w-full sm:w-auto">
-                <button className="bg-[#FF672C] text-white px-6 sm:px-8 lg:px-12 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm hover:bg-[#e55a24] transition-colors w-full sm:w-auto">
+                <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-6 sm:px-8 lg:px-12 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm hover:bg-[#e55a24] transition-colors w-full sm:w-auto">
                   Talk to Us
                 </button>
-                <button className="bg-white text-black px-6 sm:px-8 lg:px-12 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors w-full sm:w-auto border border-gray-200">
+                <button onClick={() => router.push('/services')} className="bg-white text-black px-6 sm:px-8 lg:px-12 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors w-full sm:w-auto border border-gray-200">
                   Explore Services
                 </button>
               </div>

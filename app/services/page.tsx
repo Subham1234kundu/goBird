@@ -710,10 +710,10 @@ const Services = () => {
           </div>
 
           <div ref={headerContentRef} className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10 pb-16">
-            <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight mb-8 w-full sm:w-[90%] md:w-[85%] lg:w-[76%]" style={{ fontWeight: 300 }}>
+            <h1 className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-7xl 2xl:text-7xl font-light leading-tight mb-8 w-full sm:w-[90%] md:w-[85%] lg:w-[76%]" style={{ fontWeight: 300 }}>
               From strategy to execution, Grobird covers the full lifecycle of digital solutions.
             </h1>
-            <h3 className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-relaxed">
+            <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-lg 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-relaxed">
               Whether you&apos;re rethinking IT infrastructure, building custom software, or scaling digital products — we help you move with speed and confidence.
             </h3>
             <button className="mt-12 sm:mt-16 md:mt-20 bg-white border border-white rounded-full text-black text-xs sm:text-sm px-8 sm:px-12 py-2 w-fit">
@@ -1003,11 +1003,11 @@ const Services = () => {
         {/* we serve */}
         <div ref={serveSectionRef} className="w-full items-center flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
           <div ref={serveHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full  my-12 sm:my-16 md:my-20 gap-6 sm:gap-8">
-            <div className="flex items-start text-2xl sm:text-3xl md:text-4xl font-medium text-black flex-col ">
+            <div className="flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium text-black flex-col ">
               <p>Industries We</p>
               <p className="text-[#3B3B3D73]">Serve</p>
             </div>
-            <p className="text-[#2D2C2C] text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed lg:w-[25%]">
+            <p className="text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-4xl leading-relaxed lg:w-[25%]">
               Every industry has its own challenges, and at Grobird we tailor software to meet those unique needs
             </p>
           </div>
@@ -1092,11 +1092,11 @@ const Services = () => {
         {/* bold moves */}
         <div ref={boldMovesSectionRef} className="w-full items-center flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
           <div ref={boldMovesHeadingRef} className="flex flex-col sm:flex-row justify-between items-center w-full  my-12 sm:my-16 md:my-20 gap-6 sm:gap-8 ">
-            <div className="flex items-start text-2xl sm:text-3xl md:text-4xl font-medium text-black flex-col gap-2 ">
+            <div className="flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium text-black flex-col gap-2 ">
               <p>Big Steps, Bold Moves </p>
               <p className="text-[#3B3B3D73]">Our Latest Releases</p>
             </div>
-            <p className="text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl leading-relaxed ]">
+            <p className="text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-4xl leading-relaxed">
               Press Releaseds
             </p>
           </div>
@@ -1331,12 +1331,12 @@ const Services = () => {
         
       {/* roadmap */}
       <div ref={roadmapSectionRef} className="w-full py-20 gap-8 items-start flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
-        <div className="roadmap-heading flex items-start text-2xl sm:text-3xl md:text-5xl font-medium text-black flex-col gap-2 ">
+        <div className="roadmap-heading flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium text-black flex-col gap-2 ">
               <p>Let&apos;s design the right technology </p>
               <p className="text-[#3B3B3D73]">roadmap for your business.</p>
         </div>
 
-        <button className="bg-[#FF662A] p-2 px-4 rounded-sm  flex gap-2 items-start">
+        <button onClick={() => router.push('/contact')} className="bg-[#FF662A] p-2 px-4 rounded-sm  flex gap-2 items-start hover:bg-[#e55a24] transition-colors">
           <p className="text-white text-sm">Start a Conversation</p>
 
         </button>

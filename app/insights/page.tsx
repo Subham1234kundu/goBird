@@ -1,22 +1,32 @@
 "use client"
 import Image from "next/image"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import FooterSimple from "@/app/components/FooterSimple"
+import InsightsMore from "@/app/components/InsightsMore"
 
 const Insights = () => {
+  const router = useRouter()
   const [currentPage, setCurrentPage] = useState(1)
+  const [showInsightsMore, setShowInsightsMore] = useState(false)
+
+  if (showInsightsMore) {
+    return <InsightsMore />
+  }
 
   return (
     <div className="w-full">
       {/* Header Section */}
       <div className="w-full h-full px-4 sm:px-6 md:px-10 pt-6 sm:pt-8 md:pt-12 lg:pt-16 relative" style={{ backgroundColor: '#000A1B' }}>
         <div className="flex flex-col w-full relative z-10 pb-16">
+          <div className=" w-[80%]">
           <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight mb-8 w-full sm:w-[90%] md:w-[85%] lg:w-[76%]" style={{ fontWeight: 300 }}>
             Ideas, trends, and lessons from the frontlines of tech
           </h1>
           <h3 className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-relaxed mb-12 sm:mb-16 md:mb-20">
             Our experts share deep dives, strategies, and stories from the world of IT consulting, design, and software development so you can stay ahead of the curve.
           </h3>
+          </div>
           <div className="w-full relative">
             <Image
               src="/Images/InsightsHeader.jpg"
@@ -56,11 +66,12 @@ const Insights = () => {
             {/* Insight 1 */}
             <div className="flex flex-col">
               <Image
-                src="/Images/InsightsHeader.jpg"
+                src="/Images/insights1.png"
                 alt="Insight 1"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover rounded-lg"
+                className="w-full h-[488px] object-cover cursor-pointer"
+                onClick={() => setShowInsightsMore(true)}
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 Building scalable cloud infrastructure for modern applications
@@ -76,11 +87,11 @@ const Insights = () => {
             {/* Insight 2 */}
             <div className="flex flex-col">
               <Image
-                src="/Images/InsightsHeader.jpg"
+                src="/Images/insights2.png"
                 alt="Insight 2"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover rounded-lg"
+                className="w-full h-[488px] object-cover"
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 How AI is transforming software development workflows
@@ -96,11 +107,11 @@ const Insights = () => {
             {/* Insight 3 */}
             <div className="flex flex-col">
               <Image
-                src="/Images/InsightsHeader.jpg"
+                src="/Images/insights3.png"
                 alt="Insight 3"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover rounded-lg"
+                className="w-full h-[488px] object-cover"
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 Best practices for microservices architecture
@@ -116,11 +127,11 @@ const Insights = () => {
             {/* Insight 4 */}
             <div className="flex flex-col">
               <Image
-                src="/Images/InsightsHeader.jpg"
+                src="/Images/insights4.png"
                 alt="Insight 4"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover rounded-lg"
+                className="w-full h-[488px] object-cover"
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 Designing user-centric mobile experiences
@@ -136,11 +147,11 @@ const Insights = () => {
             {/* Insight 5 */}
             <div className="flex flex-col">
               <Image
-                src="/Images/InsightsHeader.jpg"
+                src="/Images/insights1.png"
                 alt="Insight 5"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover rounded-lg"
+                className="w-full h-[488px] object-cover"
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 Designing user-centric mobile experiences
@@ -157,11 +168,11 @@ const Insights = () => {
             {/* Insight 6 */}
             <div className="flex flex-col">
               <Image
-                src="/Images/InsightsHeader.jpg"
+                src="/Images/insights2.png"
                 alt="Insight 6"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover rounded-lg"
+                className="w-full h-[488px] object-cover"
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 Designing user-centric mobile experiences
@@ -206,14 +217,15 @@ const Insights = () => {
       </div>
 
       {/* Call to Action Section */}
-      <div className="w-full py-20 px-4 sm:px-6 md:px-10 lg:px-16">
+      <div className="w-full py-20 ">
         <div className="flex flex-col lg:flex-row items-stretch justify-between gap-0">
           <div className="flex flex-col justify-center items-start gap-8 lg:w-1/2 bg-[#F5F9FE] px-8 py-12 lg:px-12 lg:py-16">
             <h2 className="text-[#000A1B] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
               Need a Tech Partner <br /> You Can Trust? Let&apos;s Chat
             </h2>
             <button
-              className="px-8 py-3 rounded-sm text-white text-sm sm:text-base"
+              onClick={() => router.push('/contact')}
+              className="px-8 py-3 rounded-sm text-white text-sm sm:text-base hover:opacity-90 transition-opacity"
               style={{ backgroundColor: '#FF662A' }}
             >
               Get Started

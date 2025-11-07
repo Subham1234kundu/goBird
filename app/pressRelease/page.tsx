@@ -1,10 +1,19 @@
 "use client"
 import Image from "next/image"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import FooterSimple from "@/app/components/FooterSimple"
+import PressReleaseMore from "@/app/components/PressReleaseMore"
 
 const PressRelease = () => {
+  const router = useRouter()
   const [currentPage, setCurrentPage] = useState(1)
+  const [showPressReleaseMore, setShowPressReleaseMore] = useState(false)
+
+  if (showPressReleaseMore) {
+    return <PressReleaseMore />
+  }
+
   return (
   <div className="overflow-x-hidden">
       {/* header */}
@@ -36,7 +45,10 @@ const PressRelease = () => {
               <h3 className="text-[#0B0B0B] font-medium text-sm sm:text-lg lg:text-xl mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
               <p className="text-[#666666] text-xs mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
               <p className="text-[#212121] text-xs mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2">
+              <div 
+                onClick={() => setShowPressReleaseMore(true)}
+                className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors"
+              >
                 <p className="text-[#0B0B0B] text-xs">Read more</p>
                 <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
               </div>
@@ -200,44 +212,17 @@ const PressRelease = () => {
           </div>
           <div className="text-white text-center lg:text-right">
             <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-6 lg:mb-8 leading-relaxed">Let&apos;s Build Software That <br /> Works for You</h3>
-            <button className="bg-white border-2 border-white text-black px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 rounded-full hover:bg-transparent hover:text-white transition-colors text-sm sm:text-base">
+            <button 
+              onClick={() => router.push('/contact')}
+              className="bg-white border-2 border-white text-black px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 rounded-full hover:bg-transparent hover:text-white transition-colors text-sm sm:text-base"
+            >
               Contact Us
             </button>
           </div>
         </div>
       </div>
 
-      {/* footer image */}
-      <div className="w-full relative">
-        <Image
-          src="/Images/serviseImages/footer.jpg"
-          alt="Footer Image"
-          width={1920}
-          height={800}
-          className="object-cover w-full h-[800px]"
-        />
-        <div className="absolute inset-0 flex items-center w-[50%] ml-[2%] mb-44 justify-start">
-          <p className="text-4xl md:text-5xl lg:text-3xl xl:text-3xl text-white text-start px-4 font-extralight">
-            &ldquo;Looking for process improvements, <br /> we found a solution that <br /> transformed our entire data <br /> strategy. The depth of insights was <br /> remarkable.&rdquo;
-          </p>
-        </div>
 
-        <div className="absolute inset-0 flex items-end mx-[3%] my-[1%] justify-between">
-          <p className="text-white text-xs">
-            Maya Singh <br /> Product Strategy Lead
-          </p>
-
-          <div className="flex items-center gap-2">
-            <Image
-              src="/Images/serviseImages/play.png"
-              width={40}
-              alt="video play"
-              height={40}
-            />
-            <p className="text-white text-md">Watch video</p>
-          </div>
-        </div>
-      </div>
 
       {/* Footer */}
       <FooterSimple />
