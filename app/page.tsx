@@ -667,9 +667,13 @@ const Home = () => {
               <h3 className="text-2xl md:text-3xl lg:text-4xl text-[#000A1B] mt-0 md:mt-3">Services</h3>
             </div>
 
-            <div ref={itConsultingRef} className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between" style={{
-              background: 'linear-gradient(to bottom, #020A18, #023362)'
-            }}>
+            <div 
+              ref={itConsultingRef} 
+              onClick={() => router.push('/services/servisPages/itConsulting')}
+              className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between cursor-pointer hover:opacity-90 transition-opacity" 
+              style={{
+                background: 'linear-gradient(to bottom, #020A18, #023362)'
+              }}>
 
               <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
                 <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">01</div>
@@ -686,19 +690,31 @@ const Home = () => {
             </div>
 
             <div className="flex flex-col gap-12 md:gap-16 lg:gap-24 xl:gap-32 items-center px-4 md:px-8 lg:px-14 mb-6 md:mb-10 lg:mb-12 xl:mb-14">
-              <div ref={el => { if (el) serviceItemsRef.current[0] = el }} className="w-full flex justify-between items-start gap-4">
+              <div 
+                ref={el => { if (el) serviceItemsRef.current[0] = el }} 
+                onClick={() => router.push('/services/servisPages/customSoftwareDevelopment')}
+                className="w-full flex justify-between items-start gap-4 cursor-pointer hover:opacity-70 transition-opacity"
+              >
                 <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Custom Software Development</p>
                     <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
 
               </div>
 
-              <div ref={el => { if (el) serviceItemsRef.current[1] = el }} className="w-full flex justify-between items-start gap-4">
+              <div 
+                ref={el => { if (el) serviceItemsRef.current[1] = el }} 
+                onClick={() => router.push('/services/servisPages/Cloud&Infrastructure')}
+                className="w-full flex justify-between items-start gap-4 cursor-pointer hover:opacity-70 transition-opacity"
+              >
                 <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Cloud & Infrastructure</p>
                     <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
 
               </div>
 
-              <div ref={el => { if (el) serviceItemsRef.current[2] = el }} className="w-full flex justify-between items-start gap-4">
+              <div 
+                ref={el => { if (el) serviceItemsRef.current[2] = el }} 
+                onClick={() => router.push('/services/servisPages/productEngineering')}
+                className="w-full flex justify-between items-start gap-4 cursor-pointer hover:opacity-70 transition-opacity"
+              >
                 <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Product Engineering </p>
                     <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
 

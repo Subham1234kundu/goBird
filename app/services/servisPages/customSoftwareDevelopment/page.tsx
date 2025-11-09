@@ -213,7 +213,7 @@ const CustomSoftwareDevelopment = () => {
             At Grobird, we design and build tailored software solutions that solve your unique challenges. Whether you&apos;re launching a new product, modernizing legacy systems, or scaling your digital operations, we deliver technology that adapts to your vision.
           </p>
 
-          <button className="text-black w-[50%] md:w-[30%] lg:w-[20%] bg-white rounded-full p-2 px-3 lg:mb-2 text-sm">Request a Proposal</button>
+          <button onClick={() => router.push('/contact')} className="text-black w-[50%] md:w-[30%] lg:w-[20%] bg-white rounded-full p-2 px-3 lg:mb-2 text-sm">Request a Proposal</button>
         </div>
       </div>
 
@@ -273,7 +273,7 @@ const CustomSoftwareDevelopment = () => {
             title: "E-Commerce Solutions"
           }
         ]}
-        onButtonClick={() => router.push('/portfolio')}
+        onButtonClick={() => router.push('/contact')}
       />
 
       {/* Market Context Section */}
@@ -368,6 +368,7 @@ const CustomSoftwareDevelopment = () => {
             title="All"
             titleHighlight="Insights"
             buttonText="More articles"
+            onButtonClick={() => router.push('/insights')}
             insights={[
               {
                 imageSrc: "/Images/insights1.png",
@@ -426,7 +427,7 @@ const CustomSoftwareDevelopment = () => {
             Trusted by Businesses to Deliver 99% On-Time, Impactful Software
           </h2>
           <div className="w-full lg:w-[60%] flex justify-center lg:justify-end">
-            <button ref={customButtonRef} className="bg-white text-black px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium hover:opacity-90 transition-opacity border border-gray-200 whitespace-nowrap">
+            <button ref={customButtonRef} onClick={() => router.push('/contact')} className="bg-white text-black px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium hover:opacity-90 transition-opacity border border-gray-200 whitespace-nowrap">
               Start Building Today
             </button>
           </div>

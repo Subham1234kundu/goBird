@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useRouter } from "next/navigation"
 import WhyChooseSection from "@/app/components/service/WhyChooseSection"
 import WeBuildSection from "@/app/components/service/WeBuildSection"
 import MarketContextSection from "@/app/components/service/MarketContextSection"
@@ -17,6 +18,7 @@ import FooterSimple from "@/app/components/FooterSimple"
 gsap.registerPlugin(ScrollTrigger)
 
 const ITConsulting = () => {
+  const router = useRouter()
   const headerBoxesRef = useRef<HTMLDivElement[]>([])
   const headerBirdRef = useRef<HTMLDivElement>(null)
   const headerContentRef = useRef<HTMLDivElement>(null)
@@ -121,7 +123,7 @@ const ITConsulting = () => {
               From strategy to execution, Grobird helps you make smarter technology decisions, modernize your IT landscape, and unlock long-term efficiency and scalability.
           </p>
 
-          <button className="text-black w-[50%] md:w-[30%]  lg:w-[20%] bg-white rounded-full p-2 px-3 lg:mb-2 text-sm">Talk to an IT Expert</button>
+          <button onClick={() => router.push('/contact')} className="text-black w-[50%] md:w-[30%]  lg:w-[20%] bg-white rounded-full p-2 px-3 lg:mb-2 text-sm">Talk to an IT Expert</button>
 
         </div>
       </div>
@@ -158,6 +160,7 @@ const ITConsulting = () => {
         heading="What We Build"
         description="At Grobird, we create software that adapts to the way your business works not the other way around. From sleek web applications and engaging mobile apps to enterprise platforms and SaaS products, our solutions are built to solve real problems and deliver measurable results."
         buttonText="Let's Build Your"
+        onButtonClick={() => router.push('/contact')}
         items={[
           {
             imageSrc: "/Images/serviseImages/serve/s1.jpg",
@@ -263,6 +266,7 @@ const ITConsulting = () => {
             title="All"
             titleHighlight="Insights"
             buttonText="More articles"
+            onButtonClick={() => router.push('/insights')}
             insights={[
               {
                 imageSrc: "/Images/insights1.png",
@@ -300,6 +304,7 @@ const ITConsulting = () => {
         description="Let's turn your IT challenges into opportunities."
         rightTitle="Future-Ready IT Starts\nHere"
         buttonText="Contact Us"
+        onButtonClick={() => router.push('/contact')}
       />
 
       {/* Footer */}

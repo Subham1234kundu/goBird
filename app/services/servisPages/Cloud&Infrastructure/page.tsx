@@ -250,7 +250,7 @@ const CloudInfrastructure = () => {
             Grobird helps businesses design, deploy, and manage cloud infrastructure that&apos;s secure, scalable, and cost-efficient enabling your teams to focus on innovation, not maintenance.
           </p>
 
-          <button className="text-black w-[50%] md:w-[30%] lg:w-[25%] bg-white rounded-full p-2 px-3 lg:mb-2 text-sm">Talk to a Cloud Expert</button>
+          <button onClick={() => router.push('/contact')} className="text-black w-[50%] md:w-[30%] lg:w-[25%] bg-white rounded-full p-2 px-3 lg:mb-2 text-sm">Talk to a Cloud Expert</button>
         </div>
       </div>
 
@@ -310,7 +310,7 @@ const CloudInfrastructure = () => {
             title: "E-Commerce Solutions"
           }
         ]}
-        onButtonClick={() => router.push('/portfolio')}
+        onButtonClick={() => router.push('/contact')}
       />
 
       {/* Market Context Section */}
@@ -397,6 +397,7 @@ const CloudInfrastructure = () => {
             title="All"
             titleHighlight="Insights"
             buttonText="More articles"
+            onButtonClick={() => router.push('/insights')}
             insights={[
               {
                 imageSrc: "/Images/insights1.png",
@@ -456,7 +457,7 @@ const CloudInfrastructure = () => {
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-center lg:text-left mb-5 sm:mb-6 md:mb-7 lg:mb-8 leading-snug sm:leading-tight max-w-[90%] sm:max-w-full">
             Seamless, Secure, and <br className="hidden sm:block" />Scalable Cloud Tailored for <br className="hidden sm:block" /> Your Business
           </h2>
-          <button className="bg-[#FF662A] text-white px-6 sm:px-7 md:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium hover:opacity-90 transition-opacity">
+          <button onClick={() => router.push('/contact')} className="bg-[#FF662A] text-white px-6 sm:px-7 md:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-medium hover:opacity-90 transition-opacity">
             Talk to Our Cloud Experts
           </button>
         </div>
