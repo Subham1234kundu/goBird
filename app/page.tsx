@@ -41,6 +41,7 @@ const Home = () => {
   const ctaCloudLeftRef = useRef<HTMLDivElement>(null)
   const ctaCloudRightRef = useRef<HTMLDivElement>(null)
   const ctaCloudBottomRef = useRef<HTMLDivElement>(null)
+  const lastHoveredServiceRef = useRef<HTMLDivElement | null>(null)
 
   const handleMouseEnter = (element: HTMLDivElement) => {
     gsap.to(element, {
@@ -56,6 +57,62 @@ const Home = () => {
       duration: 0.3,
       ease: "power2.out"
     })
+  }
+
+  const handleServiceHover = (element: HTMLDivElement, isEntering: boolean) => {
+    const textContent = element.querySelector('.service-text-content')
+    const expandedContent = element.querySelector('.service-expanded-content')
+    
+    if (isEntering) {
+      // Reset previous hovered element if exists
+      if (lastHoveredServiceRef.current && lastHoveredServiceRef.current !== element) {
+        const prevText = lastHoveredServiceRef.current.querySelector('.service-text-content')
+        const prevExpanded = lastHoveredServiceRef.current.querySelector('.service-expanded-content')
+        gsap.to(prevExpanded, {
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.3,
+          ease: "power2.inOut"
+        })
+        gsap.to(prevText, {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+          delay: 0.1
+        })
+      }
+      
+      lastHoveredServiceRef.current = element
+      
+      gsap.to(textContent, {
+        opacity: 0,
+        y: -20,
+        duration: 0.3,
+        ease: "power2.inOut"
+      })
+      gsap.to(expandedContent, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        ease: "power3.out",
+        delay: 0.1
+      })
+    } else {
+      gsap.to(expandedContent, {
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.3,
+        ease: "power2.inOut"
+      })
+      gsap.to(textContent, {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out",
+        delay: 0.1
+      })
+    }
   }
 
   useEffect(() => {
@@ -670,54 +727,119 @@ const Home = () => {
             <div 
               ref={itConsultingRef} 
               onClick={() => router.push('/services/servisPages/itConsulting')}
-              className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between cursor-pointer hover:opacity-90 transition-opacity" 
-              style={{
-                background: 'linear-gradient(to bottom, #020A18, #023362)'
-              }}>
-
-              <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
-                <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">01</div>
-                <h3 className="text-white text-2xl md:text-3xl lg:text-[40px]">IT Consulting</h3>
-                <div className="mt-2 flex justify-between items-end gap-4">
-                  <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
-                    Designed to help businesses navigate<br className="hidden md:block" />
-                    the complexities of today&apos;s fast-paced
-                  </p>
-                  <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
+              onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
+              onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
+              className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] cursor-pointer relative overflow-hidden"
+            >
+              <div className="service-text-content w-full h-full flex justify-between items-start gap-4 absolute inset-0">
+                <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">IT Consulting</p>
+                <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+              </div>
+              <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between opacity-0" 
+                style={{
+                  background: 'linear-gradient(to bottom, #020A18, #023362)'
+                }}>
+                <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
+                  <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">01</div>
+                  <h3 className="text-white text-2xl md:text-3xl lg:text-[40px]">IT Consulting</h3>
+                  <div className="mt-2 flex justify-between items-end gap-4">
+                    <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
+                      Designed to help businesses navigate<br className="hidden md:block" />
+                      the complexities of today&apos;s fast-paced
+                    </p>
+                    <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
+                  </div>
                 </div>
-
               </div>
             </div>
 
-            <div className="flex flex-col gap-12 md:gap-16 lg:gap-24 xl:gap-32 items-center px-4 md:px-8 lg:px-14 mb-6 md:mb-10 lg:mb-12 xl:mb-14">
+            <div className="flex flex-col gap-12 md:gap-16 lg:gap-24 xl:gap-32 items-center  mb-6 md:mb-10 lg:mb-12 xl:mb-14">
+
               <div 
                 ref={el => { if (el) serviceItemsRef.current[0] = el }} 
                 onClick={() => router.push('/services/servisPages/customSoftwareDevelopment')}
-                className="w-full flex justify-between items-start gap-4 cursor-pointer hover:opacity-70 transition-opacity"
+                onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
+                onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
+                className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] cursor-pointer relative overflow-hidden"
               >
-                <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Custom Software Development</p>
-                    <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
-
+                <div className="service-text-content w-full h-full flex justify-between items-start gap-4 absolute inset-0">
+                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Custom Software Development</p>
+                  <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                </div>
+                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between opacity-0" 
+                  style={{
+                    background: 'linear-gradient(to bottom, #020A18, #023362)'
+                  }}>
+                  <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
+                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">02</div>
+                    <h3 className="text-white text-2xl md:text-3xl lg:text-[40px]">Custom Software Development</h3>
+                    <div className="mt-2 flex justify-between items-end gap-4">
+                      <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
+                        We build scalable, secure, and user-focused<br className="hidden md:block" />
+                        applications tailored to your specific business needs.
+                      </p>
+                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div 
                 ref={el => { if (el) serviceItemsRef.current[1] = el }} 
                 onClick={() => router.push('/services/servisPages/Cloud&Infrastructure')}
-                className="w-full flex justify-between items-start gap-4 cursor-pointer hover:opacity-70 transition-opacity"
+                onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
+                onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
+                className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] cursor-pointer relative overflow-hidden"
               >
-                <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Cloud & Infrastructure</p>
-                    <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
-
+                <div className="service-text-content w-full h-full flex justify-between items-start gap-4 absolute inset-0">
+                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Cloud & Infrastructure</p>
+                  <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                </div>
+                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between opacity-0" 
+                  style={{
+                    background: 'linear-gradient(to bottom, #020A18, #023362)'
+                  }}>
+                  <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
+                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">03</div>
+                    <h3 className="text-white text-2xl md:text-3xl lg:text-[40px]">Cloud & Infrastructure</h3>
+                    <div className="mt-2 flex justify-between items-end gap-4">
+                      <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
+                        Our solutions ensure seamless scalability, reliable<br className="hidden md:block" />
+                        performance, and robust security.
+                      </p>
+                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div 
                 ref={el => { if (el) serviceItemsRef.current[2] = el }} 
                 onClick={() => router.push('/services/servisPages/productEngineering')}
-                className="w-full flex justify-between items-start gap-4 cursor-pointer hover:opacity-70 transition-opacity"
+                onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
+                onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
+                className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] cursor-pointer relative overflow-hidden"
               >
-                <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Product Engineering </p>
-                    <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
-
+                <div className="service-text-content w-full h-full flex justify-between items-start gap-4 absolute inset-0">
+                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Product Engineering</p>
+                  <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                </div>
+                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between opacity-0" 
+                  style={{
+                    background: 'linear-gradient(to bottom, #020A18, #023362)'
+                  }}>
+                  <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
+                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">04</div>
+                    <h3 className="text-white text-2xl md:text-3xl lg:text-[40px]">Product Engineering</h3>
+                    <div className="mt-2 flex justify-between items-end gap-4">
+                      <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
+                        Our team designs, develops, and maintains software<br className="hidden md:block" />
+                        that delights users and drives engagement.
+                      </p>
+                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <button 

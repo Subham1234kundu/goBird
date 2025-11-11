@@ -40,18 +40,18 @@ const Insights = () => {
               <span className="text-white text-sm">Design</span>
             </div>
             {/* Bottom Text */}
-            <div className="absolute bottom-8 left-8 right-8" >
-              <h2 className="text-white text-6xl font-thin mb-4">
-                5 UX principles that drive <br /> conversions
+            <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8" >
+              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-thin mb-2 sm:mb-3 md:mb-4">
+                5 UX principles that drive <br className="hidden sm:block" /> conversions
               </h2>
-              <div className="flex items-center justify-between gap-2 text-white text-sm">
-                <div>
+              <div className="flex items-center justify-between gap-2 text-white text-xs sm:text-sm">
+                <div className="flex items-center gap-1 sm:gap-2">
                 <span>Mar 1, 2025</span>
                 <span>•</span>
                 <span>8 min read</span>
                 </div>
 
-                <span className="underline">Read more</span>
+                <span className="underline cursor-pointer" onClick={() => setShowInsightsMore(true)}>Read more</span>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@ const Insights = () => {
                 Cloud • Feb 15, 2025 • 6 min read
               </p>
               <div className="relative w-[90%] mt-2">
-                <p className="text-[#0B0B0B] text-sm underline">Read more</p>
+                <p className="text-[#0B0B0B] text-sm underline cursor-pointer" onClick={() => setShowInsightsMore(true)}>Read more</p>
               </div>
             </div>
 
@@ -91,7 +91,8 @@ const Insights = () => {
                 alt="Insight 2"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover"
+                className="w-full h-[488px] object-cover cursor-pointer"
+                onClick={() => setShowInsightsMore(true)}
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 How AI is transforming software development workflows
@@ -100,7 +101,7 @@ const Insights = () => {
                 Technology • Feb 10, 2025 • 7 min read
               </p>
               <div className="relative w-[90%] mt-2">
-                <p className="text-[#0B0B0B] text-sm underline">Read more</p>
+                <p className="text-[#0B0B0B] text-sm underline cursor-pointer" onClick={() => setShowInsightsMore(true)}>Read more</p>
               </div>
             </div>
 
@@ -111,7 +112,8 @@ const Insights = () => {
                 alt="Insight 3"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover"
+                className="w-full h-[488px] object-cover cursor-pointer"
+                onClick={() => setShowInsightsMore(true)}
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 Best practices for microservices architecture
@@ -120,7 +122,7 @@ const Insights = () => {
                 Development • Feb 5, 2025 • 10 min read
               </p>
               <div className="relative w-[90%] mt-2">
-                <p className="text-[#0B0B0B] text-sm underline">Read more</p>
+                <p className="text-[#0B0B0B] text-sm underline cursor-pointer" onClick={() => setShowInsightsMore(true)}>Read more</p>
               </div>
             </div>
 
@@ -131,7 +133,8 @@ const Insights = () => {
                 alt="Insight 4"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover"
+                className="w-full h-[488px] object-cover cursor-pointer"
+                onClick={() => setShowInsightsMore(true)}
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 Designing user-centric mobile experiences
@@ -140,7 +143,7 @@ const Insights = () => {
                 Design • Jan 28, 2025 • 5 min read
               </p>
               <div className="relative w-[90%] mt-2">
-                <p className="text-[#0B0B0B] text-sm underline">Read more</p>
+                <p className="text-[#0B0B0B] text-sm underline cursor-pointer" onClick={() => setShowInsightsMore(true)}>Read more</p>
               </div>
             </div>
 
@@ -151,7 +154,8 @@ const Insights = () => {
                 alt="Insight 5"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover"
+                className="w-full h-[488px] object-cover cursor-pointer"
+                onClick={() => setShowInsightsMore(true)}
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 Designing user-centric mobile experiences
@@ -160,7 +164,7 @@ const Insights = () => {
                 Design • Jan 28, 2025 • 5 min read
               </p>
               <div className="relative w-[90%] mt-2">
-                <p className="text-[#0B0B0B] text-sm underline">Read more</p>
+                <p className="text-[#0B0B0B] text-sm underline cursor-pointer" onClick={() => setShowInsightsMore(true)}>Read more</p>
               </div>
             </div>
 
@@ -172,7 +176,8 @@ const Insights = () => {
                 alt="Insight 6"
                 width={500}
                 height={488}
-                className="w-full h-[488px] object-cover"
+                className="w-full h-[488px] object-cover cursor-pointer"
+                onClick={() => setShowInsightsMore(true)}
               />
               <h3 className="text-[#0B0B0B] font-medium text-lg sm:text-xl lg:text-2xl mt-4 text-start w-[90%]">
                 Designing user-centric mobile experiences
@@ -181,7 +186,7 @@ const Insights = () => {
                 Design • Jan 28, 2025 • 5 min read
               </p>
               <div className="relative w-[90%] mt-2">
-                <p className="text-[#0B0B0B] text-sm underline">Read more</p>
+                <p className="text-[#0B0B0B] text-sm underline cursor-pointer" onClick={() => setShowInsightsMore(true)}>Read more</p>
               </div>
             </div>
           </div>
