@@ -381,31 +381,31 @@ const AboutUs = () => {
         {/* vision boxes  */}
         <div ref={missionSectionRef} className="flex flex-col lg:flex-row gap-2 lg:gap-1 px-4 sm:px-4 md:px-8 lg:px-12 xl:px-14 pb-6 sm:pb-8 md:pb-12 lg:pb-2 mx-auto">
           {/* our blue */}
-          <div ref={missionBoxRef} className="w-full lg:w-[37%] bg-gradient-to-br from-[#020B18] to-[#023362] rounded-lg p-4 sm:p-6 py-6 sm:py-7 text-white font-inter">
+          <div ref={missionBoxRef} className="w-full lg:w-[37%] bg-gradient-to-br from-[#020B18] to-[#023362] rounded-lg p-4 sm:p-6 py-6 sm:py-7 text-white font-inter h-[480px]">
             <div className="mb-6 sm:mb-8">
-              <h3 className="text-xl sm:text-2xl font-semibold mb-2">Our Mission</h3>
-              <p className="text-sm sm:text-lg mb-4 sm:mb-6 leading-relaxed font-light">To empower businesses with technology that delivers measurable impact and long-term value.</p>
+              <h3 className="text-xl sm:text-2xl xl:text-[32px] font-semibold mb-2">Our Mission</h3>
+              <p className="text-sm sm:text-lg xl:text-[24px] mb-4 sm:mb-6 leading-9 font-light">To empower businesses with technology that delivers measurable impact and long-term value.</p>
             </div>
 
             <div>
-              <h3 className="text-xl sm:text-2xl font-semibold mb-2">Our Vision</h3>
-              <p className="text-sm sm:text-lg font-light leading-relaxed">A future where digital transformation is seamless, sustainable, and accessible to every business.</p>
+              <h3 className="text-xl sm:text-2xl xl:text-[32px] font-semibold mb-2">Our Vision</h3>
+              <p className="text-sm sm:text-lg xl:text-[24px] font-light leading-9">A future where digital transformation is seamless, sustainable, and accessible to every business.</p>
             </div>
 
           </div>
 
           {/* vison black */}
-          <div ref={visionBoxRef} className="w-full lg:w-[63%] relative rounded-lg overflow-hidden h-64 sm:h-80 lg:h-auto">
+          <div ref={visionBoxRef} className="w-full lg:w-[63%] relative rounded-lg overflow-hidden h-64 sm:h-80 lg:h-[480px]">
             <Image src="/Images/visonbackgroundblack.png" alt="Vision Background" width={600} height={200} className="w-full h-full object-cover" />
             <Image src="/Images/minibird.png" alt="Mini Bird" width={100} height={100} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 object-contain" />
-            <p className="absolute bottom-4 sm:bottom-6 right-2 sm:right-4 text-white text-sm sm:text-xl font-inter font-light text-end opacity-42">From vision to velocity that&apos;s <br /> the Grobird way</p>
+            <p className="absolute bottom-4 sm:bottom-6 right-2 sm:right-4 text-white text-sm sm:text-xl xl:text-[32px] font-inter font-medium text-end opacity-42 leading-10">From vision to velocity that&apos;s <br /> the Grobird way</p>
           </div>
           
         </div>
         
         {/* three boxes review  */}
         <div className="flex flex-col md:flex-row gap-4 md:gap-1 px-4 sm:px-4 md:px-8 lg:px-12 xl:px-14 pb-6 sm:pb-8 md:pb-12 lg:pb-16 mx-auto">
-          <div ref={el => { if (el) testimonialRefs.current[0] = el }} className="w-full md:w-1/3 h-auto md:h-80 bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between">
+          <div ref={el => { if (el) testimonialRefs.current[0] = el }} className="w-full md:w-1/3 h-auto md:h-[326px] bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between">
             <div>
               <div className="flex gap-1 mb-4 sm:mb-7">
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -414,14 +414,14 @@ const AboutUs = () => {
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
               </div>
-              <p className="text-[#0B0B0B] text-sm sm:text-base font-medium leading-relaxed">Grobird turned our early-stage idea into a fully functional product within months. Their team felt like an extension of ours — fast, responsive, and genuinely invested in our success.</p>
+              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-medium leading-relaxed">Grobird turned our early-stage idea into a fully functional product within months. Their team felt like an extension of ours — fast, responsive, and genuinely invested in our success.</p>
             </div>
             <div className="mt-4">
-              <p className="text-[#0B0B0B] text-sm sm:text-base font-semibold">Ankit Sharma</p>
-              <p className="text-[#666666] text-xs">Founder, EdTech Startup</p>
+              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-semibold">Ankit Sharma</p>
+              <p className="text-[#666666] text-xs xl:text-[13px]">Founder, EdTech Startup</p>
             </div>
           </div>
-          <div ref={el => { if (el) testimonialRefs.current[1] = el }} className="w-full md:w-1/3 h-auto md:h-80 bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between">
+          <div ref={el => { if (el) testimonialRefs.current[1] = el }} className="w-full md:w-1/3 h-auto md:h-[326px] bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between">
             <div>
               <div className="flex gap-1 mb-4 sm:mb-7">
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -430,14 +430,14 @@ const AboutUs = () => {
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
               </div>
-              <p className="text-[#0B0B0B] text-sm sm:text-base font-medium leading-relaxed">What impressed us most was Grobird&apos;s ability to balance speed with quality. They helped us scale our platform without downtime, and their support didn&apos;t stop after launch.</p>
+              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-medium leading-relaxed">What impressed us most was Grobird&apos;s ability to balance speed with quality. They helped us scale our platform without downtime, and their support didn&apos;t stop after launch.</p>
             </div>
             <div className="mt-4">
-              <p className="text-[#0B0B0B] text-sm sm:text-base font-semibold">Ankit Sharma</p>
-              <p className="text-[#666666] text-xs">Founder, EdTech Startup</p>
+              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-semibold">Ankit Sharma</p>
+              <p className="text-[#666666] text-xs xl:text-[13px]">Founder, EdTech Startup</p>
             </div>
           </div>
-          <div ref={el => { if (el) testimonialRefs.current[2] = el }} className="w-full md:w-1/3 h-auto md:h-80 bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between">
+          <div ref={el => { if (el) testimonialRefs.current[2] = el }} className="w-full md:w-1/3 h-auto md:h-[326px] bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between">
             <div>
               <div className="flex gap-1 mb-4 sm:mb-7">
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -446,42 +446,42 @@ const AboutUs = () => {
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
                 <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
               </div>
-              <p className="text-[#0B0B0B] text-sm sm:text-base font-medium leading-relaxed">Partnering with Grobird gave us the confidence to dream bigger. Their expertise in product engineering and cloud solutions helped us grow faster than we imagined.</p>
+              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-medium leading-relaxed">Partnering with Grobird gave us the confidence to dream bigger. Their expertise in product engineering and cloud solutions helped us grow faster than we imagined.</p>
             </div>
             <div className="mt-4">
-              <p className="text-[#0B0B0B] text-sm sm:text-base font-semibold">Ankit Sharma</p>
-              <p className="text-[#666666] text-xs">Founder, EdTech Startup</p>
+              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-semibold">Ankit Sharma</p>
+              <p className="text-[#666666] text-xs xl:text-[13px]">Founder, EdTech Startup</p>
             </div>
           </div>
         </div>
 
         {/* OUR STORY  */}
-        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16 px-4 sm:px-4 md:px-8 lg:px-12 xl:px-14 pb-6 sm:pb-8 md:pb-12 lg:pb-2 mx-auto">
-            <h2 ref={storyHeadingRef} className="text-[#000A1B] flex text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight w-full lg:w-[30%]">
+        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16 px-4 sm:px-4 md:px-8 lg:px-12 xl:px-14 pb-6 sm:pb-8 md:pb-12 lg:pb-2 mx-auto xl:py-10">
+            <h2 ref={storyHeadingRef} className="text-[#000A1B] flex  text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium leading-tight w-full lg:w-[30%]">
               <span className="text-[#3B3B3D73] mr-3">Our</span> <span className="text-[#000000]">Story</span>
             </h2>
             <div ref={storyContentRef} className="flex flex-col gap-6 sm:gap-8 w-full lg:w-[65%]">
-              <p className="text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed">GroBird began with a simple belief — technology should not just solve problems, it should inspire growth. What started as a small team of passionate engineers and designers has now evolved into a full-scale digital partner trusted by businesses worldwide.</p>
-              <p className="text-[#3D3D3DDB] text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed">Over the years, we&apos;ve delivered 100+ transformative projects, empowered 50+ global clients, and expanded our expertise across consulting, development, hosting, and design. But at the heart of every milestone lies one constant — our commitment to crafting human-centered solutions that create lasting impact.</p>
-              <p className="text-[#3D3D3DDB] text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed">From our very first line of code to the innovative platforms we build today, GroBird has always been about more than technology. We are about people, ideas, and the journeys that shape them.</p>
+              <p className="text-sm md:text-base lg:text-lg xl:text-[32px] leading-10 xl:mt-20 md:mt-16px">GroBird began with a simple belief — technology should not just solve problems, it should inspire growth. What started as a small team of passionate engineers and designers has now evolved into a full-scale digital partner trusted by businesses worldwide.</p>
+              <p className="text-[#3D3D3DDB] text-sm md:text-base lg:text-lg xl:text-[32px] leading-10">Over the years, we&apos;ve delivered 100+ transformative projects, empowered 50+ global clients, and expanded our expertise across consulting, development, hosting, and design. But at the heart of every milestone lies one constant — our commitment to crafting human-centered solutions that create lasting impact.</p>
+              <p className="text-[#3D3D3DDB] text-sm md:text-base lg:text-lg xl:text-[32px] leading-10">From our very first line of code to the innovative platforms we build today, GroBird has always been about more than technology. We are about people, ideas, and the journeys that shape them.</p>
             </div>
         </div>
 
           {/* our story boxes  */}
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-1 px-4 sm:px-3 md:px-4 lg:px-5 xl:px-8 pb-6 sm:py-6 md:py-9 lg:py-14 mx-auto items-center justify-center">
-            <Image ref={el => { if (el) storyImagesRef.current[0] = el }} src="/Images/ourStory1.png" alt="Our Story 1" width={352} height={352} className="w-full sm:w-1/3 h-auto object-contain" />
-            <Image ref={el => { if (el) storyImagesRef.current[1] = el }} src="/Images/ourStory2.png" alt="Our Story 2" width={352} height={352} className="w-full sm:w-1/3 h-auto object-contain" />
-            <Image ref={el => { if (el) storyImagesRef.current[2] = el }} src="/Images/ourStory3.png" alt="Our Story 3" width={352} height={352} className="w-full sm:w-1/3 h-auto object-contain" />
+            <Image ref={el => { if (el) storyImagesRef.current[0] = el }} src="/Images/ourStory1.png" alt="Our Story 1" width={352} height={352} className="w-full sm:w-1/3 h-auto sm:h-[452px] object-contain" />
+            <Image ref={el => { if (el) storyImagesRef.current[1] = el }} src="/Images/ourStory2.png" alt="Our Story 2" width={352} height={352} className="w-full sm:w-1/3 h-auto sm:h-[452px] object-contain" />
+            <Image ref={el => { if (el) storyImagesRef.current[2] = el }} src="/Images/ourStory3.png" alt="Our Story 3" width={352} height={352} className="w-full sm:w-1/3 h-auto sm:h-[452px] object-contain" />
           </div>
 
           {/* more than a service  */}
-          <div ref={moreThanServiceRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-4 lg:pb-6 mx-auto items-start sm:items-center justify-between pt-2">
-            <h2 className="text-[#000A1B] flex flex-col text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight w-full lg:w-[80%]">
+          <div ref={moreThanServiceRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-10 lg:pb-18 mx-auto items-start sm:items-center justify-between  pt-5 lg:pt-16">
+            <h2 className="text-[#000A1B] flex flex-col text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium leading-tight w-full lg:w-[80%]">
               <span className="text-[#3B3B3D73]">More than a service</span>
                <span className="text-[#0B0B0B]">A strategic design </span>
                <span className="text-[#0B0B0B]">partner.</span>
             </h2>   
-            <h3 className="text-[#000A1B] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-4xl lg:w-[25%] text-start sm:text-end mt-1">Why Grobird?</h3>
+            <h3 className="text-[#000A1B] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1">Why Grobird?</h3>
           </div>
       
          {/* more than a servis boxes */}
@@ -489,68 +489,68 @@ const AboutUs = () => {
             <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain" />
             <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
               <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">10<span className="text-[#F95524]">x</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm">Higher Client Retention</p>
+              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Higher Client Retention</p>
             </div>
              <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
               <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">200<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm">Successfully delivered high-quality projects</p>
+              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
             </div>
             <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
               <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">97<span className="text-[#F95524]">%</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm">Client satisfaction based on surveys</p>
+              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
             </div>
             <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
               <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">5<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm">Continents Served</p>
+              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Continents Served</p>
             </div>
           </div>
          </div>
 
           {/* help  */}
-          <div ref={servicesHeadingRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-3 sm:py-5 md:py-8 lg:py-12 mx-auto items-start sm:items-center justify-between pt-2">
-            <h2 className="text-[#000A1B] flex flex-col text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight w-full lg:w-[80%]">
+          <div ref={servicesHeadingRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-10 lg:pb-24 mx-auto items-start sm:items-center justify-between pt-5 lg:pt-32">
+            <h2 className="text-[#000A1B] flex flex-col text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium leading-tight w-full lg:w-[80%]">
               <span className="text-[#3B3B3D73]">How We Help</span>
                <span className="text-[#0B0B0B]">Businesses Grow</span>
             </h2>   
-            <h3 className="text-[#000A1B] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-4xl lg:w-[25%] text-start sm:text-end mt-1">Services</h3>
+            <h3 className="text-[#000A1B] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1">Services</h3>
           </div>
 
           {/* help points*/}
           <div className="w-full gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-3 sm:pb-5 md:pb-8 lg:pb-12 mx-auto flex flex-col pt-2">
             <div ref={el => { if (el) servicesItemsRef.current[0] = el }} className="flex flex-col lg:flex-row">
-            <div className="border-y-1 border-y-[#dbdbdb] flex flex-row items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-4 sm:py-7">
-              <h3 className="text-[#C3C3C3]  sm:text-2xl lg:text-3xl">01.</h3>
-              <h4 className="text-sm sm:text-base lg:text-lg font-medium">Custom Software Development</h4>
+            <div className="border-y-1 border-y-[#dbdbdb] flex flex-row items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-6 sm:py-10 xl:py-12">
+              <h3 className="text-[#C3C3C3] sm:text-2xl lg:text-3xl xl:text-[48px]">01.</h3>
+              <h4 className="text-sm sm:text-base lg:text-lg xl:text-[32px] xl:font-medium">Custom Software Development</h4>
             </div>
-            <p className="text-xs sm:text-sm mt-2 lg:mt-3 text-[#737373] w-full lg:w-[40%]">We design and build tailor-made software solutions that solve complex business challenges, improve efficiency</p>
+            <p className="text-xs sm:text-sm mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%]">We design and build tailor-made software solutions that solve complex business challenges, improve efficiency</p>
             </div>
             <div ref={el => { if (el) servicesItemsRef.current[1] = el }} className="flex flex-col lg:flex-row">
-            <div className="border-b-1 border-b-[#dbdbdb] flex flex-row items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-4 sm:py-7">
-              <h3 className="text-[#C3C3C3] sm:text-2xl lg:text-3xl">02.</h3>
-              <h4 className="text-sm sm:text-base lg:text-lg font-medium">IT Consulting</h4>
+            <div className="border-b-1 border-b-[#dbdbdb] flex flex-row items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-6 sm:py-10 xl:py-12">
+              <h3 className="text-[#C3C3C3] sm:text-2xl lg:text-3xl xl:text-[48px]">02.</h3>
+              <h4 className="text-sm sm:text-base lg:text-lg xl:text-[32px] xl:font-medium">IT Consulting</h4>
             </div>
-            <p className="text-xs sm:text-sm mt-2 lg:mt-3 text-[#737373] w-full lg:w-[40%]">Our experts guide you through technology strategy, digital transformation, and process optimization.</p>
+            <p className="text-xs sm:text-sm mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%]">Our experts guide you through technology strategy, digital transformation, and process optimization.</p>
             </div>
              <div ref={el => { if (el) servicesItemsRef.current[2] = el }} className="flex flex-col lg:flex-row">
-            <div className="border-b-1 border-b-[#dbdbdb] flex flex-row items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-4 sm:py-7">
-              <h3 className="text-[#C3C3C3]  sm:text-2xl lg:text-3xl">03.</h3>
-              <h4 className="text-sm sm:text-base lg:text-lg font-medium">Cloud & Infrastructure Services</h4>
+            <div className="border-b-1 border-b-[#dbdbdb] flex flex-row items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-6 sm:py-10 xl:py-12">
+              <h3 className="text-[#C3C3C3] sm:text-2xl lg:text-3xl xl:text-[48px]">03.</h3>
+              <h4 className="text-sm sm:text-base lg:text-lg xl:text-[32px] xl:font-medium">Cloud & Infrastructure Services</h4>
             </div>
-            <p className="text-xs sm:text-sm mt-2 lg:mt-3 text-[#737373] w-full lg:w-[40%]">From migration to management, we deliver scalable, secure, and cost-effective cloud infrastructure</p>
+            <p className="text-xs sm:text-sm mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%]">From migration to management, we deliver scalable, secure, and cost-effective cloud infrastructure</p>
             </div>
 
              <div ref={el => { if (el) servicesItemsRef.current[3] = el }} className="flex flex-col lg:flex-row">
-            <div className="flex flex-row items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-4 sm:py-7">
-              <h3 className="text-[#C3C3C3] text-lg sm:text-2xl lg:text-3xl">04.</h3>
-              <h4 className="text-sm sm:text-base lg:text-lg font-medium">Product Engineering</h4>
+            <div className="flex flex-row items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-6 sm:py-10 xl:py-12">
+              <h3 className="text-[#C3C3C3] text-lg sm:text-2xl lg:text-3xl xl:text-[48px]">04.</h3>
+              <h4 className="text-sm sm:text-base lg:text-lg xl:text-[32px] xl:font-medium">Product Engineering</h4>
             </div>
-            <p className="text-xs sm:text-sm mt-2 lg:mt-3 text-[#737373] w-full lg:w-[40%]">End-to-end product design, development, and scaling from concept to launch so you can bring innovative ideas to market faster</p>
+            <p className="text-xs sm:text-sm mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%]">End-to-end product design, development, and scaling from concept to launch so you can bring innovative ideas to market faster</p>
             </div>           
           </div>
           
           {/* Meet people */}
           <div ref={teamSectionRef} className="flex flex-col gap-8 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-3 sm:py-5 md:py-8 lg:py-12 mx-auto item-center justify-center pt-2">
-            <h2 ref={teamHeadingRef} className="text-[#000A1B] mb-5 text-center flex flex-col text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium leading-tight">
+            <h2 ref={teamHeadingRef} className="text-[#000A1B] mb-5 text-center flex flex-col text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium ">
               <span className="text-[#3B3B3D73]">Meet the People</span>
                <span className="text-[#0B0B0B]">Behind Grobird</span>
             </h2>

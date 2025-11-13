@@ -64,51 +64,36 @@ const Home = () => {
     const expandedContent = element.querySelector('.service-expanded-content')
     
     if (isEntering) {
-      // Reset previous hovered element if exists
-      if (lastHoveredServiceRef.current && lastHoveredServiceRef.current !== element) {
-        const prevText = lastHoveredServiceRef.current.querySelector('.service-text-content')
-        const prevExpanded = lastHoveredServiceRef.current.querySelector('.service-expanded-content')
-        gsap.to(prevExpanded, {
-          opacity: 0,
-          scale: 0.95,
-          duration: 0.3,
-          ease: "power2.inOut"
-        })
-        gsap.to(prevText, {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: "power2.out",
-          delay: 0.1
-        })
-      }
-      
-      lastHoveredServiceRef.current = element
-      
+      gsap.to(element, {
+        height: "450px",
+        duration: 0.4,
+        ease: "power2.out"
+      })
       gsap.to(textContent, {
         opacity: 0,
-        y: -20,
-        duration: 0.3,
-        ease: "power2.inOut"
+        duration: 0.2,
+        ease: "power2.out"
       })
       gsap.to(expandedContent, {
         opacity: 1,
-        scale: 1,
-        duration: 0.5,
-        ease: "power3.out",
+        duration: 0.3,
+        ease: "power2.out",
         delay: 0.1
       })
     } else {
+      gsap.to(element, {
+        height: "250px",
+        duration: 0.4,
+        ease: "power2.out"
+      })
       gsap.to(expandedContent, {
         opacity: 0,
-        scale: 0.95,
-        duration: 0.3,
-        ease: "power2.inOut"
+        duration: 0.2,
+        ease: "power2.out"
       })
       gsap.to(textContent, {
         opacity: 1,
-        y: 0,
-        duration: 0.4,
+        duration: 0.3,
         ease: "power2.out",
         delay: 0.1
       })
@@ -132,6 +117,16 @@ const Home = () => {
       testimonialImageRef.current,
       insightsHeadingRef.current
     ]
+    
+    // Reset testimonial elements specifically
+    if (testimonialImageRef.current) {
+      const footerQuote = testimonialImageRef.current.querySelector('.footer-quote')
+      const footerAuthor = testimonialImageRef.current.querySelector('.footer-author')
+      const footerPlay = testimonialImageRef.current.querySelector('.footer-play')
+      if (footerQuote) gsap.set(footerQuote, { clearProps: "all" })
+      if (footerAuthor) gsap.set(footerAuthor, { clearProps: "all" })
+      if (footerPlay) gsap.set(footerPlay, { clearProps: "all" })
+    }
     
     resetElements.forEach(el => {
       if (el) gsap.set(el, { clearProps: "all" })
@@ -343,7 +338,7 @@ const Home = () => {
             scrollTrigger: {
               trigger: stat,
               start: "top 80%",
-              toggleActions: "play none none reverse"
+              toggleActions: "play none none none"
             },
             onUpdate: function() {
               const current = Math.ceil(counter.value)
@@ -402,19 +397,7 @@ const Home = () => {
       })
     }
 
-    // Testimonial Image Parallax
-    if (testimonialImageRef.current) {
-      gsap.to(testimonialImageRef.current.querySelector('img'), {
-        y: -50,
-        ease: "none",
-        scrollTrigger: {
-          trigger: testimonialImageRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1
-        }
-      })
-    }
+    // Testimonial Image - No animations
 
     // Insights Section
     if (insightsHeadingRef.current) {
@@ -631,18 +614,18 @@ const Home = () => {
           <Image src="/Images/boxes.png" alt="Boxes" width={3000} height={1000} className="w-[90%] h-[120%] object-cover opacity-20" />
         </div>
 
-        <div ref={heroContentWrapperRef} className="flex flex-col items-center mt-16 sm:mt-18 md:mt-16 lg:mt-18 xl:mt-14 2xl:mt-20 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10">
-          <h1 ref={heroHeadingRef} className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-7xl 2xl:text-7xl font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2">
+        <div ref={heroContentWrapperRef} className="flex flex-col items-center mt-16 sm:mt-18 md:mt-16 lg:mt-18  2xl:mt-28 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10">
+          <h1 ref={heroHeadingRef} className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2">
             Transforming Ideas into <br /> Scalable Digital Solutions
           </h1>
-          <p ref={heroDescRef} className="text-white font-thin text-base sm:text-base md:text-md lg:text-md xl:text-lg 2xl:text-2xl leading-relaxed max-w-4xl 2xl:max-w-6xl mb-6 sm:mb-7 xl:mb-8 2xl:mb-10 px-4">
+          <p ref={heroDescRef} className="text-white font-light mt-2 text-base sm:text-base md:text-md lg:text-md xl:text-3xl leading-relaxed 2xl:max-w-6xl mb-6 sm:mb-7 xl:mb-8 2xl:mb-10 px-4">
             Grobird accelerates innovation through IT consulting, software <br className="hidden sm:block" /> development, and cloud solutions.
           </p>
           <div ref={heroButtonsRef} className="flex flex-row gap-3 sm:gap-4 items-center justify-center">
-            <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-12 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm hover:bg-[#e55a24] transition-colors">
+            <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3  rounded-full text-xs sm:text-sm  md:text-[17px] hover:bg-[#e55a24] transition-colors">
               Talk to Us
             </button>
-            <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-12 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors">
+            <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium ">
               Explore Services
             </button>
           </div>
@@ -655,12 +638,12 @@ const Home = () => {
         {/* Startups Section */}
         <div className="w-full py-16 px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-[1400px] mx-auto">
-            <h2 ref={startupsHeadingRef} className="text-black text-lg sm:text-xl md:text-2xl text-center mb-8">
+            <h2 ref={startupsHeadingRef} className="text-black text-lg sm:text-xl md:text-[28.75px] font-medium text-center mb-8 mt-14">
               The startups shaping tomorrow trust Grobird
             </h2>
 
             {/* Startup Company Images Row */}
-            <div ref={startupLogosRef} className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-14">
+            <div ref={startupLogosRef} className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14">
               <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company1.png"
@@ -717,11 +700,11 @@ const Home = () => {
 
         {/* 10x drive */}
         <div>
-          <div className="flex flex-col gap-8 md:gap-12 lg:gap-16 xl:gap-20 mx-[4%] my-8 md:my-16 lg:my-20 xl:my-30">
+          <div className="flex flex-col mx-[4%] mt-8 md:mt-16 lg:mt-20 xl:mt-28">
             <div ref={servicesHeadingRef} className="flex flex-col md:flex-row justify-between items-start mb-4 md:mb-6 lg:mb-8 xl:mb-12 gap-4">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium text-[#000A1B] w-full md:w-[70%]">Driving <span className="text-[#FE4C00]">10x</span> client <br /> engagement and <span className="text-[#FE4C00]">40%</span> faster <br /> time-to-market </h1>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-medium text-[#000A1B] w-full md:w-[80%] leading-20">Driving <span className="text-[#FE4C00]">10x</span> client <br /> engagement and <span className="text-[#FE4C00]">40%</span> faster <br /> time-to-market </h1>
 
-              <h3 className="text-2xl md:text-3xl lg:text-4xl text-[#000A1B] mt-0 md:mt-3">Services</h3>
+              <h3 className="text-2xl md:text-3xl lg:text-[42px] text-[#000A1B] mt-0 md:mt-3 ">Services</h3>
             </div>
 
             <div 
@@ -729,56 +712,54 @@ const Home = () => {
               onClick={() => router.push('/services/servisPages/itConsulting')}
               onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
               onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
-              className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] cursor-pointer relative overflow-hidden"
+              className="w-full h-[250px] cursor-pointer relative overflow-hidden"
             >
-              <div className="service-text-content w-full h-full flex justify-between items-start gap-4 absolute inset-0">
-                <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">IT Consulting</p>
+              <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
+                <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">IT Consulting</p>
                 <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
               </div>
-              <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between opacity-0" 
+              <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0" 
                 style={{
                   background: 'linear-gradient(to bottom, #020A18, #023362)'
-                }}>
-                <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
-                  <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">01</div>
-                  <h3 className="text-white text-2xl md:text-3xl lg:text-[40px]">IT Consulting</h3>
-                  <div className="mt-2 flex justify-between items-end gap-4">
-                    <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
-                      Designed to help businesses navigate<br className="hidden md:block" />
-                      the complexities of today&apos;s fast-paced
+                }}> 
+                <div className="flex flex-col gap-3 md:gap-4 lg:gap-2">
+                  <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">01</div>
+                  <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">IT Consulting</h3>
+                  <div className="flex justify-between items-end gap-4">
+                    <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
+From complex enterprise systems to innovative consumer <br /> apps, our solutions solve real-world challenges while ensuring <br /> smooth performance, maintainability, and long-term growth.
                     </p>
-                    <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
+                    <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-12 md:gap-16 lg:gap-24 xl:gap-32 items-center  mb-6 md:mb-10 lg:mb-12 xl:mb-14">
+            <div className="flex flex-col gap-1 items-center mb-6 md:mb-10 lg:mb-12 xl:mb-14">
 
               <div 
                 ref={el => { if (el) serviceItemsRef.current[0] = el }} 
                 onClick={() => router.push('/services/servisPages/customSoftwareDevelopment')}
                 onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
-                className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] cursor-pointer relative overflow-hidden"
+                className="w-full h-[250px] cursor-pointer relative overflow-hidden"
               >
-                <div className="service-text-content w-full h-full flex justify-between items-start gap-4 absolute inset-0">
-                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Custom Software Development</p>
+                <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
+                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Custom Software Development</p>
                   <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                 </div>
-                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between opacity-0" 
+                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0" 
                   style={{
                     background: 'linear-gradient(to bottom, #020A18, #023362)'
                   }}>
-                  <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
-                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">02</div>
-                    <h3 className="text-white text-2xl md:text-3xl lg:text-[40px]">Custom Software Development</h3>
-                    <div className="mt-2 flex justify-between items-end gap-4">
-                      <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
-                        We build scalable, secure, and user-focused<br className="hidden md:block" />
-                        applications tailored to your specific business needs.
+                  <div className="flex flex-col gap-3 md:gap-4 lg:gap-2">
+                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">02</div>
+                    <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">Custom Software Development</h3>
+                    <div className="flex justify-between items-end gap-4">
+                      <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
+We build scalable, secure, and user-focused <br /> applications tailored to your specific business needs. 
                       </p>
-                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
+                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                     </div>
                   </div>
                 </div>
@@ -789,25 +770,24 @@ const Home = () => {
                 onClick={() => router.push('/services/servisPages/Cloud&Infrastructure')}
                 onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
-                className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] cursor-pointer relative overflow-hidden"
+                className="w-full h-[250px] cursor-pointer relative overflow-hidden"
               >
-                <div className="service-text-content w-full h-full flex justify-between items-start gap-4 absolute inset-0">
-                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Cloud & Infrastructure</p>
+                <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
+                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Cloud & Infrastructure</p>
                   <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                 </div>
-                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between opacity-0" 
+                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0" 
                   style={{
                     background: 'linear-gradient(to bottom, #020A18, #023362)'
                   }}>
-                  <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
-                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">03</div>
-                    <h3 className="text-white text-2xl md:text-3xl lg:text-[40px]">Cloud & Infrastructure</h3>
-                    <div className="mt-2 flex justify-between items-end gap-4">
-                      <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
-                        Our solutions ensure seamless scalability, reliable<br className="hidden md:block" />
-                        performance, and robust security.
+                  <div className="flex flex-col gap-3 md:gap-4 lg:gap-2">
+                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">03</div>
+                    <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">Cloud & Infrastructure</h3>
+                    <div className="flex justify-between items-end gap-4">
+                      <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
+Our solutions ensure seamless scalability, reliable <br /> performance, and robust security, enabling your business to <br /> operate efficiently and adapt quickly to changing demands.
                       </p>
-                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
+                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                     </div>
                   </div>
                 </div>
@@ -818,25 +798,24 @@ const Home = () => {
                 onClick={() => router.push('/services/servisPages/productEngineering')}
                 onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
-                className="w-full min-h-[250px] md:min-h-[300px] lg:h-[350px] cursor-pointer relative overflow-hidden"
+                className="w-full h-[250px] cursor-pointer relative overflow-hidden"
               >
-                <div className="service-text-content w-full h-full flex justify-between items-start gap-4 absolute inset-0">
-                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[40px]">Product Engineering</p>
+                <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
+                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Product Engineering</p>
                   <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                 </div>
-                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:p-8 lg:px-14 flex flex-col justify-between opacity-0" 
+                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0" 
                   style={{
                     background: 'linear-gradient(to bottom, #020A18, #023362)'
                   }}>
-                  <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
-                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl">04</div>
-                    <h3 className="text-white text-2xl md:text-3xl lg:text-[40px]">Product Engineering</h3>
-                    <div className="mt-2 flex justify-between items-end gap-4">
-                      <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-xl font-light leading-relaxed">
-                        Our team designs, develops, and maintains software<br className="hidden md:block" />
-                        that delights users and drives engagement.
+                  <div className="flex flex-col gap-3 md:gap-4 lg:gap-2">
+                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">04</div>
+                    <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">Product Engineering</h3>
+                    <div className="flex justify-between items-end gap-4">
+                      <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
+Our team designs, develops, and maintains software that <br /> delights users, drives engagement, and supports your <br /> business growth through innovation and technical excellence.
                       </p>
-                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px]" />
+                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                     </div>
                   </div>
                 </div>
@@ -844,7 +823,7 @@ const Home = () => {
 
               <button 
                 onClick={() => router.push('/services')}
-                className="text-white bg-[#FF662A] px-6 py-3 mt-2 md:mt-4 lg:mt-5 xl:mt-7 text-sm md:text-base rounded-md hover:bg-[#e55a24] transition-colors"
+                className="text-white bg-[#FF662A] px-6 py-3 mt-8 md:mt-12 lg:mt-16 text-sm md:text-base rounded-sm hover:bg-[#e55a24] transition-colors mb-10"
               >
                 View all services
               </button>
@@ -852,8 +831,18 @@ const Home = () => {
             </div>
 
             {/* Develop Idea Image */}
-            <div ref={developIdeaRef} className="w-full h-full mb-8 md:mb-12 lg:mb-16">
+            <div ref={developIdeaRef} className="w-full h-full mb-8 md:mb-12 relative">
               <Image src="/Images/developIdea.png" alt="Develop Idea" width={1920} height={1080} className="w-full h-full object-cover" />
+              <div 
+                onClick={() => router.push('/contact')}
+                className="absolute bottom-0 right-0 w-[310px] h-[200px] bg-[#FE4C00] rounded-xl flex items-center justify-between p-6 cursor-pointer hover:bg-[#e55a24] transition-colors"
+              >
+                <div className="flex flex-col">
+                  <p className="text-white text-[28px] font-normal ">Develop <br /> Your Idea</p>
+                  <p className="text-white text-[42px] font-bold">Now</p>
+                </div>
+                <Image src="/Images/roundedArrow.png" alt="Rounded Arrow" width={110} height={110} className="object-contain" />
+              </div>
             </div>
           </div>
         </div>
@@ -862,35 +851,35 @@ const Home = () => {
         <div>
           <div className="mx-[4%]">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
-              <h1 ref={successHeadingRef} className="text-[#0F1011] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium w-full lg:w-auto">
-                <span className="text-[#3B3B3D73]">Our Success, Quantified: <br /></span>Driving Growth,<br /> Innovation, and <br/> Scale
+              <h1 ref={successHeadingRef} className="text-[#0F1011] text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-medium w-full lg:w-[65%] leading-18">
+                <span className="text-[#3B3B3D73]">Our Success, Quantified:</span><br />Driving Growth, Innovation, and Scale
               </h1>
 
 
-              <div ref={statsCardsRef} className="w-full lg:w-auto h-full bg-[#D3D3D347] flex flex-col gap-6 md:gap-8 lg:gap-12 p-4 md:p-5 lg:px-5">
+              <div ref={statsCardsRef} className="w-full lg:w-[50%] h-full bg-[#D3D3D347] flex flex-col gap-6 md:gap-8 lg:gap-12 p-4 md:p-5 lg:px-5">
                 <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 lg:gap-8">
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 className="text-[#060B13] text-3xl md:text-4xl lg:text-[41px] font-semibold">200<span className="text-[#FF662A]">+</span></h1>
-                    <p className="text-[#363D4F] text-xs md:text-sm font-semibold text-center">On-time delivery rate</p>
-                    <p className="text-[#363D4F] text-xs md:text-sm text-center">Projects delivered on schedule, every time</p>
+                    <h1 className="text-[#060B13] text-[43.5px] font-semibold">200<span className="text-[#FF662A]">+</span></h1>
+                    <p className="text-[#363D4F] text-[16px] font-semibold text-center">On-time delivery rate</p>
+                    <p className="text-[#363D4F] text-[16px] text-center">Projects delivered on schedule, every time</p>
                   </div>
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 className="text-[#060B13] text-3xl md:text-4xl lg:text-[41px] font-semibold">10<span className="text-[#FF662A]">x</span></h1>
-                    <p className="text-[#363D4F] text-xs md:text-sm font-semibold text-center">Higher Client Retention</p>
-                    <p className="text-[#363D4F] text-xs md:text-sm text-center">Clients keep coming back for more</p>
+                    <h1 className="text-[#060B13] text-[43.5px] font-semibold">10<span className="text-[#FF662A]">x</span></h1>
+                    <p className="text-[#363D4F] text-[16px] font-semibold text-center">Higher Client Retention</p>
+                    <p className="text-[#363D4F] text-[16px] text-center">Clients keep coming back for more</p>
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 lg:gap-8">
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 className="text-[#060B13] text-3xl md:text-4xl lg:text-[41px] font-semibold">97<span className="text-[#FF662A]">%</span></h1>
-                    <p className="text-[#363D4F] text-xs md:text-sm font-semibold text-center">Client Satisfaction Rate</p>
-                    <p className="text-[#363D4F] text-xs md:text-sm text-center">Ensuring every client is delighted</p>
+                    <h1 className="text-[#060B13] text-[43.5px] font-semibold">97<span className="text-[#FF662A]">%</span></h1>
+                    <p className="text-[#363D4F] text-[16px] font-semibold text-center">Client Satisfaction Rate</p>
+                    <p className="text-[#363D4F] text-[16px] text-center">Ensuring every client is delighted</p>
                   </div>
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 className="text-[#060B13] text-3xl md:text-4xl lg:text-[41px] font-semibold">5<span className="text-[#FF662A]">+</span></h1>
-                    <p className="text-[#363D4F] text-xs md:text-sm font-semibold text-center">Continents Served</p>
-                    <p className="text-[#363D4F] text-xs md:text-sm text-center">Delivering solutions across multiple<br />continents</p>
+                    <h1 className="text-[#060B13] text-[43.5px] font-semibold">5<span className="text-[#FF662A]">+</span></h1>
+                    <p className="text-[#363D4F] text-[16px] font-semibold text-center">Continents Served</p>
+                    <p className="text-[#363D4F] text-[16px] text-center">Delivering solutions across multiple<br />continents</p>
                   </div>
                 </div>
               </div>
@@ -899,15 +888,17 @@ const Home = () => {
         </div>
 
         {/* bold moves */}
-        <div>
-          <div className="mx-[4%]">
+        <div style={{
+          background: 'linear-gradient(to bottom, #FFFFFF, #F4F4F45C)'
+        }}>
+          <div className="mx-[4%] pb-1">
             <div className="w-full items-center flex flex-col mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-6 md:mb-8 lg:mb-10 xl:mb-12">
               <div ref={boldMovesHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full my-6 sm:my-8 md:my-12 lg:my-16 xl:my-20 gap-4 sm:gap-6 md:gap-8">
-                <div className="flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium text-black flex-col gap-2">
+                <div className="flex items-start text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-18">
                   <p>Big Steps, Bold Moves</p>
                   <p className="text-[#3B3B3D73]">Our Latest Releases</p>
                 </div>
-                <p className="text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-4xl leading-relaxed">
+                <p className="text-[#2D2C2C] text-2xl md:text-3xl lg:text-[42px] leading-relaxed">
                   Press Releases
                 </p>
               </div>
@@ -916,7 +907,7 @@ const Home = () => {
                 <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
                   <div
                     ref={el => { if (el) boldMovesRef.current[0] = el }}
-                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[220px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[400px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
                   >
@@ -938,7 +929,7 @@ const Home = () => {
                 <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
                   <div
                     ref={el => { if (el) boldMovesRef.current[1] = el }}
-                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[220px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[300px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
                   >
@@ -958,7 +949,7 @@ const Home = () => {
 
                   <div
                     ref={el => { if (el) boldMovesRef.current[2] = el }}
-                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[220px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[250px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
                   >
@@ -980,7 +971,7 @@ const Home = () => {
                 <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
                   <div
                     ref={el => { if (el) boldMovesRef.current[3] = el }}
-                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[220px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[400px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
                   >
@@ -1002,7 +993,7 @@ const Home = () => {
                 <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
                   <div
                     ref={el => { if (el) boldMovesRef.current[4] = el }}
-                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[220px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[250px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
                   >
@@ -1022,7 +1013,7 @@ const Home = () => {
 
                   <div
                     ref={el => { if (el) boldMovesRef.current[5] = el }}
-                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[220px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[300px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                    className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
                   >
@@ -1043,18 +1034,23 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Testimonials Section */}
-            <div ref={testimonialsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-12 lg:my-16 xl:my-20 gap-4 sm:gap-6 md:gap-8">
-                <div className="flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium text-[#3B3B3D73] flex-col gap-2">
+
+          </div>
+        </div>
+
+          {/* Testimonials Section */}
+          <div className="mx-[4%]">
+            <div ref={testimonialsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-4 sm:gap-6 md:gap-8">
+                <div className="flex items-start text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 leading-18">
                   <p>98% client </p>
                   <p className="text-black">satisfaction rate</p>
                 </div>
-                <p className="text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-4xl leading-relaxed">
+                <p className="text-[#2D2C2C] text-2xl md:text-3xl lg:text-[42px] leading-relaxed">
                   Testimonials
                 </p>
             </div>
           </div>
-        </div>
+
 
           {/* Footer Section with Testimonial */}
           <div ref={testimonialImageRef} className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24">
@@ -1065,7 +1061,7 @@ const Home = () => {
                 height={200}
                 className="object-cover w-full h-[400px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
               />
-              <div className="footer-quote absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] ml-[4%] md:ml-[2%] mb-20 md:mb-32 lg:mb-44 justify-start">
+              <div className=" absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] ml-[4%] md:ml-[2%] mb-20 md:mb-32 lg:mb-44 justify-start">
                 <p className="text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl text-white text-start px-2 md:px-4 font-extralight leading-relaxed">
                   &ldquo;Looking for process improvements, <br className="hidden sm:block" /> we found a solution that <br className="hidden sm:block" /> transformed our entire data <br className="hidden sm:block" /> strategy. The depth of insights was <br className="hidden sm:block" /> remarkable.&rdquo;
                 </p>
@@ -1076,7 +1072,7 @@ const Home = () => {
                   Maya Singh <br /> Product Strategy Lead
                 </p>
 
-                <div className="footer-play flex items-center gap-1 md:gap-2">
+                <div className=" flex items-center gap-1 md:gap-2">
                   <Image
                     src="/Images/serviseImages/play.png"
                     width={40}
@@ -1090,12 +1086,12 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col mx-[4%]">
-            <div ref={insightsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8 mt-8 md:mt-12 lg:mt-16 xl:mt-18">
-                <div className="flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium text-[#3B3B3D73] flex-col gap-2">
+            <div ref={insightsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8 mt-8 mb-14">
+                <div className="flex items-start text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 leading-18">
                   <p>Insights from Grobird</p>
                   <p className="text-black">Experts</p>
                 </div>
-                <p className="text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-4xl leading-relaxed">
+                <p className="text-[#2D2C2C] text-2xl md:text-3xl lg:text-[42px] leading-relaxed">
                   Blogs
                 </p>
             </div>
@@ -1118,7 +1114,7 @@ const Home = () => {
               },
               {
                 imageSrc: "/Images/insights2.png",
-                title: "Building scalable cloud infrastructure for modern businesses",
+                title: "The art of storytelling in branding and advertising",
                 category: "Technology",
                 date: "Feb 28, 2025",
                 readTime: "10min read",
@@ -1139,7 +1135,7 @@ const Home = () => {
           <div className="flex justify-center items-center mx-[4%] mb-12 md:mb-16 lg:mb-20">
             <button 
               onClick={() => router.push('/insights')}
-              className="bg-[#FF662A] text-white px-6 py-3 text-sm flex items-center gap-2 hover:bg-[#e55a24] transition-colors rounded-md"
+              className="bg-[#FF662A] text-white px-6 py-3 text-sm flex items-center gap-2 hover:bg-[#e55a24] transition-colors rounded-sm"
             >
               More articles
               <Image src="/Images/arrow.png" alt="Arrow" width={20} height={20} className="object-contain" />
@@ -1150,9 +1146,9 @@ const Home = () => {
           {/* question */}
           <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 mx-[4%] mb-12 md:mb-16 lg:mb-20">
             <div ref={faqHeadingRef} className="flex flex-col lg:flex-row justify-between items-start w-full mt-12 md:mt-16 lg:mt-20 mb-5 gap-6 md:gap-8">
-                <div className="flex w-full lg:w-[60%] items-start text-2xl sm:text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-medium text-[#3B3B3D73] flex-col gap-2">
+                <div className="flex w-full lg:w-[60%] items-start text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-18">
                   <p>Frequently Asked</p>
-                  <p className="text-black">Questions</p>
+                  <p className="text-[#3B3B3D73]">Questions</p>
                 </div>
                 <p className="text-[#2D2C2C] text-sm md:text-base lg:text-lg w-full lg:w-[40%] xl:text-3xl leading-relaxed">
                 From setup to security, here&apos;s everything you
@@ -1160,81 +1156,81 @@ const Home = () => {
                 </p>
             </div>
 
-            <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-4">
+            <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
               <div ref={el => { if (el) faqItemsRef.current[0] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm md:text-base">What kind of teams use Relay?</p>
+                <p className="text-[#111111] text-[24px]">What kind of teams use Relay?</p>
                 <Image
                   src="/Images/serviseImages/plus.png"
                   alt="plus"
-                  width={25}
-                  height={25}
-                  className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+                  width={22}
+                  height={22}
+                  className="w-[22px] h-[22px] flex-shrink-0"
                 />
               </div>
 
               <div ref={el => { if (el) faqItemsRef.current[1] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm md:text-base">Does Relay work with Slack and Microsoft Teams?</p>
+                <p className="text-[#111111] text-[24px]">Does Relay work with Slack and Microsoft Teams?</p>
                 <Image
                   src="/Images/serviseImages/plus.png"
                   alt="plus"
-                  width={25}
-                  height={25}
-                  className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+                  width={22}
+                  height={22}
+                  className="w-[22px] h-[22px] flex-shrink-0"
                 />
               </div>
 
               <div ref={el => { if (el) faqItemsRef.current[2] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm md:text-base">Is there a free trial?</p>
+                <p className="text-[#111111] text-[24px]">Is there a free trial?</p>
                 <Image
                   src="/Images/serviseImages/plus.png"
                   alt="plus"
-                  width={25}
-                  height={25}
-                  className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+                  width={22}
+                  height={22}
+                  className="w-[22px] h-[22px] flex-shrink-0"
                 />
               </div>
 
               <div ref={el => { if (el) faqItemsRef.current[3] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm md:text-base">Is my data secure?</p>
+                <p className="text-[#111111] text-[24px]">Is my data secure?</p>
                 <Image
                   src="/Images/serviseImages/plus.png"
                   alt="plus"
-                  width={25}
-                  height={25}
-                  className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+                  width={22}
+                  height={22}
+                  className="w-[22px] h-[22px] flex-shrink-0"
                 />
               </div>
 
               <div ref={el => { if (el) faqItemsRef.current[4] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm md:text-base">Can I collaborate with my engineering team inside Relay?</p>
+                <p className="text-[#111111] text-[24px]">Can I collaborate with my engineering team inside Relay?</p>
                 <Image
                   src="/Images/serviseImages/plus.png"
                   alt="plus"
-                  width={25}
-                  height={25}
-                  className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+                  width={22}
+                  height={22}
+                  className="w-[22px] h-[22px] flex-shrink-0"
                 />
               </div>
 
               <div ref={el => { if (el) faqItemsRef.current[5] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm md:text-base">Does Relay support multi-channel communication?</p>
+                <p className="text-[#111111] text-[24px]">Does Relay support multi-channel communication?</p>
                 <Image
                   src="/Images/serviseImages/plus.png"
                   alt="plus"
-                  width={25}
-                  height={25}
-                  className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+                  width={22}
+                  height={22}
+                  className="w-[22px] h-[22px] flex-shrink-0"
                 />
               </div>
 
               <div ref={el => { if (el) faqItemsRef.current[6] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm md:text-base">Can I customize how Relay works for my team?</p>
+                <p className="text-[#111111] text-[24px]">Can I customize how Relay works for my team?</p>
                 <Image
                   src="/Images/serviseImages/plus.png"
                   alt="plus"
-                  width={25}
-                  height={25}
-                  className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+                  width={22}
+                  height={22}
+                  className="w-[22px] h-[22px] flex-shrink-0"
                 />
               </div>
             </div>
@@ -1257,18 +1253,18 @@ const Home = () => {
             </div>
 
             {/* Content Section */}
-            <div ref={ctaContentRef} className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1200px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-center md:items-start text-center md:text-start px-4 sm:px-6 md:px-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl">
-              <h2 className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-light leading-tight sm:leading-snug md:leading-tight">
+            <div ref={ctaContentRef} className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-center md:items-start text-center md:text-start px-4 sm:px-6 md:px-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl">
+              <h2 className="text-black text-[100px] font-light leading-tight">
                 Ideas take flight here
               </h2>
-              <p className="text-black font-light text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-3xl leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl">
+              <p className="text-black font-light text-[32px] leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl">
                 From concept to code, we transform bold visions into living digital experiences that soar.
               </p>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 items-center mt-2 md:mt-4 w-full sm:w-auto">
-                <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-6 sm:px-8 lg:px-12 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm hover:bg-[#e55a24] transition-colors w-full sm:w-auto">
+                <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto">
                   Talk to Us
                 </button>
-                <button onClick={() => router.push('/services')} className="bg-white text-black px-6 sm:px-8 lg:px-12 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors w-full sm:w-auto border border-gray-200">
+                <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto border border-gray-200">
                   Explore Services
                 </button>
               </div>

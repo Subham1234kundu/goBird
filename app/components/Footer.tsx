@@ -39,10 +39,10 @@ const Footer = () => {
   return (
     <>
       {/* Tell us vision / Contact Form */}
-      <div className="flex flex-col lg:flex-row min-h-[300px] lg:h-[441px]">
+      <div className="flex flex-col mt-14 lg:flex-row min-h-[300px] lg:h-[520px]">
         <div className="w-full lg:w-[75%] bg-gradient-to-br from-[#F6F6F6] to-[#EAEAEA] p-6 sm:p-8 md:p-10 lg:p-12 xl:pl-16 flex flex-col justify-between">
           <div>
-            <h3 className="text-[#000000] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium mb-6 sm:mb-8 md:mb-10 lg:mb-14">
+            <h3 className="text-[#000000] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-medium mb-6 sm:mb-8 md:mb-10 lg:mb-14">
               Tell Us Your Vision, <br className="hidden sm:block" />
               <span className="sm:hidden"> </span>Let&apos;s Make It Real
             </h3>
@@ -53,7 +53,7 @@ const Footer = () => {
                 placeholder="Your Name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="flex-1 bg-transparent border-b border-[#CACACA] pb-2 sm:pb-3 md:pb-4 text-xs sm:text-sm text-[#000000] placeholder-[#000000] focus:outline-none focus:border-black"
+                className="flex-1 bg-transparent border-b border-[#CACACA] pb-2 sm:pb-3 md:pb-4 text-xs sm:text-sm xl:text-[24px] text-[#000000] placeholder-[#000000] focus:outline-none focus:border-black"
               />
               <input
                 type="email"
@@ -61,7 +61,7 @@ const Footer = () => {
                 placeholder="Email Address"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="flex-1 bg-transparent border-b border-[#CACACA] pb-2 sm:pb-3 md:pb-4 text-xs sm:text-sm text-[#000000] placeholder-[#000000] focus:outline-none focus:border-black"
+                className="flex-1 bg-transparent border-b border-[#CACACA] pb-2 sm:pb-3 md:pb-4 text-xs sm:text-sm xl:text-[24px] text-[#000000] placeholder-[#000000] focus:outline-none focus:border-black"
               />
               <input
                 type="tel"
@@ -69,7 +69,7 @@ const Footer = () => {
                 placeholder="Phone Number"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="flex-1 bg-transparent border-b border-[#CACACA] pb-2 sm:pb-3 md:pb-4 text-xs sm:text-sm text-[#000000] placeholder-[#000000] focus:outline-none focus:border-black"
+                className="flex-1 bg-transparent border-b border-[#CACACA] pb-2 sm:pb-3 md:pb-4 text-xs sm:text-sm xl:text-[24px] text-[#000000] placeholder-[#000000] focus:outline-none focus:border-black"
               />
             </div>
             <input
@@ -78,17 +78,17 @@ const Footer = () => {
               placeholder="Message"
               value={formData.message}
               onChange={handleInputChange}
-              className="w-full bg-transparent border-b border-[#CACACA] pb-3 sm:pb-4 md:pb-6 text-xs sm:text-sm text-[#000000] placeholder-[#000000] focus:outline-none focus:border-black"
+              className="w-full bg-transparent border-b border-[#CACACA] pb-3 sm:pb-4 md:pb-6 text-xs sm:text-sm xl:text-[24px] text-[#000000] placeholder-[#000000] focus:outline-none focus:border-black"
             />
           </div>
           <button
             onClick={handleSubmit}
-            className="bg-black text-white text-xs sm:text-sm px-5 sm:px-6 md:px-8 py-2 sm:py-2.5 rounded-full self-start mt-5 sm:mt-6 md:mt-8 hover:bg-gray-800 transition-colors"
+            className="bg-black text-white text-xs sm:text-sm xl:text-[18px] px-5 sm:px-6 md:px-8 py-2 sm:py-2.5 rounded-full self-start mt-5 sm:mt-6 md:mt-8 hover:bg-gray-800 transition-colors"
           >
             Send Query
           </button>
         </div>
-        <div className="w-full lg:w-[30%] h-56 sm:h-64 md:h-72 lg:h-auto">
+        <div className="w-full lg:w-[30%] h-56 sm:h-64 md:h-72 lg:h-[520px]">
           <Image
             src="/Images/vision.png"
             alt="Vision"
