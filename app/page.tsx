@@ -41,7 +41,6 @@ const Home = () => {
   const ctaCloudLeftRef = useRef<HTMLDivElement>(null)
   const ctaCloudRightRef = useRef<HTMLDivElement>(null)
   const ctaCloudBottomRef = useRef<HTMLDivElement>(null)
-  const lastHoveredServiceRef = useRef<HTMLDivElement | null>(null)
 
   const handleMouseEnter = (element: HTMLDivElement) => {
     gsap.to(element, {

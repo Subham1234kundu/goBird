@@ -260,7 +260,7 @@ const Insights = () => {
               className="px-10 py-2 rounded-full text-white text-sm sm:text-base md:text-[18px] hover:opacity-90 transition-opacity"
               style={{ backgroundColor: '#FF662A' }}
             >
-              Let's Chat
+              Let&apos;s Chat
             </button>
           </div>
           <div className="lg:w-1/2">
