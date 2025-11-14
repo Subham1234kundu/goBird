@@ -12,7 +12,7 @@ const PressReleaseMore = () => {
       {/* Header */}
       <div className="w-full px-4 sm:px-6 md:px-10 pt-8 sm:pt-12 pb-8 flex flex-col items-center">
         <p className="text-base sm:text-xl text-center mb-4 sm:mb-6">PRESS RELEASE</p>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-center mb-4 sm:mb-6 max-w-5xl px-2">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-center mb-4 sm:mb-6 max-w-5xl px-2 ">
           Grobird Redesigns A2Y Consultants&apos; Website, Driving a 60% Faster User Experience
         </h1>
         <div className="flex flex-wrap justify-center gap-4 sm:gap-7 text-xs sm:text-sm md:text-base" style={{ color: '#757575' }}>

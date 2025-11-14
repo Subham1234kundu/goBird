@@ -64,7 +64,7 @@ const IndustriesWeServeSection = ({
       {hasTextContent && (
         <div className="flex px-4 sm:px-6 md:px-8 flex-col lg:flex-row justify-between items-start gap-6 sm:gap-8 lg:gap-4 my-16 lg:my-24">
           {(title || titleHighlight) && (
-            <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px]">
               {title && <span className="text-[#3B3B3D73]">{title}</span>}
               {title && titleHighlight && <br className="lg:hidden" />}
               {titleHighlight && <span className="text-[#000A1B]"> {titleHighlight}</span>}

@@ -683,7 +683,7 @@ const Services = () => {
     <div className="w-full overflow-x-hidden">
       <div>
         {/* heading */}
-        <div className="bg-custom-bg w-full h-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-9 pt-6 sm:pt-8 md:pt-12 lg:pt-16 relative">
+        <div className="bg-custom-bg w-full h-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18 pt-14 md:pt-18 lg:pt-20 relative">
           {/* 9 boxes on the right side */}
           <div className="flex absolute right-0 top-0 h-full">
             <div ref={el => { if (el) headerBoxesRef.current[0] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 30%)', opacity: 0.05 }}></div>
@@ -710,13 +710,13 @@ const Services = () => {
           </div>
 
           <div ref={headerContentRef} className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10 pb-16">
-            <h1 className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-7xl 2xl:text-7xl font-light leading-tight mb-8 w-full sm:w-[90%] md:w-[85%] lg:w-[76%]" style={{ fontWeight: 300 }}>
-              From strategy to execution, Grobird covers the full lifecycle of digital solutions.
+            <h1 className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] 2xl:text-7xl font-light leading-tight mb-8 w-full sm:w-[90%]  " style={{ fontWeight: 300 }}>
+              From strategy to <br /> execution, Grobird covers <br /> the full lifecycle of digital <br /> solutions.
             </h1>
-            <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-lg 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-relaxed">
+            <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-10">
               Whether you&apos;re rethinking IT infrastructure, building custom software, or scaling digital products — we help you move with speed and confidence.
             </h3>
-            <button className="mt-12 sm:mt-16 md:mt-20 bg-white border border-white rounded-full text-black text-xs sm:text-sm px-8 sm:px-12 py-2 w-fit">
+            <button className="mt-12 sm:mt-16 md:mt-20 bg-white border border-white rounded-full text-black text-xs sm:text-sm xl:text-[18px] px-8 sm:px-12 py-2 w-fit">
               View Products
             </button>
           </div>
@@ -725,60 +725,60 @@ const Services = () => {
         {/* Startups Section */}
         <div className="w-full py-16 px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-[1400px] mx-auto">
-            <h2 className="text-black text-lg sm:text-xl md:text-2xl  text-center mb-8">
+            <h2 className="text-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center mb-6 sm:mb-12 mt-6">
               The startups shaping tomorrow trust Grobird
             </h2>
 
             {/* Startup Company Images Row */}
-            <div className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-14 overflow-x-auto pb-2">
-              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="flex justify-center items-center gap-2 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company1.png"
                   alt="Startup Company 1"
                   fill
                   className="object-contain"
                   priority
-                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company2.png"
                   alt="Startup Company 2"
                   fill
                   className="object-contain"
                   priority
-                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company3.png"
                   alt="Startup Company 3"
                   fill
                   className="object-contain"
                   priority
-                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company4.png"
                   alt="Startup Company 4"
                   fill
                   className="object-contain"
                   priority
-                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
                 <Image
                   src="/Images/startups/company5.png"
                   alt="Startup Company 5"
                   fill
                   className="object-contain"
                   priority
-                  sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
             </div>
@@ -1040,7 +1040,7 @@ const Services = () => {
                   className="object-cover"
                   quality={90}
                 />
-                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl" style={{ fontWeight: 400 }}>
+                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px]" style={{ fontWeight: 400 }}>
                   Logistics
                 </p>
               </div>
@@ -1054,7 +1054,7 @@ const Services = () => {
                   className="object-cover"
                   quality={90}
                 />
-                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl" style={{ fontWeight: 400 }}>
+                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px]" style={{ fontWeight: 400 }}>
                   Travel & Hospitality
                 </p>
               </div>
@@ -1068,7 +1068,7 @@ const Services = () => {
                   className="object-cover"
                   quality={90}
                 />
-                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl" style={{ fontWeight: 400 }}>
+                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px]" style={{ fontWeight: 400 }}>
                   E-Commerce & Retail
                 </p>
               </div>
@@ -1082,7 +1082,7 @@ const Services = () => {
                   className="object-cover"
                   quality={90}
                 />
-                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl" style={{ fontWeight: 400 }}>
+                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px]" style={{ fontWeight: 400 }}>
                   Service
                 </p>
               </div>
@@ -1092,20 +1092,20 @@ const Services = () => {
         {/* bold moves */}
         <div ref={boldMovesSectionRef} className="w-full items-center flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
           <div ref={boldMovesHeadingRef} className="flex flex-col sm:flex-row justify-between items-center w-full  my-12 sm:my-16 md:my-20 gap-6 sm:gap-8 ">
-            <div className="flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium text-black flex-col gap-2 leading-18">
+            <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 leading-tight">
               <p>Big Steps, Bold Moves </p>
-              <p className="text-[#3B3B3D73]">Our Latest Releases</p>
+              <p className="text-black">Our Latest Releases</p>
             </div>
-            <p className="text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] leading-relaxed">
-              Press Releaseds
+            <p className="text-[#2D2C2C] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed">
+              Press Release 
             </p>
           </div>
 
-          <div className=" flex gap-5 items-center justify-center w-[90%] h-[700px] ">
-            <div className="flex h-full items-center justify-center ">
+          <div className="flex gap-3 md:gap-4 lg:gap-5 items-center justify-start md:justify-center w-full md:w-[95%] lg:w-[90%] h-auto md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 px-4 md:px-0" style={{scrollbarWidth: 'thin'}}>
+            <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
               <div
                 ref={el => { if (el) boldMovesRef.current[0] = el }}
-                className="relative w-[220px] h-[400px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                 onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                 onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               >
@@ -1115,19 +1115,19 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute bottom-8 left-3 right-3 flex flex-col gap-2">
-                  <p className=" text-white text-xl">A2Y Consultants Website</p>
-                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-4 py-1.5 w-fit hover:bg-gray-100 transition-colors">
+                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
+                  <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                     Read Release
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 h-full items-center justify-center ">
+            <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
               <div
                 ref={el => { if (el) boldMovesRef.current[1] = el }}
-                className="relative w-[220px] h-[300px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                 onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                 onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               >
@@ -1137,9 +1137,9 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute bottom-3 left-3 right-3 flex flex-col gap-2">
-                  <p className=" text-white text-xl">A2Y Consultants Website</p>
-                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-4 py-1.5 w-fit hover:bg-gray-100 transition-colors">
+                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
+                  <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                     Read Release
                   </button>
                 </div>
@@ -1147,7 +1147,7 @@ const Services = () => {
 
               <div
                 ref={el => { if (el) boldMovesRef.current[2] = el }}
-                className="relative w-[220px] h-[250px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                 onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                 onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               >
@@ -1157,19 +1157,19 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute top-5 left-3 right-3">
-                  <p className="text-white text-5xl">92%</p>
+                <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3">
+                  <p className="text-white text-3xl md:text-4xl lg:text-5xl">92%</p>
                 </div>
-                <div className="absolute bottom-3 left-3 right-3">
-                  <p className="text-white text-md uppercase">Product Adoption Rate</p>
+                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3">
+                  <p className="text-white text-xs md:text-sm lg:text-md uppercase">Product Adoption Rate</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex h-full items-center justify-center ">
+            <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
               <div
                 ref={el => { if (el) boldMovesRef.current[3] = el }}
-                className="relative w-[220px] h-[400px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                 onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                 onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               >
@@ -1179,19 +1179,19 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute bottom-8 left-3 right-3 flex flex-col gap-2">
-                  <p className=" text-white text-xl">AHMADYAR Website</p>
-                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-4 py-1.5 w-fit hover:bg-gray-100 transition-colors">
+                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
+                  <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">AHMADYAR Website</p>
+                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                     Read Release
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 h-full items-center justify-center ">
+            <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
               <div
                 ref={el => { if (el) boldMovesRef.current[4] = el }}
-                className="relative w-[220px] h-[250px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                 onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                 onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               >
@@ -1201,17 +1201,17 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute top-5 left-3 right-3">
-                  <p className="text-white text-5xl">3X</p>
+                <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3">
+                  <p className="text-white text-3xl md:text-4xl lg:text-5xl">3X</p>
                 </div>
-                <div className="absolute bottom-8 left-3 right-2">
-                  <p className="text-white text-md uppercase">Faster Go-to-Market</p>
+                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2">
+                  <p className="text-white text-xs md:text-sm lg:text-md uppercase">Faster Go-to-Market</p>
                 </div>
               </div>
 
               <div
                 ref={el => { if (el) boldMovesRef.current[5] = el }}
-                className="relative w-[220px] h-[300px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                 onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                 onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
               >
@@ -1221,9 +1221,9 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute bottom-3 left-3 right-3 flex flex-col gap-2">
-                  <p className=" text-white text-xl">A2Y Consultants Website</p>
-                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-4 py-1.5 w-fit hover:bg-gray-100 transition-colors">
+                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
+                  <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                     Read Release
                   </button>
                 </div>
@@ -1237,88 +1237,105 @@ const Services = () => {
         </div>
 
         {/* Asked */}
-        <div className="w-full bg-[#F4F4F4] py-24 items-start flex flex-col px-3 sm:px-4 md:px-8 lg:px-10 relative">
+        <div className="w-full bg-[#F4F4F4] py-24 items-start flex flex-col  relative">
           {/* White gradient at top */}
           <div className="absolute top-0 left-0 right-0 h-32 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent)' }}></div>
 
-          <div className=" flex flex-col w-full px-10 items-center gap-4">
+          <div className="flex flex-col lg:flex-row justify-between items-start w-full mb-12 md:mb-16 lg:mb-20 gap-6 md:gap-8 px-2 md:px-6 lg:px-10">
+            <div className="flex w-full lg:w-[60%] items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
+              <p>Frequently Asked</p>
+              <p className="text-[#3B3B3D73]">Questions</p>
+            </div>
+            <p className="text-[#2D2C2C] text-base sm:text-lg md:text-xl lg:text-2xl w-full lg:w-[40%] xl:text-[32px] leading-relaxed">
+              From setup to security, here&apos;s everything you need to know.
+            </p>
+          </div>
+
+          <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
 
 
-            <div ref={el => { if (el) askedItemsRef.current[0] = el }} className="border-[#68636352] rounded-md p-3 px-7 border-1 w-full flex items-center justify-between">
-                <p className="text-[#111111]">What kind of teams use Relay?</p>
+            <div ref={el => { if (el) askedItemsRef.current[0] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">What kind of teams use Relay?</p>
                 <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
-                width={25}
-                height={25}
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
                 />
 
             </div>
 
 
-            <div ref={el => { if (el) askedItemsRef.current[1] = el }} className="border-[#68636352] rounded-md p-3 px-7 border-1 w-full flex items-center justify-between">
-                <p className="text-[#111111]">Does Relay work with Slack and Microsoft Teams?</p>
+            <div ref={el => { if (el) askedItemsRef.current[1] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay work with Slack and Microsoft Teams?</p>
                 <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
-                width={25}
-                height={25}
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
                 />
 
             </div>
 
 
-            <div ref={el => { if (el) askedItemsRef.current[2] = el }} className="border-[#68636352] rounded-md p-3 px-7 border-1 w-full flex items-center justify-between">
-                <p className="text-[#111111]">Is there a free trial?</p>
+            <div ref={el => { if (el) askedItemsRef.current[2] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is there a free trial?</p>
                 <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
-                width={25}
-                height={25}
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
                 />
 
             </div>
 
-            <div ref={el => { if (el) askedItemsRef.current[3] = el }} className="border-[#68636352] rounded-md p-3 px-7 border-1 w-full flex items-center justify-between">
-                <p className="text-[#111111]">Is my data secure?</p>
+            <div ref={el => { if (el) askedItemsRef.current[3] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is my data secure?</p>
                 <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
-                width={25}
-                height={25}
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
                 />
 
             </div>
 
-            <div ref={el => { if (el) askedItemsRef.current[4] = el }} className="border-[#68636352] rounded-md p-3 px-7 border-1 w-full flex items-center justify-between">
-                <p className="text-[#111111]">Can I collaborate with my engineering team inside Relay?</p>
+            <div ref={el => { if (el) askedItemsRef.current[4] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I collaborate with my engineering team inside Relay?</p>
                 <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
-                width={25}
-                height={25}
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
                 />
 
             </div>
 
-             <div ref={el => { if (el) askedItemsRef.current[5] = el }} className="border-[#68636352] rounded-md p-3 px-7 border-1 w-full flex items-center justify-between">
-                <p className="text-[#111111]">Does Relay support multi-channel communication?</p>
+             <div ref={el => { if (el) askedItemsRef.current[5] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay support multi-channel communication?</p>
                 <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
-                width={25}
-                height={25}
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
                 />
 
             </div>
 
-            <div ref={el => { if (el) askedItemsRef.current[6] = el }} className="border-[#68636352] rounded-md p-3 px-7 border-1 w-full flex items-center justify-between">
-                <p className="text-[#111111]">Can I customize how Relay works for my team?</p>
+            <div ref={el => { if (el) askedItemsRef.current[6] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I customize how Relay works for my team?</p>
                 <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
-                width={25}
-                height={25}
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
                 />
 
             </div>
@@ -1331,14 +1348,14 @@ const Services = () => {
         
       {/* roadmap */}
       <div ref={roadmapSectionRef} className="w-full py-20 gap-8 items-start flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
-        <div className="roadmap-heading flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium text-black flex-col gap-2 leading-18">
+        <div className="roadmap-heading flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 leading-tight">
               <p>Let&apos;s design the right technology </p>
-              <p className="text-[#3B3B3D73]">roadmap for your business.</p>
+              <p className="text-black">roadmap for your business.</p>
         </div>
 
-        <button onClick={() => router.push('/contact')} className="bg-[#FF662A] p-2 px-4 rounded-sm  flex gap-2 items-start hover:bg-[#e55a24] transition-colors">
-          <p className="text-white text-sm">Start a Conversation</p>
-
+        <button onClick={() => router.push('/contact')} className="bg-[#FF662A] p-2 px-4 rounded-sm flex gap-2 items-center hover:bg-[#e55a24] transition-colors">
+          <p className="text-white text-sm sm:text-sm md:text-base xl:text-[16px]">Start a Conversation</p>
+          <Image src="/Images/arrow.png" alt="Arrow" width={20} height={20} className="object-contain" />
         </button>
 
       </div>

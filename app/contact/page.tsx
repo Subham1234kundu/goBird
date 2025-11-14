@@ -352,72 +352,72 @@ const Contact = () => {
 
         {/* Text content */}
         <div ref={headerTextRef} className="flex-1 mt-8 sm:mt-12 md:mt-16 lg:mt-20 px-4 sm:px-6 md:px-0 relative z-10">
-          <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-light leading-tight mb-6 sm:mb-8 md:mb-12" style={{ fontWeight: 300 }}>
+          <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[82px] 2xl:text-7xl font-light leading-tight mb-6 sm:mb-8 md:mb-12" style={{ fontWeight: 300 }}>
             92% of our clients return <br className="hidden sm:block" /> with new projects start <br className="hidden sm:block" /> your first today.
           </h1>
-          <p className="text-white font-light text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-relaxed">
+          <p className="text-white font-light text-xs sm:text-sm md:text-base lg:text-lg xl:text-[32px] 2xl:text-2xl leading-10">
             Whether you&apos;re exploring ideas, need a trusted tech <br className="hidden md:block" /> partner, or want to transform the way your business <br className="hidden md:block" /> works we&apos;re here to make it happen.
           </p>
         </div>
       </div>
 
       {/* Startups Section */}
-      <div className="w-full py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-10 lg:px-16">
+      <div className="w-full py-16 px-4 sm:px-6 md:px-10 lg:px-16">
         <div className="max-w-[1400px] mx-auto">
-          <h2 ref={startupsHeadingRef} className="text-black text-base sm:text-lg md:text-xl lg:text-2xl text-center mb-6 sm:mb-8">
+          <h2 ref={startupsHeadingRef} className="text-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center mb-6 sm:mb-8 mt-14">
             The startups shaping tomorrow trust Grobird
           </h2>
 
           {/* Startup Company Images Row */}
-          <div ref={startupLogosRef} className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-14 overflow-x-auto pb-2">
-            <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+          <div ref={startupLogosRef} className="flex justify-center items-center gap-2 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
               <Image
                 src="/Images/startups/company1.png"
                 alt="Startup Company 1"
                 fill
                 className="object-contain"
                 priority
-                sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
               />
             </div>
-            <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
               <Image
                 src="/Images/startups/company2.png"
                 alt="Startup Company 2"
                 fill
                 className="object-contain"
                 priority
-                sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
               />
             </div>
-            <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
               <Image
                 src="/Images/startups/company3.png"
                 alt="Startup Company 3"
                 fill
                 className="object-contain"
                 priority
-                sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
               />
             </div>
-            <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
               <Image
                 src="/Images/startups/company4.png"
                 alt="Startup Company 4"
                 fill
                 className="object-contain"
                 priority
-                sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
               />
             </div>
-            <div className="relative w-20 h-10 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
               <Image
                 src="/Images/startups/company5.png"
                 alt="Startup Company 5"
                 fill
                 className="object-contain"
                 priority
-                sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
+                sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
               />
             </div>
           </div>
@@ -431,24 +431,24 @@ const Contact = () => {
             {/* Left Side - Contact Information */}
             <div ref={contactInfoRef} className="flex-1 flex flex-col justify-between h-full">
               <div>
-                <h2 className="text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light leading-tight mb-8 sm:mb-10 md:mb-12" style={{ fontWeight: 300 }}>
+                <h2 className="text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-light leading-20 mb-8 sm:mb-10 md:mb-12" style={{ fontWeight: 300 }}>
                   We&apos;d love to hear from you. Drop us a message and our team will get back within 24 hours.
                 </h2>
 
                 <div className="space-y-6 sm:space-y-8">
                   <div>
-                    <h3 className="text-[#616161] text-base sm:text-lg md:text-xl font-medium mb-2">Address:</h3>
-                    <p className="text-sm sm:text-base md:text-lg text-black">121, LA, US-121324</p>
-                  </div>
-
-                  <div> 
-                    <h3 className="text-[#616161] text-base sm:text-lg md:text-xl font-medium mb-2">Email:</h3>
-                    <p className="text-sm sm:text-base md:text-lg text-black" >inquiry@grobird.in</p>
+                    <h3 className="text-[#616161] text-base sm:text-lg md:text-xl xl:text-[24px] font-medium mb-2">Address:</h3>
+                    <p className="text-sm sm:text-base md:text-lg xl:text-[30px] text-black">121, LA, US-121324</p>
                   </div>
 
                   <div>
-                    <h3 className="text-[#616161] text-base sm:text-lg md:text-xl font-medium mb-2">Phone:</h3>
-                    <p className="text-sm sm:text-base md:text-lg text-black" >+91-9170763968</p>
+                    <h3 className="text-[#616161] text-base sm:text-lg md:text-xl xl:text-[24px] font-medium mb-2">Email:</h3>
+                    <p className="text-sm sm:text-base md:text-lg xl:text-[30px] text-black" >inquiry@grobird.in</p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-[#616161] text-base sm:text-lg md:text-xl xl:text-[24px] font-medium mb-2">Phone:</h3>
+                    <p className="text-sm sm:text-base md:text-lg xl:text-[30px] text-black" >+91-9170763968</p>
                   </div>
                 </div>
               </div>
@@ -458,47 +458,47 @@ const Contact = () => {
             <div ref={contactFormRef} className="flex-1">
               <form className="flex flex-col h-full gap-4 sm:gap-6 border rounded-lg p-4 sm:p-6 md:p-8" style={{ borderColor: '#B7B7B7' }}>
                 <div>
-                  <label className="block text-black text-sm sm:text-base md:text-lg font-medium mb-2">Name</label>
+                  <label className="block text-black text-sm sm:text-base md:text-lg xl:text-[18px] font-medium mb-2">Name</label>
                   <input
                     type="text"
                     placeholder="Enter your name"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] focus:outline-none focus:ring-2 focus:ring-gray-300"
                     style={{ borderColor: '#B7B7B7' }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-black text-sm sm:text-base md:text-lg font-medium mb-2">Email</label>
+                  <label className="block text-black text-sm sm:text-base md:text-lg xl:text-[18px] font-medium mb-2">Email</label>
                   <input
                     type="email"
                     placeholder="Enter your email"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] focus:outline-none focus:ring-2 focus:ring-gray-300"
                     style={{ borderColor: '#B7B7B7' }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-black text-sm sm:text-base md:text-lg font-medium mb-2">Phone Number:</label>
+                  <label className="block text-black text-sm sm:text-base md:text-lg xl:text-[18px] font-medium mb-2">Phone Number:</label>
                   <input
                     type="tel"
                     placeholder="Enter your phone number"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] focus:outline-none focus:ring-2 focus:ring-gray-300"
                     style={{ borderColor: '#B7B7B7' }}
                   />
                 </div>
 
                 <div className="flex-1">
-                  <label className="block text-black text-sm sm:text-base md:text-lg font-medium mb-2">Message:</label>
+                  <label className="block text-black text-sm sm:text-base md:text-lg xl:text-[18px] font-medium mb-2">Message:</label>
                   <textarea
                     placeholder="Enter your message"
                     rows={6}
-                    className="w-full h-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg resize-none focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    className="w-full h-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] resize-none focus:outline-none focus:ring-2 focus:ring-gray-300"
                     style={{ borderColor: '#B7B7B7', minHeight: '150px' }}
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-2.5 sm:py-3 mt-4 sm:mt-8 md:mt-12 rounded-full text-white text-sm sm:text-base md:text-lg font-medium hover:opacity-90 transition-opacity"
+                  className="w-full py-2.5 sm:py-3 mt-4 sm:mt-8 md:mt-12 rounded-full text-white text-sm sm:text-base md:text-lg xl:text-[18px] font-medium hover:opacity-90 transition-opacity"
                   style={{ backgroundColor: '#FE4B00' }}
                 >
                   Send Message
@@ -511,11 +511,11 @@ const Contact = () => {
 
       {/* Strategic Partner Section */}
           <div ref={strategicPartnerRef} className="flex flex-col sm:flex-row gap-4 sm:gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-6 sm:py-8 md:py-10 lg:py-12 mx-auto items-start sm:items-center justify-between">
-            <h2 className="text-[#000A1B] flex flex-col text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium leading-tight w-full lg:w-[80%]">
+            <h2 className="text-[#000A1B] flex flex-col text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium leading-tight w-full lg:w-[80%]">
               <span className="text-[#3B3B3D73]">More than a service</span>
                <span className="text-[#0B0B0B]">A strategic design<br className="hidden sm:block" />partner.</span>
             </h2>
-            <h3 className="text-[#000A1B] text-base sm:text-lg md:text-xl lg:text-2xl lg:w-[25%] text-start sm:text-end mt-1">Why Grobird?</h3>
+         
           </div>
 
          {/* more than a service boxes */}
@@ -523,39 +523,39 @@ const Contact = () => {
             <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain" />
             <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
               <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">10<span className="text-[#F95524]">x</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm">Higher Client Retention</p>
+              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Higher Client Retention</p>
             </div>
              <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
               <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">200<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm">Successfully delivered high-quality projects</p>
+              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
             </div>
             <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
               <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">97<span className="text-[#F95524]">%</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm">Client satisfaction based on surveys</p>
+              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
             </div>
             <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
               <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">5<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm">Continents Served</p>
+              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Continents Served</p>
             </div>
           </div>
 
       {/* FAQ Section */}
-      <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 px-4 sm:px-6 md:px-8 lg:px-[4%] py-10 sm:py-12 md:py-16 lg:py-20 my-6 sm:my-8 md:my-12 lg:my-16" style={{
+      <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 px-4 sm:px-6 md:px-8 lg:px-[4%] py-10 sm:py-12 md:py-16 lg:py-20 my-6 sm:my-8 md:my-12 lg:my-16 " style={{
         background: 'linear-gradient(to bottom, #FFFFFF 0%, #F4F4F4 100%)'
       }}>
         <div ref={faqHeadingRef} className="flex flex-col lg:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8">
-          <div className="flex w-full lg:w-[60%] items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-medium text-[#3B3B3D73] flex-col gap-2">
+          <div className="flex w-full lg:w-[60%] items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 xl:pb-10">
             <p>Frequently Asked</p>
             <p className="text-black">Questions</p>
           </div>
-          <p className="text-[#2D2C2C] text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl w-full lg:w-[40%] leading-relaxed">
-            From setup to security, here&apos;s everything you need to know before getting started.
+          <p className="text-[#2D2C2C] text-xs sm:text-sm md:text-base lg:text-lg xl:text-[32px] w-full lg:w-[32%] leading-10">
+            From setup to security, here&apos;s everything you need to know.
           </p>
         </div>
 
         <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-4">
           <div ref={el => { if (el) faqItemsRef.current[0] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-            <p className="text-[#111111] text-sm md:text-base">What kind of teams use Relay?</p>
+            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">What kind of teams use Relay?</p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
@@ -566,7 +566,7 @@ const Contact = () => {
           </div>
 
           <div ref={el => { if (el) faqItemsRef.current[1] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-            <p className="text-[#111111] text-sm md:text-base">Does Relay work with Slack and Microsoft Teams?</p>
+            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">Does Relay work with Slack and Microsoft Teams?</p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
@@ -577,7 +577,7 @@ const Contact = () => {
           </div>
 
           <div ref={el => { if (el) faqItemsRef.current[2] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-            <p className="text-[#111111] text-sm md:text-base">Is there a free trial?</p>
+            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">Is there a free trial?</p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
@@ -588,7 +588,7 @@ const Contact = () => {
           </div>
 
           <div ref={el => { if (el) faqItemsRef.current[3] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-            <p className="text-[#111111] text-sm md:text-base">Is my data secure?</p>
+            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">Is my data secure?</p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
@@ -599,7 +599,7 @@ const Contact = () => {
           </div>
 
           <div ref={el => { if (el) faqItemsRef.current[4] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-            <p className="text-[#111111] text-sm md:text-base">Can I collaborate with my engineering team inside Relay?</p>
+            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">Can I collaborate with my engineering team inside Relay?</p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
@@ -610,7 +610,7 @@ const Contact = () => {
           </div>
 
           <div ref={el => { if (el) faqItemsRef.current[5] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-            <p className="text-[#111111] text-sm md:text-base">Does Relay support multi-channel communication?</p>
+            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">Does Relay support multi-channel communication?</p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
@@ -621,7 +621,7 @@ const Contact = () => {
           </div>
 
           <div ref={el => { if (el) faqItemsRef.current[6] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-            <p className="text-[#111111] text-sm md:text-base">Can I customize how Relay works for my team?</p>
+            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">Can I customize how Relay works for my team?</p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
@@ -635,10 +635,10 @@ const Contact = () => {
 
       {/* CTA Section */}
       <div ref={ctaSectionRef} className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 px-4 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-10 md:py-12 lg:py-16">
-        <h2 className="text-black text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium leading-tight text-center sm:text-left">
+        <h2 className="text-black text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-medium leading-tight text-center sm:text-left">
           Driving 30% Cost Reductions Through <br className="hidden lg:block" />Smarter IT Decisions
         </h2>
-        <button className="bg-black text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-sm sm:text-base hover:bg-gray-800 transition-colors whitespace-nowrap">
+        <button className="bg-black text-white px-6 sm:px-8 py-2.5 rounded-full text-sm sm:text-base xl:text-[18px] hover:bg-gray-800 transition-colors whitespace-nowrap">
           Connect Now!
         </button>
       </div>

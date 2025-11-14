@@ -352,13 +352,13 @@ const AboutUs = () => {
       <div>
         {/* heading */}
           <div className="bg-custom-bg w-full h-full
-          px-4 sm:px-6 md:px-10 lg:px-16 xl:px-9 pt-6 sm:pt-8 md:pt-12 lg:pt-16 relative">
+           pt-6 sm:pt-8 md:pt-12 lg:pt-16 relative px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18">
             <div className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10">
               <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-12 ">
                 <h1 ref={headingRef} className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-7xl 2xl:text-7xl font-light w-full lg:w-[60%] leading-tight">
                   We build <br /> technology that <br /> builds businesses
                 </h1>
-                <h3 ref={subheadingRef} className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-lg 2xl:text-2xl w-full lg:w-[35%] leading-relaxed">
+                <h3 ref={subheadingRef} className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-10">
                   Whether you&apos;re rethinking IT infrastructure, building custom software, or scaling digital products we help you move with speed and confidence.
                 </h3>
               </div>

@@ -103,7 +103,7 @@ const Footer = () => {
       <div className="relative pt-6 sm:pt-8 md:pt-10 pb-16 sm:pb-20 md:pb-24 lg:pb-16 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20">
         {/* Grobird Logo - Centered */}
         <div className="flex justify-center items-center mb-8 sm:mb-10 md:mb-0">
-          <p className="text-black uppercase text-3xl sm:text-5xl md:text-7xl lg:text-[120px] xl:text-[200px] font-bold leading-none tracking-wider sm:tracking-widest text-center">
+          <p className="text-black uppercase text-3xl sm:text-5xl md:text-7xl lg:text-[120px] xl:text-[269px] font-bold leading-none tracking-wider sm:tracking-widest text-center">
             GROBIRD
           </p>
         </div>
