@@ -90,7 +90,7 @@ const InsightsSection = ({
               <h3 className="text-[#0B0B0B]  text-sm sm:text-lg lg:text-[32px]  mt-3 sm:mt-4 text-start w-[90%]">
                {insight.title} 
               </h3>
-              <p className="text-[#666666] text-xs md:text-base mt-4 w-[90%]">
+              <p className="text-[#666666] text-xs md:text-base mt-4 w-[90%] font-normal">
                 {insight.category} • {insight.date} • {insight.readTime}
               </p>
               <div className="relative w-[90%] mt-4">

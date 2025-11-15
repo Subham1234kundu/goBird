@@ -98,20 +98,20 @@ const MarketContextSection = ({
   }, [])
 
   return (
-    <div ref={marketSectionRef} className="w-full px-[3%] sm:px-[2%] pt-12 sm:pt-16 md:pt-20 lg:pt-28 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
-      <p className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl mb-6 sm:mb-8 md:mb-12 lg:mb-32 mx-[2%] sm:m-[1%]">
-        <span className="text-[#3B3B3D73]">{title}</span><br />
+    <div ref={marketSectionRef} className="w-full px-[3%] sm:px-[2%] pt-18 sm:pt-24 md:pt-30 lg:pt-40 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
+      <p className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-[64px] font-medium mb-6 sm:mb-8 md:mb-12 lg:mb-32 mx-[2%] sm:m-[1%]">
+        <span className="text-[#000000]">{title}</span><br />
         <span className="text-[#000A1B]">{titleHighlight}</span>
       </p>
 
       {/* White box - above image on mobile/tablet, overlapping on desktop */}
       <div className="lg:hidden bg-white p-4 mb-6 w-full">
-        <p className="text-base sm:text-lg text-[#2D2C2C] leading-relaxed">
+        <p className="text-base sm:text-lg text-[#2D2C2C] leading-10">
           {marketDescription}
         </p>
       </div>
 
-      <div className="market-image relative w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
+      <div className="market-image relative w-full h-[350px] sm:h-[400px] md:h-[450px] lg:h-[500px] xl:h-[558px]">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -130,8 +130,8 @@ const MarketContextSection = ({
         </div>
 
         {/* Text overlay container - desktop only */}
-        <div className="hidden lg:block absolute top-0 right-0 w-[35%] xl:w-[30%] bg-white p-4 z-10 transform -translate-y-[70%]">
-          <p className="text-xl xl:text-2xl text-[#2D2C2C] leading-relaxed">
+        <div className="hidden lg:block absolute top-0 right-0 w-[35%] xl:w-[33%] bg-white p-4 z-10 transform -translate-y-[70%]">
+          <p className="text-xl xl:text-[32px] text-[#2D2C2C] leading-10">
             {marketDescription}
           </p>
         </div>
@@ -139,11 +139,11 @@ const MarketContextSection = ({
 
       {/* Measurable Outcomes section */}
       <div className="flex px-4 sm:px-6 md:px-8 flex-col lg:flex-row justify-between items-start gap-6 sm:gap-8 lg:gap-4 mt-16 lg:mt-24">
-        <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+        <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-medium">
           <span className="text-[#3B3B3D73]">{measurableTitle}</span><br className="lg:hidden" />
           <span className="text-[#000A1B]"> {measurableTitleHighlight}</span>
         </p>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#2D2C2C] leading-relaxed lg:max-w-[50%] mt-0 sm:mt-4 lg:mt-52">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] text-[#2D2C2C] leading-relaxed lg:max-w-[50%] mt-0 sm:mt-4 lg:mt-52">
           {measurableDescription}
         </p>
       </div>

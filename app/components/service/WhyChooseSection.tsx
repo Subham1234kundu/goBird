@@ -111,7 +111,7 @@ const WhyChooseSection = ({
 
   return (
     <div ref={whyChooseSectionRef} className="flex flex-col my-8 md:my-12 lg:my-16 xl:my-20 mx-[3%] md:mx-[4%] lg:mx-[5%] xl:mx-[3%] gap-6 md:gap-8 lg:gap-10 xl:gap-12">
-      <div ref={whyChooseTextRef} className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-[#3B3B3D73] mb-4 md:mb-6 lg:mb-8">
+      <div ref={whyChooseTextRef} className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-[64px] text-[#3B3B3D73] font-medium mb-4 md:mb-6 lg:mb-8">
         <div>
           <p className="whitespace-nowrap">{title} <span className="text-[#000A1B]">{titleHighlight}</span></p>
           <p className="text-[#000A1B]">{subtitle}</p>
@@ -127,7 +127,7 @@ const WhyChooseSection = ({
                 <p
                   key={index}
                   ref={el => { if (el) whyChooseItemsRef.current[index] = el }}
-                  className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl"
+                  className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-[32px]"
                 >
                   {item.text}
                 </p>
@@ -142,7 +142,7 @@ const WhyChooseSection = ({
                   ref={el => { if (el) whyChooseItemsRef.current[index] = el }}
                   className="border-b border-[#8F9096] pb-6 md:pb-8 lg:pb-10"
                 >
-                  <p className="p-3 md:p-4 pl-4 md:pl-5 lg:pl-7 text-base md:text-lg lg:text-xl bg-[#dfe1ed] font-semibold rounded-sm text-[#0F1011]">
+                  <p className="p-3 md:p-4 pl-4 md:pl-5 lg:pl-7 text-base md:text-lg lg:text-xl xl:text-[32px] bg-[#dfe1ed] font-semibold rounded-sm text-[#0F1011]">
                     {item.text}
                   </p>
                 </div>
@@ -154,7 +154,7 @@ const WhyChooseSection = ({
               <p
                 key={index}
                 ref={el => { if (el) whyChooseItemsRef.current[index] = el }}
-                className="text-[#000A1B] text-lg md:text-xl lg:text-xl xl:text-2xl font-semibold border-b border-[#8F9096] pb-6 md:pb-8 lg:pb-10 xl:pb-12"
+                className="text-[#000A1B] text-lg md:text-xl lg:text-xl xl:text-[32px] font-semibold border-b border-[#8F9096] pb-6 md:pb-8 lg:pb-10 xl:pb-12"
               >
                 {item.text}
               </p>

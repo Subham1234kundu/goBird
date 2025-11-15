@@ -89,7 +89,7 @@ const ITConsulting = () => {
   return (
     <div className="w-full overflow-x-hidden">
       {/* Hero Section - Same style as Services page */}
-      <div className="bg-custom-bg w-full h-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-9 pt-6 sm:pt-8 md:pt-12 lg:pt-16 pb-16 relative">
+      <div className="bg-custom-bg w-full h-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18 pt-14 md:pt-18 lg:pt-42 lg:pb-16 relative">
         {/* 9 boxes on the right side - same gradient as Services */}
         <div className="flex absolute right-0 top-0 h-full">
           <div ref={el => { if (el) headerBoxesRef.current[0] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FFFFFF 40%, #000A1B 90%)', opacity: 0.05 }}></div>
@@ -115,15 +115,15 @@ const ITConsulting = () => {
           </div>
         </div>
 
-        <div ref={headerContentRef} className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10">
-          <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight mb-8 mt-16 w-full sm:w-[90%] md:w-[85%] lg:w-[76%]" style={{ fontWeight: 300 }}>
+        <div ref={headerContentRef} className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10 pb-16">
+          <h1 className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] 2xl:text-7xl font-light leading-tight mb-8 lg:mb-12 w-full sm:w-[90%]" style={{ fontWeight: 300 }}>
             IT Consulting
           </h1>
-          <p className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl w-full sm:w-[80%] md:w-[75%] lg:w-[65%]  leading-relaxed mb-8" style={{ fontWeight: 300 }}>
-              From strategy to execution, Grobird helps you make smarter technology decisions, modernize your IT landscape, and unlock long-term efficiency and scalability.
-          </p>
+          <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-10">
+            From strategy to execution, Grobird helps you make smarter technology decisions, modernize your IT landscape, and unlock long-term efficiency and scalability.
+          </h3>
 
-          <button onClick={() => router.push('/contact')} className="text-black w-[50%] md:w-[30%]  lg:w-[20%] bg-white rounded-full p-2 px-3 lg:mb-2 text-sm">Talk to an IT Expert</button>
+          <button onClick={() => router.push('/contact')} className="mt-12  bg-white border border-white rounded-full text-black text-xs sm:text-sm xl:text-[18px] px-8 sm:px-12 py-2 w-fit">Talk to an IT Expert</button>
 
         </div>
       </div>

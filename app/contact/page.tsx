@@ -23,6 +23,10 @@ const Contact = () => {
   const faqHeadingRef = useRef<HTMLDivElement>(null)
   const faqItemsRef = useRef<HTMLDivElement[]>([])
   const ctaSectionRef = useRef<HTMLDivElement>(null)
+  const statCounter1Ref = useRef<HTMLHeadingElement>(null)
+  const statCounter2Ref = useRef<HTMLHeadingElement>(null)
+  const statCounter3Ref = useRef<HTMLHeadingElement>(null)
+  const statCounter4Ref = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
     const images = imagesRef.current.filter(Boolean)
@@ -324,10 +328,46 @@ const Contact = () => {
     }
   }, [])
 
+  // Counter animation effect
+  useEffect(() => {
+    const counters = [
+      { ref: statCounter1Ref, target: 10, suffix: 'x' },
+      { ref: statCounter2Ref, target: 200, suffix: '+' },
+      { ref: statCounter3Ref, target: 97, suffix: '%' },
+      { ref: statCounter4Ref, target: 5, suffix: '+' }
+    ]
+
+    counters.forEach(({ ref, target, suffix }) => {
+      if (ref.current && statsRefs.current[1]) {
+        const counter = { value: 0 }
+
+        gsap.to(counter, {
+          value: target,
+          duration: 2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: statsRefs.current[1],
+            start: 'top 80%',
+            once: true
+          },
+          onUpdate: () => {
+            if (ref.current) {
+              ref.current.innerHTML = `${Math.round(counter.value)}<span class="text-[#F95524]">${suffix}</span>`
+            }
+          }
+        })
+      }
+    })
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   return (
     <div className="w-full">
       {/* Header Section */}
-      <div className="w-full h-[500px] sm:h-[600px] md:h-[640px] flex items-start relative overflow-hidden" style={{ backgroundColor: '#000A1B' }}>
+      <div className="w-full h-[500px] sm:h-[600px] md:h-[640px] lg:h-[730px] flex items-start relative overflow-hidden" style={{ backgroundColor: '#000A1B' }}>
         {/* Contact Bird - Absolute positioned on right side */}
         <div className="absolute right-0 top-0 w-[400px] sm:w-[500px] md:w-[600px] lg:w-[700px] h-full">
           <Image
@@ -351,7 +391,7 @@ const Contact = () => {
         </div>
 
         {/* Text content */}
-        <div ref={headerTextRef} className="flex-1 mt-8 sm:mt-12 md:mt-16 lg:mt-20 px-4 sm:px-6 md:px-0 relative z-10">
+        <div ref={headerTextRef} className="flex-1 mt-8 sm:mt-12 md:mt-16 lg:mt-32 px-4 sm:px-6 md:px-0 relative z-10">
           <h1 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[82px] 2xl:text-7xl font-light leading-tight mb-6 sm:mb-8 md:mb-12" style={{ fontWeight: 300 }}>
             92% of our clients return <br className="hidden sm:block" /> with new projects start <br className="hidden sm:block" /> your first today.
           </h1>
@@ -370,7 +410,7 @@ const Contact = () => {
 
           {/* Startup Company Images Row */}
           <div ref={startupLogosRef} className="flex justify-center items-center gap-2 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14">
-            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
               <Image
                 src="/Images/startups/company1.png"
                 alt="Startup Company 1"
@@ -380,7 +420,7 @@ const Contact = () => {
                 sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
               />
             </div>
-            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
               <Image
                 src="/Images/startups/company2.png"
                 alt="Startup Company 2"
@@ -390,7 +430,7 @@ const Contact = () => {
                 sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
               />
             </div>
-            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
               <Image
                 src="/Images/startups/company3.png"
                 alt="Startup Company 3"
@@ -400,7 +440,7 @@ const Contact = () => {
                 sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
               />
             </div>
-            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
               <Image
                 src="/Images/startups/company4.png"
                 alt="Startup Company 4"
@@ -410,7 +450,7 @@ const Contact = () => {
                 sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
               />
             </div>
-            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+            <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-r border-[#E9EBF1]">
               <Image
                 src="/Images/startups/company5.png"
                 alt="Startup Company 5"
@@ -522,19 +562,19 @@ const Contact = () => {
          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-3 sm:gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-6 sm:pb-8 md:pb-10 lg:pb-12 mx-auto">
             <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain" />
             <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">10<span className="text-[#F95524]">x</span></h3>
+              <h3 ref={statCounter1Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">x</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Higher Client Retention</p>
             </div>
              <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">200<span className="text-[#F95524]">+</span></h3>
+              <h3 ref={statCounter2Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
             </div>
             <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">97<span className="text-[#F95524]">%</span></h3>
+              <h3 ref={statCounter3Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">%</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
             </div>
             <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">5<span className="text-[#F95524]">+</span></h3>
+              <h3 ref={statCounter4Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Continents Served</p>
             </div>
           </div>

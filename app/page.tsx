@@ -41,63 +41,96 @@ const Home = () => {
   const ctaCloudLeftRef = useRef<HTMLDivElement>(null)
   const ctaCloudRightRef = useRef<HTMLDivElement>(null)
   const ctaCloudBottomRef = useRef<HTMLDivElement>(null)
+  const stat1Ref = useRef<HTMLHeadingElement>(null)
+  const stat2Ref = useRef<HTMLHeadingElement>(null)
+  const stat3Ref = useRef<HTMLHeadingElement>(null)
+  const stat4Ref = useRef<HTMLHeadingElement>(null)
 
   const handleMouseEnter = (element: HTMLDivElement) => {
+    // Kill any existing animations on this element first
+    gsap.killTweensOf(element)
+
     gsap.to(element, {
       scale: 1.05,
       duration: 0.3,
-      ease: "power2.out"
+      ease: "power2.out",
+      overwrite: "auto"
     })
   }
 
   const handleMouseLeave = (element: HTMLDivElement) => {
+    // Kill any existing animations on this element first
+    gsap.killTweensOf(element)
+
     gsap.to(element, {
       scale: 1,
       duration: 0.3,
-      ease: "power2.out"
+      ease: "power2.out",
+      overwrite: "auto"
     })
   }
 
   const handleServiceHover = (element: HTMLDivElement, isEntering: boolean) => {
     const textContent = element.querySelector('.service-text-content')
     const expandedContent = element.querySelector('.service-expanded-content')
-    
+
+    // Kill all existing animations on these elements to prevent glitches
+    gsap.killTweensOf([element, textContent, expandedContent])
+
     if (isEntering) {
       const expandedHeight = window.innerWidth < 640 ? "320px" : window.innerWidth < 1024 ? "380px" : "450px"
-      gsap.to(element, {
+
+      // Use a timeline for better synchronization
+      const tl = gsap.timeline()
+
+      tl.to(element, {
         height: expandedHeight,
-        duration: 0.4,
-        ease: "power2.out"
-      })
-      gsap.to(textContent, {
-        opacity: 0,
-        duration: 0.2,
-        ease: "power2.out"
-      })
-      gsap.to(expandedContent, {
-        opacity: 1,
-        duration: 0.3,
+        duration: 0.35,
         ease: "power2.out",
-        delay: 0.1
+        overwrite: "auto",
+        force3D: true
       })
+      .to(textContent, {
+        opacity: 0,
+        duration: 0.15,
+        ease: "power2.out",
+        overwrite: "auto",
+        force3D: true
+      }, 0)
+      .to(expandedContent, {
+        opacity: 1,
+        duration: 0.25,
+        ease: "power2.out",
+        overwrite: "auto",
+        force3D: true
+      }, 0.1)
     } else {
       const normalHeight = window.innerWidth < 640 ? "180px" : window.innerWidth < 1024 ? "220px" : "250px"
-      gsap.to(element, {
-        height: normalHeight,
-        duration: 0.4,
-        ease: "power2.out"
-      })
-      gsap.to(expandedContent, {
+
+      // Use a timeline for better synchronization
+      const tl = gsap.timeline()
+
+      tl.to(expandedContent, {
         opacity: 0,
-        duration: 0.2,
-        ease: "power2.out"
-      })
-      gsap.to(textContent, {
-        opacity: 1,
-        duration: 0.3,
+        duration: 0.15,
         ease: "power2.out",
-        delay: 0.1
+        overwrite: "auto",
+        force3D: true
       })
+      .to(element, {
+        height: normalHeight,
+        duration: 0.35,
+        ease: "power2.out",
+        overwrite: "auto",
+        force3D: true
+      }, 0)
+      .to(textContent, {
+        opacity: 1,
+        duration: 0.25,
+        ease: "power2.out",
+        overwrite: "auto",
+        force3D: true
+      }, 0.1)
     }
   }
 
@@ -208,18 +241,24 @@ const Home = () => {
       }, "-=0.4")
     }
 
-    // Hero Section Blur Effect on Scroll
+    // Hero Section Complete Fade Out Effect on Scroll
     if (heroContentWrapperRef.current && heroSectionRef.current) {
       gsap.to(heroContentWrapperRef.current, {
-        filter: "blur(10px)",
-        opacity: 0.3,
-        y: -100,
-        ease: "none",
+        opacity: 0,
+        y: -50,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: heroSectionRef.current,
           start: "top top",
-          end: "bottom top",
-          scrub: 1.5
+          end: "+=300",
+          scrub: 1,
+          onUpdate: (self) => {
+            // Dispatch custom event with scroll progress for birds
+            const event = new CustomEvent('heroTextFade', {
+              detail: { progress: self.progress }
+            })
+            window.dispatchEvent(event)
+          }
         }
       })
     }
@@ -234,7 +273,7 @@ const Home = () => {
           trigger: startupsHeadingRef.current,
           start: "top 80%",
           end: "top 50%",
-          toggleActions: "play none none reverse"
+          once: true
         }
       })
     }
@@ -248,7 +287,7 @@ const Home = () => {
         scrollTrigger: {
           trigger: startupLogosRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse"
+          once: true
         }
       })
     }
@@ -273,7 +312,7 @@ const Home = () => {
           scrollTrigger: {
             trigger: item,
             start: "top 85%",
-            toggleActions: "play none none reverse"
+            once: true
           }
         })
       }
@@ -288,7 +327,7 @@ const Home = () => {
         scrollTrigger: {
           trigger: developIdeaRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse"
+          once: true
         }
       })
     }
@@ -302,7 +341,7 @@ const Home = () => {
         scrollTrigger: {
           trigger: successHeadingRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse"
+          once: true
         }
       })
     }
@@ -315,7 +354,7 @@ const Home = () => {
         scrollTrigger: {
           trigger: statsCardsRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse"
+          once: true
         }
       })
 
@@ -378,7 +417,7 @@ const Home = () => {
           scrollTrigger: {
             trigger: card,
             start: "top 85%",
-            toggleActions: "play none none reverse"
+            once: true
           }
         })
       }
@@ -435,7 +474,7 @@ const Home = () => {
           scrollTrigger: {
             trigger: item,
             start: "top 90%",
-            toggleActions: "play none none reverse"
+            once: true
           }
         })
       }
@@ -474,7 +513,7 @@ const Home = () => {
         scrollTrigger: {
           trigger: ctaContentRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse"
+          once: true
         }
       })
 
@@ -597,14 +636,69 @@ const Home = () => {
     return () => {
       // Kill all ScrollTrigger instances
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-      
+
       // Kill all GSAP tweens
       gsap.killTweensOf("*")
     }
   }, [])
 
+  // Counter animation effect
+  useEffect(() => {
+    const counters = [
+      { ref: stat1Ref, target: 200, suffix: '+' },
+      { ref: stat2Ref, target: 10, suffix: 'x' },
+      { ref: stat3Ref, target: 97, suffix: '%' },
+      { ref: stat4Ref, target: 5, suffix: '+' }
+    ]
+
+    counters.forEach(({ ref, target, suffix }) => {
+      if (ref.current && statsCardsRef.current) {
+        const counter = { value: 0 }
+
+        gsap.to(counter, {
+          value: target,
+          duration: 2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: statsCardsRef.current,
+            start: 'top 80%',
+            once: true
+          },
+          onUpdate: () => {
+            if (ref.current) {
+              ref.current.innerHTML = `${Math.round(counter.value)}<span class="text-[#FF662A]">${suffix}</span>`
+            }
+          }
+        })
+      }
+    })
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   return (
     <>
+      <style jsx>{`
+        .service-hover-item {
+          will-change: height;
+          transform: translateZ(0);
+          backface-visibility: hidden;
+        }
+        .service-text-content,
+        .service-expanded-content {
+          will-change: opacity;
+          transform: translateZ(0);
+          backface-visibility: hidden;
+        }
+        .service-expanded-content {
+          pointer-events: none;
+        }
+        .service-hover-item:hover .service-expanded-content {
+          pointer-events: auto;
+        }
+      `}</style>
       <div style={{ width: '100%', minHeight: '100vh', fontFamily: 'Montserrat, -apple-system, BlinkMacSystemFont, sans-serif', overflowX: 'hidden' }}>
         {/* header */}
         <div
@@ -648,7 +742,7 @@ const Home = () => {
 
             {/* Startup Company Images Row */}
             <div ref={startupLogosRef} className="flex justify-center items-center gap-2 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14">
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company1.png"
                   alt="Startup Company 1"
@@ -658,7 +752,7 @@ const Home = () => {
                   sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company2.png"
                   alt="Startup Company 2"
@@ -668,7 +762,7 @@ const Home = () => {
                   sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company3.png"
                   alt="Startup Company 3"
@@ -678,7 +772,7 @@ const Home = () => {
                   sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company4.png"
                   alt="Startup Company 4"
@@ -688,7 +782,7 @@ const Home = () => {
                   sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-r border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company5.png"
                   alt="Startup Company 5"
@@ -711,12 +805,12 @@ const Home = () => {
               <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] text-[#000A1B] mt-0 md:mt-3">Services</h3>
             </div>
 
-            <div 
-              ref={itConsultingRef} 
+            <div
+              ref={itConsultingRef}
               onClick={() => router.push('/services/servisPages/itConsulting')}
               onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
               onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
-              className="w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
+              className="service-hover-item w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
             >
               <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
                 <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">IT Consulting</p>
@@ -741,12 +835,12 @@ From complex enterprise systems to innovative consumer <br /> apps, our solution
 
             <div className="flex flex-col gap-1 items-center mb-6 md:mb-10 lg:mb-12 xl:mb-14">
 
-              <div 
-                ref={el => { if (el) serviceItemsRef.current[0] = el }} 
+              <div
+                ref={el => { if (el) serviceItemsRef.current[0] = el }}
                 onClick={() => router.push('/services/servisPages/customSoftwareDevelopment')}
                 onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
-                className="w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
+                className="service-hover-item w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
               >
                 <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
                   <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Custom Software Development</p>
@@ -769,12 +863,12 @@ We build scalable, secure, and user-focused <br /> applications tailored to your
                 </div>
               </div>
 
-              <div 
-                ref={el => { if (el) serviceItemsRef.current[1] = el }} 
+              <div
+                ref={el => { if (el) serviceItemsRef.current[1] = el }}
                 onClick={() => router.push('/services/servisPages/Cloud&Infrastructure')}
                 onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
-                className="w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
+                className="service-hover-item w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
               >
                 <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
                   <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Cloud & Infrastructure</p>
@@ -797,12 +891,12 @@ Our solutions ensure seamless scalability, reliable <br /> performance, and robu
                 </div>
               </div>
 
-              <div 
-                ref={el => { if (el) serviceItemsRef.current[2] = el }} 
+              <div
+                ref={el => { if (el) serviceItemsRef.current[2] = el }}
                 onClick={() => router.push('/services/servisPages/productEngineering')}
                 onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
-                className="w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
+                className="service-hover-item w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
               >
                 <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
                   <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Product Engineering</p>
@@ -817,7 +911,7 @@ Our solutions ensure seamless scalability, reliable <br /> performance, and robu
                     <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">Product Engineering</h3>
                     <div className="flex justify-between items-end gap-4">
                       <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
-Our team designs, develops, and maintains software that <br /> delights users, drives engagement, and supports your <br /> business growth through innovation and technical excellence.
+                        Our team designs, develops, and maintains software that <br /> delights users, drives engagement, and supports your <br /> business growth through innovation and technical excellence.
                       </p>
                       <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                     </div>
@@ -838,7 +932,7 @@ Our team designs, develops, and maintains software that <br /> delights users, d
             <div ref={developIdeaRef} className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[559px] mb-8 md:mb-12 relative">
               <Image src="/Images/visonbackgroundblack.png" alt="Vision Background" width={1920} height={1080} className="w-full rounded-xl h-full object-cover" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <Image src="/Images/serviseImages/servemore/bird.png" alt="Bird" width={150} height={150} className="object-contain" />
+                <Image src="/Images/minibird.png" alt="Bird" width={150} height={150} className="object-contain" />
               </div>
               <div className="bg-white w-[200px] sm:w-[250px] md:w-[300px] lg:w-[335px] h-[150px] sm:h-[180px] md:h-[200px] lg:h-[230px] absolute bottom-0 right-0 flex items-end justify-end">
               <div 
@@ -869,12 +963,12 @@ Our team designs, develops, and maintains software that <br /> delights users, d
               <div ref={statsCardsRef} className="w-full lg:w-[50%] h-full bg-[#D3D3D347] flex flex-col gap-6 md:gap-8 lg:gap-12 p-4 md:p-5 lg:px-5">
                 <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 lg:gap-8">
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">200<span className="text-[#FF662A]">+</span></h1>
+                    <h1 ref={stat1Ref} className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">0<span className="text-[#FF662A]">+</span></h1>
                     <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">On-time delivery rate</p>
                     <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">Projects delivered on schedule, every time</p>
                   </div>
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">10<span className="text-[#FF662A]">x</span></h1>
+                    <h1 ref={stat2Ref} className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">0<span className="text-[#FF662A]">x</span></h1>
                     <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">Higher Client Retention</p>
                     <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">Clients keep coming back for more</p>
                   </div>
@@ -882,12 +976,12 @@ Our team designs, develops, and maintains software that <br /> delights users, d
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 lg:gap-8">
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">97<span className="text-[#FF662A]">%</span></h1>
+                    <h1 ref={stat3Ref} className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">0<span className="text-[#FF662A]">%</span></h1>
                     <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">Client Satisfaction Rate</p>
                     <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">Ensuring every client is delighted</p>
                   </div>
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">5<span className="text-[#FF662A]">+</span></h1>
+                    <h1 ref={stat4Ref} className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">0<span className="text-[#FF662A]">+</span></h1>
                     <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">Continents Served</p>
                     <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">Delivering solutions across multiple<br />continents</p>
                   </div>
@@ -1248,7 +1342,7 @@ Our team designs, develops, and maintains software that <br /> delights users, d
 
           {/* Gradient Box */}
           <div ref={ctaSectionRef} className="w-full h-[900px] sm:h-[1100px] md:h-[1400px] lg:h-[1700px] xl:h-[2180px] relative overflow-hidden" style={{
-            background: 'linear-gradient(to bottom, #FFFFFF 5%, #FE4B00A1 92%, #FFFFFF 100%)'
+            background: 'linear-gradient(to bottom, #FFFFFF 2%, #FE4B00A1 92%, #FFFFFF 100%)'
           }}>
             {/* Bird Image Container */}
             <div ref={ctaBirdRef} className="absolute top-0 left-[5%] sm:left-[8%] md:left-[12%] lg:left-40 w-[90%] sm:w-[85%] md:w-full h-full flex items-start justify-center md:justify-start">

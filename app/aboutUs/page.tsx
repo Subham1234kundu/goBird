@@ -30,6 +30,10 @@ const AboutUs = () => {
   const teamSectionRef = useRef<HTMLDivElement>(null)
   const teamHeadingRef = useRef<HTMLHeadingElement>(null)
   const teamMembersRef = useRef<HTMLDivElement[]>([])
+  const aboutStatCounter1Ref = useRef<HTMLHeadingElement>(null)
+  const aboutStatCounter2Ref = useRef<HTMLHeadingElement>(null)
+  const aboutStatCounter3Ref = useRef<HTMLHeadingElement>(null)
+  const aboutStatCounter4Ref = useRef<HTMLHeadingElement>(null)
 
   // Header initial animation
   useEffect(() => {
@@ -346,19 +350,55 @@ const AboutUs = () => {
       })
     }
   }, [])
-  
+
+  // Counter animation effect
+  useEffect(() => {
+    const counters = [
+      { ref: aboutStatCounter1Ref, target: 10, suffix: 'x' },
+      { ref: aboutStatCounter2Ref, target: 200, suffix: '+' },
+      { ref: aboutStatCounter3Ref, target: 97, suffix: '%' },
+      { ref: aboutStatCounter4Ref, target: 5, suffix: '+' }
+    ]
+
+    counters.forEach(({ ref, target, suffix }) => {
+      if (ref.current && statsRefs.current[1]) {
+        const counter = { value: 0 }
+
+        gsap.to(counter, {
+          value: target,
+          duration: 2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: statsRefs.current[1],
+            start: 'top 80%',
+            once: true
+          },
+          onUpdate: () => {
+            if (ref.current) {
+              ref.current.innerHTML = `${Math.round(counter.value)}<span class="text-[#F95524]">${suffix}</span>`
+            }
+          }
+        })
+      }
+    })
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    }
+  }, [])
+
   return (
     <div className="w-full overflow-x-hidden">
       <div>
         {/* heading */}
           <div className="bg-custom-bg w-full h-full
-           pt-6 sm:pt-8 md:pt-12 lg:pt-16 relative px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18">
+           pt-6 sm:pt-8 md:pt-12 lg:pt-24 relative pl-4 sm:pl-6 md:pl-10 lg:pl-16 xl:pl-18">
             <div className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10">
               <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-12 ">
-                <h1 ref={headingRef} className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-7xl 2xl:text-7xl font-light w-full lg:w-[60%] leading-tight">
-                  We build <br /> technology that <br /> builds businesses
+                <h1 ref={headingRef} className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light w-full lg:w-[70%] leading-tight">
+                  We build<br />technology that<br />builds businesses
                 </h1>
-                <h3 ref={subheadingRef} className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-10">
+                <h3 ref={subheadingRef} className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-10 mt-6px sm:mt-8px md:mt-10px lg:mt-12px xl:mt-14">
                   Whether you&apos;re rethinking IT infrastructure, building custom software, or scaling digital products we help you move with speed and confidence.
                 </h3>
               </div>
@@ -372,10 +412,10 @@ const AboutUs = () => {
 
         {/* descp */}
           <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-12 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16  mx-auto ">
-            <h2 className="text-[#000A1B] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight w-full lg:w-[80%]">
+            <h2 className="text-[#000A1B] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight w-full lg:w-[70%]">
               <span className="text-[#3B3B3D73]">Turning Bold Ideas</span> <br /> into Impactful <br /> Products
             </h2>
-            <h3 className="text-[#000A1B] text-2xl md:text-3xl lg:text-4xl lg:w-[25%] text-end">Our Mission / Vision</h3>
+            <h3 className="text-[#000A1B] text-2xl md:text-3xl lg:text-4xl lg:w-[30%] text-end">Our Mission/Vision</h3>
           </div>
 
         {/* vision boxes  */}
@@ -488,19 +528,19 @@ const AboutUs = () => {
          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-4 lg:pb-6 mx-auto pt-2">
             <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain" />
             <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
-              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">10<span className="text-[#F95524]">x</span></h3>
+              <h3 ref={aboutStatCounter1Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">x</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Higher Client Retention</p>
             </div>
              <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
-              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">200<span className="text-[#F95524]">+</span></h3>
+              <h3 ref={aboutStatCounter2Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
             </div>
             <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
-              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">97<span className="text-[#F95524]">%</span></h3>
+              <h3 ref={aboutStatCounter3Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">%</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
             </div>
             <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
-              <h3 className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">5<span className="text-[#F95524]">+</span></h3>
+              <h3 ref={aboutStatCounter4Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
               <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Continents Served</p>
             </div>
           </div>
@@ -632,7 +672,7 @@ const AboutUs = () => {
           />
 
           {/* Footer */}
-          <Footer />
+          <Footer/>
       </div>
   )
 }

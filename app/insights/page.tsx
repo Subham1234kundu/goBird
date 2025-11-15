@@ -17,7 +17,7 @@ const Insights = () => {
   return (
     <div className="w-full">
       {/* Header Section */}
-      <div className="w-full h-full  sm:pt-8 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18 relative pt-14 md:pt-18 lg:pt-20 " style={{ backgroundColor: '#000A1B' }}>
+      <div className="w-full h-full  sm:pt-8 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18 relative pt-14 md:pt-18 lg:pt-24 " style={{ backgroundColor: '#000A1B' }}>
         <div className="flex flex-col w-full relative z-10 pb-16">
           <div className=" w-[80%]">
           <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[82px] font-light leading-tight mb-8 w-full sm:w-[90%]" style={{ fontWeight: 300 }}>
@@ -68,7 +68,7 @@ const Insights = () => {
 
           {/* Right Side - Categories */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 text-black text-base sm:text-lg md:text-xl xl:text-[24px] font-light">
-            <span className="cursor-pointer hover:opacity-70 transition-opacity">Branding</span>
+            <span className="cursor-pointer hover:opacity-70 transition-opacity ">Branding</span>
             <span className="text-[#666666]">|</span>
             <span className="cursor-pointer hover:opacity-70 transition-opacity">Technology</span>
             <span className="text-[#666666]">|</span>

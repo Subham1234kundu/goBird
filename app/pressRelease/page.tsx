@@ -17,12 +17,12 @@ const PressRelease = () => {
   return (
   <div className="overflow-x-hidden">
       {/* header */}
-      <div className="bg-custom-bg w-full h-[250px] sm:h-[300px] md:h-[360px] flex items-center justify-center px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20">
+      <div className="bg-custom-bg w-full h-[250px] sm:h-[300px] md:h-[510px] flex items-center justify-center px-4 sm:pl-6 md:pl-10 lg:pl-16 xl:pl-20 ">
           <div className="flex flex-col lg:flex-row items-start justify-between gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full max-w-7xl">
                   <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[82px] font-light w-full lg:w-[60%] leading-tight">
                     Press & <br /> Announcements
                   </h1>
-                  <h3 className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] w-full lg:w-[35%] leading-10">
+                  <h3 className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] w-full lg:w-[35%] leading-10 mt-10">
                     Stay updated with the latest product launches, innovations, and milestones from Grobird
                   </h3>
           </div>

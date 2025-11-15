@@ -121,10 +121,10 @@ const WeBuildSection = ({
     <div ref={weBuildSectionRef} className="flex flex-col lg:flex-row px-[3%] py-8 lg:py-0 lg:justify-between lg:items-center min-h-[600px] sm:min-h-[700px] md:min-h-[800px] lg:h-[1000px] w-full bg-custom-bg gap-8 lg:gap-0">
       <div className="flex gap-6 sm:gap-8 md:gap-10 lg:gap-12 flex-col w-full lg:w-[40%]">
         <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">{heading}</p>
-        <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl">{description}</p>
+        <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[32px]">{description}</p>
         <button
           onClick={onButtonClick}
-          className="bg-white text-black rounded-full px-5 sm:px-6 md:px-7 py-2 w-fit text-xs sm:text-sm font-medium hover:bg-gray-100 transition-colors"
+          className="bg-white text-black rounded-full px-5 sm:px-6 md:px-7 py-2 w-fit text-[18px] font-medium hover:bg-gray-100 transition-colors"
         >
           {buttonText}
         </button>
@@ -150,9 +150,9 @@ const WeBuildSection = ({
             <div
               key={index}
               ref={el => { if (el) weBuildItemsRef.current[index] = el }}
-              className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-7 flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px] lg:w-[320px] xl:w-[380px]"
+              className="flex flex-col flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px] lg:w-[320px] xl:w-[547px]"
             >
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-[300px] sm:h-[360px] md:h-[420px] lg:h-[480px] xl:h-[821px] mb-3 sm:mb-4 md:mb-5 lg:mb-7">
                 <Image
                   src={item.imageSrc}
                   alt={item.title}
@@ -161,7 +161,7 @@ const WeBuildSection = ({
                   quality={90}
                 />
               </div>
-              <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" style={{ fontWeight: 400 }}>
+              <p className="text-white text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-tight" style={{ fontWeight: 400 }}>
                 {item.title}
               </p>
             </div>

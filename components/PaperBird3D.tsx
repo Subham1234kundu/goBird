@@ -27,6 +27,7 @@ const PaperBirdModel = () => {
   const groupRef = useRef<Group>(null)
   const [scrollY, setScrollY] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [textFadeProgress, setTextFadeProgress] = useState(0)
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
   const { scene, animations } = useGLTF('/Animations/paperBird.glb')
   const { actions, mixer } = useAnimations(animations, groupRef)
@@ -72,12 +73,18 @@ const PaperBirdModel = () => {
       }, 150)
     }
 
+    const handleTextFade = (e: CustomEvent<{ progress: number }>) => {
+      setTextFadeProgress(e.detail.progress)
+    }
+
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
+    window.addEventListener('heroTextFade', handleTextFade as EventListener)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
+      window.removeEventListener('heroTextFade', handleTextFade as EventListener)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
@@ -88,12 +95,16 @@ const PaperBirdModel = () => {
     if (groupRef.current && mixer) {
       const time = clock.getElapsedTime()
 
-      // Calculate smooth scroll progress with NO delay (first bird)
-      const rawProgress = scrollY / 1000
+      // Only start bird flight after text is completely faded (progress > 0.95)
+      const canFly = textFadeProgress > 0.95
+
+      // Calculate smooth scroll progress - all birds fly together with no delay
+      // Increased divisor from 1000 to 3000 for slower, smoother flight
+      const rawProgress = canFly ? (scrollY / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
       // Responsive positions based on screen width - Bird 1 (Left of screen middle)
-      let startX = -0.2, startY = 0, startZ = 0.5
+      let startX = -0.2, startY = -1.8, startZ = 0.5
       let endX = 8.5, endY = 6, endZ = -10
       let baseScale = 0.82, scaleReduction = 0.65
 
@@ -117,13 +128,22 @@ const PaperBirdModel = () => {
         scaleReduction = 0.50
       } else if (width < 1440) { // Laptop
         startX = 0
-        startY = 0.6
+        startY = -0.2
         startZ = 0.5
         endX = 7
         endY = 6
         endZ = -9
         baseScale = 0.70
         scaleReduction = 0.95
+      } else if (width < 1920) { // Desktop (1440-1920)
+        startX = -0.2
+        startY = -0.8
+        startZ = 0.5
+        endX = 8.5
+        endY = 6
+        endZ = -10
+        baseScale = 0.82
+        scaleReduction = 0.65
       }
 
       // Interpolate position from start to end
@@ -163,6 +183,7 @@ const PaperBirdLeftModel = () => {
   const groupRef = useRef<Group>(null)
   const [scrollY, setScrollY] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [textFadeProgress, setTextFadeProgress] = useState(0)
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
   const { scene, animations } = useGLTF('/Animations/paperBird.glb')
   const clonedScene = useMemo(() => SkeletonUtils.clone(scene), [scene])
@@ -208,12 +229,18 @@ const PaperBirdLeftModel = () => {
       }, 150)
     }
 
+    const handleTextFade = (e: CustomEvent<{ progress: number }>) => {
+      setTextFadeProgress(e.detail.progress)
+    }
+
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
+    window.addEventListener('heroTextFade', handleTextFade as EventListener)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
+      window.removeEventListener('heroTextFade', handleTextFade as EventListener)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
@@ -224,12 +251,16 @@ const PaperBirdLeftModel = () => {
     if (groupRef.current && mixer) {
       const time = clock.getElapsedTime()
 
-      // Calculate smooth scroll progress with delay (second bird - starts at 0.05)
-      const rawProgress = (scrollY / 1000) - 0.05
+      // Only start bird flight after text is completely faded
+      const canFly = textFadeProgress > 0.95
+
+      // Calculate smooth scroll progress - all birds fly together with no delay
+      // Increased divisor from 1000 to 3000 for slower, smoother flight
+      const rawProgress = canFly ? (scrollY / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
       // Responsive positions based on screen width - Bird 2 (Left-Middle)
-      let startX = -2.5, startY = -1, startZ = 1.2
+      let startX = -2.5, startY = -2.8, startZ = 1.2
       let endX = 8.5, endY = 6, endZ = -10
       let baseScale = 0.88, scaleReduction = 0.72
 
@@ -253,11 +284,20 @@ const PaperBirdLeftModel = () => {
         scaleReduction = 0.55
       } else if (width < 1440) { // Laptop
         startX = -2.8
-        startY = -0.5
+        startY = -1.3
         startZ = 1.2
         endX = 7
         endY = 7.5
         endZ = -9
+        baseScale = 0.88
+        scaleReduction = 0.72
+      } else if (width < 1920) { // Desktop (1440-1920)
+        startX = -2.5
+        startY = -1.8
+        startZ = 1.2
+        endX = 8.5
+        endY = 6
+        endZ = -10
         baseScale = 0.88
         scaleReduction = 0.72
       }
@@ -298,6 +338,7 @@ const PaperBirdBottomModel = () => {
   const groupRef = useRef<Group>(null)
   const [scrollY, setScrollY] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [textFadeProgress, setTextFadeProgress] = useState(0)
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
   const { scene, animations } = useGLTF('/Animations/paperBird.glb')
   const clonedScene = useMemo(() => SkeletonUtils.clone(scene), [scene])
@@ -341,12 +382,18 @@ const PaperBirdBottomModel = () => {
       }, 150)
     }
 
+    const handleTextFade = (e: CustomEvent<{ progress: number }>) => {
+      setTextFadeProgress(e.detail.progress)
+    }
+
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
+    window.addEventListener('heroTextFade', handleTextFade as EventListener)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
+      window.removeEventListener('heroTextFade', handleTextFade as EventListener)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
@@ -357,12 +404,16 @@ const PaperBirdBottomModel = () => {
     if (groupRef.current && mixer) {
       const time = clock.getElapsedTime()
 
-      // Calculate smooth scroll progress with delay (third bird - starts at 0.20)
-      const rawProgress = (scrollY / 1000) - 0.20
+      // Only start bird flight after text is completely faded
+      const canFly = textFadeProgress > 0.95
+
+      // Calculate smooth scroll progress - all birds fly together with no delay
+      // Increased divisor from 1000 to 3000 for slower, smoother flight
+      const rawProgress = canFly ? (scrollY / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
       // Responsive positions based on screen width - Bird 3 (Bottom-Center, largest)
-      let startX = 0, startY = -3.5, startZ = 2.2
+      let startX = 0, startY = -5.4, startZ = 2.2
       let endX = 8.5, endY = 6, endZ = -10
       let baseScale = 1.0, scaleReduction = 0.80
 
@@ -386,11 +437,20 @@ const PaperBirdBottomModel = () => {
         scaleReduction = 0.63
       } else if (width < 1440) { // Laptop
         startX = 0
-        startY = -3.5
+        startY = -4.3
         startZ = 2.2
         endX = 7
         endY = 6
         endZ = -9
+        baseScale = 1.0
+        scaleReduction = 0.80
+      } else if (width < 1920) { // Desktop (1440-1920)
+        startX = 0
+        startY = -4.3
+        startZ = 2.2
+        endX = 8.5
+        endY = 6
+        endZ = -10
         baseScale = 1.0
         scaleReduction = 0.80
       }
@@ -430,6 +490,7 @@ const PaperBirdRightModel = () => {
   const groupRef = useRef<Group>(null)
   const [scrollY, setScrollY] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [textFadeProgress, setTextFadeProgress] = useState(0)
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
   const { scene, animations } = useGLTF('/Animations/paperBird.glb')
   const clonedScene = useMemo(() => SkeletonUtils.clone(scene), [scene])
@@ -473,12 +534,18 @@ const PaperBirdRightModel = () => {
       }, 150)
     }
 
+    const handleTextFade = (e: CustomEvent<{ progress: number }>) => {
+      setTextFadeProgress(e.detail.progress)
+    }
+
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
+    window.addEventListener('heroTextFade', handleTextFade as EventListener)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
+      window.removeEventListener('heroTextFade', handleTextFade as EventListener)
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
@@ -489,12 +556,16 @@ const PaperBirdRightModel = () => {
     if (groupRef.current && mixer) {
       const time = clock.getElapsedTime()
 
-      // Calculate smooth scroll progress with delay (fourth bird - starts at 0.20)
-      const rawProgress = (scrollY / 1000) - 0.20
+      // Only start bird flight after text is completely faded
+      const canFly = textFadeProgress > 0.95
+
+      // Calculate smooth scroll progress - all birds fly together with no delay
+      // Increased divisor from 1000 to 3000 for slower, smoother flight
+      const rawProgress = canFly ? (scrollY / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
       // Responsive positions based on screen width - Bird 4 (Right-Bottom)
-      let startX = 2.2, startY = -1.5, startZ = 1.3
+      let startX = 2.2, startY = -3.4, startZ = 1.3
       let endX = 8.5, endY = 6, endZ = -10
       let baseScale = 0.88, scaleReduction = 0.72
 
@@ -518,11 +589,20 @@ const PaperBirdRightModel = () => {
         scaleReduction = 0.55
       } else if (width < 1440) { // Laptop
         startX = 2.2
-        startY = -1.5
+        startY = -2.3
         startZ = 1.3
         endX = 7
         endY = 6
         endZ = -9
+        baseScale = 0.88
+        scaleReduction = 0.72
+      } else if (width < 1920) { // Desktop (1440-1920)
+        startX = 2.2
+        startY = -2.3
+        startZ = 1.3
+        endX = 8.5
+        endY = 6
+        endZ = -10
         baseScale = 0.88
         scaleReduction = 0.72
       }
@@ -626,7 +706,7 @@ const PaperBirdBottomLeftModel = () => {
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
       // Responsive positions based on screen width - Bird 5 (Left-Bottom, far left)
-      let startX = -4.2, startY = -1.5, startZ = 1.3
+      let startX = -4.2, startY = -2.3, startZ = 1.3
       let endX = 8.5, endY = 6, endZ = -10
       let baseScale = 0.88, scaleReduction = 0.72
 
@@ -756,19 +836,18 @@ const PaperBird3D = () => {
         <pointLight position={[-5, 5, 5]} intensity={0.5} />
 
         {/* 3D Clouds - Background Layer */}
-        <Cloud3D position={[0, -4, -8]} scale={0.8} speed={0.2} opacity={0.4} />
-        <Cloud3D position={[-9, 0, -8]} scale={1.1} speed={0.45} opacity={0.2} />
+        <Cloud3D position={[0, -4, -8]} scale={0.9} speed={0.2} opacity={0.4} />
+        <Cloud3D position={[-9, 2, -8]} scale={1.1} speed={0.45} opacity={0.2} />
         <Cloud3D position={[9, 0, -16]} scale={0.9} speed={0.35} opacity={0.05} />
         <Cloud3D position={[-1, 10, 50]} scale={1.8} speed={0.15} opacity={0.5} />
 
        
 
-        {/* Premium flock formation - 4 birds on mobile/tablet, 5 on desktop */}
+        {/* Premium flock formation - 4 birds on all screens */}
         <PaperBirdModel />            {/* Bird 1: Top-Center, starts immediately (0.00) */}
         <PaperBirdLeftModel />        {/* Bird 2: Left-Middle, starts at 0.05 */}
         <PaperBirdBottomModel />      {/* Bird 3: Bottom-Center (largest), starts at 0.20 */}
         <PaperBirdRightModel />       {/* Bird 4: Right-Bottom, starts at 0.20 */}
-        {width >= 1024 && <PaperBirdBottomLeftModel />}  {/* Bird 5: Bottom-Left corner, only on desktop */}
       </Canvas>
     </div>
   )

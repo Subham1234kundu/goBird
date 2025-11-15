@@ -683,7 +683,7 @@ const Services = () => {
     <div className="w-full overflow-x-hidden">
       <div>
         {/* heading */}
-        <div className="bg-custom-bg w-full h-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18 pt-14 md:pt-18 lg:pt-20 relative">
+        <div className="bg-custom-bg w-full h-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18 pt-14 md:pt-18 lg:pt-30 relative">
           {/* 9 boxes on the right side */}
           <div className="flex absolute right-0 top-0 h-full">
             <div ref={el => { if (el) headerBoxesRef.current[0] = el }} className="h-full w-[12vw] sm:w-[10vw] md:w-[8vw] lg:w-[7vw]" style={{ background: 'linear-gradient(to bottom, #FF662A 40%, #000A1B 30%)', opacity: 0.05 }}></div>
@@ -731,7 +731,7 @@ const Services = () => {
 
             {/* Startup Company Images Row */}
             <div className="flex justify-center items-center gap-2 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14">
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company1.png"
                   alt="Startup Company 1"
@@ -741,7 +741,7 @@ const Services = () => {
                   sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company2.png"
                   alt="Startup Company 2"
@@ -751,7 +751,7 @@ const Services = () => {
                   sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company3.png"
                   alt="Startup Company 3"
@@ -761,7 +761,7 @@ const Services = () => {
                   sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company4.png"
                   alt="Startup Company 4"
@@ -771,7 +771,7 @@ const Services = () => {
                   sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
                 />
               </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0">
+              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-r border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company5.png"
                   alt="Startup Company 5"
@@ -1115,7 +1115,8 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
+                <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2 z-10">
                   <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
                   <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                     Read Release
@@ -1137,7 +1138,8 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
+                <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2 z-10">
                   <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
                   <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                     Read Release
@@ -1157,10 +1159,11 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3">
+                <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+                <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3 z-10">
                   <p className="text-white text-3xl md:text-4xl lg:text-5xl">92%</p>
                 </div>
-                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3">
+                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 z-10">
                   <p className="text-white text-xs md:text-sm lg:text-md uppercase">Product Adoption Rate</p>
                 </div>
               </div>
