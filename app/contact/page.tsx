@@ -28,6 +28,17 @@ const Contact = () => {
   const statCounter3Ref = useRef<HTMLHeadingElement>(null)
   const statCounter4Ref = useRef<HTMLHeadingElement>(null)
 
+  // Contact form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState(false)
+
   useEffect(() => {
     const images = imagesRef.current.filter(Boolean)
     const mediumImages = mediumImagesRef.current.filter(Boolean)
@@ -364,6 +375,66 @@ const Contact = () => {
     }
   }, [])
 
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setError('')
+    setSuccess(false)
+
+    // Validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.message.trim()) {
+      setError('All fields are required')
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to submit form')
+        setLoading(false)
+        return
+      }
+
+      // Success - reset form
+      setSuccess(true)
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      })
+      setLoading(false)
+
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setSuccess(false)
+      }, 5000)
+    } catch (err: any) {
+      setError('An error occurred. Please try again.')
+      setLoading(false)
+    }
+  }
+
+  // Handle input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
   return (
     <div className="w-full">
       {/* Header Section */}
@@ -496,13 +567,31 @@ const Contact = () => {
 
             {/* Right Side - Contact Form */}
             <div ref={contactFormRef} className="flex-1">
-              <form className="flex flex-col h-full gap-4 sm:gap-6 border rounded-lg p-4 sm:p-6 md:p-8" style={{ borderColor: '#B7B7B7' }}>
+              <form onSubmit={handleSubmit} className="flex flex-col h-full gap-4 sm:gap-6 border rounded-lg p-4 sm:p-6 md:p-8" style={{ borderColor: '#B7B7B7' }}>
+                {/* Error Message */}
+                {error && (
+                  <div className="rounded bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-600">
+                    {error}
+                  </div>
+                )}
+
+                {/* Success Message */}
+                {success && (
+                  <div className="rounded bg-green-50 border border-green-200 px-4 py-3 text-sm text-green-600">
+                    Thank you for contacting us! We will get back to you within 24 hours.
+                  </div>
+                )}
+
                 <div>
                   <label className="block text-black text-sm sm:text-base md:text-lg xl:text-[18px] font-medium mb-2">Name</label>
                   <input
                     type="text"
+                    name="name"
                     placeholder="Enter your name"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    disabled={loading}
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] focus:outline-none focus:ring-2 focus:ring-gray-300 disabled:opacity-50"
                     style={{ borderColor: '#B7B7B7' }}
                   />
                 </div>
@@ -511,8 +600,12 @@ const Contact = () => {
                   <label className="block text-black text-sm sm:text-base md:text-lg xl:text-[18px] font-medium mb-2">Email</label>
                   <input
                     type="email"
+                    name="email"
                     placeholder="Enter your email"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    disabled={loading}
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] focus:outline-none focus:ring-2 focus:ring-gray-300 disabled:opacity-50"
                     style={{ borderColor: '#B7B7B7' }}
                   />
                 </div>
@@ -521,8 +614,12 @@ const Contact = () => {
                   <label className="block text-black text-sm sm:text-base md:text-lg xl:text-[18px] font-medium mb-2">Phone Number:</label>
                   <input
                     type="tel"
+                    name="phone"
                     placeholder="Enter your phone number"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    disabled={loading}
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] focus:outline-none focus:ring-2 focus:ring-gray-300 disabled:opacity-50"
                     style={{ borderColor: '#B7B7B7' }}
                   />
                 </div>
@@ -530,18 +627,23 @@ const Contact = () => {
                 <div className="flex-1">
                   <label className="block text-black text-sm sm:text-base md:text-lg xl:text-[18px] font-medium mb-2">Message:</label>
                   <textarea
+                    name="message"
                     placeholder="Enter your message"
                     rows={6}
-                    className="w-full h-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] resize-none focus:outline-none focus:ring-2 focus:ring-gray-300"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    disabled={loading}
+                    className="w-full h-full px-3 sm:px-4 py-2 sm:py-3 border rounded-md text-sm sm:text-base md:text-lg xl:text-[16px] resize-none focus:outline-none focus:ring-2 focus:ring-gray-300 disabled:opacity-50"
                     style={{ borderColor: '#B7B7B7', minHeight: '150px' }}
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-2.5 sm:py-3 mt-4 sm:mt-8 md:mt-12 rounded-full text-white text-sm sm:text-base md:text-lg xl:text-[18px] font-medium hover:opacity-90 transition-opacity"
+                  disabled={loading}
+                  className="w-full py-2.5 sm:py-3 mt-4 sm:mt-8 md:mt-12 rounded-full text-white text-sm sm:text-base md:text-lg xl:text-[18px] font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ backgroundColor: '#FE4B00' }}
                 >
-                  Send Message
+                  {loading ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>

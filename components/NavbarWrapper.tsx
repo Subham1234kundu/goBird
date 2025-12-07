@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import { usePathname } from 'next/navigation'
 
 const Navbar = dynamic(() => import('./Navbar'), {
   ssr: false,
@@ -23,4 +24,16 @@ const Navbar = dynamic(() => import('./Navbar'), {
   )
 })
 
-export default Navbar
+function NavbarWrapper() {
+  const pathname = usePathname()
+
+  // Hide navbar on all admin pages (including login and forgot password)
+  // Check case-insensitively to handle both /admin and /Admin
+  if (pathname.toLowerCase().startsWith('/admin')) {
+    return null
+  }
+
+  return <Navbar />
+}
+
+export default NavbarWrapper
