@@ -33,6 +33,23 @@ const PaperBirdModel = () => {
   const { actions, mixer } = useAnimations(animations, groupRef)
   const { width } = useWindowSize()
 
+  // Clean up invalid texture references on load
+  useEffect(() => {
+    scene.traverse((child: any) => {
+      if (child.isMesh && child.material) {
+        const material = child.material
+        // Remove invalid texture references that cause blob URL errors
+        if (material.map && material.map.image instanceof Blob) {
+          material.map = null
+        }
+        if (material.normalMap && material.normalMap.image instanceof Blob) {
+          material.normalMap = null
+        }
+        material.needsUpdate = true
+      }
+    })
+  }, [scene])
+
   useEffect(() => {
     // Play all animations from the GLB file
     if (actions && Object.keys(actions).length > 0) {
@@ -103,47 +120,47 @@ const PaperBirdModel = () => {
       const rawProgress = canFly ? (scrollY / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
-      // Responsive positions based on screen width - Bird 1 (Left of screen middle)
-      let startX = -0.2, startY = -1.8, startZ = 0.5
-      let endX = 8.5, endY = 6, endZ = -10
-      let baseScale = 0.82, scaleReduction = 0.65
+      // V-Formation: Bird 1 (Center-Lead, front of formation)
+      let startX = 0, startY = -1.5, startZ = 2.5
+      let endX = 6, endY = 8, endZ = -12
+      let baseScale = 1.35, scaleReduction = 0.85
 
       if (width < 640) { // Mobile
-        startX = -0.3
-        startY = 0.2
-        startZ = 0.5
-        endX = 3.5
-        endY = 4.5
-        endZ = -6
-        baseScale = 0.55
-        scaleReduction = 0.42
+        startX = 0
+        startY = 0
+        startZ = 1.8
+        endX = 3
+        endY = 5
+        endZ = -8
+        baseScale = 0.95
+        scaleReduction = 0.65
       } else if (width < 1024) { // Tablet
-        startX = -0.4
-        startY = 0.1
-        startZ = 0.5
-        endX = 5
-        endY = 5.5
-        endZ = -7
-        baseScale = 0.65
-        scaleReduction = 0.50
+        startX = 0
+        startY = -0.5
+        startZ = 2.0
+        endX = 4.5
+        endY = 6.5
+        endZ = -9
+        baseScale = 1.1
+        scaleReduction = 0.72
       } else if (width < 1440) { // Laptop
         startX = 0
-        startY = -0.2
-        startZ = 0.5
-        endX = 7
-        endY = 6
-        endZ = -9
-        baseScale = 0.70
-        scaleReduction = 0.95
-      } else if (width < 1920) { // Desktop (1440-1920)
-        startX = -0.2
-        startY = -0.8
-        startZ = 0.5
-        endX = 8.5
-        endY = 6
+        startY = -1.0
+        startZ = 2.2
+        endX = 5.5
+        endY = 7.5
         endZ = -10
-        baseScale = 0.82
-        scaleReduction = 0.65
+        baseScale = 1.25
+        scaleReduction = 0.78
+      } else if (width < 1920) { // Desktop (1440-1920)
+        startX = 0
+        startY = -1.5
+        startZ = 2.5
+        endX = 6
+        endY = 8
+        endZ = -12
+        baseScale = 1.35
+        scaleReduction = 0.85
       }
 
       // Interpolate position from start to end
@@ -160,8 +177,10 @@ const PaperBirdModel = () => {
       const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.18)
       groupRef.current.scale.set(scale, scale, scale)
 
-      // Set opposite side angle view (-90 degrees rotation on Y axis)
-      groupRef.current.rotation.y = -Math.PI / 2
+      // Cornering rotation - beak pointing toward top-right
+      groupRef.current.rotation.y = Math.PI * 0.65 // 135° - angled toward right
+      groupRef.current.rotation.x = -0.34 // Pitched up for upward flight
+      groupRef.current.rotation.z = 0.2 // Slight roll for natural banking
 
       // Control animation: always keep playing (same as left bird)
       if (isScrolling) {
@@ -192,6 +211,23 @@ const PaperBirdLeftModel = () => {
   // Create animation mixer for the cloned scene
   const { actions, mixer } = useAnimations(animations, groupRef)
 
+  // Clean up invalid texture references on load
+  useEffect(() => {
+    clonedScene.traverse((child: any) => {
+      if (child.isMesh && child.material) {
+        const material = child.material
+        // Remove invalid texture references that cause blob URL errors
+        if (material.map && material.map.image instanceof Blob) {
+          material.map = null
+        }
+        if (material.normalMap && material.normalMap.image instanceof Blob) {
+          material.normalMap = null
+        }
+        material.needsUpdate = true
+      }
+    })
+  }, [clonedScene])
+
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
       Object.values(actions).forEach((action) => {
@@ -259,47 +295,47 @@ const PaperBirdLeftModel = () => {
       const rawProgress = canFly ? (scrollY / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
-      // Responsive positions based on screen width - Bird 2 (Left-Middle)
-      let startX = -2.5, startY = -2.8, startZ = 1.2
-      let endX = 8.5, endY = 6, endZ = -10
-      let baseScale = 0.88, scaleReduction = 0.72
+      // V-Formation: Bird 2 (Left Wing, behind and to the left)
+      let startX = -2.8, startY = -2.5, startZ = 1.8
+      let endX = 3, endY = 7, endZ = -13
+      let baseScale = 1.18, scaleReduction = 0.75
 
       if (width < 640) { // Mobile
-        startX = -1.8
-        startY = -0.9
-        startZ = 0.8
-        endX = 3.5
-        endY = 4.5
-        endZ = -6
-        baseScale = 0.60
-        scaleReduction = 0.47
-      } else if (width < 1024) { // Tablet
         startX = -2.0
-        startY = -0.6
-        startZ = 1.0
-        endX = 5
-        endY = 5.5
-        endZ = -7
-        baseScale = 0.70
-        scaleReduction = 0.55
-      } else if (width < 1440) { // Laptop
-        startX = -2.8
-        startY = -1.3
-        startZ = 1.2
-        endX = 7
-        endY = 7.5
+        startY = -1.0
+        startZ = 1.3
+        endX = 1
+        endY = 4.2
         endZ = -9
-        baseScale = 0.88
-        scaleReduction = 0.72
-      } else if (width < 1920) { // Desktop (1440-1920)
-        startX = -2.5
-        startY = -1.8
-        startZ = 1.2
-        endX = 8.5
-        endY = 6
+        baseScale = 0.82
+        scaleReduction = 0.58
+      } else if (width < 1024) { // Tablet
+        startX = -2.4
+        startY = -1.6
+        startZ = 1.5
+        endX = 2
+        endY = 5.5
         endZ = -10
-        baseScale = 0.88
-        scaleReduction = 0.72
+        baseScale = 0.95
+        scaleReduction = 0.65
+      } else if (width < 1440) { // Laptop
+        startX = -2.6
+        startY = -2.0
+        startZ = 1.7
+        endX = 2.5
+        endY = 6.5
+        endZ = -11
+        baseScale = 1.08
+        scaleReduction = 0.70
+      } else if (width < 1920) { // Desktop (1440-1920)
+        startX = -2.8
+        startY = -2.5
+        startZ = 1.8
+        endX = 3
+        endY = 7
+        endZ = -13
+        baseScale = 1.18
+        scaleReduction = 0.75
       }
 
       groupRef.current.position.x = startX + ((endX - startX) * scrollProgress)
@@ -315,8 +351,10 @@ const PaperBirdLeftModel = () => {
       const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.2)
       groupRef.current.scale.set(scale, scale, scale)
 
-      // Rotate bird to face SAME direction as middle bird
-      groupRef.current.rotation.y = -Math.PI / 2
+      // Cornering rotation - beak pointing toward top-right
+      groupRef.current.rotation.y = Math.PI * 0.75 // 135° - angled toward right
+      groupRef.current.rotation.x = -0.3 // Pitched up for upward flight
+      groupRef.current.rotation.z = 0.1 // Slight roll for natural banking
 
       // Control animation: always keep playing
       if (isScrolling) {
@@ -345,6 +383,23 @@ const PaperBirdBottomModel = () => {
   const { width } = useWindowSize()
   const { actions, mixer } = useAnimations(animations, groupRef)
 
+  // Clean up invalid texture references on load
+  useEffect(() => {
+    clonedScene.traverse((child: any) => {
+      if (child.isMesh && child.material) {
+        const material = child.material
+        // Remove invalid texture references that cause blob URL errors
+        if (material.map && material.map.image instanceof Blob) {
+          material.map = null
+        }
+        if (material.normalMap && material.normalMap.image instanceof Blob) {
+          material.normalMap = null
+        }
+        material.needsUpdate = true
+      }
+    })
+  }, [clonedScene])
+
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
       Object.values(actions).forEach((action) => {
@@ -412,47 +467,47 @@ const PaperBirdBottomModel = () => {
       const rawProgress = canFly ? (scrollY / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
-      // Responsive positions based on screen width - Bird 3 (Bottom-Center, largest)
-      let startX = 0, startY = -5.4, startZ = 2.2
-      let endX = 8.5, endY = 6, endZ = -10
-      let baseScale = 1.0, scaleReduction = 0.80
+      // V-Formation: Bird 3 (Left Wing Back, furthest left and back)
+      let startX = -4.5, startY = -3.8, startZ = 0.8
+      let endX = 0, endY = 5.5, endZ = -15
+      let baseScale = 1.05, scaleReduction = 0.68
 
       if (width < 640) { // Mobile
-        startX = -0.4
-        startY = -2.8
-        startZ = 1.4
-        endX = 3.5
-        endY = 4.5
-        endZ = -6
-        baseScale = 0.68
-        scaleReduction = 0.53
-      } else if (width < 1024) { // Tablet
-        startX = -0.2
-        startY = -3.2
-        startZ = 1.8
-        endX = 5
-        endY = 5.5
-        endZ = -7
-        baseScale = 0.80
-        scaleReduction = 0.63
-      } else if (width < 1440) { // Laptop
-        startX = 0
-        startY = -4.3
-        startZ = 2.2
-        endX = 7
-        endY = 6
-        endZ = -9
-        baseScale = 1.0
-        scaleReduction = 0.80
-      } else if (width < 1920) { // Desktop (1440-1920)
-        startX = 0
-        startY = -4.3
-        startZ = 2.2
-        endX = 8.5
-        endY = 6
+        startX = -3.2
+        startY = -2.0
+        startZ = 0.6
+        endX = -1
+        endY = 3.5
         endZ = -10
-        baseScale = 1.0
-        scaleReduction = 0.80
+        baseScale = 0.72
+        scaleReduction = 0.52
+      } else if (width < 1024) { // Tablet
+        startX = -3.8
+        startY = -2.8
+        startZ = 0.7
+        endX = -0.5
+        endY = 4.2
+        endZ = -12
+        baseScale = 0.85
+        scaleReduction = 0.58
+      } else if (width < 1440) { // Laptop
+        startX = -4.2
+        startY = -3.3
+        startZ = 0.8
+        endX = 0
+        endY = 5
+        endZ = -13
+        baseScale = 0.95
+        scaleReduction = 0.62
+      } else if (width < 1920) { // Desktop (1440-1920)
+        startX = -4.5
+        startY = -3.8
+        startZ = 0.8
+        endX = 0
+        endY = 5.5
+        endZ = -15
+        baseScale = 1.05
+        scaleReduction = 0.68
       }
 
       groupRef.current.position.x = startX + ((endX - startX) * scrollProgress)
@@ -468,8 +523,10 @@ const PaperBirdBottomModel = () => {
       const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.5)
       groupRef.current.scale.set(scale, scale, scale)
 
-      // Rotate bird to face same direction
-      groupRef.current.rotation.y = -Math.PI / 2
+      // Cornering rotation - beak pointing toward top-right
+      groupRef.current.rotation.y = Math.PI * 0.75 // 135° - angled toward right
+      groupRef.current.rotation.x = -0.25 // Pitched up for upward flight
+      groupRef.current.rotation.z = 0.1 // Slight roll for natural banking
 
       // Control animation: slower speed
       if (isScrolling) {
@@ -497,6 +554,23 @@ const PaperBirdRightModel = () => {
   const { width } = useWindowSize()
   const { actions, mixer } = useAnimations(animations, groupRef)
 
+  // Clean up invalid texture references on load
+  useEffect(() => {
+    clonedScene.traverse((child: any) => {
+      if (child.isMesh && child.material) {
+        const material = child.material
+        // Remove invalid texture references that cause blob URL errors
+        if (material.map && material.map.image instanceof Blob) {
+          material.map = null
+        }
+        if (material.normalMap && material.normalMap.image instanceof Blob) {
+          material.normalMap = null
+        }
+        material.needsUpdate = true
+      }
+    })
+  }, [clonedScene])
+
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
       Object.values(actions).forEach((action) => {
@@ -564,47 +638,47 @@ const PaperBirdRightModel = () => {
       const rawProgress = canFly ? (scrollY / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
-      // Responsive positions based on screen width - Bird 4 (Right-Bottom)
-      let startX = 2.2, startY = -3.4, startZ = 1.3
-      let endX = 8.5, endY = 6, endZ = -10
-      let baseScale = 0.88, scaleReduction = 0.72
+      // V-Formation: Bird 4 (Right Wing, behind and to the right)
+      let startX = 2.8, startY = -2.5, startZ = 1.8
+      let endX = 9, endY = 7, endZ = -13
+      let baseScale = 1.18, scaleReduction = 0.75
 
       if (width < 640) { // Mobile
-        startX = 1.7
-        startY = -1.2
-        startZ = 0.9
-        endX = 3.5
-        endY = 4.5
-        endZ = -6
-        baseScale = 0.60
-        scaleReduction = 0.7
-      } else if (width < 1024) { // Tablet
-        startX = 1.6
-        startY = -1.4
-        startZ = 1.0
+        startX = 2.0
+        startY = -1.0
+        startZ = 1.3
         endX = 5
-        endY = 5.5
-        endZ = -7
-        baseScale = 0.70
-        scaleReduction = 0.55
-      } else if (width < 1440) { // Laptop
-        startX = 2.2
-        startY = -2.3
-        startZ = 1.3
-        endX = 7
-        endY = 6
+        endY = 4.2
         endZ = -9
-        baseScale = 0.88
-        scaleReduction = 0.72
-      } else if (width < 1920) { // Desktop (1440-1920)
-        startX = 2.2
-        startY = -2.3
-        startZ = 1.3
-        endX = 8.5
-        endY = 6
+        baseScale = 0.82
+        scaleReduction = 0.58
+      } else if (width < 1024) { // Tablet
+        startX = 2.4
+        startY = -1.6
+        startZ = 1.5
+        endX = 7
+        endY = 5.5
         endZ = -10
-        baseScale = 0.88
-        scaleReduction = 0.72
+        baseScale = 0.95
+        scaleReduction = 0.65
+      } else if (width < 1440) { // Laptop
+        startX = 2.6
+        startY = -2.0
+        startZ = 1.7
+        endX = 8
+        endY = 6.5
+        endZ = -11
+        baseScale = 1.08
+        scaleReduction = 0.70
+      } else if (width < 1920) { // Desktop (1440-1920)
+        startX = 2.8
+        startY = -2.5
+        startZ = 1.8
+        endX = 9
+        endY = 7
+        endZ = -13
+        baseScale = 1.18
+        scaleReduction = 0.75
       }
 
       groupRef.current.position.x = startX + ((endX - startX) * scrollProgress)
@@ -620,8 +694,10 @@ const PaperBirdRightModel = () => {
       const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.2)
       groupRef.current.scale.set(scale, scale, scale)
 
-      // Rotate bird to face same direction
-      groupRef.current.rotation.y = -Math.PI / 2
+      // Cornering rotation - beak pointing toward top-right
+      groupRef.current.rotation.y = Math.PI * 0.75 // 135° - angled toward right
+      groupRef.current.rotation.x = -0.3 // Pitched up for upward flight
+      groupRef.current.rotation.z = -0.2 // More roll for outer wing position
 
       // Control animation: always keep playing
       if (isScrolling) {
@@ -647,6 +723,23 @@ const PaperBirdBottomLeftModel = () => {
   const clonedScene = useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { width } = useWindowSize()
   const { actions, mixer } = useAnimations(animations, groupRef)
+
+  // Clean up invalid texture references on load
+  useEffect(() => {
+    clonedScene.traverse((child: any) => {
+      if (child.isMesh && child.material) {
+        const material = child.material
+        // Remove invalid texture references that cause blob URL errors
+        if (material.map && material.map.image instanceof Blob) {
+          material.map = null
+        }
+        if (material.normalMap && material.normalMap.image instanceof Blob) {
+          material.normalMap = null
+        }
+        material.needsUpdate = true
+      }
+    })
+  }, [clonedScene])
 
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
@@ -752,8 +845,10 @@ const PaperBirdBottomLeftModel = () => {
       const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.2)
       groupRef.current.scale.set(scale, scale, scale)
 
-      // Rotate bird to face same direction
-      groupRef.current.rotation.y = -Math.PI / 2
+      // Cornering rotation - beak pointing toward top-right
+      groupRef.current.rotation.y = Math.PI * 0.75 // 135° - angled toward right
+      groupRef.current.rotation.x = -0.28 // Pitched up for upward flight
+      groupRef.current.rotation.z = 0.12 // Slight roll for natural banking
 
       // Control animation
       if (isScrolling) {
@@ -841,17 +936,20 @@ const PaperBird3D = () => {
         <Cloud3D position={[9, 0, -16]} scale={0.9} speed={0.35} opacity={0.05} />
         <Cloud3D position={[-1, 10, 50]} scale={1.8} speed={0.15} opacity={0.5} />
 
-       
 
-        {/* Premium flock formation - 4 birds on all screens */}
-        <PaperBirdModel />            {/* Bird 1: Top-Center, starts immediately (0.00) */}
-        <PaperBirdLeftModel />        {/* Bird 2: Left-Middle, starts at 0.05 */}
-        <PaperBirdBottomModel />      {/* Bird 3: Bottom-Center (largest), starts at 0.20 */}
-        <PaperBirdRightModel />       {/* Bird 4: Right-Bottom, starts at 0.20 */}
+
+        {/* Natural V-Formation - 4 birds flying together */}
+        <PaperBirdModel />            {/* Bird 1: Lead Bird (front center) */}
+        <PaperBirdLeftModel />        {/* Bird 2: Left Wing */}
+        <PaperBirdBottomModel />      {/* Bird 3: Left Wing Back */}
+        <PaperBirdRightModel />       {/* Bird 4: Right Wing */}
       </Canvas>
     </div>
   )
 }
+
+// Preload the GLTF model to prevent texture loading errors
+useGLTF.preload('/Animations/paperBird.glb')
 
 // Export the model component for use in other components
 export { PaperBirdModel }

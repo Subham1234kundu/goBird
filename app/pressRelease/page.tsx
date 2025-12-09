@@ -1,17 +1,50 @@
 "use client"
 import Image from "next/image"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import FooterSimple from "@/app/components/FooterSimple"
 import PressReleaseMore from "@/app/components/PressReleaseMore"
+import { getAllPressReleases } from "@/lib/services/pressReleaseService"
+import type { PressRelease as PressReleaseType } from "@/lib/types/pressRelease"
 
 const PressRelease = () => {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const pressReleaseId = searchParams.get('id')
   const [currentPage, setCurrentPage] = useState(1)
-  const [showPressReleaseMore, setShowPressReleaseMore] = useState(false)
+  const [pressReleases, setPressReleases] = useState<PressReleaseType[]>([])
+  const [loading, setLoading] = useState(true)
+  const itemsPerPage = 4
 
-  if (showPressReleaseMore) {
-    return <PressReleaseMore />
+  useEffect(() => {
+    const fetchPressReleases = async () => {
+      setLoading(true)
+      const { data, error } = await getAllPressReleases(1, 100)
+      if (!error && data) {
+        setPressReleases(data)
+      }
+      setLoading(false)
+    }
+    fetchPressReleases()
+  }, [])
+
+  // If there's an ID in the URL, show the detail page
+  if (pressReleaseId) {
+    return <PressReleaseMore pressReleaseId={pressReleaseId} />
+  }
+
+  const totalPages = Math.ceil(pressReleases.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const currentPressReleases = pressReleases.slice(startIndex, startIndex + itemsPerPage)
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  }
+
+  const truncateText = (text: string, maxLength: number) => {
+    if (text.length <= maxLength) return text
+    return text.substring(0, maxLength) + "..."
   }
 
   return (
@@ -36,172 +69,79 @@ const PressRelease = () => {
               <h3 className="text-[#000A1B] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[42px] lg:w-[25%] text-start lg:text-end mt-4 lg:mt-0">Our Stories</h3>
       </div>
 
-      {/* 4 boxes */}
+      {/* Press Releases Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 pb-8 sm:pb-10 md:pb-12 lg:pb-16 mx-auto max-w-7xl">
-        {currentPage === 1 && (
+        {loading ? (
           <>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights1.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] text-sm sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs md:text-base mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs md:text-base mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div
-                onClick={() => setShowPressReleaseMore(true)}
-                className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors"
-              >
-                <p className="text-[#0B0B0B] text-base">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex flex-col w-full animate-pulse">
+                <div className="w-full h-[200px] sm:h-[300px] lg:h-[388px] bg-gray-200"></div>
+                <div className="h-6 bg-gray-200 rounded mt-3 w-[90%]"></div>
+                <div className="h-4 bg-gray-200 rounded mt-2 w-[60%]"></div>
+                <div className="h-4 bg-gray-200 rounded mt-2 w-[90%]"></div>
+                <div className="h-8 bg-gray-200 rounded mt-2 w-24"></div>
               </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights2.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] text-sm sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs md:text-base mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs md:text-base mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors">
-                <p className="text-[#0B0B0B] text-base">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights3.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] text-sm sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs md:text-base mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs md:text-base mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors">
-                <p className="text-[#0B0B0B] text-base">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights4.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] text-sm sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs md:text-base mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs md:text-base mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors">
-                <p className="text-[#0B0B0B] text-base">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
+            ))}
           </>
-        )}
-        {currentPage === 2 && (
+        ) : currentPressReleases.length > 0 ? (
           <>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights1.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] text-sm sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs md:text-base mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs md:text-base mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors">
-                <p className="text-[#0B0B0B] text-base">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
+            {currentPressReleases.map((pr) => (
+              <div key={pr.id} className="flex flex-col w-full">
+                {pr.cover_image_url ? (
+                  <Image
+                    src={pr.cover_image_url}
+                    alt={pr.title}
+                    width={500}
+                    height={388}
+                    className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-[200px] sm:h-[300px] lg:h-[388px] bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                    <span className="text-gray-400 text-xl">No Image</span>
+                  </div>
+                )}
+                <h3 className="text-[#0B0B0B] text-sm sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">
+                  {pr.title}
+                </h3>
+                <p className="text-[#666666] text-xs md:text-base mt-2 w-[90%]">
+                  {pr.category} • {formatDate(pr.published_date)}
+                </p>
+                <p className="text-[#212121] text-xs md:text-base mt-2 w-[90%]">
+                  {truncateText(pr.description, 180)}
+                </p>
+                <div
+                  onClick={() => router.push(`/pressRelease?id=${pr.id}`)}
+                  className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors"
+                >
+                  <p className="text-[#0B0B0B] text-base">Read more</p>
+                  <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights2.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] text-sm sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs md:text-base mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs md:text-base mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors">
-                <p className="text-[#0B0B0B] text-base">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights3.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] text-sm sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs md:text-base mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs md:text-base mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors">
-                <p className="text-[#0B0B0B] text-base">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights4.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] text-sm sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs md:text-base mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs md:text-base mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2 cursor-pointer hover:bg-[#E4E4E4] transition-colors">
-                <p className="text-[#0B0B0B] text-base">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
+            ))}
           </>
-        )}
-        {currentPage === 3 && (
-          <>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights1.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] font-medium text-sm sm:text-lg lg:text-xl mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2">
-                <p className="text-[#0B0B0B] text-xs">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights2.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] font-medium text-sm sm:text-lg lg:text-xl mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2">
-                <p className="text-[#0B0B0B] text-sm">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights3.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] font-medium text-sm sm:text-lg lg:text-xl mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2">
-                <p className="text-[#0B0B0B] text-sm">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <Image src="/Images/insights4.png" alt="The art of storytelling in branding and advertising" width={500} height={388} className="w-full h-[200px] sm:h-[300px] lg:h-[388px] object-cover" />
-              <h3 className="text-[#0B0B0B] font-medium text-sm sm:text-lg lg:text-xl mt-3 sm:mt-4 text-start w-[90%]">The art of storytelling in branding and advertising</h3>
-              <p className="text-[#666666] text-xs mt-2 w-[90%]">Branding • Mar 1, 2025 • 8min read</p>
-              <p className="text-[#212121] text-xs mt-2 w-[90%]">The real estate industry is undergoing a significant transformation as eco-friendly homes gain popularity among buyers and developers alike. With increasing awareness of climate change and the need for sustainable livin</p>
-              <div className="flex items-center gap-2 bg-[#F4F4F4] p-2 w-fit mt-2">
-                <p className="text-[#0B0B0B] text-sm">Read more</p>
-                <Image src="/Images/readArrow.png" alt="Read Arrow" width={12} height={12} className="w-3 h-3" />
-              </div>
-            </div>
-          </>
+        ) : (
+          <div className="col-span-2 text-center py-12">
+            <p className="text-gray-500 text-lg">No press releases available at the moment.</p>
+          </div>
         )}
       </div>
-      
+
       {/* Pagination */}
-      <div className="flex justify-center gap-3 pb-12">
-        <button
-          onClick={() => setCurrentPage(1)}
-          className={`w-8 h-8 xl:w-12 xl:h-12 flex items-center justify-center text-sm ${
-            currentPage === 1 ? 'bg-black text-white' : 'text-[#212121] hover:bg-gray-100'
-          }`}
-        >
-          1
-        </button>
-        <button
-          onClick={() => setCurrentPage(2)}
-          className={`w-8 h-8 xl:w-12 xl:h-12 flex items-center justify-center text-sm ${
-            currentPage === 2 ? 'bg-black text-white' : 'text-[#212121] hover:bg-gray-100'
-          }`}
-        >
-          2
-        </button>
-        <button
-          onClick={() => setCurrentPage(3)}
-          className={`w-8 h-8 xl:w-12 xl:h-12 flex items-center justify-center text-sm ${
-            currentPage === 3 ? 'bg-black text-white' : 'text-[#212121] hover:bg-gray-100'
-          }`}
-        >
-          3
-        </button>
-      </div>
+      {totalPages > 0 && (
+        <div className="flex justify-center gap-3 pb-12">
+          {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => i + 1).map((pageNum) => (
+            <button
+              key={pageNum}
+              onClick={() => setCurrentPage(pageNum)}
+              className={`w-8 h-8 xl:w-12 xl:h-12 flex items-center justify-center text-sm ${
+                currentPage === pageNum ? 'bg-black text-white' : 'text-[#212121] hover:bg-gray-100'
+              }`}
+            >
+              {pageNum}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* contact */}
       <div className="relative w-full">
@@ -212,7 +152,7 @@ const PressRelease = () => {
           </div>
           <div className="text-white text-center lg:text-right">
             <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px] font-light mb-6 lg:mb-8 leading-relaxed">Let&apos;s Build Software That <br /> Works for You</h3>
-            <button 
+            <button
               onClick={() => router.push('/contact')}
               className="bg-white border-2 border-white text-black px-8 sm:px-10 md:px-12 py-2 sm:py-2.5 rounded-full hover:bg-transparent hover:text-white transition-colors text-sm sm:text-base xl:text-[18px]"
             >
@@ -221,8 +161,6 @@ const PressRelease = () => {
           </div>
         </div>
       </div>
-
-
 
       {/* Footer */}
       <FooterSimple />

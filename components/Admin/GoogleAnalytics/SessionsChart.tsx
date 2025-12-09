@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
     BarChart,
     Bar,
@@ -10,35 +11,95 @@ import {
     CartesianGrid,
 } from "recharts";
 
-const data = [
-    { name: "5-10", value: 450 },
-    { name: "5-10", value: 300 },
-    { name: "5-10", value: 550 },
-    { name: "5-10", value: 200 },
-    { name: "5-10", value: 400 },
-    { name: "5-10", value: 150 },
-];
+interface PageViewData {
+    date: string;
+    pageViews: number;
+    sessions: number;
+}
 
-const CustomXAxisTick = ({ x, y, payload }: any) => {
+interface PageViewsResponse {
+    data: PageViewData[];
+    totalPageViews: number;
+    totalSessions: number;
+}
+
+interface TickProps {
+    x?: number;
+    y?: number;
+    payload?: { value: string };
+}
+
+const CustomXAxisTick = ({ x = 0, y = 0, payload }: TickProps) => {
+    if (!payload) return null;
+    const date = new Date(payload.value);
+    const month = date.toLocaleDateString('en-US', { month: 'short' });
+    const day = date.getDate();
+
     return (
         <g transform={`translate(${x},${y})`}>
             <text x={0} y={0} dy={16} textAnchor="middle" fill="#6B6B6B" fontSize={12}>
-                {payload.value}
-            </text>
-            <text x={0} y={0} dy={32} textAnchor="middle" fill="#6B6B6B" fontSize={12}>
-                Mins
+                {month} {day}
             </text>
         </g>
     );
 };
 
 export default function SessionsChart() {
+    const [pageViewsData, setPageViewsData] = useState<PageViewsResponse | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchPageViews = async () => {
+            try {
+                const response = await fetch('/api/analytics/pageviews?days=7');
+                const data = await response.json();
+                setPageViewsData(data);
+            } catch (error) {
+                console.error('Error fetching page views:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPageViews();
+
+        // Refresh every 5 minutes
+        const interval = setInterval(fetchPageViews, 5 * 60 * 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="rounded-lg border border-[#E4E4E4] bg-white p-5 h-[400px] animate-pulse">
+                <div className="h-6 bg-gray-200 rounded w-24 mb-6"></div>
+                <div className="h-[300px] flex items-end gap-2">
+                    {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+                        <div key={i} className="flex-1 bg-gray-200 rounded" style={{ height: `${Math.random() * 100}%` }}></div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
+    const chartData = pageViewsData?.data.map((item) => ({
+        name: item.date,
+        value: item.sessions,
+    })) || [];
+
+    const maxValue = Math.max(...chartData.map(d => d.value), 100);
+    const yAxisMax = Math.ceil(maxValue / 100) * 100;
+
     return (
         <div className="rounded-lg border border-[#E4E4E4] bg-white p-5 h-[400px]">
-            <h2 className="mb-6 text-[18px] font-medium text-[#000000B2]">Sessions</h2>
+            <div className="flex items-center justify-between mb-6">
+                <h2 className="text-[18px] font-medium text-[#000000B2]">Sessions</h2>
+                <div className="text-sm text-[#637381]">
+                    Total: {pageViewsData?.totalSessions.toLocaleString() || 0}
+                </div>
+            </div>
             <div className="h-[300px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={data} barSize={20}>
+                    <BarChart data={chartData} barSize={20}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F3F4F6" />
                         <XAxis
                             dataKey="name"
@@ -52,8 +113,7 @@ export default function SessionsChart() {
                             axisLine={false}
                             tickLine={false}
                             tick={{ fill: "#6B6B6B", fontSize: 12 }}
-                            ticks={[0, 150, 300, 450, 600]}
-                            domain={[0, 600]}
+                            domain={[0, yAxisMax]}
                         />
                         <Tooltip
                             cursor={{ fill: "transparent" }}

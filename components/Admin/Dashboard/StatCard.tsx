@@ -43,7 +43,7 @@ export default function StatCard({
     data,
     color,
 }: StatCardProps) {
-    const chartRef = useRef<any>(null);
+    const chartRef = useRef<ChartJS<"line"> | null>(null);
 
     const isPositive = trend === "up";
     const bgColor = isPositive ? "#DCFCE7" : "#FEE2E2";

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import PressReleaseTable from "@/components/Admin/PressRelease/PressReleaseTable";
+import PressReleaseAnalyticsSummary from "@/components/Admin/PressRelease/PressReleaseAnalyticsSummary";
 import { useRouter } from "next/navigation";
 
 export default function PressRelease() {
@@ -20,6 +21,8 @@ export default function PressRelease() {
                     Create New Release
                 </button>
             </div>
+
+            <PressReleaseAnalyticsSummary />
 
             <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="relative">
