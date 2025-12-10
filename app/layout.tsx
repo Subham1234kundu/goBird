@@ -12,6 +12,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: "Grobird - Transforming Ideas into Scalable Digital Solutions",
   description: "Grobird accelerates innovation through IT consulting, software development, and cloud solutions. We build technology that builds businesses.",
   icons: {

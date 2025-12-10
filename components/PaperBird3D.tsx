@@ -116,9 +116,9 @@ const PaperBirdModel = () => {
       // Only start bird flight after text is completely faded (progress > 0.95)
       const canFly = textFadeProgress > 0.95
 
-      // Calculate smooth scroll progress - all birds fly together with no delay
-      // Increased divisor from 1000 to 3000 for slower, smoother flight
-      const rawProgress = canFly ? (scrollY / 3000) : 0
+      // Bird 1 (Center-Lead) - No delay, leads the formation
+      const birdDelay = 0
+      const rawProgress = canFly ? Math.max(0, (scrollY - birdDelay) / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
       // V-Formation: Bird 1 (Center-Lead, front of formation)
@@ -291,9 +291,9 @@ const PaperBirdLeftModel = () => {
       // Only start bird flight after text is completely faded
       const canFly = textFadeProgress > 0.95
 
-      // Calculate smooth scroll progress - all birds fly together with no delay
-      // Increased divisor from 1000 to 3000 for slower, smoother flight
-      const rawProgress = canFly ? (scrollY / 3000) : 0
+      // Bird 2 (Left Wing) - Slight delay (150px scroll) for staggered effect
+      const birdDelay = 150
+      const rawProgress = canFly ? Math.max(0, (scrollY - birdDelay) / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
       // V-Formation: Bird 2 (Left Wing, behind and to the left)
@@ -463,9 +463,9 @@ const PaperBirdBottomModel = () => {
       // Only start bird flight after text is completely faded
       const canFly = textFadeProgress > 0.95
 
-      // Calculate smooth scroll progress - all birds fly together with no delay
-      // Increased divisor from 1000 to 3000 for slower, smoother flight
-      const rawProgress = canFly ? (scrollY / 3000) : 0
+      // Bird 3 (Bottom-Left Wing) - More delay (300px scroll) for sequential formation
+      const birdDelay = 300
+      const rawProgress = canFly ? Math.max(0, (scrollY - birdDelay) / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
       // V-Formation: Bird 3 (Left Wing Back, furthest left and back)
@@ -634,9 +634,9 @@ const PaperBirdRightModel = () => {
       // Only start bird flight after text is completely faded
       const canFly = textFadeProgress > 0.95
 
-      // Calculate smooth scroll progress - all birds fly together with no delay
-      // Increased divisor from 1000 to 3000 for slower, smoother flight
-      const rawProgress = canFly ? (scrollY / 3000) : 0
+      // Bird 4 (Right Wing) - Balanced delay (450px scroll) for right side formation
+      const birdDelay = 450
+      const rawProgress = canFly ? Math.max(0, (scrollY - birdDelay) / 3000) : 0
       const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
 
       // V-Formation: Bird 4 (Right Wing, behind and to the right)

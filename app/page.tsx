@@ -90,20 +90,20 @@ const Home = () => {
         overwrite: "auto",
         force3D: true
       })
-      .to(textContent, {
-        opacity: 0,
-        duration: 0.15,
-        ease: "power2.out",
-        overwrite: "auto",
-        force3D: true
-      }, 0)
-      .to(expandedContent, {
-        opacity: 1,
-        duration: 0.25,
-        ease: "power2.out",
-        overwrite: "auto",
-        force3D: true
-      }, 0.1)
+        .to(textContent, {
+          opacity: 0,
+          duration: 0.15,
+          ease: "power2.out",
+          overwrite: "auto",
+          force3D: true
+        }, 0)
+        .to(expandedContent, {
+          opacity: 1,
+          duration: 0.25,
+          ease: "power2.out",
+          overwrite: "auto",
+          force3D: true
+        }, 0.1)
     } else {
       const normalHeight = window.innerWidth < 640 ? "180px" : window.innerWidth < 1024 ? "220px" : "250px"
 
@@ -117,27 +117,27 @@ const Home = () => {
         overwrite: "auto",
         force3D: true
       })
-      .to(element, {
-        height: normalHeight,
-        duration: 0.35,
-        ease: "power2.out",
-        overwrite: "auto",
-        force3D: true
-      }, 0)
-      .to(textContent, {
-        opacity: 1,
-        duration: 0.25,
-        ease: "power2.out",
-        overwrite: "auto",
-        force3D: true
-      }, 0.1)
+        .to(element, {
+          height: normalHeight,
+          duration: 0.35,
+          ease: "power2.out",
+          overwrite: "auto",
+          force3D: true
+        }, 0)
+        .to(textContent, {
+          opacity: 1,
+          duration: 0.25,
+          ease: "power2.out",
+          overwrite: "auto",
+          force3D: true
+        }, 0.1)
     }
   }
 
   useEffect(() => {
     // Kill existing ScrollTrigger animations only
     ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    
+
     // Reset all animated elements to initial visible state
     const resetElements = [
       heroHeadingRef.current,
@@ -151,7 +151,7 @@ const Home = () => {
       testimonialImageRef.current,
       insightsHeadingRef.current
     ]
-    
+
     // Reset testimonial elements specifically
     if (testimonialImageRef.current) {
       const footerQuote = testimonialImageRef.current.querySelector('.footer-quote')
@@ -161,28 +161,28 @@ const Home = () => {
       if (footerAuthor) gsap.set(footerAuthor, { clearProps: "all" })
       if (footerPlay) gsap.set(footerPlay, { clearProps: "all" })
     }
-    
+
     resetElements.forEach(el => {
       if (el) gsap.set(el, { clearProps: "all" })
     })
-    
+
     // Reset arrays of elements
     serviceItemsRef.current.forEach(el => {
       if (el) gsap.set(el, { clearProps: "all" })
     })
-    
+
     boldMovesRef.current.forEach(el => {
       if (el) gsap.set(el, { clearProps: "all" })
     })
-    
+
     faqItemsRef.current.forEach(el => {
       if (el) gsap.set(el, { clearProps: "all" })
     })
-    
+
     if (heroButtonsRef.current) gsap.set(heroButtonsRef.current.children, { clearProps: "all" })
     if (heroContentWrapperRef.current) gsap.set(heroContentWrapperRef.current, { clearProps: "all" })
     if (startupLogosRef.current) gsap.set(startupLogosRef.current.children, { clearProps: "all" })
-    
+
     // Ensure CTA section elements are always visible - set inline styles
     if (ctaBirdRef.current) {
       ctaBirdRef.current.style.opacity = '1'
@@ -241,11 +241,12 @@ const Home = () => {
       }, "-=0.4")
     }
 
-    // Hero Section Complete Fade Out Effect on Scroll
+    // Hero Section Complete Fade Out Effect on Scroll with Scale
     if (heroContentWrapperRef.current && heroSectionRef.current) {
       gsap.to(heroContentWrapperRef.current, {
         opacity: 0,
         y: -50,
+        scale: 0.3, // Text scales down to 30% of original size
         ease: "power2.out",
         scrollTrigger: {
           trigger: heroSectionRef.current,
@@ -380,7 +381,7 @@ const Home = () => {
               start: "top 80%",
               toggleActions: "play none none none"
             },
-            onUpdate: function() {
+            onUpdate: function () {
               const current = Math.ceil(counter.value)
               // Preserve the HTML structure with the colored span
               stat.innerHTML = `${current}<span class="text-[#FF662A]">${suffix}</span>`
@@ -522,17 +523,17 @@ const Home = () => {
         opacity: 0,
         duration: 0.8
       })
-      .from(ctaContentRef.current.querySelector('p'), {
-        y: 30,
-        opacity: 0,
-        duration: 0.6
-      }, "-=0.4")
-      .from(ctaContentRef.current.querySelectorAll('button'), {
-        y: 20,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.2
-      }, "-=0.3")
+        .from(ctaContentRef.current.querySelector('p'), {
+          y: 30,
+          opacity: 0,
+          duration: 0.6
+        }, "-=0.4")
+        .from(ctaContentRef.current.querySelectorAll('button'), {
+          y: 20,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.2
+        }, "-=0.3")
     }
 
     // Cloud Animations - Smooth continuous loop without reset
@@ -707,31 +708,31 @@ const Home = () => {
           style={{
             background: 'linear-gradient(to bottom, #010917 1%, #006BCB 85%, #ffffff 100%)'
           }}>
-        {/* Image at the very top */}
-        <div className="absolute top-[120px] left-0 w-full h-[50vh] z-0">
-          <Image src="/Images/boxes.png" alt="Boxes" width={3000} height={1000} className="w-[90%] h-[120%] object-cover opacity-20" />
-        </div>
-
-        <div ref={heroContentWrapperRef} className="flex flex-col items-center mt-16 sm:mt-18 md:mt-16 lg:mt-18  2xl:mt-28 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10">
-          <h1 ref={heroHeadingRef} className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[82px] font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2">
-            Transforming Ideas into <br /> Scalable Digital Solutions
-          </h1>
-          <p ref={heroDescRef} className="text-white font-light mt-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-3xl leading-relaxed 2xl:max-w-6xl mb-6 sm:mb-7 xl:mb-8 2xl:mb-10 px-4">
-            Grobird accelerates innovation through IT consulting, software <br className="hidden sm:block" /> development, and cloud solutions.
-          </p>
-          <div ref={heroButtonsRef} className="flex flex-row gap-3 sm:gap-4 items-center justify-center">
-            <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3  rounded-full text-xs sm:text-sm  md:text-[17px] hover:bg-[#e55a24] transition-colors">
-              Talk to Us
-            </button>
-            <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium ">
-              Explore Services
-            </button>
+          {/* Image at the very top */}
+          <div className="absolute top-[120px] left-0 w-full h-[50vh] z-0">
+            <Image src="/Images/boxes.png" alt="Boxes" width={3000} height={1000} className="w-[90%] h-[120%] object-cover opacity-20" />
           </div>
-        </div>
 
-        {/* 3D Paper Birds with Scroll Animation and 3D Clouds */}
-        <PaperBird3D />
-      </div>
+          <div ref={heroContentWrapperRef} className="flex flex-col items-center mt-16 sm:mt-18 md:mt-16 lg:mt-18  2xl:mt-28 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10">
+            <h1 ref={heroHeadingRef} className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[82px] font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2">
+              Transforming Ideas into <br /> Scalable Digital Solutions
+            </h1>
+            <p ref={heroDescRef} className="text-white font-light mt-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-3xl leading-relaxed 2xl:max-w-6xl mb-6 sm:mb-7 xl:mb-8 2xl:mb-10 px-4">
+              Grobird accelerates innovation through IT consulting, software <br className="hidden sm:block" /> development, and cloud solutions.
+            </p>
+            <div ref={heroButtonsRef} className="flex flex-row gap-3 sm:gap-4 items-center justify-center">
+              <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3  rounded-full text-xs sm:text-sm  md:text-[17px] hover:bg-[#e55a24] transition-colors">
+                Talk to Us
+              </button>
+              <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium ">
+                Explore Services
+              </button>
+            </div>
+          </div>
+
+          {/* 3D Paper Birds with Scroll Animation and 3D Clouds */}
+          <PaperBird3D />
+        </div>
 
         {/* Startups Section */}
         <div className="w-full py-16 px-4 sm:px-6 md:px-10 lg:px-16">
@@ -816,16 +817,16 @@ const Home = () => {
                 <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">IT Consulting</p>
                 <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
               </div>
-              <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0" 
+              <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
                 style={{
                   background: 'linear-gradient(to bottom, #020A18, #023362)'
-                }}> 
+                }}>
                 <div className="flex flex-col gap-3 md:gap-4 lg:gap-2">
                   <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">01</div>
                   <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">IT Consulting</h3>
                   <div className="flex justify-between items-end gap-4">
                     <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
-From complex enterprise systems to innovative consumer <br /> apps, our solutions solve real-world challenges while ensuring <br /> smooth performance, maintainability, and long-term growth.
+                      From complex enterprise systems to innovative consumer <br /> apps, our solutions solve real-world challenges while ensuring <br /> smooth performance, maintainability, and long-term growth.
                     </p>
                     <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                   </div>
@@ -846,7 +847,7 @@ From complex enterprise systems to innovative consumer <br /> apps, our solution
                   <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Custom Software Development</p>
                   <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                 </div>
-                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0" 
+                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
                   style={{
                     background: 'linear-gradient(to bottom, #020A18, #023362)'
                   }}>
@@ -855,7 +856,7 @@ From complex enterprise systems to innovative consumer <br /> apps, our solution
                     <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">Custom Software Development</h3>
                     <div className="flex justify-between items-end gap-4">
                       <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
-We build scalable, secure, and user-focused <br /> applications tailored to your specific business needs. 
+                        We build scalable, secure, and user-focused <br /> applications tailored to your specific business needs.
                       </p>
                       <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                     </div>
@@ -874,7 +875,7 @@ We build scalable, secure, and user-focused <br /> applications tailored to your
                   <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Cloud & Infrastructure</p>
                   <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                 </div>
-                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0" 
+                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
                   style={{
                     background: 'linear-gradient(to bottom, #020A18, #023362)'
                   }}>
@@ -883,7 +884,7 @@ We build scalable, secure, and user-focused <br /> applications tailored to your
                     <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">Cloud & Infrastructure</h3>
                     <div className="flex justify-between items-end gap-4">
                       <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
-Our solutions ensure seamless scalability, reliable <br /> performance, and robust security, enabling your business to <br /> operate efficiently and adapt quickly to changing demands.
+                        Our solutions ensure seamless scalability, reliable <br /> performance, and robust security, enabling your business to <br /> operate efficiently and adapt quickly to changing demands.
                       </p>
                       <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                     </div>
@@ -902,7 +903,7 @@ Our solutions ensure seamless scalability, reliable <br /> performance, and robu
                   <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Product Engineering</p>
                   <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
                 </div>
-                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0" 
+                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
                   style={{
                     background: 'linear-gradient(to bottom, #020A18, #023362)'
                   }}>
@@ -919,7 +920,7 @@ Our solutions ensure seamless scalability, reliable <br /> performance, and robu
                 </div>
               </div>
 
-              <button 
+              <button
                 onClick={() => router.push('/services')}
                 className="text-white bg-[#FF662A] px-6 py-3 mt-8 md:mt-12 lg:mt-16 text-sm md:text-base rounded-sm hover:bg-[#e55a24] transition-colors mb-10"
               >
@@ -935,16 +936,16 @@ Our solutions ensure seamless scalability, reliable <br /> performance, and robu
                 <Image src="/Images/minibird.png" alt="Bird" width={150} height={150} className="object-contain" />
               </div>
               <div className="bg-white w-[200px] sm:w-[250px] md:w-[300px] lg:w-[335px] h-[150px] sm:h-[180px] md:h-[200px] lg:h-[230px] absolute bottom-0 right-0 flex items-end justify-end">
-              <div 
-                onClick={() => router.push('/contact')}
-                className="w-[180px] sm:w-[220px] md:w-[280px] lg:w-[310px] h-[130px] sm:h-[160px] md:h-[180px] lg:h-[200px] bg-[#FE4C00] rounded-xl flex items-center justify-between p-3 sm:p-4 md:p-5 lg:p-6 cursor-pointer hover:bg-[#e55a24] transition-colors"
-              >
-                <div className="flex flex-col">
-                  <p className="text-white text-sm sm:text-lg md:text-xl lg:text-[28px] font-normal">Develop <br /> Your Idea</p>
-                  <p className="text-white text-lg sm:text-2xl md:text-3xl lg:text-[42px] font-bold">Now</p>
+                <div
+                  onClick={() => router.push('/contact')}
+                  className="w-[180px] sm:w-[220px] md:w-[280px] lg:w-[310px] h-[130px] sm:h-[160px] md:h-[180px] lg:h-[200px] bg-[#FE4C00] rounded-xl flex items-center justify-between p-3 sm:p-4 md:p-5 lg:p-6 cursor-pointer hover:bg-[#e55a24] transition-colors"
+                >
+                  <div className="flex flex-col">
+                    <p className="text-white text-sm sm:text-lg md:text-xl lg:text-[28px] font-normal">Develop <br /> Your Idea</p>
+                    <p className="text-white text-lg sm:text-2xl md:text-3xl lg:text-[42px] font-bold">Now</p>
+                  </div>
+                  <Image src="/Images/roundedArrow.png" alt="Rounded Arrow" width={110} height={110} className="object-contain w-12 sm:w-16 md:w-20 lg:w-[110px] h-12 sm:h-16 md:h-20 lg:h-[110px]" />
                 </div>
-                <Image src="/Images/roundedArrow.png" alt="Rounded Arrow" width={110} height={110} className="object-contain w-12 sm:w-16 md:w-20 lg:w-[110px] h-12 sm:h-16 md:h-20 lg:h-[110px]" />
-              </div>
               </div>
 
             </div>
@@ -1007,7 +1008,7 @@ Our solutions ensure seamless scalability, reliable <br /> performance, and robu
                 </p>
               </div>
 
-              <div className="flex gap-3 md:gap-4 lg:gap-5 items-center justify-start md:justify-center w-full md:w-[95%] lg:w-[90%] h-auto md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 px-4 md:px-0" style={{scrollbarWidth: 'thin'}}>
+              <div className="flex gap-3 md:gap-4 lg:gap-5 items-center justify-start md:justify-center w-full md:w-[95%] lg:w-[90%] h-auto md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 px-4 md:px-0" style={{ scrollbarWidth: 'thin' }}>
                 <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
                   <div
                     ref={el => { if (el) boldMovesRef.current[0] = el }}
@@ -1142,67 +1143,67 @@ Our solutions ensure seamless scalability, reliable <br /> performance, and robu
           </div>
         </div>
 
-          {/* Testimonials Section */}
-          <div className="mx-[4%]">
-            <div ref={testimonialsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-4 sm:gap-6 md:gap-8">
-                <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
-                  <p>98% client </p>
-                  <p className="text-[#3B3B3D73]">satisfaction rate</p>
-                </div>
-                <p className="text-[#2D2C2C] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed">
-                  Testimonials
-                </p>
+        {/* Testimonials Section */}
+        <div className="mx-[4%]">
+          <div ref={testimonialsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-4 sm:gap-6 md:gap-8">
+            <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
+              <p>98% client </p>
+              <p className="text-[#3B3B3D73]">satisfaction rate</p>
             </div>
+            <p className="text-[#2D2C2C] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed">
+              Testimonials
+            </p>
+          </div>
+        </div>
+
+
+        {/* Footer Section with Testimonial */}
+        <div ref={testimonialImageRef} className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24">
+          <Image
+            src="/Images/serviseImages/footer.jpg"
+            alt="Roadmap Image"
+            width={1920}
+            height={200}
+            className="object-cover w-full h-[350px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
+          />
+          <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] ml-[4%] md:ml-[2%] mb-12 sm:mb-16 md:mb-32 lg:mb-44 justify-start">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-start px-2 md:px-4 font-extralight leading-relaxed">
+              &ldquo;Looking for process improvements, <br className="hidden sm:block" /> we found a solution that <br className="hidden sm:block" /> transformed our entire data <br className="hidden sm:block" /> strategy. The depth of insights was <br className="hidden sm:block" /> remarkable.&rdquo;
+            </p>
           </div>
 
+          <div className="absolute inset-0 flex items-end mx-[4%] md:mx-[3%] my-[3%] sm:my-[2%] md:my-[1%] justify-between">
+            <p className="footer-author text-white text-[10px] sm:text-xs md:text-sm">
+              Maya Singh <br /> Product Strategy Lead
+            </p>
 
-          {/* Footer Section with Testimonial */}
-          <div ref={testimonialImageRef} className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24">
+            <div className="flex items-center gap-1 md:gap-2">
               <Image
-                src="/Images/serviseImages/footer.jpg"
-                alt="Roadmap Image"
-                width={1920}
-                height={200}
-                className="object-cover w-full h-[350px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
+                src="/Images/serviseImages/play.png"
+                width={40}
+                height={40}
+                alt="video play"
+                className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
               />
-              <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] ml-[4%] md:ml-[2%] mb-12 sm:mb-16 md:mb-32 lg:mb-44 justify-start">
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-start px-2 md:px-4 font-extralight leading-relaxed">
-                  &ldquo;Looking for process improvements, <br className="hidden sm:block" /> we found a solution that <br className="hidden sm:block" /> transformed our entire data <br className="hidden sm:block" /> strategy. The depth of insights was <br className="hidden sm:block" /> remarkable.&rdquo;
-                </p>
-              </div>
-
-              <div className="absolute inset-0 flex items-end mx-[4%] md:mx-[3%] my-[3%] sm:my-[2%] md:my-[1%] justify-between">
-                <p className="footer-author text-white text-[10px] sm:text-xs md:text-sm">
-                  Maya Singh <br /> Product Strategy Lead
-                </p>
-
-                <div className="flex items-center gap-1 md:gap-2">
-                  <Image
-                    src="/Images/serviseImages/play.png"
-                    width={40}
-                    height={40}
-                    alt="video play"
-                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
-                  />
-                  <p className="text-white text-[10px] sm:text-xs md:text-sm lg:text-md">Watch video</p>
-                </div>
-              </div>
-          </div>
-
-          <div className="flex flex-col mx-[4%]">
-            <div ref={insightsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8 mt-8 mb-14">
-                <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
-                  <p>Insights from Grobird</p>
-                  <p className="text-[#3B3B3D73]">Experts</p>
-                </div>
-                <p className="text-[#2D2C2C] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed">
-                  Blogs
-                </p>
+              <p className="text-white text-[10px] sm:text-xs md:text-sm lg:text-md">Watch video</p>
             </div>
           </div>
+        </div>
 
-          {/* Insights Section */}
-          <div>
+        <div className="flex flex-col mx-[4%]">
+          <div ref={insightsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8 mt-8 mb-14">
+            <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
+              <p>Insights from Grobird</p>
+              <p className="text-[#3B3B3D73]">Experts</p>
+            </div>
+            <p className="text-[#2D2C2C] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed">
+              Blogs
+            </p>
+          </div>
+        </div>
+
+        {/* Insights Section */}
+        <div>
           <InsightsSection
             title=""
             titleHighlight=""
@@ -1237,7 +1238,7 @@ Our solutions ensure seamless scalability, reliable <br /> performance, and robu
 
           {/* More Articles Button */}
           <div className="flex justify-center items-center mx-[4%] pt-5 mb-8 md:mb-16 lg:mb-20">
-            <button 
+            <button
               onClick={() => router.push('/insights')}
               className="bg-[#FF662A] text-white px-6 py-3 text-sm flex items-center gap-2 hover:bg-[#e55a24] transition-colors rounded-sm"
             >
@@ -1245,170 +1246,170 @@ Our solutions ensure seamless scalability, reliable <br /> performance, and robu
               <Image src="/Images/arrow.png" alt="Arrow" width={20} height={20} className="object-contain" />
             </button>
           </div>
+        </div>
+
+        {/* question */}
+        <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 mx-[4%] mb-12 md:mb-16 lg:mb-20">
+          <div ref={faqHeadingRef} className="flex flex-col lg:flex-row justify-between items-start w-full mt-12 md:mt-16 lg:mt-20 mb-5 gap-6 md:gap-8">
+            <div className="flex w-full lg:w-[60%] items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
+              <p>Frequently Asked</p>
+              <p className="text-[#3B3B3D73]">Questions</p>
+            </div>
+            <p className="text-[#2D2C2C] text-xs sm:text-sm md:text-base lg:text-lg w-full lg:w-[40%] xl:text-3xl leading-relaxed">
+              From setup to security, here&apos;s everything you
+              need to know before getting started.
+            </p>
           </div>
 
-          {/* question */}
-          <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 mx-[4%] mb-12 md:mb-16 lg:mb-20">
-            <div ref={faqHeadingRef} className="flex flex-col lg:flex-row justify-between items-start w-full mt-12 md:mt-16 lg:mt-20 mb-5 gap-6 md:gap-8">
-                <div className="flex w-full lg:w-[60%] items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
-                  <p>Frequently Asked</p>
-                  <p className="text-[#3B3B3D73]">Questions</p>
-                </div>
-                <p className="text-[#2D2C2C] text-xs sm:text-sm md:text-base lg:text-lg w-full lg:w-[40%] xl:text-3xl leading-relaxed">
-                From setup to security, here&apos;s everything you
-                need to know before getting started.
-                </p>
-            </div>
-
-            <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
-              <div ref={el => { if (el) faqItemsRef.current[0] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">What kind of teams use Relay?</p>
-                <Image
-                  src="/Images/serviseImages/plus.png"
-                  alt="plus"
-                  width={22}
-                  height={22}
-                  className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-              </div>
-
-              <div ref={el => { if (el) faqItemsRef.current[1] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay work with Slack and Microsoft Teams?</p>
-                <Image
-                  src="/Images/serviseImages/plus.png"
-                  alt="plus"
-                  width={22}
-                  height={22}
-                  className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-              </div>
-
-              <div ref={el => { if (el) faqItemsRef.current[2] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is there a free trial?</p>
-                <Image
-                  src="/Images/serviseImages/plus.png"
-                  alt="plus"
-                  width={22}
-                  height={22}
-                  className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-              </div>
-
-              <div ref={el => { if (el) faqItemsRef.current[3] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is my data secure?</p>
-                <Image
-                  src="/Images/serviseImages/plus.png"
-                  alt="plus"
-                  width={22}
-                  height={22}
-                  className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-              </div>
-
-              <div ref={el => { if (el) faqItemsRef.current[4] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I collaborate with my engineering team inside Relay?</p>
-                <Image
-                  src="/Images/serviseImages/plus.png"
-                  alt="plus"
-                  width={22}
-                  height={22}
-                  className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-              </div>
-
-              <div ref={el => { if (el) faqItemsRef.current[5] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay support multi-channel communication?</p>
-                <Image
-                  src="/Images/serviseImages/plus.png"
-                  alt="plus"
-                  width={22}
-                  height={22}
-                  className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-              </div>
-
-              <div ref={el => { if (el) faqItemsRef.current[6] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I customize how Relay works for my team?</p>
-                <Image
-                  src="/Images/serviseImages/plus.png"
-                  alt="plus"
-                  width={22}
-                  height={22}
-                  className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Gradient Box */}
-          <div ref={ctaSectionRef} className="w-full h-[900px] sm:h-[1100px] md:h-[1400px] lg:h-[1700px] xl:h-[2180px] relative overflow-hidden" style={{
-            background: 'linear-gradient(to bottom, #FFFFFF 2%, #FE4B00A1 92%, #FFFFFF 100%)'
-          }}>
-            {/* Bird Image Container */}
-            <div ref={ctaBirdRef} className="absolute top-0 left-[5%] sm:left-[8%] md:left-[12%] lg:left-40 w-[90%] sm:w-[85%] md:w-full h-full flex items-start justify-center md:justify-start">
+          <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
+            <div ref={el => { if (el) faqItemsRef.current[0] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">What kind of teams use Relay?</p>
               <Image
-                src="/Images/takeFlight.png"
-                alt="Take Flight"
-                width={1000}
-                height={1200}
-                className="w-full sm:w-[90%] md:w-[85%] h-[500px] sm:h-[650px] md:h-[850px] lg:h-[1050px] xl:h-[1250px] object-contain"
-                priority
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
               />
             </div>
 
-            {/* Content Section */}
-            <div ref={ctaContentRef} className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-center md:items-start text-center md:text-start px-4 sm:px-6 md:px-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl">
-              <h2 className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[100px] font-light leading-tight">
-                Ideas take flight here
-              </h2>
-              <p className="text-black font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl">
-                From concept to code, we transform bold visions into living digital experiences that soar.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 items-center mt-2 md:mt-4 w-full sm:w-auto">
-                <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto">
-                  Talk to Us
-                </button>
-                <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto border border-gray-200">
-                  Explore Services
-                </button>
-              </div>
-            </div>
-
-            {/* Cloud Image at Bottom */}
-            <div ref={ctaCloudLeftRef} className="absolute -bottom-24 sm:-bottom-32 md:-bottom-48 lg:-bottom-70 xl:-bottom-90 -left-8 md:-left-16 lg:-left-24 w-[110%] md:w-[108%] lg:w-[106%] z-10" style={{ willChange: 'transform' }}>
+            <div ref={el => { if (el) faqItemsRef.current[1] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay work with Slack and Microsoft Teams?</p>
               <Image
-                src="/Images/clouds/c2.png"
-                alt="Cloud"
-                width={1200}
-                height={300}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            <div ref={ctaCloudBottomRef} className="absolute -bottom-8 sm:-bottom-12 md:-bottom-16 lg:-bottom-20 -right-12 sm:-right-16 md:-right-24 lg:-right-50 z-10 opacity-30 sm:opacity-40 w-[65%] sm:w-[55%] md:w-auto" style={{ willChange: 'transform' }}>
-              <Image
-                src="/Images/clouds/c4.png"
-                alt="Cloud"
-                width={1000}
-                height={200}
-                className="w-full h-auto object-cover"
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
               />
             </div>
 
-            <div ref={ctaCloudRightRef} className="absolute -bottom-24 sm:-bottom-32 md:-bottom-48 lg:-bottom-70 xl:-bottom-90 -right-8 md:-right-16 lg:-right-24 w-[110%] md:w-[108%] lg:w-[106%] z-10" style={{ willChange: 'transform' }}>
+            <div ref={el => { if (el) faqItemsRef.current[2] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is there a free trial?</p>
               <Image
-                src="/Images/clouds/c2.png"
-                alt="Cloud"
-                width={1000}
-                height={300}
-                className="w-full h-auto object-cover scale-x-[-1]"
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
+
+            <div ref={el => { if (el) faqItemsRef.current[3] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is my data secure?</p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
+
+            <div ref={el => { if (el) faqItemsRef.current[4] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I collaborate with my engineering team inside Relay?</p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
+
+            <div ref={el => { if (el) faqItemsRef.current[5] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay support multi-channel communication?</p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
+
+            <div ref={el => { if (el) faqItemsRef.current[6] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I customize how Relay works for my team?</p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
               />
             </div>
           </div>
+        </div>
 
-          {/* Footer */}
-          <div>
-            <FooterSimple/>
+        {/* Gradient Box */}
+        <div ref={ctaSectionRef} className="w-full h-[900px] sm:h-[1100px] md:h-[1400px] lg:h-[1700px] xl:h-[2180px] relative overflow-hidden" style={{
+          background: 'linear-gradient(to bottom, #FFFFFF 2%, #FE4B00A1 92%, #FFFFFF 100%)'
+        }}>
+          {/* Bird Image Container */}
+          <div ref={ctaBirdRef} className="absolute top-0 left-[5%] sm:left-[8%] md:left-[12%] lg:left-40 w-[90%] sm:w-[85%] md:w-full h-full flex items-start justify-center md:justify-start">
+            <Image
+              src="/Images/takeFlight.png"
+              alt="Take Flight"
+              width={1000}
+              height={1200}
+              className="w-full sm:w-[90%] md:w-[85%] h-[500px] sm:h-[650px] md:h-[850px] lg:h-[1050px] xl:h-[1250px] object-contain"
+              priority
+            />
           </div>
+
+          {/* Content Section */}
+          <div ref={ctaContentRef} className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-center md:items-start text-center md:text-start px-4 sm:px-6 md:px-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl">
+            <h2 className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[100px] font-light leading-tight">
+              Ideas take flight here
+            </h2>
+            <p className="text-black font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl">
+              From concept to code, we transform bold visions into living digital experiences that soar.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 items-center mt-2 md:mt-4 w-full sm:w-auto">
+              <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto">
+                Talk to Us
+              </button>
+              <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto border border-gray-200">
+                Explore Services
+              </button>
+            </div>
+          </div>
+
+          {/* Cloud Image at Bottom */}
+          <div ref={ctaCloudLeftRef} className="absolute -bottom-24 sm:-bottom-32 md:-bottom-48 lg:-bottom-70 xl:-bottom-90 -left-8 md:-left-16 lg:-left-24 w-[110%] md:w-[108%] lg:w-[106%] z-10" style={{ willChange: 'transform' }}>
+            <Image
+              src="/Images/clouds/c2.png"
+              alt="Cloud"
+              width={1200}
+              height={300}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+          <div ref={ctaCloudBottomRef} className="absolute -bottom-8 sm:-bottom-12 md:-bottom-16 lg:-bottom-20 -right-12 sm:-right-16 md:-right-24 lg:-right-50 z-10 opacity-30 sm:opacity-40 w-[65%] sm:w-[55%] md:w-auto" style={{ willChange: 'transform' }}>
+            <Image
+              src="/Images/clouds/c4.png"
+              alt="Cloud"
+              width={1000}
+              height={200}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div ref={ctaCloudRightRef} className="absolute -bottom-24 sm:-bottom-32 md:-bottom-48 lg:-bottom-70 xl:-bottom-90 -right-8 md:-right-16 lg:-right-24 w-[110%] md:w-[108%] lg:w-[106%] z-10" style={{ willChange: 'transform' }}>
+            <Image
+              src="/Images/clouds/c2.png"
+              alt="Cloud"
+              width={1000}
+              height={300}
+              className="w-full h-auto object-cover scale-x-[-1]"
+            />
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div>
+          <FooterSimple />
+        </div>
 
       </div>
     </>
