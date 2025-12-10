@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/lib/hooks/useAuth";
 import EditProfileModal from "@/components/Admin/Modals/EditProfileModal";
@@ -25,13 +25,7 @@ export default function ProfileSettings() {
     const [successMessage, setSuccessMessage] = useState("");
 
     // Fetch profile data on mount
-    useEffect(() => {
-        if (user) {
-            fetchProfile();
-        }
-    }, [user]);
-
-    const fetchProfile = async () => {
+    const fetchProfile = useCallback(async () => {
         if (!user?.id) return;
 
         try {
@@ -82,7 +76,13 @@ export default function ProfileSettings() {
             const error = err as Error;
             console.error("Error in fetchProfile:", error.message || error);
         }
-    };
+    }, [user]);
+
+    useEffect(() => {
+        if (user) {
+            fetchProfile();
+        }
+    }, [user, fetchProfile]);
 
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -170,10 +170,10 @@ export default function ProfileSettings() {
             <EditProfileModal
                 isOpen={showEditModal}
                 onClose={() => setShowEditModal(false)}
-                onSave={fetchProfile}
                 onSuccess={() => {
                     setSuccessMessage("Your profile has been updated successfully!");
                     setShowSuccessModal(true);
+                    fetchProfile(); // Refresh profile data after save
                 }}
             />
 

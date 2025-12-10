@@ -27,7 +27,7 @@ export default function RichTextEditor({
 }: RichTextEditorProps) {
     const [showColorPicker, setShowColorPicker] = useState(false);
     const [showImageDialog, setShowImageDialog] = useState(false);
-    const [imageFile, setImageFile] = useState<File | null>(null);
+    // const [imageFile, setImageFile] = useState<File | null>(null); // Removed unused
     const [imagePreview, setImagePreview] = useState<string>('');
     const colorPickerRef = useRef<HTMLDivElement>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -107,7 +107,7 @@ export default function RichTextEditor({
     const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file && file.type.startsWith('image/')) {
-            setImageFile(file);
+            // setImageFile(file); // Removed unused
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImagePreview(reader.result as string);
@@ -119,7 +119,7 @@ export default function RichTextEditor({
     const addImage = () => {
         if (imagePreview) {
             editor.chain().focus().setImage({ src: imagePreview }).run();
-            setImageFile(null);
+            // setImageFile(null); // Removed unused
             setImagePreview('');
             setShowImageDialog(false);
         }
@@ -201,9 +201,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleBold().run()}
                     disabled={disabled}
-                    className={`p-1.5 hover:bg-gray-200 rounded font-bold disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('bold') ? 'bg-gray-300' : ''
-                    }`}
+                    className={`p-1.5 hover:bg-gray-200 rounded font-bold disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('bold') ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Bold"
                 >
@@ -212,9 +211,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleItalic().run()}
                     disabled={disabled}
-                    className={`p-1.5 hover:bg-gray-200 rounded italic disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('italic') ? 'bg-gray-300' : ''
-                    }`}
+                    className={`p-1.5 hover:bg-gray-200 rounded italic disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('italic') ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Italic"
                 >
@@ -223,9 +221,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleStrike().run()}
                     disabled={disabled}
-                    className={`p-1.5 hover:bg-gray-200 rounded line-through disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('strike') ? 'bg-gray-300' : ''
-                    }`}
+                    className={`p-1.5 hover:bg-gray-200 rounded line-through disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('strike') ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Strikethrough"
                 >
@@ -238,9 +235,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
                     disabled={disabled}
-                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('heading', { level: 1 }) ? 'bg-gray-300' : ''
-                    }`}
+                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('heading', { level: 1 }) ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Heading 1"
                 >
@@ -249,9 +245,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
                     disabled={disabled}
-                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('heading', { level: 2 }) ? 'bg-gray-300' : ''
-                    }`}
+                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('heading', { level: 2 }) ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Heading 2"
                 >
@@ -260,9 +255,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
                     disabled={disabled}
-                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('heading', { level: 3 }) ? 'bg-gray-300' : ''
-                    }`}
+                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('heading', { level: 3 }) ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Heading 3"
                 >
@@ -271,9 +265,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
                     disabled={disabled}
-                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('heading', { level: 4 }) ? 'bg-gray-300' : ''
-                    }`}
+                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('heading', { level: 4 }) ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Heading 4"
                 >
@@ -282,9 +275,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
                     disabled={disabled}
-                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('heading', { level: 5 }) ? 'bg-gray-300' : ''
-                    }`}
+                    className={`px-2 py-1 hover:bg-gray-200 rounded text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('heading', { level: 5 }) ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Heading 5"
                 >
@@ -297,9 +289,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleBulletList().run()}
                     disabled={disabled}
-                    className={`p-1.5 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('bulletList') ? 'bg-gray-300' : ''
-                    }`}
+                    className={`p-1.5 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('bulletList') ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Bullet List"
                 >
@@ -313,9 +304,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleOrderedList().run()}
                     disabled={disabled}
-                    className={`p-1.5 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('orderedList') ? 'bg-gray-300' : ''
-                    }`}
+                    className={`p-1.5 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('orderedList') ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Numbered List"
                 >
@@ -330,9 +320,8 @@ export default function RichTextEditor({
                 <button
                     onClick={setLink}
                     disabled={disabled}
-                    className={`p-1.5 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('link') ? 'bg-gray-300' : ''
-                    }`}
+                    className={`p-1.5 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('link') ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Add Link"
                 >
@@ -343,9 +332,8 @@ export default function RichTextEditor({
                 <button
                     onClick={() => editor.chain().focus().toggleCodeBlock().run()}
                     disabled={disabled}
-                    className={`p-1.5 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed ${
-                        editor.isActive('codeBlock') ? 'bg-gray-300' : ''
-                    }`}
+                    className={`p-1.5 hover:bg-gray-200 rounded disabled:opacity-50 disabled:cursor-not-allowed ${editor.isActive('codeBlock') ? 'bg-gray-300' : ''
+                        }`}
                     type="button"
                     title="Code Block"
                 >
@@ -400,6 +388,7 @@ export default function RichTextEditor({
                             />
                             {imagePreview ? (
                                 <div className="relative w-full h-32">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={imagePreview}
                                         alt="Preview"
@@ -421,7 +410,7 @@ export default function RichTextEditor({
                             <button
                                 onClick={() => {
                                     setShowImageDialog(false);
-                                    setImageFile(null);
+                                    // setImageFile(null); // Removed unused
                                     setImagePreview('');
                                 }}
                                 className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded"

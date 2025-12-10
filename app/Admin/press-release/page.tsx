@@ -11,7 +11,6 @@ export default function PressRelease() {
     const [showDateRangeModal, setShowDateRangeModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [totalPressReleases, setTotalPressReleases] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
@@ -89,7 +88,6 @@ export default function PressRelease() {
                 startDate={startDate}
                 endDate={endDate}
                 onTotalCountChange={(total) => {
-                    setTotalPressReleases(total);
                     setTotalPages(Math.ceil(total / pressReleasesPerPage));
                 }}
             />

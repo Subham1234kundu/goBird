@@ -49,7 +49,7 @@ export default function StatCard({
     const bgColor = isPositive ? "#DCFCE7" : "#FEE2E2";
     const textColor = isPositive ? "#16A34A" : "#DC2626";
 
-    const createPattern = (ctx: CanvasRenderingContext2D) => {
+    const createPattern = (ctx: CanvasRenderingContext2D): CanvasPattern | undefined => {
         const patternCanvas = document.createElement("canvas");
         const patternCtx = patternCanvas.getContext("2d");
         const width = 4; // Spacing between lines
@@ -68,7 +68,7 @@ export default function StatCard({
             patternCtx.stroke();
         }
 
-        return ctx.createPattern(patternCanvas, "repeat");
+        return ctx.createPattern(patternCanvas, "repeat") || undefined;
     };
 
     const chartData = {
@@ -82,7 +82,8 @@ export default function StatCard({
                 fill: true,
                 backgroundColor: (context: ScriptableContext<"line">) => {
                     const ctx = context.chart.ctx;
-                    return createPattern(ctx);
+                    const pattern = createPattern(ctx);
+                    return (pattern as unknown as string) || color;
                 },
                 tension: 0.4, // Smooth curve
             },

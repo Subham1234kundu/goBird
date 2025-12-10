@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import DeleteSuccessModal from "@/components/Admin/Modals/DeleteSuccessModal";
 import DeleteConfirmModal from "@/components/Admin/Modals/DeleteConfirmModal";
 import LeadStatusModal from "@/components/Admin/Modals/LeadStatusModal";
@@ -28,41 +28,7 @@ export default function ManageLeadsTable({ currentPage, leadsPerPage, searchQuer
     const [selectedLead, setSelectedLead] = useState<{ id: string; status: LeadStatus } | null>(null);
 
     // Fetch leads on component mount and when page changes
-    useEffect(() => {
-        fetchLeads();
-    }, [currentPage, searchQuery, startDate, endDate]);
-
-    // Set up real-time subscription
-    useEffect(() => {
-        const channel = supabase
-            .channel('leads-channel')
-            .on(
-                'postgres_changes',
-                {
-                    event: '*',
-                    schema: 'public',
-                    table: 'leads'
-                },
-                (payload) => {
-                    if (payload.eventType === 'INSERT') {
-                        setLeads(prev => [payload.new as Lead, ...prev]);
-                    } else if (payload.eventType === 'UPDATE') {
-                        setLeads(prev => prev.map(lead =>
-                            lead.id === payload.new.id ? payload.new as Lead : lead
-                        ));
-                    } else if (payload.eventType === 'DELETE') {
-                        setLeads(prev => prev.filter(lead => lead.id !== payload.old.id));
-                    }
-                }
-            )
-            .subscribe();
-
-        return () => {
-            supabase.removeChannel(channel);
-        };
-    }, []);
-
-    const fetchLeads = async () => {
+    const fetchLeads = useCallback(async () => {
         setLoading(true);
 
         // If search query exists, use search function
@@ -149,7 +115,41 @@ export default function ManageLeadsTable({ currentPage, leadsPerPage, searchQuer
         }
 
         setLoading(false);
-    };
+    }, [currentPage, searchQuery, startDate, endDate, leadsPerPage, onTotalCountChange]);
+
+    useEffect(() => {
+        fetchLeads();
+    }, [fetchLeads]);
+
+    // Set up real-time subscription
+    useEffect(() => {
+        const channel = supabase
+            .channel('leads-channel')
+            .on(
+                'postgres_changes',
+                {
+                    event: '*',
+                    schema: 'public',
+                    table: 'leads'
+                },
+                (payload) => {
+                    if (payload.eventType === 'INSERT') {
+                        setLeads(prev => [payload.new as Lead, ...prev]);
+                    } else if (payload.eventType === 'UPDATE') {
+                        setLeads(prev => prev.map(lead =>
+                            lead.id === payload.new.id ? payload.new as Lead : lead
+                        ));
+                    } else if (payload.eventType === 'DELETE') {
+                        setLeads(prev => prev.filter(lead => lead.id !== payload.old.id));
+                    }
+                }
+            )
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(channel);
+        };
+    }, []);
 
     const handleDelete = async () => {
         if (!deleteLeadId) return;

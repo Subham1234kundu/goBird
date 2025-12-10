@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { X, Upload } from "lucide-react";
 import { supabase } from "@/lib/supabase";
@@ -9,7 +9,6 @@ import { useAuth } from "@/lib/hooks/useAuth";
 interface EditProfileModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onSave: () => void;
     onSuccess?: () => void; // Callback when save is successful
 }
 
@@ -20,7 +19,7 @@ interface ProfileData {
     avatar_url: string;
 }
 
-export default function EditProfileModal({ isOpen, onClose, onSave, onSuccess }: EditProfileModalProps) {
+export default function EditProfileModal({ isOpen, onClose, onSuccess }: EditProfileModalProps) {
     const { user } = useAuth();
     const [loading, setLoading] = useState(false);
     const [uploading, setUploading] = useState(false);
@@ -34,13 +33,7 @@ export default function EditProfileModal({ isOpen, onClose, onSave, onSuccess }:
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     // Fetch profile data on mount
-    useEffect(() => {
-        if (isOpen && user) {
-            fetchProfile();
-        }
-    }, [isOpen, user]);
-
-    const fetchProfile = async () => {
+    const fetchProfile = useCallback(async () => {
         if (!user?.id) return;
 
         try {
@@ -100,7 +93,13 @@ export default function EditProfileModal({ isOpen, onClose, onSave, onSuccess }:
             console.error("Error in fetchProfile:", error.message || error);
             alert("An unexpected error occurred. Please check the console.");
         }
-    };
+    }, [user]);
+
+    useEffect(() => {
+        if (isOpen && user) {
+            fetchProfile();
+        }
+    }, [isOpen, user, fetchProfile]);
 
     const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];

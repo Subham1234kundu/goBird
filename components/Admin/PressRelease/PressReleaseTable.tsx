@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import DeleteConfirmModal from "@/components/Admin/Modals/DeleteConfirmModal";
 import { getAllPressReleases, deletePressRelease, deleteCoverImage, searchPressReleases } from "@/lib/services/pressReleaseService";
@@ -37,11 +37,9 @@ export default function PressReleaseTable({ currentPage, pressReleasesPerPage, s
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [deleteTarget, setDeleteTarget] = useState<{ id: string; coverImageUrl: string | null } | null>(null);
 
-    useEffect(() => {
-        fetchPressReleases();
-    }, [currentPage, searchQuery, startDate, endDate]);
 
-    const fetchPressReleases = async () => {
+
+    const fetchPressReleases = useCallback(async () => {
         setLoading(true);
 
         // If search query exists, use search function
@@ -135,7 +133,11 @@ export default function PressReleaseTable({ currentPage, pressReleasesPerPage, s
         }
 
         setLoading(false);
-    };
+    }, [currentPage, searchQuery, startDate, endDate, pressReleasesPerPage, onTotalCountChange]);
+
+    useEffect(() => {
+        fetchPressReleases();
+    }, [fetchPressReleases]);
 
     const handleEdit = (id: string) => {
         router.push(`/Admin/press-release/edit/${id}`);
@@ -157,7 +159,7 @@ export default function PressReleaseTable({ currentPage, pressReleasesPerPage, s
         }
 
         // Delete press release
-        const { success, error: deleteError } = await deletePressRelease(id);
+        const { error: deleteError } = await deletePressRelease(id);
 
         if (deleteError) {
             alert(`Failed to delete: ${deleteError}`);

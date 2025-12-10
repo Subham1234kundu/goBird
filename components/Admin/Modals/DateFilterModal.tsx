@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+
 
 interface DateFilterModalProps {
     isOpen: boolean;
@@ -54,8 +54,8 @@ export default function DateFilterModal({ isOpen, onClose, onSelect, onCustom, c
                                 key={option.value}
                                 onClick={() => handleOptionClick(option.value)}
                                 className={`w-full text-left px-3 py-2.5 rounded-lg transition-colors text-[#333333] ${currentFilter === option.value
-                                        ? "bg-gray-100"
-                                        : "hover:bg-gray-50"
+                                    ? "bg-gray-100"
+                                    : "hover:bg-gray-50"
                                     }`}
                             >
                                 {option.label}

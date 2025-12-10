@@ -10,8 +10,10 @@ import { SkeletonUtils } from 'three-stdlib'
 // Hook to get responsive screen size
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight })
     }
@@ -21,7 +23,7 @@ const useWindowSize = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  return windowSize
+  return mounted ? windowSize : { width: 1920, height: 1080 }
 }
 
 const PaperBirdModel = () => {
@@ -40,11 +42,17 @@ const PaperBirdModel = () => {
       if ('isMesh' in child && child.isMesh && 'material' in child) {
         const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
         // Remove invalid texture references that cause blob URL errors
-        if (material.map && material.map.image instanceof Blob) {
-          material.map = null
+        if (material.map) {
+          const image = material.map.image
+          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
+            material.map = null
+          }
         }
-        if (material.normalMap && material.normalMap.image instanceof Blob) {
-          material.normalMap = null
+        if (material.normalMap) {
+          const image = material.normalMap.image
+          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
+            material.normalMap = null
+          }
         }
         material.needsUpdate = true
       }
@@ -218,11 +226,17 @@ const PaperBirdLeftModel = () => {
       if ('isMesh' in child && child.isMesh && 'material' in child) {
         const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
         // Remove invalid texture references that cause blob URL errors
-        if (material.map && material.map.image instanceof Blob) {
-          material.map = null
+        if (material.map) {
+          const image = material.map.image
+          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
+            material.map = null
+          }
         }
-        if (material.normalMap && material.normalMap.image instanceof Blob) {
-          material.normalMap = null
+        if (material.normalMap) {
+          const image = material.normalMap.image
+          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
+            material.normalMap = null
+          }
         }
         material.needsUpdate = true
       }
@@ -390,11 +404,17 @@ const PaperBirdBottomModel = () => {
       if ('isMesh' in child && child.isMesh && 'material' in child) {
         const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
         // Remove invalid texture references that cause blob URL errors
-        if (material.map && material.map.image instanceof Blob) {
-          material.map = null
+        if (material.map) {
+          const image = material.map.image
+          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
+            material.map = null
+          }
         }
-        if (material.normalMap && material.normalMap.image instanceof Blob) {
-          material.normalMap = null
+        if (material.normalMap) {
+          const image = material.normalMap.image
+          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
+            material.normalMap = null
+          }
         }
         material.needsUpdate = true
       }
@@ -561,11 +581,17 @@ const PaperBirdRightModel = () => {
       if ('isMesh' in child && child.isMesh && 'material' in child) {
         const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
         // Remove invalid texture references that cause blob URL errors
-        if (material.map && material.map.image instanceof Blob) {
-          material.map = null
+        if (material.map) {
+          const image = material.map.image
+          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
+            material.map = null
+          }
         }
-        if (material.normalMap && material.normalMap.image instanceof Blob) {
-          material.normalMap = null
+        if (material.normalMap) {
+          const image = material.normalMap.image
+          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
+            material.normalMap = null
+          }
         }
         material.needsUpdate = true
       }
@@ -714,156 +740,7 @@ const PaperBirdRightModel = () => {
   return <primitive ref={groupRef} object={clonedScene} />
 }
 
-// Bottom Left Bird Model
-const PaperBirdBottomLeftModel = () => {
-  const groupRef = useRef<Group>(null)
-  const [scrollY, setScrollY] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
-  const { scene, animations } = useGLTF('/Animations/paperBird.glb')
-  const clonedScene = useMemo(() => SkeletonUtils.clone(scene), [scene])
-  const { width } = useWindowSize()
-  const { actions, mixer } = useAnimations(animations, groupRef)
 
-  // Clean up invalid texture references on load
-  useEffect(() => {
-    clonedScene.traverse((child) => {
-      if ('isMesh' in child && child.isMesh && 'material' in child) {
-        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
-        // Remove invalid texture references that cause blob URL errors
-        if (material.map && material.map.image instanceof Blob) {
-          material.map = null
-        }
-        if (material.normalMap && material.normalMap.image instanceof Blob) {
-          material.normalMap = null
-        }
-        material.needsUpdate = true
-      }
-    })
-  }, [clonedScene])
-
-  useEffect(() => {
-    if (actions && Object.keys(actions).length > 0) {
-      Object.values(actions).forEach((action) => {
-        if (action) {
-          action.play()
-        }
-      })
-    }
-  }, [actions])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
-      setIsScrolling(true)
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
-    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
-      setScrollY(e.detail)
-      setIsScrolling(true)
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-    }
-  }, [])
-
-  useFrame(({ clock }, delta) => {
-    if (groupRef.current && mixer) {
-      const time = clock.getElapsedTime()
-
-      // Calculate smooth scroll progress with delay (fifth bird - starts at 0.20)
-      const rawProgress = (scrollY / 1000) - 0.20
-      const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
-
-      // Responsive positions based on screen width - Bird 5 (Left-Bottom, far left)
-      let startX = -4.2, startY = -2.3, startZ = 1.3
-      let endX = 8.5, endY = 6, endZ = -10
-      let baseScale = 0.88, scaleReduction = 0.72
-
-      if (width < 640) { // Mobile
-        startX = -2.6
-        startY = -1.0
-        startZ = 1.0
-        endX = 4
-        endY = 5
-        endZ = -7
-        baseScale = 0.68
-        scaleReduction = 0.54
-      } else if (width < 1024) { // Tablet
-        startX = -3.4
-        startY = -1.2
-        startZ = 1.1
-        endX = 5.5
-        endY = 6.5
-        endZ = -8
-        baseScale = 0.78
-        scaleReduction = 0.63
-      } else if (width < 1440) { // Laptop
-        startX = -4.2
-        startY = -1.5
-        startZ = 1.3
-        endX = 7
-        endY = 6
-        endZ = -9
-        baseScale = 0.88
-        scaleReduction = 0.72
-      }
-
-      groupRef.current.position.x = startX + ((endX - startX) * scrollProgress)
-      groupRef.current.position.y = startY + ((endY - startY) * scrollProgress)
-      groupRef.current.position.z = startZ + ((endZ - startZ) * scrollProgress)
-
-      // Subtle floating animation when not scrolling
-      if (!isScrolling) {
-        groupRef.current.position.y += Math.sin(time * 0.5) * 0.08
-      }
-
-      // Scale down as bird flies away
-      const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.2)
-      groupRef.current.scale.set(scale, scale, scale)
-
-      // Cornering rotation - beak pointing toward top-right
-      groupRef.current.rotation.y = Math.PI * 0.75 // 135° - angled toward right
-      groupRef.current.rotation.x = -0.28 // Pitched up for upward flight
-      groupRef.current.rotation.z = 0.12 // Slight roll for natural banking
-
-      // Control animation
-      if (isScrolling) {
-        mixer.timeScale = 2.5
-      } else {
-        mixer.timeScale = 1.5
-      }
-
-      mixer.update(delta)
-    }
-  })
-
-  return <primitive ref={groupRef} object={clonedScene} />
-}
 
 // 3D Cloud Component
 const Cloud3D = ({ position, scale, speed = 0.5, opacity = 0.4 }: {
@@ -900,7 +777,7 @@ const Cloud3D = ({ position, scale, speed = 0.5, opacity = 0.4 }: {
 
 const PaperBird3D = () => {
   const [viewport, setViewport] = useState({ cameraZ: 6, cameraY: 0, fov: 60 })
-  const { width } = useWindowSize()
+
 
   useEffect(() => {
     const updateViewport = () => {

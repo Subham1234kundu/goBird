@@ -11,7 +11,6 @@ export default function Leads() {
     const [showDateRangeModal, setShowDateRangeModal] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [totalLeads, setTotalLeads] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
@@ -95,7 +94,6 @@ export default function Leads() {
                 startDate={startDate}
                 endDate={endDate}
                 onTotalCountChange={(total) => {
-                    setTotalLeads(total);
                     setTotalPages(Math.ceil(total / leadsPerPage));
                 }}
             />
