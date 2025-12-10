@@ -43,7 +43,7 @@ export async function GET() {
     // Initialize default values
     let currentTotalViews = 0;
     let previousTotalViews = 0;
-    let currentPeriodViews: number[] = [];
+    const currentPeriodViews: number[] = [];
 
     // Fetch page views from Google Analytics if configured
     if (analyticsDataClient) {
