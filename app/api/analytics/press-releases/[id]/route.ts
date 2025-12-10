@@ -4,20 +4,24 @@ import path from 'path';
 import { createClient } from '@supabase/supabase-js';
 
 const propertyId = process.env.GA_PROPERTY_ID || '442920183';
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 const analyticsDataClient = new BetaAnalyticsDataClient({
   keyFilename: path.join(process.cwd(), 'lib', 'google-analytics-credentials.json'),
 });
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Initialize Supabase client function
+function getSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
+  return createClient(supabaseUrl, supabaseKey);
+}
 
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const supabase = getSupabaseClient();
     const { id } = await params;
     const { searchParams } = new URL(request.url);
     const days = parseInt(searchParams.get('days') || '30');
