@@ -1,12 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+import { useAuth } from "@/lib/hooks/useAuth";
+import EditProfileModal from "@/components/Admin/Modals/EditProfileModal";
+import SuccessModal from "@/components/Admin/Modals/SuccessModal";
 
 export default function ProfileSettings() {
-    const [name, setName] = useState("Grobird Technologies");
-    const [email, setEmail] = useState("admin@grobird.in");
-    const [phone, setPhone] = useState("+91-1234567890");
+    const { user } = useAuth();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -14,15 +19,104 @@ export default function ProfileSettings() {
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [profileImage, setProfileImage] = useState<string>("");
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [passwordLoading, setPasswordLoading] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Fetch profile data on mount
+    useEffect(() => {
+        if (user) {
+            fetchProfile();
+        }
+    }, [user]);
+
+    const fetchProfile = async () => {
+        if (!user?.id) return;
+
+        try {
+            const { data, error } = await supabase
+                .from("profiles")
+                .select("*")
+                .eq("id", user.id)
+                .single();
+
+            // If profile doesn't exist, create it
+            if (error && error.code === 'PGRST116') {
+                console.log("Profile not found, creating new profile...");
+                const { error: insertError } = await supabase
+                    .from("profiles")
+                    .insert({
+                        id: user.id,
+                        email: user.email,
+                        full_name: "",
+                        phone: "",
+                        avatar_url: "",
+                    });
+
+                if (insertError) {
+                    console.error("Error creating profile:", insertError);
+                    return;
+                }
+
+                // Set default values
+                setName("");
+                setEmail(user.email || "");
+                setPhone("");
+                setProfileImage("");
+                return;
+            }
+
+            if (error) {
+                console.error("Error fetching profile:", error);
+                return;
+            }
+
+            if (data) {
+                setName(data.full_name || "");
+                setEmail(data.email || user?.email || "");
+                setPhone(data.phone || "");
+                setProfileImage(data.avatar_url || "");
+            }
+        } catch (err) {
+            const error = err as Error;
+            console.error("Error in fetchProfile:", error.message || error);
+        }
+    };
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfileImage(reader.result as string);
-            };
-            reader.readAsDataURL(file);
+        if (!file || !user) return;
+
+        try {
+            const fileExt = file.name.split(".").pop();
+            const fileName = `${user.id}/${Date.now()}.${fileExt}`;
+
+            // Upload to Supabase Storage
+            const { error: uploadError } = await supabase.storage
+                .from("profile-avatars")
+                .upload(fileName, file);
+
+            if (uploadError) throw uploadError;
+
+            // Get public URL
+            const { data } = supabase.storage
+                .from("profile-avatars")
+                .getPublicUrl(fileName);
+
+            // Update profile with new avatar URL
+            const { error: updateError } = await supabase
+                .from("profiles")
+                .update({ avatar_url: data.publicUrl })
+                .eq("id", user.id);
+
+            if (updateError) throw updateError;
+
+            setProfileImage(data.publicUrl);
+            alert("Profile image updated successfully!");
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            alert("Failed to upload image. Please try again.");
         }
     };
 
@@ -32,22 +126,79 @@ export default function ProfileSettings() {
         setConfirmPassword("");
     };
 
-    const handleSetPassword = () => {
-        // Handle password change logic
-        console.log("Password change requested");
+    const handleSetPassword = async () => {
+        // Validation
+        if (!oldPassword || !newPassword || !confirmPassword) {
+            alert("Please fill in all password fields");
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            alert("New password and confirm password do not match");
+            return;
+        }
+
+        if (newPassword.length < 6) {
+            alert("Password must be at least 6 characters long");
+            return;
+        }
+
+        setPasswordLoading(true);
+        try {
+            // Update password using Supabase Auth
+            const { error } = await supabase.auth.updateUser({
+                password: newPassword,
+            });
+
+            if (error) throw error;
+
+            setSuccessMessage("Your password has been updated successfully!");
+            setShowSuccessModal(true);
+            handleClearPassword();
+        } catch (err) {
+            const error = err as Error;
+            console.error("Error updating password:", error);
+            alert(error.message || "Failed to update password. Please try again.");
+        } finally {
+            setPasswordLoading(false);
+        }
     };
 
     return (
         <div className="p-8 bg-[#F9FAFB] min-h-screen">
+            {/* Edit Profile Modal */}
+            <EditProfileModal
+                isOpen={showEditModal}
+                onClose={() => setShowEditModal(false)}
+                onSave={fetchProfile}
+                onSuccess={() => {
+                    setSuccessMessage("Your profile has been updated successfully!");
+                    setShowSuccessModal(true);
+                }}
+            />
+
+            {/* Success Modal */}
+            <SuccessModal
+                isOpen={showSuccessModal}
+                onClose={() => {
+                    setShowSuccessModal(false);
+                    window.location.reload(); // Reload to show updated profile and navbar
+                }}
+                message={successMessage}
+            />
+
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
                 <div>
                     <h1 className="text-2xl font-semibold text-[#121212]">Profile Settings</h1>
                     <p className="text-sm text-[#6B6B6B] mt-1">
-                        Manage all press releases create, edit, or remove updates easily.
+                        Manage your profile information and security settings.
                     </p>
                 </div>
-                <button className="rounded-sm bg-[#FE4B00] px-6 py-2.5 text-[14px] font-medium text-white hover:bg-[#E54300] transition-colors">
+                <button
+                    onClick={() => setShowEditModal(true)}
+                    className="rounded-sm bg-[#FE4B00] px-6 py-2.5 text-[14px] font-medium text-white hover:bg-[#E54300] transition-colors"
+                >
                     Edit Profile
                 </button>
             </div>
@@ -69,27 +220,36 @@ export default function ProfileSettings() {
                     <div className="flex-1">
                         {/* User Image */}
                         <div className="mb-6">
-                            {profileImage ? (
-                                <div className="w-8 h-8 rounded-full overflow-hidden">
-                                    <Image
-                                        src={profileImage}
-                                        alt="Profile"
-                                        width={32}
-                                        height={32}
-                                        className="object-cover"
-                                    />
-                                </div>
-                            ) : (
-                                <div className="w-8 h-8 rounded-full overflow-hidden">
-                                    <Image
-                                        src="/Images/Admin/dashboardImage/user.png"
-                                        alt="User"
-                                        width={32}
-                                        height={32}
-                                        className="object-cover"
-                                    />
-                                </div>
-                            )}
+                            <label className="cursor-pointer inline-block">
+                                {profileImage ? (
+                                    <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200 hover:border-[#FE4B00] transition-colors">
+                                        <Image
+                                            src={profileImage}
+                                            alt="Profile"
+                                            width={80}
+                                            height={80}
+                                            className="object-cover w-full h-full"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200 hover:border-[#FE4B00] transition-colors">
+                                        <Image
+                                            src="/Images/Admin/dashboardImage/user.png"
+                                            alt="User"
+                                            width={80}
+                                            height={80}
+                                            className="object-cover w-full h-full"
+                                        />
+                                    </div>
+                                )}
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageUpload}
+                                    className="hidden"
+                                />
+                            </label>
+                            <p className="text-xs text-gray-500 mt-2">Click to upload new image</p>
                         </div>
 
                         {/* Full Name */}
@@ -100,9 +260,9 @@ export default function ProfileSettings() {
                             <input
                                 type="text"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                disabled
                                 placeholder="Grobird Technologies"
-                                className="w-full px-4 py-2.5 border border-[#C2C2C3] rounded-sm text-[14px] text-[#1E293B] placeholder-[#6B6B6B] focus:outline-none focus:border-[#FE4B00]"
+                                className="w-full px-4 py-2.5 border border-[#C2C2C3] rounded-sm text-[14px] text-[#1E293B] placeholder-[#6B6B6B] bg-gray-50 cursor-not-allowed"
                             />
                         </div>
 
@@ -115,9 +275,9 @@ export default function ProfileSettings() {
                                 <input
                                     type="email"
                                     value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    disabled
                                     placeholder="admin@grobird.in"
-                                    className="w-full px-4 py-2.5 border border-[#C2C2C3] rounded-sm text-[14px] text-[#1E293B] placeholder-[#6B6B6B] focus:outline-none focus:border-[#FE4B00]"
+                                    className="w-full px-4 py-2.5 border border-[#C2C2C3] rounded-sm text-[14px] text-[#1E293B] placeholder-[#6B6B6B] bg-gray-50 cursor-not-allowed"
                                 />
                             </div>
                             <div>
@@ -127,12 +287,13 @@ export default function ProfileSettings() {
                                 <input
                                     type="tel"
                                     value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
+                                    disabled
                                     placeholder="+91-1234567890"
-                                    className="w-full px-4 py-2.5 border border-[#C2C2C3] rounded-sm text-[14px] text-[#1E293B] placeholder-[#6B6B6B] focus:outline-none focus:border-[#FE4B00]"
+                                    className="w-full px-4 py-2.5 border border-[#C2C2C3] rounded-sm text-[14px] text-[#1E293B] placeholder-[#6B6B6B] bg-gray-50 cursor-not-allowed"
                                 />
                             </div>
                         </div>
+                        <p className="text-sm text-gray-500 mt-3">Click &quot;Edit Profile&quot; button to update your information</p>
                     </div>
                 </div>
             </div>
@@ -146,7 +307,7 @@ export default function ProfileSettings() {
                             Change Password
                         </h2>
                         <p className="text-[14px] text-[#475569]">
-                            This is the main profile that will be visible for everyone
+                            Update your password to keep your account secure
                         </p>
                     </div>
 
@@ -255,15 +416,17 @@ export default function ProfileSettings() {
                         <div className="flex justify-end gap-3">
                             <button
                                 onClick={handleClearPassword}
-                                className="px-6 py-2.5 text-[16px] font-medium text-[#7E84A3] hover:text-[#121212] transition-colors"
+                                disabled={passwordLoading}
+                                className="px-6 py-2.5 text-[16px] font-medium text-[#7E84A3] hover:text-[#121212] transition-colors disabled:opacity-50"
                             >
                                 Clear
                             </button>
                             <button
                                 onClick={handleSetPassword}
-                                className="rounded-sm bg-[#FE4B00] px-6 py-2.5 text-[16px] font-medium text-white hover:bg-[#E54300] transition-colors"
+                                disabled={passwordLoading}
+                                className="rounded-sm bg-[#FE4B00] px-6 py-2.5 text-[16px] font-medium text-white hover:bg-[#E54300] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                Set Password
+                                {passwordLoading ? "Updating..." : "Set Password"}
                             </button>
                         </div>
                     </div>

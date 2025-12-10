@@ -37,10 +37,11 @@ export async function DELETE(request: NextRequest) {
     }
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error) {
+    const err = error as Error;
     console.error('Error deleting image:', error);
     return NextResponse.json(
-      { error: error.message },
+      { error: err.message },
       { status: 500 }
     );
   }

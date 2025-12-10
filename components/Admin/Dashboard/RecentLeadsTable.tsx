@@ -3,15 +3,20 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import DeleteSuccessModal from "@/components/Admin/Modals/DeleteSuccessModal";
+import DeleteConfirmModal from "@/components/Admin/Modals/DeleteConfirmModal";
+import LeadStatusModal from "@/components/Admin/Modals/LeadStatusModal";
 import { getAllLeads, deleteLead } from "@/lib/services/leadService";
 import { supabase } from "@/lib/supabase";
-import type { Lead } from "@/lib/types/lead";
+import type { Lead, LeadStatus } from "@/lib/types/lead";
 
 export default function RecentLeadsTable() {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [showStatusModal, setShowStatusModal] = useState(false);
     const [leads, setLeads] = useState<Lead[]>([]);
     const [loading, setLoading] = useState(true);
     const [deleteLeadId, setDeleteLeadId] = useState<string | null>(null);
+    const [selectedLead, setSelectedLead] = useState<{ id: string; status: LeadStatus } | null>(null);
 
     // Fetch only 5 most recent leads on component mount
     useEffect(() => {
@@ -78,6 +83,27 @@ export default function RecentLeadsTable() {
         return `${day}.${month}.${year}`;
     };
 
+    const handleOpenStatusModal = (leadId: string, currentStatus: LeadStatus) => {
+        setSelectedLead({ id: leadId, status: currentStatus });
+        setShowStatusModal(true);
+    };
+
+    const getStatusColors = (status: LeadStatus) => {
+        const colorMap: Record<LeadStatus, { bg: string; text: string }> = {
+            "New": { bg: "#E5EEFF", text: "#4169E1" },
+            "Contacted": { bg: "#D4F4DD", text: "#16A34A" },
+            "In Discussion": { bg: "#E5EEFF", text: "#4169E1" },
+            "Negotiation": { bg: "#FFE8D6", text: "#EA580C" },
+            "Proposal Sent": { bg: "#FFE8D6", text: "#EA580C" },
+            "Won / Converted": { bg: "#D4F4DD", text: "#16A34A" },
+            "Lost": { bg: "#FFD6D6", text: "#DC2626" },
+            "Follow-Up Scheduled": { bg: "#E5EEFF", text: "#4169E1" },
+            "Not Qualified": { bg: "#F3F4F6", text: "#6B7280" },
+            "Reopened": { bg: "#E5EEFF", text: "#4169E1" },
+        };
+        return colorMap[status];
+    };
+
     if (loading) {
         return (
             <div className="rounded-lg border border-[#E4E4E4] bg-white p-8 text-center">
@@ -90,6 +116,24 @@ export default function RecentLeadsTable() {
     return (
         <div className="rounded-lg border border-[#E4E4E4] bg-white">
             <DeleteSuccessModal isOpen={showDeleteModal} onClose={() => setShowDeleteModal(false)} />
+            <DeleteConfirmModal
+                isOpen={showDeleteConfirm}
+                onClose={() => {
+                    setShowDeleteConfirm(false);
+                    setDeleteLeadId(null);
+                }}
+                onConfirm={handleDelete}
+                title="Delete Lead"
+                message="Are you sure you want to delete this lead? This action cannot be undone."
+            />
+            {selectedLead && (
+                <LeadStatusModal
+                    isOpen={showStatusModal}
+                    onClose={() => setShowStatusModal(false)}
+                    leadId={selectedLead.id}
+                    currentStatus={selectedLead.status}
+                />
+            )}
             <div className="border-b border-[#E4E4E4] p-5">
                 <h2 className="text-lg font-semibold text-[#121212]">Top Recent Leads</h2>
             </div>
@@ -154,25 +198,22 @@ export default function RecentLeadsTable() {
                                     </td>
                                     <td className="px-6 py-4">
                                         <span
-                                            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${lead.status === "New"
-                                                ? "bg-blue-100 text-blue-800"
-                                                : lead.status === "Contacted"
-                                                    ? "bg-yellow-100 text-yellow-800"
-                                                    : lead.status === "Qualified"
-                                                        ? "bg-green-100 text-green-800"
-                                                        : "bg-gray-100 text-gray-800"
-                                                }`}
+                                            className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
+                                            style={{
+                                                backgroundColor: getStatusColors(lead.status).bg,
+                                                color: getStatusColors(lead.status).text,
+                                            }}
                                         >
                                             {lead.status}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 text-[#3D3D3D]">{lead.remark || '-'}</td>
-                                    <td className="pl-9 py-4">
-                                        <div className="flex items-center gap-3">
+                                    <td className="px-2 pl-6 py-4">
+                                        <div className="flex items-center justify-between">
                                             <button
                                                 onClick={() => {
                                                     setDeleteLeadId(lead.id);
-                                                    handleDelete();
+                                                    setShowDeleteConfirm(true);
                                                 }}
                                                 className="hover:opacity-80 transition-opacity"
                                             >
@@ -183,7 +224,10 @@ export default function RecentLeadsTable() {
                                                     height={24}
                                                 />
                                             </button>
-                                            <button className="hover:opacity-80 transition-opacity">
+                                            <button
+                                                onClick={() => handleOpenStatusModal(lead.id, lead.status)}
+                                                className="hover:opacity-80 transition-opacity"
+                                            >
                                                 <Image
                                                     src="/Images/Admin/dashboardImage/threeDot.png"
                                                     alt="Options"

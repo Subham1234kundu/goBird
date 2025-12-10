@@ -39,10 +39,11 @@ export async function POST(request: NextRequest) {
         }
 
         return NextResponse.json({ data }, { status: 200 });
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error in contact API:', error);
         return NextResponse.json(
-            { error: error.message || 'Internal server error' },
+            { error: err.message || 'Internal server error' },
             { status: 500 }
         );
     }

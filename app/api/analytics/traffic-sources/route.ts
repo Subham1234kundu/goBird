@@ -11,14 +11,15 @@ const analyticsDataClient = new BetaAnalyticsDataClient({
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const days = parseInt(searchParams.get('days') || '7');
+    const startDate = searchParams.get('startDate') || '7daysAgo';
+    const endDate = searchParams.get('endDate') || 'today';
 
     const [response] = await analyticsDataClient.runReport({
       property: `properties/${propertyId}`,
       dateRanges: [
         {
-          startDate: `${days}daysAgo`,
-          endDate: 'today',
+          startDate,
+          endDate,
         },
       ],
       dimensions: [

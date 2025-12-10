@@ -420,7 +420,7 @@ const Contact = () => {
       setTimeout(() => {
         setSuccess(false)
       }, 5000)
-    } catch (err: any) {
+    } catch {
       setError('An error occurred. Please try again.')
       setLoading(false)
     }
@@ -652,34 +652,34 @@ const Contact = () => {
       </div>
 
       {/* Strategic Partner Section */}
-          <div ref={strategicPartnerRef} className="flex flex-col sm:flex-row gap-4 sm:gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-6 sm:py-8 md:py-10 lg:py-12 mx-auto items-start sm:items-center justify-between">
-            <h2 className="text-[#000A1B] flex flex-col text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium leading-tight w-full lg:w-[80%]">
-              <span className="text-[#3B3B3D73]">More than a service</span>
-               <span className="text-[#0B0B0B]">A strategic design<br className="hidden sm:block" />partner.</span>
-            </h2>
-         
-          </div>
+      <div ref={strategicPartnerRef} className="flex flex-col sm:flex-row gap-4 sm:gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-6 sm:py-8 md:py-10 lg:py-12 mx-auto items-start sm:items-center justify-between">
+        <h2 className="text-[#000A1B] flex flex-col text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium leading-tight w-full lg:w-[80%]">
+          <span className="text-[#3B3B3D73]">More than a service</span>
+          <span className="text-[#0B0B0B]">A strategic design<br className="hidden sm:block" />partner.</span>
+        </h2>
 
-         {/* more than a service boxes */}
-         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-3 sm:gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-6 sm:pb-8 md:pb-10 lg:pb-12 mx-auto">
-            <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain" />
-            <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 ref={statCounter1Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">x</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Higher Client Retention</p>
-            </div>
-             <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 ref={statCounter2Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
-            </div>
-            <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 ref={statCounter3Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">%</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
-            </div>
-            <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
-              <h3 ref={statCounter4Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Continents Served</p>
-            </div>
-          </div>
+      </div>
+
+      {/* more than a service boxes */}
+      <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-3 sm:gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-6 sm:pb-8 md:pb-10 lg:pb-12 mx-auto">
+        <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain" />
+        <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
+          <h3 ref={statCounter1Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">x</span></h3>
+          <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Higher Client Retention</p>
+        </div>
+        <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
+          <h3 ref={statCounter2Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
+          <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
+        </div>
+        <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
+          <h3 ref={statCounter3Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">%</span></h3>
+          <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
+        </div>
+        <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-4 sm:p-6 md:p-8 lg:p-10 items-start min-h-[100px] sm:min-h-[120px]">
+          <h3 ref={statCounter4Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
+          <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Continents Served</p>
+        </div>
+      </div>
 
       {/* FAQ Section */}
       <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 px-4 sm:px-6 md:px-8 lg:px-[4%] py-10 sm:py-12 md:py-16 lg:py-20 my-6 sm:my-8 md:my-12 lg:my-16 " style={{

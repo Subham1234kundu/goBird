@@ -23,9 +23,10 @@ export async function createLead(data: CreateLeadData): Promise<{ data: Lead | n
         }
 
         return { data: lead, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error creating lead:', error);
-        return { data: null, error: error.message };
+        return { data: null, error: err.message };
     }
 }
 
@@ -47,9 +48,10 @@ export async function getAllLeads(page: number = 1, limit: number = 10): Promise
         }
 
         return { data: data || [], count: count || 0, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error fetching leads:', error);
-        return { data: [], count: 0, error: error.message };
+        return { data: [], count: 0, error: err.message };
     }
 }
 
@@ -68,9 +70,10 @@ export async function searchLeads(query: string): Promise<{ data: Lead[]; error:
         }
 
         return { data: data || [], error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error searching leads:', error);
-        return { data: [], error: error.message };
+        return { data: [], error: err.message };
     }
 }
 
@@ -89,9 +92,10 @@ export async function getLeadById(id: string): Promise<{ data: Lead | null; erro
         }
 
         return { data, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error fetching lead:', error);
-        return { data: null, error: error.message };
+        return { data: null, error: err.message };
     }
 }
 
@@ -114,9 +118,10 @@ export async function updateLead(id: string, data: UpdateLeadData): Promise<{ da
         }
 
         return { data: lead, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error updating lead:', error);
-        return { data: null, error: error.message };
+        return { data: null, error: err.message };
     }
 }
 
@@ -134,8 +139,9 @@ export async function deleteLead(id: string): Promise<{ success: boolean; error:
         }
 
         return { success: true, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error deleting lead:', error);
-        return { success: false, error: error.message };
+        return { success: false, error: err.message };
     }
 }

@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    const { data, error } = await supabaseAdmin.storage
+    const { error } = await supabaseAdmin.storage
       .from('press-release-images')
       .upload(filePath, buffer, {
         contentType: file.type,
@@ -44,10 +44,11 @@ export async function POST(request: NextRequest) {
       .getPublicUrl(filePath);
 
     return NextResponse.json({ url: publicUrl });
-  } catch (error: any) {
+  } catch (error) {
+    const err = error as Error;
     console.error('Error uploading image:', error);
     return NextResponse.json(
-      { error: error.message },
+      { error: err.message },
       { status: 500 }
     );
   }

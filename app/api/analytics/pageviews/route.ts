@@ -8,17 +8,27 @@ const analyticsDataClient = new BetaAnalyticsDataClient({
   keyFilename: path.join(process.cwd(), 'lib', 'google-analytics-credentials.json'),
 });
 
+// Helper function to format GA date (YYYYMMDD) to ISO format (YYYY-MM-DD)
+function formatGADate(gaDate: string): string {
+  if (!gaDate || gaDate.length !== 8) return gaDate;
+  const year = gaDate.substring(0, 4);
+  const month = gaDate.substring(4, 6);
+  const day = gaDate.substring(6, 8);
+  return `${year}-${month}-${day}`;
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const days = parseInt(searchParams.get('days') || '7');
+    const startDate = searchParams.get('startDate') || '7daysAgo';
+    const endDate = searchParams.get('endDate') || 'today';
 
     const [response] = await analyticsDataClient.runReport({
       property: `properties/${propertyId}`,
       dateRanges: [
         {
-          startDate: `${days}daysAgo`,
-          endDate: 'today',
+          startDate,
+          endDate,
         },
       ],
       dimensions: [
@@ -44,7 +54,7 @@ export async function GET(request: Request) {
     });
 
     const data = response.rows?.map((row) => ({
-      date: row.dimensionValues?.[0]?.value || '',
+      date: formatGADate(row.dimensionValues?.[0]?.value || ''),
       pageViews: parseInt(row.metricValues?.[0]?.value || '0'),
       sessions: parseInt(row.metricValues?.[1]?.value || '0'),
     })) || [];
@@ -56,7 +66,6 @@ export async function GET(request: Request) {
       data,
       totalPageViews,
       totalSessions,
-      period: `${days} days`,
     });
   } catch (error) {
     console.error('Error fetching pageviews:', error);

@@ -9,8 +9,8 @@ import {
     uploadCoverImage,
     deleteCoverImage
 } from "@/lib/services/pressReleaseService";
-import type { PressRelease } from "@/lib/types/pressRelease";
 import RichTextEditor from "@/components/Admin/RichTextEditor";
+import SuccessModal from "@/components/Admin/Modals/SuccessModal";
 
 export default function EditPressRelease() {
     const router = useRouter();
@@ -26,6 +26,7 @@ export default function EditPressRelease() {
     const [loading, setLoading] = useState(false);
     const [initialLoading, setInitialLoading] = useState(true);
     const [error, setError] = useState("");
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     // Load existing press release data
     useEffect(() => {
@@ -122,7 +123,7 @@ export default function EditPressRelease() {
             const description = content.substring(0, 150) + (content.length > 150 ? "..." : "");
 
             // Update press release
-            const { data, error: updateError } = await updatePressRelease(id, {
+            const { error: updateError } = await updatePressRelease(id, {
                 title,
                 category,
                 description,
@@ -136,10 +137,12 @@ export default function EditPressRelease() {
                 return;
             }
 
-            // Success - redirect to press release list
-            router.push('/Admin/press-release');
-        } catch (err: any) {
-            setError(`An error occurred: ${err.message}`);
+            // Success - show success modal
+            setLoading(false);
+            setShowSuccessModal(true);
+        } catch (err) {
+            const error = err as Error;
+            setError(`An error occurred: ${error.message}`);
             setLoading(false);
         }
     };
@@ -157,6 +160,15 @@ export default function EditPressRelease() {
 
     return (
         <div className="min-h-screen bg-white">
+            {/* Success Modal */}
+            <SuccessModal
+                isOpen={showSuccessModal}
+                onClose={() => {
+                    setShowSuccessModal(false);
+                    router.push('/Admin/press-release');
+                }}
+                message="Your press release has been updated successfully!"
+            />
             {/* Header */}
             <div className="border-b border-[#E4E4E4] px-8 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-4">
@@ -253,10 +265,11 @@ export default function EditPressRelease() {
                             <label htmlFor="cover-image-upload" className="cursor-pointer">
                                 {coverImagePreview ? (
                                     <div className="relative w-full h-32 overflow-hidden rounded">
-                                        <img
+                                        <Image
                                             src={coverImagePreview}
                                             alt="Cover preview"
-                                            className="w-full h-full object-cover"
+                                            fill
+                                            className="object-cover"
                                         />
                                     </div>
                                 ) : (

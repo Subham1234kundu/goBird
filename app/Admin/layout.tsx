@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import AdminNavbar from "@/components/Admin/AdminNavbar";
 import ProtectedRoute from "@/components/Admin/ProtectedRoute";
 import { useAuth } from "@/lib/hooks/useAuth";
+import { supabase } from "@/lib/supabase";
 
 export default function AdminLayout({
   children,
@@ -13,8 +15,37 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
+  const [userAvatar, setUserAvatar] = useState<string>("");
   const isAuthPage = pathname.includes("/login") || pathname.includes("/forgotpassword");
+
+  // Fetch user avatar from profiles table
+  useEffect(() => {
+    const fetchUserAvatar = async () => {
+      if (!user?.id) return;
+
+      console.log("🔍 Fetching avatar for user:", user.id);
+
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("avatar_url")
+        .eq("id", user.id)
+        .single();
+
+      console.log("📦 Database response:", { data, error });
+
+      if (data?.avatar_url) {
+        console.log("✅ Avatar URL found:", data.avatar_url);
+        setUserAvatar(data.avatar_url);
+      } else {
+        console.log("❌ No avatar URL in database");
+      }
+    };
+
+    if (user && !isAuthPage) {
+      fetchUserAvatar();
+    }
+  }, [user, isAuthPage]);
 
   const handleLogout = async () => {
     if (confirm("Are you sure you want to logout?")) {
@@ -53,7 +84,7 @@ export default function AdminLayout({
     <ProtectedRoute>
       <div className="flex min-h-screen w-full flex-col">
         {/* Navbar */}
-        <AdminNavbar userName="Admin User" />
+        <AdminNavbar userName="Admin User" userImage={userAvatar} />
 
         <div className="flex flex-1">
           {/* Sidebar */}

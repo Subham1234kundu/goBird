@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getAllPressReleases, deletePressRelease, deleteCoverImage } from "@/lib/services/pressReleaseService";
+import DeleteConfirmModal from "@/components/Admin/Modals/DeleteConfirmModal";
+import { getAllPressReleases, deletePressRelease, deleteCoverImage, searchPressReleases } from "@/lib/services/pressReleaseService";
 import type { PressRelease } from "@/lib/types/pressRelease";
 
 const getCategoryStyle = (category: string) => {
@@ -19,25 +20,120 @@ const getCategoryStyle = (category: string) => {
     }
 };
 
-export default function PressReleaseTable() {
+interface PressReleaseTableProps {
+    currentPage: number;
+    pressReleasesPerPage: number;
+    searchQuery?: string;
+    startDate?: Date | null;
+    endDate?: Date | null;
+    onTotalCountChange: (total: number) => void;
+}
+
+export default function PressReleaseTable({ currentPage, pressReleasesPerPage, searchQuery = "", startDate = null, endDate = null, onTotalCountChange }: PressReleaseTableProps) {
     const router = useRouter();
     const [pressReleases, setPressReleases] = useState<PressRelease[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [deleteTarget, setDeleteTarget] = useState<{ id: string; coverImageUrl: string | null } | null>(null);
 
     useEffect(() => {
         fetchPressReleases();
-    }, []);
+    }, [currentPage, searchQuery, startDate, endDate]);
 
     const fetchPressReleases = async () => {
         setLoading(true);
-        const { data, error: fetchError } = await getAllPressReleases(1, 100);
 
-        if (fetchError) {
-            setError(fetchError);
+        // If search query exists, use search function
+        if (searchQuery.trim()) {
+            const { data, error: fetchError } = await searchPressReleases(searchQuery);
+
+            if (fetchError) {
+                setError(fetchError);
+            } else {
+                // Filter by date range if provided
+                let filteredData = data;
+                if (startDate || endDate) {
+                    filteredData = data.filter(release => {
+                        const releaseDate = new Date(release.published_date);
+
+                        if (startDate && endDate) {
+                            const start = new Date(startDate);
+                            start.setHours(0, 0, 0, 0);
+                            const end = new Date(endDate);
+                            end.setHours(23, 59, 59, 999);
+                            return releaseDate >= start && releaseDate <= end;
+                        } else if (startDate) {
+                            const start = new Date(startDate);
+                            start.setHours(0, 0, 0, 0);
+                            return releaseDate >= start;
+                        } else if (endDate) {
+                            const end = new Date(endDate);
+                            end.setHours(23, 59, 59, 999);
+                            return releaseDate <= end;
+                        }
+                        return true;
+                    });
+                }
+
+                // Apply manual pagination to filtered results
+                const startIndex = (currentPage - 1) * pressReleasesPerPage;
+                const endIndex = startIndex + pressReleasesPerPage;
+                const paginatedData = filteredData.slice(startIndex, endIndex);
+
+                setPressReleases(paginatedData);
+                onTotalCountChange(filteredData.length);
+            }
         } else {
-            setPressReleases(data);
+            // Normal pagination when no search query
+            if (startDate || endDate) {
+                // Need to fetch all press releases to filter by date
+                const { data, error: fetchError } = await getAllPressReleases(1, 10000);
+                if (fetchError) {
+                    setError(fetchError);
+                } else {
+                    const filteredData = data.filter(release => {
+                        const releaseDate = new Date(release.published_date);
+
+                        if (startDate && endDate) {
+                            const start = new Date(startDate);
+                            start.setHours(0, 0, 0, 0);
+                            const end = new Date(endDate);
+                            end.setHours(23, 59, 59, 999);
+                            return releaseDate >= start && releaseDate <= end;
+                        } else if (startDate) {
+                            const start = new Date(startDate);
+                            start.setHours(0, 0, 0, 0);
+                            return releaseDate >= start;
+                        } else if (endDate) {
+                            const end = new Date(endDate);
+                            end.setHours(23, 59, 59, 999);
+                            return releaseDate <= end;
+                        }
+                        return true;
+                    });
+
+                    const startIndex = (currentPage - 1) * pressReleasesPerPage;
+                    const endIndex = startIndex + pressReleasesPerPage;
+                    const paginatedData = filteredData.slice(startIndex, endIndex);
+
+                    setPressReleases(paginatedData);
+                    onTotalCountChange(filteredData.length);
+                }
+            } else {
+                const { data, count, error: fetchError } = await getAllPressReleases(currentPage, pressReleasesPerPage);
+
+                if (fetchError) {
+                    setError(fetchError);
+                } else {
+                    setPressReleases(data);
+                    if (count !== undefined) {
+                        onTotalCountChange(count);
+                    }
+                }
+            }
         }
+
         setLoading(false);
     };
 
@@ -45,10 +141,15 @@ export default function PressReleaseTable() {
         router.push(`/Admin/press-release/edit/${id}`);
     };
 
-    const handleDelete = async (id: string, coverImageUrl: string | null) => {
-        if (!confirm("Are you sure you want to delete this press release?")) {
-            return;
-        }
+    const handleDeleteClick = (id: string, coverImageUrl: string | null) => {
+        setDeleteTarget({ id, coverImageUrl });
+        setShowDeleteConfirm(true);
+    };
+
+    const handleDelete = async () => {
+        if (!deleteTarget) return;
+
+        const { id, coverImageUrl } = deleteTarget;
 
         // Delete cover image if exists
         if (coverImageUrl) {
@@ -119,6 +220,16 @@ export default function PressReleaseTable() {
 
     return (
         <div className="rounded-lg border border-[#E4E4E4] bg-white">
+            <DeleteConfirmModal
+                isOpen={showDeleteConfirm}
+                onClose={() => {
+                    setShowDeleteConfirm(false);
+                    setDeleteTarget(null);
+                }}
+                onConfirm={handleDelete}
+                title="Delete Press Release"
+                message="Are you sure you want to delete this press release? This action cannot be undone."
+            />
             <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                     <thead className="bg-[#F9FAFB] text-[#6B6B6B]">
@@ -157,7 +268,7 @@ export default function PressReleaseTable() {
                                             />
                                         </button>
                                         <button
-                                            onClick={() => handleDelete(release.id, release.cover_image_url)}
+                                            onClick={() => handleDeleteClick(release.id, release.cover_image_url)}
                                             className="hover:opacity-80 transition-opacity"
                                         >
                                             <Image

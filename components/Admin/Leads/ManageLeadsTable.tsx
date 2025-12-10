@@ -3,20 +3,34 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import DeleteSuccessModal from "@/components/Admin/Modals/DeleteSuccessModal";
-import { getAllLeads, deleteLead } from "@/lib/services/leadService";
+import DeleteConfirmModal from "@/components/Admin/Modals/DeleteConfirmModal";
+import LeadStatusModal from "@/components/Admin/Modals/LeadStatusModal";
+import { getAllLeads, deleteLead, searchLeads } from "@/lib/services/leadService";
 import { supabase } from "@/lib/supabase";
-import type { Lead } from "@/lib/types/lead";
+import type { Lead, LeadStatus } from "@/lib/types/lead";
 
-export default function ManageLeadsTable() {
+interface ManageLeadsTableProps {
+    currentPage: number;
+    leadsPerPage: number;
+    searchQuery?: string;
+    startDate?: Date | null;
+    endDate?: Date | null;
+    onTotalCountChange: (total: number) => void;
+}
+
+export default function ManageLeadsTable({ currentPage, leadsPerPage, searchQuery = "", startDate = null, endDate = null, onTotalCountChange }: ManageLeadsTableProps) {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [showStatusModal, setShowStatusModal] = useState(false);
     const [leads, setLeads] = useState<Lead[]>([]);
     const [loading, setLoading] = useState(true);
     const [deleteLeadId, setDeleteLeadId] = useState<string | null>(null);
+    const [selectedLead, setSelectedLead] = useState<{ id: string; status: LeadStatus } | null>(null);
 
-    // Fetch leads on component mount
+    // Fetch leads on component mount and when page changes
     useEffect(() => {
         fetchLeads();
-    }, []);
+    }, [currentPage, searchQuery, startDate, endDate]);
 
     // Set up real-time subscription
     useEffect(() => {
@@ -50,10 +64,90 @@ export default function ManageLeadsTable() {
 
     const fetchLeads = async () => {
         setLoading(true);
-        const { data, error } = await getAllLeads(1, 100);
-        if (!error && data) {
-            setLeads(data);
+
+        // If search query exists, use search function
+        if (searchQuery.trim()) {
+            const { data, error } = await searchLeads(searchQuery);
+
+            if (!error && data) {
+                // Filter by date range if provided
+                let filteredData = data;
+                if (startDate || endDate) {
+                    filteredData = data.filter(lead => {
+                        const leadDate = new Date(lead.created_at);
+
+                        if (startDate && endDate) {
+                            const start = new Date(startDate);
+                            start.setHours(0, 0, 0, 0);
+                            const end = new Date(endDate);
+                            end.setHours(23, 59, 59, 999);
+                            return leadDate >= start && leadDate <= end;
+                        } else if (startDate) {
+                            const start = new Date(startDate);
+                            start.setHours(0, 0, 0, 0);
+                            return leadDate >= start;
+                        } else if (endDate) {
+                            const end = new Date(endDate);
+                            end.setHours(23, 59, 59, 999);
+                            return leadDate <= end;
+                        }
+                        return true;
+                    });
+                }
+
+                // Apply manual pagination to filtered results
+                const startIndex = (currentPage - 1) * leadsPerPage;
+                const endIndex = startIndex + leadsPerPage;
+                const paginatedData = filteredData.slice(startIndex, endIndex);
+
+                setLeads(paginatedData);
+                onTotalCountChange(filteredData.length);
+            }
+        } else {
+            // Normal pagination when no search query
+            if (startDate || endDate) {
+                // Need to fetch all leads to filter by date
+                const { data, error } = await getAllLeads(1, 10000);
+                if (!error && data) {
+                    const filteredData = data.filter(lead => {
+                        const leadDate = new Date(lead.created_at);
+
+                        if (startDate && endDate) {
+                            const start = new Date(startDate);
+                            start.setHours(0, 0, 0, 0);
+                            const end = new Date(endDate);
+                            end.setHours(23, 59, 59, 999);
+                            return leadDate >= start && leadDate <= end;
+                        } else if (startDate) {
+                            const start = new Date(startDate);
+                            start.setHours(0, 0, 0, 0);
+                            return leadDate >= start;
+                        } else if (endDate) {
+                            const end = new Date(endDate);
+                            end.setHours(23, 59, 59, 999);
+                            return leadDate <= end;
+                        }
+                        return true;
+                    });
+
+                    const startIndex = (currentPage - 1) * leadsPerPage;
+                    const endIndex = startIndex + leadsPerPage;
+                    const paginatedData = filteredData.slice(startIndex, endIndex);
+
+                    setLeads(paginatedData);
+                    onTotalCountChange(filteredData.length);
+                }
+            } else {
+                const { data, count, error } = await getAllLeads(currentPage, leadsPerPage);
+                if (!error && data) {
+                    setLeads(data);
+                    if (count !== undefined) {
+                        onTotalCountChange(count);
+                    }
+                }
+            }
         }
+
         setLoading(false);
     };
 
@@ -75,6 +169,27 @@ export default function ManageLeadsTable() {
         return `${day}.${month}.${year}`;
     };
 
+    const handleOpenStatusModal = (leadId: string, currentStatus: LeadStatus) => {
+        setSelectedLead({ id: leadId, status: currentStatus });
+        setShowStatusModal(true);
+    };
+
+    const getStatusColors = (status: LeadStatus) => {
+        const colorMap: Record<LeadStatus, { bg: string; text: string }> = {
+            "New": { bg: "#E5EEFF", text: "#4169E1" },
+            "Contacted": { bg: "#D4F4DD", text: "#16A34A" },
+            "In Discussion": { bg: "#E5EEFF", text: "#4169E1" },
+            "Negotiation": { bg: "#FFE8D6", text: "#EA580C" },
+            "Proposal Sent": { bg: "#FFE8D6", text: "#EA580C" },
+            "Won / Converted": { bg: "#D4F4DD", text: "#16A34A" },
+            "Lost": { bg: "#FFD6D6", text: "#DC2626" },
+            "Follow-Up Scheduled": { bg: "#E5EEFF", text: "#4169E1" },
+            "Not Qualified": { bg: "#F3F4F6", text: "#6B7280" },
+            "Reopened": { bg: "#E5EEFF", text: "#4169E1" },
+        };
+        return colorMap[status];
+    };
+
     if (loading) {
         return (
             <div className="rounded-lg border border-[#E4E4E4] bg-white p-8 text-center">
@@ -87,6 +202,24 @@ export default function ManageLeadsTable() {
     return (
         <div className="rounded-lg border border-[#E4E4E4] bg-white">
             <DeleteSuccessModal isOpen={showDeleteModal} onClose={() => setShowDeleteModal(false)} />
+            <DeleteConfirmModal
+                isOpen={showDeleteConfirm}
+                onClose={() => {
+                    setShowDeleteConfirm(false);
+                    setDeleteLeadId(null);
+                }}
+                onConfirm={handleDelete}
+                title="Delete Lead"
+                message="Are you sure you want to delete this lead? This action cannot be undone."
+            />
+            {selectedLead && (
+                <LeadStatusModal
+                    isOpen={showStatusModal}
+                    onClose={() => setShowStatusModal(false)}
+                    leadId={selectedLead.id}
+                    currentStatus={selectedLead.status}
+                />
+            )}
             <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
                     <thead className="bg-[#F9FAFB] text-[#6B6B6B]">
@@ -148,25 +281,22 @@ export default function ManageLeadsTable() {
                                     </td>
                                     <td className="px-6 py-4">
                                         <span
-                                            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${lead.status === "New"
-                                                ? "bg-blue-100 text-blue-800"
-                                                : lead.status === "Contacted"
-                                                    ? "bg-yellow-100 text-yellow-800"
-                                                    : lead.status === "Qualified"
-                                                        ? "bg-green-100 text-green-800"
-                                                        : "bg-gray-100 text-gray-800"
-                                                }`}
+                                            className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
+                                            style={{
+                                                backgroundColor: getStatusColors(lead.status).bg,
+                                                color: getStatusColors(lead.status).text,
+                                            }}
                                         >
                                             {lead.status}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 text-[#3D3D3D]">{lead.remark || '-'}</td>
-                                    <td className="pl-9 py-4">
-                                        <div className="flex items-center gap-3">
+                                    <td className="px-2 pl-6 py-4">
+                                        <div className="flex items-center justify-between">
                                             <button
                                                 onClick={() => {
                                                     setDeleteLeadId(lead.id);
-                                                    handleDelete();
+                                                    setShowDeleteConfirm(true);
                                                 }}
                                                 className="hover:opacity-80 transition-opacity"
                                             >
@@ -177,7 +307,10 @@ export default function ManageLeadsTable() {
                                                     height={24}
                                                 />
                                             </button>
-                                            <button className="hover:opacity-80 transition-opacity">
+                                            <button
+                                                onClick={() => handleOpenStatusModal(lead.id, lead.status)}
+                                                className="hover:opacity-80 transition-opacity"
+                                            >
                                                 <Image
                                                     src="/Images/Admin/dashboardImage/threeDot.png"
                                                     alt="Options"

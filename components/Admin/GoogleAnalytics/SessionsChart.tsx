@@ -44,14 +44,65 @@ const CustomXAxisTick = ({ x = 0, y = 0, payload }: TickProps) => {
     );
 };
 
-export default function SessionsChart() {
+interface SessionsChartProps {
+    dateFilter: string;
+    customStartDate?: Date | null;
+    customEndDate?: Date | null;
+}
+
+export default function SessionsChart({ dateFilter, customStartDate, customEndDate }: SessionsChartProps) {
     const [pageViewsData, setPageViewsData] = useState<PageViewsResponse | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const getDateRangeFromFilter = () => {
+            const now = new Date();
+            let startDate: Date;
+            let endDate = new Date(); // Today
+
+            switch (dateFilter) {
+                case "yesterday":
+                    startDate = new Date(now);
+                    startDate.setDate(now.getDate() - 1);
+                    endDate = new Date(now);
+                    endDate.setDate(now.getDate() - 1);
+                    break;
+                case "last7days":
+                    startDate = new Date(now);
+                    startDate.setDate(now.getDate() - 7);
+                    break;
+                case "last15days":
+                    startDate = new Date(now);
+                    startDate.setDate(now.getDate() - 15);
+                    break;
+                case "last30days":
+                    startDate = new Date(now);
+                    startDate.setDate(now.getDate() - 30);
+                    break;
+                case "custom":
+                    if (customStartDate && customEndDate) {
+                        startDate = customStartDate;
+                        endDate = customEndDate;
+                    } else {
+                        startDate = new Date(now);
+                        startDate.setDate(now.getDate() - 7);
+                    }
+                    break;
+                default:
+                    startDate = new Date(now);
+                    startDate.setDate(now.getDate() - 7);
+            }
+
+            return { startDate, endDate };
+        };
+
         const fetchPageViews = async () => {
             try {
-                const response = await fetch('/api/analytics/pageviews?days=7');
+                const { startDate, endDate } = getDateRangeFromFilter();
+                const startDateStr = startDate.toISOString().split('T')[0];
+                const endDateStr = endDate.toISOString().split('T')[0];
+
+                const response = await fetch(`/api/analytics/pageviews?startDate=${startDateStr}&endDate=${endDateStr}`);
                 const data = await response.json();
                 setPageViewsData(data);
             } catch (error) {
@@ -66,7 +117,7 @@ export default function SessionsChart() {
         // Refresh every 5 minutes
         const interval = setInterval(fetchPageViews, 5 * 60 * 1000);
         return () => clearInterval(interval);
-    }, []);
+    }, [dateFilter, customStartDate, customEndDate]);
 
     if (loading) {
         return (

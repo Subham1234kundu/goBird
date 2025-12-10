@@ -44,8 +44,9 @@ export function useAuth() {
             if (error) throw error;
 
             return { data, error: null };
-        } catch (error: any) {
-            return { data: null, error: error.message };
+        } catch (error) {
+            const err = error as Error;
+            return { data: null, error: err.message };
         }
     };
 

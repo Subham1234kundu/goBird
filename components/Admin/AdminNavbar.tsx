@@ -15,6 +15,8 @@ export default function AdminNavbar({ userImage }: AdminNavbarProps) {
     const { user, logout } = useAuth();
     const [showLogoutMenu, setShowLogoutMenu] = useState(false);
 
+    console.log("🖼️ AdminNavbar received userImage:", userImage);
+
     // Get user initials from email or name
     const getInitials = (email: string) => {
         const name = email.split('@')[0];

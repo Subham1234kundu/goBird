@@ -4,6 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF, useAnimations, Cloud } from '@react-three/drei'
 import { useRef, useEffect, useState, useMemo } from 'react'
 import { Group } from 'three'
+import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
 
 // Hook to get responsive screen size
@@ -35,9 +36,9 @@ const PaperBirdModel = () => {
 
   // Clean up invalid texture references on load
   useEffect(() => {
-    scene.traverse((child: any) => {
-      if (child.isMesh && child.material) {
-        const material = child.material
+    scene.traverse((child) => {
+      if ('isMesh' in child && child.isMesh && 'material' in child) {
+        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
         // Remove invalid texture references that cause blob URL errors
         if (material.map && material.map.image instanceof Blob) {
           material.map = null
@@ -213,9 +214,9 @@ const PaperBirdLeftModel = () => {
 
   // Clean up invalid texture references on load
   useEffect(() => {
-    clonedScene.traverse((child: any) => {
-      if (child.isMesh && child.material) {
-        const material = child.material
+    clonedScene.traverse((child) => {
+      if ('isMesh' in child && child.isMesh && 'material' in child) {
+        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
         // Remove invalid texture references that cause blob URL errors
         if (material.map && material.map.image instanceof Blob) {
           material.map = null
@@ -385,9 +386,9 @@ const PaperBirdBottomModel = () => {
 
   // Clean up invalid texture references on load
   useEffect(() => {
-    clonedScene.traverse((child: any) => {
-      if (child.isMesh && child.material) {
-        const material = child.material
+    clonedScene.traverse((child) => {
+      if ('isMesh' in child && child.isMesh && 'material' in child) {
+        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
         // Remove invalid texture references that cause blob URL errors
         if (material.map && material.map.image instanceof Blob) {
           material.map = null
@@ -556,9 +557,9 @@ const PaperBirdRightModel = () => {
 
   // Clean up invalid texture references on load
   useEffect(() => {
-    clonedScene.traverse((child: any) => {
-      if (child.isMesh && child.material) {
-        const material = child.material
+    clonedScene.traverse((child) => {
+      if ('isMesh' in child && child.isMesh && 'material' in child) {
+        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
         // Remove invalid texture references that cause blob URL errors
         if (material.map && material.map.image instanceof Blob) {
           material.map = null
@@ -726,9 +727,9 @@ const PaperBirdBottomLeftModel = () => {
 
   // Clean up invalid texture references on load
   useEffect(() => {
-    clonedScene.traverse((child: any) => {
-      if (child.isMesh && child.material) {
-        const material = child.material
+    clonedScene.traverse((child) => {
+      if ('isMesh' in child && child.isMesh && 'material' in child) {
+        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
         // Remove invalid texture references that cause blob URL errors
         if (material.map && material.map.image instanceof Blob) {
           material.map = null

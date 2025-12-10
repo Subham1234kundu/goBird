@@ -20,9 +20,10 @@ export async function uploadCoverImage(file: File): Promise<{ url: string | null
         }
 
         return { url: data.url, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error uploading image:', error);
-        return { url: null, error: error.message };
+        return { url: null, error: err.message };
     }
 }
 
@@ -41,9 +42,10 @@ export async function deleteCoverImage(imageUrl: string): Promise<{ success: boo
         }
 
         return { success: true, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error deleting image:', error);
-        return { success: false, error: error.message };
+        return { success: false, error: err.message };
     }
 }
 
@@ -68,9 +70,10 @@ export async function createPressRelease(data: CreatePressReleaseData): Promise<
         }
 
         return { data: pressRelease, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error creating press release:', error);
-        return { data: null, error: error.message };
+        return { data: null, error: err.message };
     }
 }
 
@@ -92,9 +95,10 @@ export async function getAllPressReleases(page: number = 1, limit: number = 10):
         }
 
         return { data: data || [], count: count || 0, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error fetching press releases:', error);
-        return { data: [], count: 0, error: error.message };
+        return { data: [], count: 0, error: err.message };
     }
 }
 
@@ -113,9 +117,10 @@ export async function searchPressReleases(query: string): Promise<{ data: PressR
         }
 
         return { data: data || [], error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error searching press releases:', error);
-        return { data: [], error: error.message };
+        return { data: [], error: err.message };
     }
 }
 
@@ -134,9 +139,10 @@ export async function getPressReleaseById(id: string): Promise<{ data: PressRele
         }
 
         return { data, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error fetching press release:', error);
-        return { data: null, error: error.message };
+        return { data: null, error: err.message };
     }
 }
 
@@ -159,9 +165,10 @@ export async function updatePressRelease(id: string, data: UpdatePressReleaseDat
         }
 
         return { data: pressRelease, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error updating press release:', error);
-        return { data: null, error: error.message };
+        return { data: null, error: err.message };
     }
 }
 
@@ -179,8 +186,9 @@ export async function deletePressRelease(id: string): Promise<{ success: boolean
         }
 
         return { success: true, error: null };
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         console.error('Error deleting press release:', error);
-        return { success: false, error: error.message };
+        return { success: false, error: err.message };
     }
 }
