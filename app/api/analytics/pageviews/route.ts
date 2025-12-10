@@ -1,12 +1,32 @@
 import { BetaAnalyticsDataClient } from '@google-analytics/data';
 import { NextResponse } from 'next/server';
-import path from 'path';
 
 const propertyId = process.env.GA_PROPERTY_ID || '442920183';
 
-const analyticsDataClient = new BetaAnalyticsDataClient({
-  keyFilename: path.join(process.cwd(), 'lib', 'google-analytics-credentials.json'),
-});
+// Initialize Google Analytics client with environment variables
+const getAnalyticsClient = () => {
+  // Check if we're using a credentials file (local development)
+  if (process.env.GA_CREDENTIALS_FILE) {
+    return new BetaAnalyticsDataClient({
+      keyFilename: process.env.GA_CREDENTIALS_FILE,
+    });
+  }
+
+  // Use environment variables (production)
+  if (process.env.GA_CLIENT_EMAIL && process.env.GA_PRIVATE_KEY) {
+    return new BetaAnalyticsDataClient({
+      credentials: {
+        client_email: process.env.GA_CLIENT_EMAIL,
+        private_key: process.env.GA_PRIVATE_KEY.replace(/\\n/g, '\n'),
+      },
+    });
+  }
+
+  // No credentials configured
+  return null;
+};
+
+const analyticsDataClient = getAnalyticsClient();
 
 // Helper function to format GA date (YYYYMMDD) to ISO format (YYYY-MM-DD)
 function formatGADate(gaDate: string): string {
@@ -19,6 +39,20 @@ function formatGADate(gaDate: string): string {
 
 export async function GET(request: Request) {
   try {
+    // Check if analytics client is configured
+    if (!analyticsDataClient) {
+      console.error('Google Analytics credentials not configured');
+      return NextResponse.json(
+        {
+          error: 'Analytics not configured',
+          data: [],
+          totalPageViews: 0,
+          totalSessions: 0
+        },
+        { status: 200 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const startDate = searchParams.get('startDate') || '7daysAgo';
     const endDate = searchParams.get('endDate') || 'today';

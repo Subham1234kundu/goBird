@@ -1,13 +1,33 @@
 import { BetaAnalyticsDataClient } from '@google-analytics/data';
 import { NextResponse } from 'next/server';
-import path from 'path';
 import { createClient } from '@supabase/supabase-js';
 
 const propertyId = process.env.GA_PROPERTY_ID || '442920183';
 
-const analyticsDataClient = new BetaAnalyticsDataClient({
-  keyFilename: path.join(process.cwd(), 'lib', 'google-analytics-credentials.json'),
-});
+// Initialize Google Analytics client with environment variables
+const getAnalyticsClient = () => {
+  // Check if we're using a credentials file (local development)
+  if (process.env.GA_CREDENTIALS_FILE) {
+    return new BetaAnalyticsDataClient({
+      keyFilename: process.env.GA_CREDENTIALS_FILE,
+    });
+  }
+
+  // Use environment variables (production)
+  if (process.env.GA_CLIENT_EMAIL && process.env.GA_PRIVATE_KEY) {
+    return new BetaAnalyticsDataClient({
+      credentials: {
+        client_email: process.env.GA_CLIENT_EMAIL,
+        private_key: process.env.GA_PRIVATE_KEY.replace(/\\n/g, '\n'),
+      },
+    });
+  }
+
+  // No credentials configured
+  return null;
+};
+
+const analyticsDataClient = getAnalyticsClient();
 
 // Initialize Supabase client function
 function getSupabaseClient() {
@@ -20,48 +40,61 @@ export async function GET() {
   try {
     const supabase = getSupabaseClient();
 
-    // Fetch page views from Google Analytics
-    const [pageViewsResponse] = await analyticsDataClient.runReport({
-      property: `properties/${propertyId}`,
-      dateRanges: [
-        {
-          startDate: '7daysAgo',
-          endDate: 'today',
-        },
-        {
-          startDate: '14daysAgo',
-          endDate: '7daysAgo',
-        },
-      ],
-      dimensions: [
-        {
-          name: 'date',
-        },
-      ],
-      metrics: [
-        {
-          name: 'screenPageViews',
-        },
-      ],
-    });
+    // Initialize default values
+    let currentTotalViews = 0;
+    let previousTotalViews = 0;
+    let currentPeriodViews: number[] = [];
 
-    // Process page views data
-    const currentPeriodViews: number[] = [];
-    const previousPeriodViews: number[] = [];
+    // Fetch page views from Google Analytics if configured
+    if (analyticsDataClient) {
+      try {
+        const [pageViewsResponse] = await analyticsDataClient.runReport({
+          property: `properties/${propertyId}`,
+          dateRanges: [
+            {
+              startDate: '7daysAgo',
+              endDate: 'today',
+            },
+            {
+              startDate: '14daysAgo',
+              endDate: '7daysAgo',
+            },
+          ],
+          dimensions: [
+            {
+              name: 'date',
+            },
+          ],
+          metrics: [
+            {
+              name: 'screenPageViews',
+            },
+          ],
+        });
 
-    pageViewsResponse.rows?.forEach((row) => {
-      const dateRange = row.dimensionValues?.[0]?.value || '';
-      const views = parseInt(row.metricValues?.[0]?.value || '0');
+        // Process page views data
+        const previousPeriodViews: number[] = [];
 
-      if (dateRange >= '7daysAgo') {
-        currentPeriodViews.push(views);
-      } else {
-        previousPeriodViews.push(views);
+        pageViewsResponse.rows?.forEach((row) => {
+          const dateRange = row.dimensionValues?.[0]?.value || '';
+          const views = parseInt(row.metricValues?.[0]?.value || '0');
+
+          if (dateRange >= '7daysAgo') {
+            currentPeriodViews.push(views);
+          } else {
+            previousPeriodViews.push(views);
+          }
+        });
+
+        currentTotalViews = currentPeriodViews.reduce((a, b) => a + b, 0);
+        previousTotalViews = previousPeriodViews.reduce((a, b) => a + b, 0);
+      } catch (gaError) {
+        console.error('Error fetching Google Analytics data:', gaError);
       }
-    });
+    } else {
+      console.error('Google Analytics credentials not configured');
+    }
 
-    const currentTotalViews = currentPeriodViews.reduce((a, b) => a + b, 0);
-    const previousTotalViews = previousPeriodViews.reduce((a, b) => a + b, 0);
     const viewsChange = previousTotalViews > 0
       ? (((currentTotalViews - previousTotalViews) / previousTotalViews) * 100).toFixed(1)
       : '0';
@@ -165,8 +198,27 @@ export async function GET() {
   } catch (error) {
     console.error('Error fetching dashboard stats:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch dashboard stats' },
-      { status: 500 }
+      {
+        leads: {
+          current: 0,
+          change: '0',
+          trend: 'up',
+          data: [0, 0, 0, 0, 0, 0, 0],
+        },
+        pressReleases: {
+          current: 0,
+          change: '0',
+          trend: 'up',
+          data: [0, 0, 0, 0, 0, 0, 0],
+        },
+        pageViews: {
+          current: 0,
+          change: '0',
+          trend: 'up',
+          data: [0, 0, 0, 0, 0, 0, 0],
+        },
+      },
+      { status: 200 }
     );
   }
 }

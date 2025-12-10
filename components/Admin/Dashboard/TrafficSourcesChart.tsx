@@ -43,9 +43,18 @@ export default function TrafficSourcesChart() {
       try {
         const response = await fetch('/api/analytics/traffic-sources?days=7');
         const data = await response.json();
-        setTrafficData(data.data || []);
+
+        // Check if the response has the expected data structure
+        if (data && data.data && Array.isArray(data.data)) {
+          setTrafficData(data.data);
+        } else {
+          // Set empty data if API returns an error or unexpected structure
+          console.error('Invalid traffic sources data:', data);
+          setTrafficData([]);
+        }
       } catch (error) {
         console.error('Error fetching traffic sources:', error);
+        setTrafficData([]);
       } finally {
         setLoading(false);
       }

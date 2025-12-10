@@ -83,9 +83,26 @@ export default function PageViewsChart({ dateFilter, customStartDate, customEndD
 
                 const response = await fetch(`/api/analytics/pageviews?startDate=${startDateStr}&endDate=${endDateStr}`);
                 const data = await response.json();
-                setPageViewsData(data);
+
+                // Check if the response has the expected data structure
+                if (data && data.data && Array.isArray(data.data)) {
+                    setPageViewsData(data);
+                } else {
+                    // Set empty data if API returns an error or unexpected structure
+                    console.error('Invalid page views data:', data);
+                    setPageViewsData({
+                        data: [],
+                        totalPageViews: 0,
+                        totalSessions: 0
+                    });
+                }
             } catch (error) {
                 console.error('Error fetching page views:', error);
+                setPageViewsData({
+                    data: [],
+                    totalPageViews: 0,
+                    totalSessions: 0
+                });
             } finally {
                 setLoading(false);
             }

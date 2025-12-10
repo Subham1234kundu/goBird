@@ -933,7 +933,7 @@ const Home = () => {
             <div ref={developIdeaRef} className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[559px] mb-8 md:mb-12 relative">
               <Image src="/Images/visonbackgroundblack.png" alt="Vision Background" width={1920} height={1080} className="w-full rounded-xl h-full object-cover" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <Image src="/Images/minibird.png" alt="Bird" width={150} height={150} className="object-contain" />
+                <Image src="/Images/miniBird.png" alt="Bird" width={150} height={150} className="object-contain" />
               </div>
               <div className="bg-white w-[200px] sm:w-[250px] md:w-[300px] lg:w-[335px] h-[150px] sm:h-[180px] md:h-[200px] lg:h-[230px] absolute bottom-0 right-0 flex items-end justify-end">
                 <div
