@@ -13,6 +13,7 @@ import {
     PieChart,
     Pie,
     Cell,
+    Legend,
 } from "recharts";
 
 interface PressReleaseAnalytics {
@@ -208,16 +209,18 @@ export default function PressReleaseAnalyticsPage({ params }: { params: Promise<
                                         cx="50%"
                                         cy="50%"
                                         labelLine={false}
-                                        label={(entry) => `${entry.device}: ${entry.percentage}%`}
+                                        label
                                         outerRadius={80}
                                         fill="#8884d8"
                                         dataKey="users"
+                                        nameKey="device"
                                     >
                                         {analytics.analytics.devices.map((entry, index) => (
                                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                         ))}
                                     </Pie>
                                     <Tooltip />
+                                    <Legend />
                                 </PieChart>
                             </ResponsiveContainer>
                         ) : (
