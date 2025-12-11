@@ -116,12 +116,14 @@ export default function PageViewsChart({ dateFilter, customStartDate, customEndD
     }, [dateFilter, customStartDate, customEndDate]);
 
     if (loading) {
+        // Fixed heights to prevent hydration mismatch
+        const skeletonHeights = [45, 70, 55, 80, 60, 75, 50];
         return (
             <div className="rounded-lg border border-[#E4E4E4] bg-white p-5 h-[400px] animate-pulse">
                 <div className="h-6 bg-gray-200 rounded w-24 mb-6"></div>
                 <div className="h-[300px] flex items-end gap-2">
-                    {[1, 2, 3, 4, 5, 6, 7].map((i) => (
-                        <div key={i} className="flex-1 bg-gray-200 rounded" style={{ height: `${Math.random() * 100}%` }}></div>
+                    {skeletonHeights.map((height, i) => (
+                        <div key={i} className="flex-1 bg-gray-200 rounded" style={{ height: `${height}%` }}></div>
                     ))}
                 </div>
             </div>

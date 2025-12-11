@@ -4,16 +4,15 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF, useAnimations, Cloud } from '@react-three/drei'
 import { useRef, useEffect, useState, useMemo } from 'react'
 import { Group } from 'three'
-import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
+
 
 // Hook to get responsive screen size
 const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
-  const [mounted, setMounted] = useState(false)
+  // Initialize with default values to prevent hydration mismatch
+  const [windowSize, setWindowSize] = useState({ width: 1920, height: 1080 })
 
   useEffect(() => {
-    setMounted(true)
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight })
     }
@@ -23,41 +22,22 @@ const useWindowSize = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  return mounted ? windowSize : { width: 1920, height: 1080 }
+  return windowSize
 }
 
 const PaperBirdModel = () => {
   const groupRef = useRef<Group>(null)
-  const [scrollY, setScrollY] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
   const [textFadeProgress, setTextFadeProgress] = useState(0)
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
-  const { scene, animations } = useGLTF('/Animations/paperBird.glb')
-  const { actions, mixer } = useAnimations(animations, groupRef)
-  const { width } = useWindowSize()
+  const gltf = useGLTF('/Animations/paperBird.glb')
 
-  // Clean up invalid texture references on load
-  useEffect(() => {
-    scene.traverse((child) => {
-      if ('isMesh' in child && child.isMesh && 'material' in child) {
-        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
-        // Remove invalid texture references that cause blob URL errors
-        if (material.map) {
-          const image = material.map.image
-          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
-            material.map = null
-          }
-        }
-        if (material.normalMap) {
-          const image = material.normalMap.image
-          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
-            material.normalMap = null
-          }
-        }
-        material.needsUpdate = true
-      }
-    })
-  }, [scene])
+  // Clone the scene for this instance
+  const cleanedScene = useMemo(() => {
+    const cloned = SkeletonUtils.clone(gltf.scene)
+    return cloned
+  }, [gltf.scene])
+
+  const { actions, mixer } = useAnimations(gltf.animations, groupRef)
+  const { width } = useWindowSize()
 
   useEffect(() => {
     // Play all animations from the GLB file
@@ -71,49 +51,14 @@ const PaperBirdModel = () => {
   }, [actions])
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
-      setIsScrolling(true)
-
-      // Clear previous timeout
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      // Set timeout to detect when scrolling stops
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
-    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
-      setScrollY(e.detail)
-      setIsScrolling(true)
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
     const handleTextFade = (e: CustomEvent<{ progress: number }>) => {
       setTextFadeProgress(e.detail.progress)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
     window.addEventListener('heroTextFade', handleTextFade as EventListener)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
       window.removeEventListener('heroTextFade', handleTextFade as EventListener)
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
     }
   }, [])
 
@@ -121,127 +66,113 @@ const PaperBirdModel = () => {
     if (groupRef.current && mixer) {
       const time = clock.getElapsedTime()
 
-      // Only start bird flight after text is completely faded (progress > 0.95)
-      const canFly = textFadeProgress > 0.95
+      // Bird appears when user scrolls a bit (progress > 0.05)
+      // Then starts flying when scrolling more (progress > 0.2)
+      const canAppear = textFadeProgress > 0.05
+      const canFly = textFadeProgress > 0.2
 
-      // Bird 1 (Center-Lead) - No delay, leads the formation
-      const birdDelay = 0
-      const rawProgress = canFly ? Math.max(0, (scrollY - birdDelay) / 3000) : 0
-      const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
+      // Lead bird - appears first, starts flying when text shrinks
+      const appearProgress = Math.min(textFadeProgress / 0.15, 1) // 0 to 1 during first 0.15 progress
+      const flyProgress = canFly ? Math.min((textFadeProgress - 0.2) / 0.8, 1) : 0 // 0 to 1 for flight
 
-      // V-Formation: Bird 1 (Center-Lead, front of formation)
+      // V-Formation: Bird 1 (Center-Lead) - Flies to top-right corner (stays closer)
       let startX = 0, startY = -1.5, startZ = 2.5
-      let endX = 6, endY = 8, endZ = -12
-      let baseScale = 1.35, scaleReduction = 0.85
+      let endX = 5, endY = 3.5, endZ = -5 // Top-right corner position (closer to viewer)
+      let baseScale = 1.35, scaleReduction = 0.5 // Less shrinking
 
       if (width < 640) { // Mobile
         startX = 0
         startY = 0
         startZ = 1.8
-        endX = 3
-        endY = 5
-        endZ = -8
+        endX = 3.5
+        endY = 2.5
+        endZ = -3
         baseScale = 0.95
-        scaleReduction = 0.65
+        scaleReduction = 0.4
       } else if (width < 1024) { // Tablet
         startX = 0
         startY = -0.5
         startZ = 2.0
-        endX = 4.5
-        endY = 6.5
-        endZ = -9
+        endX = 4
+        endY = 3
+        endZ = -4
         baseScale = 1.1
-        scaleReduction = 0.72
+        scaleReduction = 0.45
       } else if (width < 1440) { // Laptop
         startX = 0
         startY = -1.0
         startZ = 2.2
-        endX = 5.5
-        endY = 7.5
-        endZ = -10
+        endX = 4.5
+        endY = 3.2
+        endZ = -4.5
         baseScale = 1.25
-        scaleReduction = 0.78
+        scaleReduction = 0.48
       } else if (width < 1920) { // Desktop (1440-1920)
         startX = 0
         startY = -1.5
         startZ = 2.5
-        endX = 6
-        endY = 8
-        endZ = -12
+        endX = 5
+        endY = 3.5
+        endZ = -5
         baseScale = 1.35
-        scaleReduction = 0.85
+        scaleReduction = 0.5
       }
 
-      // Interpolate position from start to end
-      groupRef.current.position.x = startX + ((endX - startX) * scrollProgress)
-      groupRef.current.position.y = startY + ((endY - startY) * scrollProgress)
-      groupRef.current.position.z = startZ + ((endZ - startZ) * scrollProgress)
+      // Smooth appearance (fade in and scale up)
+      const appearScale = canAppear ? appearProgress : 0
 
-      // Subtle floating animation when not scrolling
-      if (!isScrolling) {
-        groupRef.current.position.y += Math.sin(time * 0.5) * 0.08
+      // Position interpolation - fly to top-right
+      groupRef.current.position.x = startX + ((endX - startX) * flyProgress)
+      groupRef.current.position.y = startY + ((endY - startY) * flyProgress)
+      groupRef.current.position.z = startZ + ((endZ - startZ) * flyProgress)
+
+      // Subtle floating animation when not flying
+      if (!canFly && canAppear) {
+        groupRef.current.position.y += Math.sin(time * 0.8) * 0.12
       }
 
-      // Smaller size - scale down more as bird flies away
-      const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.18)
-      groupRef.current.scale.set(scale, scale, scale)
+      // Scale: Appear first, then shrink as it flies away
+      const flyScale = Math.max(baseScale - (flyProgress * scaleReduction), 0.25)
+      const finalScale = appearScale * flyScale
+      groupRef.current.scale.set(finalScale, finalScale, finalScale)
 
-      // Cornering rotation - beak pointing toward top-right
-      groupRef.current.rotation.y = Math.PI * 0.65 // 135° - angled toward right
-      groupRef.current.rotation.x = -0.34 // Pitched up for upward flight
-      groupRef.current.rotation.z = 0.2 // Slight roll for natural banking
+      // Rotation - smooth transition to flying toward top-right
+      const targetRotationY = Math.PI * 0.55 + (flyProgress * 0.15)
+      const targetRotationX = -0.2 - (flyProgress * 0.25)
+      const targetRotationZ = 0.1 + (flyProgress * 0.15)
 
-      // Control animation: always keep playing (same as left bird)
-      if (isScrolling) {
-        mixer.timeScale = 2.5 // Increased animation speed when scrolling
+      groupRef.current.rotation.y = targetRotationY
+      groupRef.current.rotation.x = targetRotationX
+      groupRef.current.rotation.z = targetRotationZ
+
+      // Animation speed based on flight state
+      if (canFly) {
+        mixer.timeScale = 2.8 // Fast wing flapping when flying
       } else {
-        mixer.timeScale = 1.5 // Normal animation speed when not scrolling
+        mixer.timeScale = 1.3 // Gentle flapping when appearing
       }
 
-      // Update the animation mixer
       mixer.update(delta)
     }
   })
 
-  return <primitive ref={groupRef} object={scene} />
+  return <primitive ref={groupRef} object={cleanedScene} />
 }
 
 // Left Bird Model
 const PaperBirdLeftModel = () => {
   const groupRef = useRef<Group>(null)
-  const [scrollY, setScrollY] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
   const [textFadeProgress, setTextFadeProgress] = useState(0)
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
-  const { scene, animations } = useGLTF('/Animations/paperBird.glb')
-  const clonedScene = useMemo(() => SkeletonUtils.clone(scene), [scene])
+  const gltf = useGLTF('/Animations/paperBird.glb')
   const { width } = useWindowSize()
 
-  // Create animation mixer for the cloned scene
-  const { actions, mixer } = useAnimations(animations, groupRef)
+  // Clone the scene for this instance
+  const clonedScene = useMemo(() => {
+    const cloned = SkeletonUtils.clone(gltf.scene)
+    return cloned
+  }, [gltf.scene])
 
-  // Clean up invalid texture references on load
-  useEffect(() => {
-    clonedScene.traverse((child) => {
-      if ('isMesh' in child && child.isMesh && 'material' in child) {
-        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
-        // Remove invalid texture references that cause blob URL errors
-        if (material.map) {
-          const image = material.map.image
-          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
-            material.map = null
-          }
-        }
-        if (material.normalMap) {
-          const image = material.normalMap.image
-          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
-            material.normalMap = null
-          }
-        }
-        material.needsUpdate = true
-      }
-    })
-  }, [clonedScene])
+  const { actions, mixer } = useAnimations(gltf.animations, groupRef)
 
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
@@ -254,47 +185,14 @@ const PaperBirdLeftModel = () => {
   }, [actions])
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
-      setIsScrolling(true)
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
-    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
-      setScrollY(e.detail)
-      setIsScrolling(true)
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
     const handleTextFade = (e: CustomEvent<{ progress: number }>) => {
       setTextFadeProgress(e.detail.progress)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
     window.addEventListener('heroTextFade', handleTextFade as EventListener)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
       window.removeEventListener('heroTextFade', handleTextFade as EventListener)
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
     }
   }, [])
 
@@ -302,83 +200,87 @@ const PaperBirdLeftModel = () => {
     if (groupRef.current && mixer) {
       const time = clock.getElapsedTime()
 
-      // Only start bird flight after text is completely faded
-      const canFly = textFadeProgress > 0.95
+      // Bird 2 appears slightly after lead bird (progress > 0.1)
+      // Starts flying with the lead bird (progress > 0.2)
+      const canAppear = textFadeProgress > 0.1
+      const canFly = textFadeProgress > 0.2
 
-      // Bird 2 (Left Wing) - Slight delay (150px scroll) for staggered effect
-      const birdDelay = 150
-      const rawProgress = canFly ? Math.max(0, (scrollY - birdDelay) / 3000) : 0
-      const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
+      const appearProgress = canAppear ? Math.min((textFadeProgress - 0.1) / 0.1, 1) : 0
+      const flyProgress = canFly ? Math.min((textFadeProgress - 0.2) / 0.8, 1) : 0
 
-      // V-Formation: Bird 2 (Left Wing, behind and to the left)
+      // V-Formation: Bird 2 (Left Wing) - Follows to top-right, slightly left of lead (stays closer)
       let startX = -2.8, startY = -2.5, startZ = 1.8
-      let endX = 3, endY = 7, endZ = -13
-      let baseScale = 1.18, scaleReduction = 0.75
+      let endX = 3, endY = 2.8, endZ = -6 // Top-right, slightly left and lower than lead (closer)
+      let baseScale = 1.18, scaleReduction = 0.45
 
       if (width < 640) { // Mobile
         startX = -2.0
         startY = -1.0
         startZ = 1.3
-        endX = 1
-        endY = 4.2
-        endZ = -9
+        endX = 2
+        endY = 2
+        endZ = -4
         baseScale = 0.82
-        scaleReduction = 0.58
+        scaleReduction = 0.35
       } else if (width < 1024) { // Tablet
         startX = -2.4
         startY = -1.6
         startZ = 1.5
-        endX = 2
-        endY = 5.5
-        endZ = -10
+        endX = 2.5
+        endY = 2.3
+        endZ = -5
         baseScale = 0.95
-        scaleReduction = 0.65
+        scaleReduction = 0.38
       } else if (width < 1440) { // Laptop
         startX = -2.6
         startY = -2.0
         startZ = 1.7
-        endX = 2.5
-        endY = 6.5
-        endZ = -11
+        endX = 2.7
+        endY = 2.5
+        endZ = -5.5
         baseScale = 1.08
-        scaleReduction = 0.70
+        scaleReduction = 0.42
       } else if (width < 1920) { // Desktop (1440-1920)
         startX = -2.8
         startY = -2.5
         startZ = 1.8
         endX = 3
-        endY = 7
-        endZ = -13
+        endY = 2.8
+        endZ = -6
         baseScale = 1.18
-        scaleReduction = 0.75
+        scaleReduction = 0.45
       }
 
-      groupRef.current.position.x = startX + ((endX - startX) * scrollProgress)
-      groupRef.current.position.y = startY + ((endY - startY) * scrollProgress)
-      groupRef.current.position.z = startZ + ((endZ - startZ) * scrollProgress)
+      groupRef.current.position.x = startX + ((endX - startX) * flyProgress)
+      groupRef.current.position.y = startY + ((endY - startY) * flyProgress)
+      groupRef.current.position.z = startZ + ((endZ - startZ) * flyProgress)
 
-      // Subtle floating animation when not scrolling (same as middle bird)
-      if (!isScrolling) {
-        groupRef.current.position.y += Math.sin(time * 0.5) * 0.08
+      // Subtle floating when appearing but not flying yet
+      if (!canFly && canAppear) {
+        groupRef.current.position.y += Math.sin(time * 0.8 + 0.5) * 0.12
       }
 
-      // Scale down as bird flies away (same as middle bird)
-      const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.2)
-      groupRef.current.scale.set(scale, scale, scale)
+      // Scale: Appear, then shrink as flying
+      const flyScale = Math.max(baseScale - (flyProgress * scaleReduction), 0.22)
+      const finalScale = appearProgress * flyScale
+      groupRef.current.scale.set(finalScale, finalScale, finalScale)
 
-      // Cornering rotation - beak pointing toward top-right
-      groupRef.current.rotation.y = Math.PI * 0.75 // 135° - angled toward right
-      groupRef.current.rotation.x = -0.3 // Pitched up for upward flight
-      groupRef.current.rotation.z = 0.1 // Slight roll for natural banking
+      // Rotation toward top-right
+      const targetRotationY = Math.PI * 0.6 + (flyProgress * 0.15)
+      const targetRotationX = -0.18 - (flyProgress * 0.22)
+      const targetRotationZ = 0.08 + (flyProgress * 0.12)
 
-      // Control animation: always keep playing
-      if (isScrolling) {
-        mixer.timeScale = 2.5 // Increased animation speed when scrolling
+      groupRef.current.rotation.y = targetRotationY
+      groupRef.current.rotation.x = targetRotationX
+      groupRef.current.rotation.z = targetRotationZ
+
+      // Animation speed
+      if (canFly) {
+        mixer.timeScale = 2.8
       } else {
-        mixer.timeScale = 1.5 // Normal animation speed when not scrolling
+        mixer.timeScale = 1.3
       }
 
-      // Manually update mixer for cloned scene
       mixer.update(delta)
     }
   })
@@ -389,37 +291,17 @@ const PaperBirdLeftModel = () => {
 // Bottom Bird Model
 const PaperBirdBottomModel = () => {
   const groupRef = useRef<Group>(null)
-  const [scrollY, setScrollY] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
   const [textFadeProgress, setTextFadeProgress] = useState(0)
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
-  const { scene, animations } = useGLTF('/Animations/paperBird.glb')
-  const clonedScene = useMemo(() => SkeletonUtils.clone(scene), [scene])
+  const gltf = useGLTF('/Animations/paperBird.glb')
   const { width } = useWindowSize()
-  const { actions, mixer } = useAnimations(animations, groupRef)
 
-  // Clean up invalid texture references on load
-  useEffect(() => {
-    clonedScene.traverse((child) => {
-      if ('isMesh' in child && child.isMesh && 'material' in child) {
-        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
-        // Remove invalid texture references that cause blob URL errors
-        if (material.map) {
-          const image = material.map.image
-          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
-            material.map = null
-          }
-        }
-        if (material.normalMap) {
-          const image = material.normalMap.image
-          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
-            material.normalMap = null
-          }
-        }
-        material.needsUpdate = true
-      }
-    })
-  }, [clonedScene])
+  // Clone the scene for this instance
+  const clonedScene = useMemo(() => {
+    const cloned = SkeletonUtils.clone(gltf.scene)
+    return cloned
+  }, [gltf.scene])
+
+  const { actions, mixer } = useAnimations(gltf.animations, groupRef)
 
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
@@ -432,47 +314,14 @@ const PaperBirdBottomModel = () => {
   }, [actions])
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
-      setIsScrolling(true)
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
-    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
-      setScrollY(e.detail)
-      setIsScrolling(true)
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
     const handleTextFade = (e: CustomEvent<{ progress: number }>) => {
       setTextFadeProgress(e.detail.progress)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
     window.addEventListener('heroTextFade', handleTextFade as EventListener)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
       window.removeEventListener('heroTextFade', handleTextFade as EventListener)
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
     }
   }, [])
 
@@ -480,78 +329,83 @@ const PaperBirdBottomModel = () => {
     if (groupRef.current && mixer) {
       const time = clock.getElapsedTime()
 
-      // Only start bird flight after text is completely faded
-      const canFly = textFadeProgress > 0.95
+      // Bird 3 appears after bird 2 (progress > 0.15)
+      // Starts flying with the flock (progress > 0.2)
+      const canAppear = textFadeProgress > 0.15
+      const canFly = textFadeProgress > 0.2
 
-      // Bird 3 (Bottom-Left Wing) - More delay (300px scroll) for sequential formation
-      const birdDelay = 300
-      const rawProgress = canFly ? Math.max(0, (scrollY - birdDelay) / 3000) : 0
-      const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
+      const appearProgress = canAppear ? Math.min((textFadeProgress - 0.15) / 0.05, 1) : 0
+      const flyProgress = canFly ? Math.min((textFadeProgress - 0.2) / 0.8, 1) : 0
 
-      // V-Formation: Bird 3 (Left Wing Back, furthest left and back)
+      // V-Formation: Bird 3 (Left Wing Back) - Follows to top-right, behind left wing (stays closer)
       let startX = -4.5, startY = -3.8, startZ = 0.8
-      let endX = 0, endY = 5.5, endZ = -15
-      let baseScale = 1.05, scaleReduction = 0.68
+      let endX = 1.5, endY = 2.2, endZ = -7 // Top-right, further left and lower (closer)
+      let baseScale = 1.05, scaleReduction = 0.4
 
       if (width < 640) { // Mobile
         startX = -3.2
         startY = -2.0
         startZ = 0.6
-        endX = -1
-        endY = 3.5
-        endZ = -10
+        endX = 0.5
+        endY = 1.5
+        endZ = -5
         baseScale = 0.72
-        scaleReduction = 0.52
+        scaleReduction = 0.32
       } else if (width < 1024) { // Tablet
         startX = -3.8
         startY = -2.8
         startZ = 0.7
-        endX = -0.5
-        endY = 4.2
-        endZ = -12
+        endX = 1
+        endY = 1.8
+        endZ = -6
         baseScale = 0.85
-        scaleReduction = 0.58
+        scaleReduction = 0.35
       } else if (width < 1440) { // Laptop
         startX = -4.2
         startY = -3.3
         startZ = 0.8
-        endX = 0
-        endY = 5
-        endZ = -13
+        endX = 1.2
+        endY = 2
+        endZ = -6.5
         baseScale = 0.95
-        scaleReduction = 0.62
+        scaleReduction = 0.38
       } else if (width < 1920) { // Desktop (1440-1920)
         startX = -4.5
         startY = -3.8
         startZ = 0.8
-        endX = 0
-        endY = 5.5
-        endZ = -15
+        endX = 1.5
+        endY = 2.2
+        endZ = -7
         baseScale = 1.05
-        scaleReduction = 0.68
+        scaleReduction = 0.4
       }
 
-      groupRef.current.position.x = startX + ((endX - startX) * scrollProgress)
-      groupRef.current.position.y = startY + ((endY - startY) * scrollProgress)
-      groupRef.current.position.z = startZ + ((endZ - startZ) * scrollProgress)
+      groupRef.current.position.x = startX + ((endX - startX) * flyProgress)
+      groupRef.current.position.y = startY + ((endY - startY) * flyProgress)
+      groupRef.current.position.z = startZ + ((endZ - startZ) * flyProgress)
 
-      // Subtle floating animation when not scrolling
-      if (!isScrolling) {
-        groupRef.current.position.y += Math.sin(time * 0.5) * 0.08
+      // Subtle floating when appearing
+      if (!canFly && canAppear) {
+        groupRef.current.position.y += Math.sin(time * 0.8 + 1) * 0.12
       }
 
-      // Bigger size - scale down less as bird flies away
-      const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.5)
-      groupRef.current.scale.set(scale, scale, scale)
+      // Scale: Appear, then shrink as flying
+      const flyScale = Math.max(baseScale - (flyProgress * scaleReduction), 0.2)
+      const finalScale = appearProgress * flyScale
+      groupRef.current.scale.set(finalScale, finalScale, finalScale)
 
-      // Cornering rotation - beak pointing toward top-right
-      groupRef.current.rotation.y = Math.PI * 0.75 // 135° - angled toward right
-      groupRef.current.rotation.x = -0.25 // Pitched up for upward flight
-      groupRef.current.rotation.z = 0.1 // Slight roll for natural banking
+      // Rotation toward top-right
+      const targetRotationY = Math.PI * 0.62 + (flyProgress * 0.13)
+      const targetRotationX = -0.16 - (flyProgress * 0.2)
+      const targetRotationZ = 0.06 + (flyProgress * 0.1)
 
-      // Control animation: slower speed
-      if (isScrolling) {
-        mixer.timeScale = 1.8
+      groupRef.current.rotation.y = targetRotationY
+      groupRef.current.rotation.x = targetRotationX
+      groupRef.current.rotation.z = targetRotationZ
+
+      // Animation speed
+      if (canFly) {
+        mixer.timeScale = 2.6
       } else {
         mixer.timeScale = 1.2
       }
@@ -566,37 +420,17 @@ const PaperBirdBottomModel = () => {
 // Right Bird Model
 const PaperBirdRightModel = () => {
   const groupRef = useRef<Group>(null)
-  const [scrollY, setScrollY] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
   const [textFadeProgress, setTextFadeProgress] = useState(0)
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null)
-  const { scene, animations } = useGLTF('/Animations/paperBird.glb')
-  const clonedScene = useMemo(() => SkeletonUtils.clone(scene), [scene])
+  const gltf = useGLTF('/Animations/paperBird.glb')
   const { width } = useWindowSize()
-  const { actions, mixer } = useAnimations(animations, groupRef)
 
-  // Clean up invalid texture references on load
-  useEffect(() => {
-    clonedScene.traverse((child) => {
-      if ('isMesh' in child && child.isMesh && 'material' in child) {
-        const material = child.material as THREE.Material & { map?: THREE.Texture | null; normalMap?: THREE.Texture | null }
-        // Remove invalid texture references that cause blob URL errors
-        if (material.map) {
-          const image = material.map.image
-          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
-            material.map = null
-          }
-        }
-        if (material.normalMap) {
-          const image = material.normalMap.image
-          if (!image || image instanceof Blob || (image && 'src' in image && typeof image.src === 'string' && image.src.startsWith('blob:'))) {
-            material.normalMap = null
-          }
-        }
-        material.needsUpdate = true
-      }
-    })
-  }, [clonedScene])
+  // Clone the scene for this instance
+  const clonedScene = useMemo(() => {
+    const cloned = SkeletonUtils.clone(gltf.scene)
+    return cloned
+  }, [gltf.scene])
+
+  const { actions, mixer } = useAnimations(gltf.animations, groupRef)
 
   useEffect(() => {
     if (actions && Object.keys(actions).length > 0) {
@@ -609,47 +443,14 @@ const PaperBirdRightModel = () => {
   }, [actions])
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
-      setIsScrolling(true)
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
-    const handleLocomotiveScroll = (e: Event & { detail: number }) => {
-      setScrollY(e.detail)
-      setIsScrolling(true)
-
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
-
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false)
-      }, 150)
-    }
-
     const handleTextFade = (e: CustomEvent<{ progress: number }>) => {
       setTextFadeProgress(e.detail.progress)
     }
 
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
     window.addEventListener('heroTextFade', handleTextFade as EventListener)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('locomotiveScroll', handleLocomotiveScroll as EventListener)
       window.removeEventListener('heroTextFade', handleTextFade as EventListener)
-      if (scrollTimeout.current) {
-        clearTimeout(scrollTimeout.current)
-      }
     }
   }, [])
 
@@ -657,80 +458,85 @@ const PaperBirdRightModel = () => {
     if (groupRef.current && mixer) {
       const time = clock.getElapsedTime()
 
-      // Only start bird flight after text is completely faded
-      const canFly = textFadeProgress > 0.95
+      // Bird 4 appears last (progress > 0.18)
+      // Starts flying with the flock (progress > 0.2)
+      const canAppear = textFadeProgress > 0.18
+      const canFly = textFadeProgress > 0.2
 
-      // Bird 4 (Right Wing) - Balanced delay (450px scroll) for right side formation
-      const birdDelay = 450
-      const rawProgress = canFly ? Math.max(0, (scrollY - birdDelay) / 3000) : 0
-      const scrollProgress = Math.max(0, Math.min(rawProgress, 1))
+      const appearProgress = canAppear ? Math.min((textFadeProgress - 0.18) / 0.02, 1) : 0
+      const flyProgress = canFly ? Math.min((textFadeProgress - 0.2) / 0.8, 1) : 0
 
-      // V-Formation: Bird 4 (Right Wing, behind and to the right)
+      // V-Formation: Bird 4 (Right Wing) - Follows to top-right, right side of formation (stays closer)
       let startX = 2.8, startY = -2.5, startZ = 1.8
-      let endX = 9, endY = 7, endZ = -13
-      let baseScale = 1.18, scaleReduction = 0.75
+      let endX = 7, endY = 2.8, endZ = -6 // Top-right, to the right of lead (closer)
+      let baseScale = 1.18, scaleReduction = 0.45
 
       if (width < 640) { // Mobile
         startX = 2.0
         startY = -1.0
         startZ = 1.3
         endX = 5
-        endY = 4.2
-        endZ = -9
+        endY = 2
+        endZ = -4
         baseScale = 0.82
-        scaleReduction = 0.58
+        scaleReduction = 0.35
       } else if (width < 1024) { // Tablet
         startX = 2.4
         startY = -1.6
         startZ = 1.5
-        endX = 7
-        endY = 5.5
-        endZ = -10
+        endX = 5.5
+        endY = 2.3
+        endZ = -5
         baseScale = 0.95
-        scaleReduction = 0.65
+        scaleReduction = 0.38
       } else if (width < 1440) { // Laptop
         startX = 2.6
         startY = -2.0
         startZ = 1.7
-        endX = 8
-        endY = 6.5
-        endZ = -11
+        endX = 6.5
+        endY = 2.5
+        endZ = -5.5
         baseScale = 1.08
-        scaleReduction = 0.70
+        scaleReduction = 0.42
       } else if (width < 1920) { // Desktop (1440-1920)
         startX = 2.8
         startY = -2.5
         startZ = 1.8
-        endX = 9
-        endY = 7
-        endZ = -13
+        endX = 7
+        endY = 2.8
+        endZ = -6
         baseScale = 1.18
-        scaleReduction = 0.75
+        scaleReduction = 0.45
       }
 
-      groupRef.current.position.x = startX + ((endX - startX) * scrollProgress)
-      groupRef.current.position.y = startY + ((endY - startY) * scrollProgress)
-      groupRef.current.position.z = startZ + ((endZ - startZ) * scrollProgress)
+      groupRef.current.position.x = startX + ((endX - startX) * flyProgress)
+      groupRef.current.position.y = startY + ((endY - startY) * flyProgress)
+      groupRef.current.position.z = startZ + ((endZ - startZ) * flyProgress)
 
-      // Subtle floating animation when not scrolling
-      if (!isScrolling) {
-        groupRef.current.position.y += Math.sin(time * 0.5) * 0.08
+      // Subtle floating when appearing
+      if (!canFly && canAppear) {
+        groupRef.current.position.y += Math.sin(time * 0.8 + 1.5) * 0.12
       }
 
-      // Scale down as bird flies away
-      const scale = Math.max(baseScale - (scrollProgress * scaleReduction), 0.2)
-      groupRef.current.scale.set(scale, scale, scale)
+      // Scale: Appear, then shrink as flying
+      const flyScale = Math.max(baseScale - (flyProgress * scaleReduction), 0.22)
+      const finalScale = appearProgress * flyScale
+      groupRef.current.scale.set(finalScale, finalScale, finalScale)
 
-      // Cornering rotation - beak pointing toward top-right
-      groupRef.current.rotation.y = Math.PI * 0.75 // 135° - angled toward right
-      groupRef.current.rotation.x = -0.3 // Pitched up for upward flight
-      groupRef.current.rotation.z = -0.2 // More roll for outer wing position
+      // Rotation toward top-right
+      const targetRotationY = Math.PI * 0.5 + (flyProgress * 0.15)
+      const targetRotationX = -0.18 - (flyProgress * 0.22)
+      const targetRotationZ = -0.08 - (flyProgress * 0.12)
 
-      // Control animation: always keep playing
-      if (isScrolling) {
-        mixer.timeScale = 2.5
+      groupRef.current.rotation.y = targetRotationY
+      groupRef.current.rotation.x = targetRotationX
+      groupRef.current.rotation.z = targetRotationZ
+
+      // Animation speed
+      if (canFly) {
+        mixer.timeScale = 2.8
       } else {
-        mixer.timeScale = 1.5
+        mixer.timeScale = 1.3
       }
 
       mixer.update(delta)

@@ -5,6 +5,9 @@ import { useState } from "react";
 import ManageLeadsTable from "@/components/Admin/Leads/ManageLeadsTable";
 import ExportConfirmationModal from "@/components/Admin/Modals/ExportConfirmationModal";
 import DateRangeModal from "@/components/Admin/Modals/DateRangeModal";
+import { getAllLeads, searchLeads } from "@/lib/services/leadService";
+import { exportLeadsToCSV } from "@/lib/utils/csvExport";
+import type { Lead } from "@/lib/types/lead";
 
 export default function Leads() {
     const [showExportModal, setShowExportModal] = useState(false);
@@ -33,15 +36,67 @@ export default function Leads() {
         return `${startDate.toLocaleDateString('en-GB')} - ${endDate.toLocaleDateString('en-GB')}`;
     };
 
+    const handleExport = async () => {
+        try {
+            let leadsToExport: Lead[] = [];
+
+            // Fetch leads based on current filters
+            if (searchQuery.trim()) {
+                const { data, error } = await searchLeads(searchQuery);
+                if (!error && data) {
+                    leadsToExport = data;
+                }
+            } else {
+                const { data, error } = await getAllLeads(1, 10000); // Fetch all leads
+                if (!error && data) {
+                    leadsToExport = data;
+                }
+            }
+
+            // Apply date filter if set
+            if (startDate || endDate) {
+                leadsToExport = leadsToExport.filter(lead => {
+                    const leadDate = new Date(lead.created_at);
+
+                    if (startDate && endDate) {
+                        const start = new Date(startDate);
+                        start.setHours(0, 0, 0, 0);
+                        const end = new Date(endDate);
+                        end.setHours(23, 59, 59, 999);
+                        return leadDate >= start && leadDate <= end;
+                    } else if (startDate) {
+                        const start = new Date(startDate);
+                        start.setHours(0, 0, 0, 0);
+                        return leadDate >= start;
+                    } else if (endDate) {
+                        const end = new Date(endDate);
+                        end.setHours(23, 59, 59, 999);
+                        return leadDate <= end;
+                    }
+                    return true;
+                });
+            }
+
+            // Export to CSV
+            if (leadsToExport.length > 0) {
+                exportLeadsToCSV(leadsToExport);
+            } else {
+                alert('No leads to export');
+            }
+
+            setShowExportModal(false);
+        } catch (error) {
+            console.error('Error exporting leads:', error);
+            alert('Failed to export leads. Please try again.');
+        }
+    };
+
     return (
         <div className="rounded-lg p-8">
             <ExportConfirmationModal
                 isOpen={showExportModal}
                 onClose={() => setShowExportModal(false)}
-                onConfirm={() => {
-                    // Handle export logic here
-                    setShowExportModal(false);
-                }}
+                onConfirm={handleExport}
             />
             <DateRangeModal
                 isOpen={showDateRangeModal}

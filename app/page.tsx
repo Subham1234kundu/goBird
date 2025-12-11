@@ -241,17 +241,26 @@ const Home = () => {
       }, "-=0.4")
     }
 
-    // Hero Section Complete Fade Out Effect on Scroll with Scale
+    // Hero Section - Text shrinks in center position and stays pinned (graphic design style)
     if (heroContentWrapperRef.current && heroSectionRef.current) {
+      // Pin the text first - keeps it in center position only during hero section
+      ScrollTrigger.create({
+        trigger: heroSectionRef.current,
+        start: "top top",
+        end: "bottom center", // Unpin when hero section is halfway scrolled
+        pin: heroContentWrapperRef.current,
+        pinSpacing: false
+      })
+
+      // Then shrink it in place (no y movement, stays centered)
       gsap.to(heroContentWrapperRef.current, {
-        opacity: 0,
-        y: -50,
-        scale: 0.3, // Text scales down to 30% of original size
+        scale: 0.6, // Shrink to 60%
+        opacity: 0, // Fade out as it shrinks
         ease: "power2.out",
         scrollTrigger: {
           trigger: heroSectionRef.current,
           start: "top top",
-          end: "+=300",
+          end: "bottom center", // Complete fade by halfway point
           scrub: 1,
           onUpdate: (self) => {
             // Dispatch custom event with scroll progress for birds
@@ -704,7 +713,7 @@ const Home = () => {
         {/* header */}
         <div
           ref={heroSectionRef}
-          className="w-full flex relative px-4 justify-center h-[700px] sm:h-[800px] md:h-[900px] lg:h-[1000px] xl:h-[1200px] 2xl:h-[1400px] "
+          className="w-full flex relative px-4 justify-center h-[700px] sm:h-[800px] md:h-[900px] lg:h-[1000px]"
           style={{
             background: 'linear-gradient(to bottom, #010917 1%, #006BCB 85%, #ffffff 100%)'
           }}>

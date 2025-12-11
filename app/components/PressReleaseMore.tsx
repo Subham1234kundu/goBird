@@ -6,6 +6,7 @@ import FooterSimple from "@/app/components/FooterSimple"
 import { useRouter } from "next/navigation"
 import { createClient } from "@supabase/supabase-js"
 import type { PressRelease } from "@/lib/types/pressRelease"
+import { formatDate } from "@/lib/utils/dateFormatter"
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -59,11 +60,6 @@ const PressReleaseMore = ({ pressReleaseId }: PressReleaseMoreProps) => {
 
     fetchPressRelease()
   }, [pressReleaseId, router])
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-  }
 
   const calculateReadTime = (content: string) => {
     const wordsPerMinute = 200

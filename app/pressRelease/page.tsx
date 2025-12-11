@@ -6,6 +6,7 @@ import FooterSimple from "@/app/components/FooterSimple"
 import PressReleaseMore from "@/app/components/PressReleaseMore"
 import { getAllPressReleases } from "@/lib/services/pressReleaseService"
 import type { PressRelease as PressReleaseType } from "@/lib/types/pressRelease"
+import { formatDate } from "@/lib/utils/dateFormatter"
 
 function PressReleaseContent() {
   const router = useRouter()
@@ -37,36 +38,31 @@ function PressReleaseContent() {
   const startIndex = (currentPage - 1) * itemsPerPage
   const currentPressReleases = pressReleases.slice(startIndex, startIndex + itemsPerPage)
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-  }
-
   const truncateText = (text: string, maxLength: number) => {
     if (text.length <= maxLength) return text
     return text.substring(0, maxLength) + "..."
   }
 
   return (
-  <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden">
       {/* header */}
       <div className="bg-custom-bg w-full h-[250px] sm:h-[300px] md:h-[510px] flex items-center justify-center px-4 sm:pl-6 md:pl-10 lg:pl-16 xl:pl-20 ">
-          <div className="flex flex-col lg:flex-row items-start justify-between gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full max-w-7xl">
-                  <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[82px] font-light w-full lg:w-[60%] leading-tight">
-                    Press & <br /> Announcements
-                  </h1>
-                  <h3 className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] w-full lg:w-[35%] leading-10 mt-10">
-                    Stay updated with the latest product launches, innovations, and milestones from Grobird
-                  </h3>
-          </div>
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full max-w-7xl">
+          <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[82px] font-light w-full lg:w-[60%] leading-tight">
+            Press & <br /> Announcements
+          </h1>
+          <h3 className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] w-full lg:w-[35%] leading-10 mt-10">
+            Stay updated with the latest product launches, innovations, and milestones from Grobird
+          </h3>
+        </div>
       </div>
 
       {/* descp */}
       <div className="flex flex-col lg:flex-row items-start justify-between gap-6 sm:gap-8 md:gap-10 lg:gap-12 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-8 sm:py-10 md:py-12 lg:py-16 lg:pb-28 mx-auto max-w-7xl">
-              <h2 className="text-[#000A1B] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium leading-tight w-full lg:w-[75%]">
-                <span className="text-[#3B3B3D73]">Grobird Press Releases</span> <br /> & Product <br /> Announcements
-              </h2>
-              <h3 className="text-[#000A1B] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[42px] lg:w-[25%] text-start lg:text-end mt-4 lg:mt-0">Our Stories</h3>
+        <h2 className="text-[#000A1B] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium leading-tight w-full lg:w-[75%]">
+          <span className="text-[#3B3B3D73]">Grobird Press Releases</span> <br /> & Product <br /> Announcements
+        </h2>
+        <h3 className="text-[#000A1B] text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[42px] lg:w-[25%] text-start lg:text-end mt-4 lg:mt-0">Our Stories</h3>
       </div>
 
       {/* Press Releases Grid */}
@@ -133,9 +129,8 @@ function PressReleaseContent() {
             <button
               key={pageNum}
               onClick={() => setCurrentPage(pageNum)}
-              className={`w-8 h-8 xl:w-12 xl:h-12 flex items-center justify-center text-sm ${
-                currentPage === pageNum ? 'bg-black text-white' : 'text-[#212121] hover:bg-gray-100'
-              }`}
+              className={`w-8 h-8 xl:w-12 xl:h-12 flex items-center justify-center text-sm ${currentPage === pageNum ? 'bg-black text-white' : 'text-[#212121] hover:bg-gray-100'
+                }`}
             >
               {pageNum}
             </button>
