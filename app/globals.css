@@ -400,3 +400,427 @@
     font-size: 1.8rem;
   }
 }
+
+.our_process_images {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  height: 80vh;
+  padding: 1rem 0;
+}
+
+.our_process_images_box {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.our_process_images_box:nth-child(1) {
+  background-image: url(../public/Images/List\ →\ Listitem\ →\ Link.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+
+.our_process_images_box:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.our_process_images_box:nth-child(2) .image_box {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.our_process_images_box:nth-child(2) .image_box:nth-child(1){
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.our_process_images_box:nth-child(2) .image_box:nth-child(1) img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.our_process_images_box:nth-child(2) .image_box:nth-child(2){
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+  overflow: hidden;
+}
+
+
+.our_process_images_box:nth-child(2) .image_box:nth-child(2) h1 {
+  font-size: 1.4rem;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+
+.our_process_images_box:nth-child(2) .image_box:nth-child(2) button{
+  background-color: #777474;
+  width: 60%;
+  height: 4vw;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.our_process_images_box:nth-child(2) .image_box:nth-child(2) button:hover{
+  background-color: #fff;
+  color: #000;
+}
+
+.our_process_images_box:nth-child(3) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.our_process_images_box:nth-child(3) .image_box:first-child {
+  min-height: 300px;
+  border-radius: 20px;
+   background-image: url(../public/Images/g-img1.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.our_process_images_box:nth-child(3) .image_box:last-child {
+  min-height: 250px;
+  border-radius: 20px;
+  background-image: url(../public//Images/g-img.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/*   our services*/
+
+.our_servives {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.our_servives_hed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;  
+}
+
+.our_servives_hed span {
+  font-size: 1.5rem;
+}
+
+.our_servives_hed h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 3rem;
+}
+
+
+.services_card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40% 55%;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #000; /* Add background for white text to show */
+}
+
+.services_card_left {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  color: #fff; /* White text for left side */
+}
+
+.services_card_left img {
+  width: 50%;
+}
+
+.services_card_left h3 {
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+  color: #fff; /* White text */
+}
+
+.services_card_left p {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  color: #fff; /* White text */
+}
+
+.services_card_right {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.services_card_right .services_card_right_card {
+  border-bottom: 2px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Active card (open by default or hovered) */
+.services_card_right .services_card_right_card.active {
+  border-bottom-color: #fff;
+}
+
+/* Title styling for active vs inactive */
+.services_card_right .services_card_right_card h1 {
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+/* ACTIVE CARD: WHITE TEXT */
+.services_card_right .services_card_right_card.active h1 {
+  color: #fff; /* White for active card */
+}
+
+/* INACTIVE CARDS: GREY TEXT */
+.services_card_right .services_card_right_card:not(.active) h1 {
+  color: #999; /* Grey for inactive cards */
+}
+
+/* Content (p and button) - hidden by default */
+.services_card_right .services_card_right_card .card_content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* Show content for active card */
+.services_card_right .services_card_right_card.active .card_content {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 0.5rem;
+}
+
+.services_card_right .services_card_right_card.active .card_content p {
+  opacity: 0.8;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fff; /* White text for description */
+}
+
+.services_card_right .services_card_right_card button {
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  border: 2px solid #fff;
+  border-radius: 30px;
+  width: 25%;
+  height: 5vh;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.services_card_right .services_card_right_card button:hover {
+  background-color: #000; /* Black background on hover */
+  color: #fff; /* White text on hover */
+  border-color: #fff;
+}
+
+/* Hover effect for inactive cards */
+.services_card_right .services_card_right_card:not(.active):hover h1 {
+  color: #ccc; /* Lighter grey on hover */
+}
+
+/* Optional: Add hover effect to entire card */
+.services_card_right .services_card_right_card:hover {
+  border-bottom-color: #fff;
+}
+
+/* If you want the button text to also be white when active */
+.services_card_right .services_card_right_card.active .card_content button {
+  color: #000; /* Keep black text on white button */
+}
+
+/* If you want white button with white text */
+.services_card_right .services_card_right_card.active .card_content button {
+  background-color: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.services_card_right .services_card_right_card.active .card_content button:hover {
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+}
+
+
+
+/*  our work css */
+
+
+.our_work {
+  width: 100%;
+  background-color: #fff;
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.our_work_hed {
+  display: flex;
+  flex-direction: column;
+}
+
+.our_work_hed span {
+  font-size: 1.5rem;
+}
+
+.our_work_hed h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 3rem;
+}
+
+.our_work_hed h1 span {
+  opacity: 0.6;
+  font-size: 2.5rem;
+}
+
+.wors_cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.top_cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2rem 1rem;
+}
+
+.top_cards .card  {
+  width: 100%;
+  height: 650px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 0.5rem;
+}
+
+.top_cards .card .card_img {
+  width: 100%;
+  height: 550px;
+  overflow: hidden;
+  border-radius: 30px;
+  background-color: #000;
+}
+
+.top_cards .card .card_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card_text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 3rem;
+}
+
+.card_text_left h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.card_text_right ul{
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.card_text_right ul li{
+  font-size: 1rem;
+} 
+
+
+.center_cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding: 0 1rem;
+}
+
+.center_cards .center_card {
+  width: 100%;
+  height: 400px;
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: red; */
+}
+
+.center_card_img {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.center_card_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.center_card_text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 3rem;
+}
+
+
+.center_card_text_left h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.center_card_text_right ul {
+   display: flex;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.center_card_text_right ul li {
+  font-size: 1rem;
+}

@@ -2,7 +2,7 @@
 
 import PaperBird3D from "@/components/PaperBird3D";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import InsightsSection from "@/app/components/service/InsightsSection";
@@ -11,7 +11,15 @@ import { useRouter } from "next/navigation";
 import logo from "../public/Images/Group 70.png";
 import logo2 from "../public/Images/Group 71.png";
 import logo3 from "../public/Images/Group 72.png";
-
+import box_img from "../public/Images/Image.png";
+import img_mobile from "../public/Images/insights2.png";
+import workimg from "../public/Images/insights2.png";
+import workmanimg from "../public/Images/workman.png";
+import p1 from "../public/Images/p-1.png";
+import p2 from "../public/Images/p-2.png";
+import p3 from "../public/Images/p-3.png";
+import b1 from "../public/Images/b-1.png";
+import b2 from "../public/Images/b-2.png";
 
 // Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -743,6 +751,41 @@ const Home = () => {
     };
   }, []);
 
+
+
+  const [activeCard, setActiveCard] = useState(0); // First card open by default
+
+  const cards = [
+    {
+      title: "SaaS Platform Development",
+      description: "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+      leftTitle: "Cyber Security Ecosystem",
+      leftSubtitle: "For E7 Cyber",
+      leftText: "We create impactful brand identities that differentiate."
+    },
+    {
+      title: "Product Engineering",
+      description: "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+      leftTitle: "Product Design & Development",
+      leftSubtitle: "For Innovators",
+      leftText: "Building scalable products with cutting-edge technology."
+    },
+    {
+      title: "MVP Development",
+      description: "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+      leftTitle: "Rapid Prototyping",
+      leftSubtitle: "For Startups",
+      leftText: "Quickly validate ideas with minimum viable products."
+    },
+    {
+      title: "Cloud & Infrastructure",
+      description: "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+      leftTitle: "Cloud Solutions",
+      leftSubtitle: "For Enterprises",
+      leftText: "Scalable and secure cloud infrastructure solutions."
+    }
+  ];
+
   return (
     <>
       <style jsx>{`
@@ -965,28 +1008,28 @@ const Home = () => {
             <p>Converts Strategy Into Results</p>
           </div>
 
-        <div className="our_process_box">
-      {/* Box 1 */}
-      <div className="our_box">
-        <div className="our_box_logo">
-          <img src={logo.src} alt="Deep Dive Discovery" />
-        </div>
-        <div className="our_box_content">
-          <h1>Deep Dive & <span> ( 01 )</span> <br /> Discovery</h1>
-          <p>Through strategy calls and audits, we uncover what's working, missing, and the biggest opportunities lie.</p>
-        </div>
-      </div>
+          <div className="our_process_box">
+          {/* Box 1 */}
+          <div className="our_box">
+            <div className="our_box_logo">
+              <img src={logo.src} alt="Deep Dive Discovery" />
+            </div>
+            <div className="our_box_content">
+              <h1>Deep Dive & <span> ( 01 )</span> <br /> Discovery</h1>
+              <p>Through strategy calls and audits, we uncover what's working, missing, and the biggest opportunities lie.</p>
+            </div>
+          </div>
       
-      {/* Box 2 - Orange Background */}
-      <div className="our_box our_box_orange">
-        <div className="our_box_logo">
-          <img src={logo2.src} alt="Launch Execute" />
+            {/* Box 2 - Orange Background */}
+            <div className="our_box our_box_orange">  
+            <div className="our_box_lo  go">
+              <img src={logo2.src} alt="Launch Exe  cute" />
+            </div>
+              <div className="our_box_content">
+            <h1>Launch & <span> ( 02 )</span> <br /> Execute</h1>
+            <p>With strategy locked, we roll out high-impact campaigns, creative content, and across key channels.</p>
+          </div>
         </div>
-        <div className="our_box_content">
-          <h1>Launch & <span> ( 02 )</span> <br /> Execute</h1>
-          <p>With strategy locked, we roll out high-impact campaigns, creative content, and across key channels.</p>
-        </div>
-      </div>
       
       {/* Box 3 */}
       <div className="our_box">
@@ -998,9 +1041,218 @@ const Home = () => {
           <p>We continuously test, analyze, and refine. From A/B testing to, our team fine-tunes your campaigns.</p>
         </div>
       </div>
-    </div>
+          </div>
+
+          <div className="our_process_images">
+            <div className="our_process_images_box"></div>
+            <div className="our_process_images_box">
+              <div className="image_box">
+                <img src={box_img.src} alt="image" />
+              </div>
+              <div className="image_box">
+                <h1>“Smart concepts, seamless delivery. Performance you can rely on.”</h1>
+                <button>Create Experience with Us</button>
+              </div>
+            </div>
+
+            <div className="our_process_images_box">
+              <div className="image_box"></div>
+              <div className="image_box"></div>
+            </div>
+
+          </div>
+
+
+
+
+        </section>
+
+
+        {/* our services  */}
+
+
+        <section className="our_servives">
+          <div className="our_servives_hed">
+            <span>Our Services</span>
+            <h1>Performance-Driven Solutions <br /> That Turn Traffic Into Revenue</h1>
+          </div>
 
     
+
+
+           <div className="services_card">
+      <div className="services_card_left">
+        <img src={img_mobile.src} alt="image" />
+        <br />
+        <h3>{cards[activeCard].leftTitle} <br /> {cards[activeCard].leftSubtitle}</h3>
+        <p>{cards[activeCard].leftText}</p>
+      </div>
+      
+      <div className="services_card_right">
+        {cards.map((card, index) => (
+          <div 
+            key={index}
+            className={`services_card_right_card ${activeCard === index ? 'active' : ''}`}
+            onMouseEnter={() => setActiveCard(index)}
+          >
+            <h1>{card.title}</h1>
+            
+            {/* Show description and button only for active card */}
+            <div className="card_content">
+              <p>{card.description}</p>
+              <button>Explore Now!</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+
+        </section>
+
+
+        {/* our work */}
+
+        <section className="our_work">
+          <div className="our_work_hed">
+            <span>Our Work</span>
+            <h1>A Proven, Data-Backed Process That <br /> <span>Converts Strategy Into Results</span></h1>
+          </div>
+
+          <div className="wors_cards">
+
+            <div className="top_cards">
+              <div className="card">
+                <div className="card_img">
+                  <img src={workimg.src} alt="iamge" />
+                </div>
+                <div className="card_text">
+                  <div className="card_text_left">
+                    <h1>E7 Cyber</h1>
+                  </div>
+                  <div className="card_text_right">
+                    <ul>
+                      <li>• Branding</li>
+                      <li>• Website</li>
+                      <li>• Devlopment</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="card">
+                 <div className="card_img">
+                  <img src={workmanimg.src} alt="iamge" />
+                </div>
+                <div className="card_text">
+                  <div className="card_text_left">
+                    <h1>M Snell </h1>
+                  </div>
+                  <div className="card_text_right">
+                    <ul>
+                      <li>• Website Design</li>
+                      <li>• Development</li>
+                      <li>• Marketing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="center_cards">
+
+              <div className="center_card">
+                <div className="center_card_img">
+                  <img src={p1.src} alt="" />
+                </div>
+                <div className="center_card_text">
+                  <div className="center_card_text_left">
+                    <h1>Project-1</h1>
+                  </div>
+                  <div className="center_card_text_right">
+                    <ul>
+                      <li>Branding</li>
+                      <li>Marketing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="center_card">
+                <div className="center_card_img">
+                  <img src={p2.src} alt="" />
+                </div>
+                <div className="center_card_text">
+                  <div className="center_card_text_left">
+                    <h1>Project-2</h1>
+                  </div>
+                  <div className="center_card_text_right">
+                    <ul>
+                      <li>Website</li>
+                      <li>Development</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="center_card">
+                <div className="center_card_img">
+                  <img src={p3.src} alt="" />
+                </div>
+                <div className="center_card_text">
+                  <div className="center_card_text_left">
+                    <h1>Project-3</h1>
+                  </div>
+                  <div className="center_card_text_right">
+                    <ul>
+                      <li>Branding</li>
+                      <li>Marketing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+             <div className="top_cards">
+              <div className="card">
+                <div className="card_img">
+                  <img src={b1.src} alt="iamge" />
+                </div>
+                <div className="card_text">
+                  <div className="card_text_left">
+                    <h1>Align Chiro Care</h1>
+                  </div>
+                  <div className="card_text_right">
+                    <ul>
+                      <li>• Website Design</li>
+                      <li>• Development</li>
+                      <li>• Marketing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="card">
+                 <div className="card_img">
+                  <img src={b2.src} alt="iamge" />
+                </div>
+                <div className="card_text">
+                  <div className="card_text_left">
+                    <h1>A2Y Consultant</h1>
+                  </div>
+                  <div className="card_text_right">
+                    <ul>
+                      <li>• Branding</li>
+                      <li>• Website</li>
+                      <li>• Development</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+
 
 
         </section>
@@ -1300,8 +1552,8 @@ const Home = () => {
         </div> */}
 
         {/* our success */}
-        <div>
-          <div className="mx-[4%]">
+        {/* <div> */}
+          {/* <div className="mx-[4%]">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
               <h1
                 ref={successHeadingRef}
@@ -1383,11 +1635,11 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
 
         {/* bold moves */}
-        <div
+        {/* <div
           style={{
             background: "linear-gradient(to bottom, #FFFFFF, #F4F4F45C)",
           }}
@@ -1569,7 +1821,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Testimonials Section */}
         <div className="mx-[4%]">
