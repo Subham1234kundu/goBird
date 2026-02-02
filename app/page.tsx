@@ -1,142 +1,172 @@
-"use client"
+"use client";
 
-import PaperBird3D from "@/components/PaperBird3D"
-import Image from "next/image"
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import InsightsSection from "@/app/components/service/InsightsSection"
-import FooterSimple from "./components/FooterSimple"
-import { useRouter } from "next/navigation"
+import PaperBird3D from "@/components/PaperBird3D";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import InsightsSection from "@/app/components/service/InsightsSection";
+import FooterSimple from "./components/FooterSimple";
+import { useRouter } from "next/navigation";
+import logo from "../public/Images/Group 70.png";
+import logo2 from "../public/Images/Group 71.png";
+import logo3 from "../public/Images/Group 72.png";
+
 
 // Register GSAP ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
-  const router = useRouter()
+  const router = useRouter();
   // Refs for all animated sections
-  const heroHeadingRef = useRef<HTMLHeadingElement>(null)
-  const heroDescRef = useRef<HTMLParagraphElement>(null)
-  const heroButtonsRef = useRef<HTMLDivElement>(null)
-  const heroSectionRef = useRef<HTMLDivElement>(null)
-  const heroContentWrapperRef = useRef<HTMLDivElement>(null)
-  const startupsHeadingRef = useRef<HTMLHeadingElement>(null)
-  const startupLogosRef = useRef<HTMLDivElement>(null)
-  const servicesHeadingRef = useRef<HTMLDivElement>(null)
-  const itConsultingRef = useRef<HTMLDivElement>(null)
-  const serviceItemsRef = useRef<(HTMLDivElement | null)[]>([])
-  const developIdeaRef = useRef<HTMLDivElement>(null)
-  const successHeadingRef = useRef<HTMLHeadingElement>(null)
-  const statsCardsRef = useRef<HTMLDivElement>(null)
-  const boldMovesHeadingRef = useRef<HTMLDivElement>(null)
-  const boldMovesRef = useRef<(HTMLDivElement | null)[]>([])
-  const testimonialsHeadingRef = useRef<HTMLDivElement>(null)
-  const testimonialImageRef = useRef<HTMLDivElement>(null)
-  const insightsHeadingRef = useRef<HTMLDivElement>(null)
-  const faqHeadingRef = useRef<HTMLDivElement>(null)
-  const faqItemsRef = useRef<(HTMLDivElement | null)[]>([])
-  const ctaSectionRef = useRef<HTMLDivElement>(null)
-  const ctaBirdRef = useRef<HTMLDivElement>(null)
-  const ctaContentRef = useRef<HTMLDivElement>(null)
-  const ctaCloudLeftRef = useRef<HTMLDivElement>(null)
-  const ctaCloudRightRef = useRef<HTMLDivElement>(null)
-  const ctaCloudBottomRef = useRef<HTMLDivElement>(null)
-  const stat1Ref = useRef<HTMLHeadingElement>(null)
-  const stat2Ref = useRef<HTMLHeadingElement>(null)
-  const stat3Ref = useRef<HTMLHeadingElement>(null)
-  const stat4Ref = useRef<HTMLHeadingElement>(null)
+  const heroHeadingRef = useRef<HTMLHeadingElement>(null);
+  const heroDescRef = useRef<HTMLParagraphElement>(null);
+  const heroButtonsRef = useRef<HTMLDivElement>(null);
+  const heroSectionRef = useRef<HTMLDivElement>(null);
+  const heroContentWrapperRef = useRef<HTMLDivElement>(null);
+  const startupsHeadingRef = useRef<HTMLHeadingElement>(null);
+  const startupLogosRef = useRef<HTMLDivElement>(null);
+  const servicesHeadingRef = useRef<HTMLDivElement>(null);
+  const itConsultingRef = useRef<HTMLDivElement>(null);
+  const serviceItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const developIdeaRef = useRef<HTMLDivElement>(null);
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
+  const statsCardsRef = useRef<HTMLDivElement>(null);
+  const boldMovesHeadingRef = useRef<HTMLDivElement>(null);
+  const boldMovesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const testimonialsHeadingRef = useRef<HTMLDivElement>(null);
+  const testimonialImageRef = useRef<HTMLDivElement>(null);
+  const insightsHeadingRef = useRef<HTMLDivElement>(null);
+  const faqHeadingRef = useRef<HTMLDivElement>(null);
+  const faqItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const ctaSectionRef = useRef<HTMLDivElement>(null);
+  const ctaBirdRef = useRef<HTMLDivElement>(null);
+  const ctaContentRef = useRef<HTMLDivElement>(null);
+  const ctaCloudLeftRef = useRef<HTMLDivElement>(null);
+  const ctaCloudRightRef = useRef<HTMLDivElement>(null);
+  const ctaCloudBottomRef = useRef<HTMLDivElement>(null);
+  const stat1Ref = useRef<HTMLHeadingElement>(null);
+  const stat2Ref = useRef<HTMLHeadingElement>(null);
+  const stat3Ref = useRef<HTMLHeadingElement>(null);
+  const stat4Ref = useRef<HTMLHeadingElement>(null);
 
   const handleMouseEnter = (element: HTMLDivElement) => {
     // Kill any existing animations on this element first
-    gsap.killTweensOf(element)
+    gsap.killTweensOf(element);
 
     gsap.to(element, {
       scale: 1.05,
       duration: 0.3,
       ease: "power2.out",
-      overwrite: "auto"
-    })
-  }
+      overwrite: "auto",
+    });
+  };
 
   const handleMouseLeave = (element: HTMLDivElement) => {
     // Kill any existing animations on this element first
-    gsap.killTweensOf(element)
+    gsap.killTweensOf(element);
 
     gsap.to(element, {
       scale: 1,
       duration: 0.3,
       ease: "power2.out",
-      overwrite: "auto"
-    })
-  }
+      overwrite: "auto",
+    });
+  };
 
   const handleServiceHover = (element: HTMLDivElement, isEntering: boolean) => {
-    const textContent = element.querySelector('.service-text-content')
-    const expandedContent = element.querySelector('.service-expanded-content')
+    const textContent = element.querySelector(".service-text-content");
+    const expandedContent = element.querySelector(".service-expanded-content");
 
     // Kill all existing animations on these elements to prevent glitches
-    gsap.killTweensOf([element, textContent, expandedContent])
+    gsap.killTweensOf([element, textContent, expandedContent]);
 
     if (isEntering) {
-      const expandedHeight = window.innerWidth < 640 ? "320px" : window.innerWidth < 1024 ? "380px" : "450px"
+      const expandedHeight =
+        window.innerWidth < 640
+          ? "320px"
+          : window.innerWidth < 1024
+          ? "380px"
+          : "450px";
 
       // Use a timeline for better synchronization
-      const tl = gsap.timeline()
+      const tl = gsap.timeline();
 
       tl.to(element, {
         height: expandedHeight,
         duration: 0.35,
         ease: "power2.out",
         overwrite: "auto",
-        force3D: true
+        force3D: true,
       })
-        .to(textContent, {
-          opacity: 0,
-          duration: 0.15,
-          ease: "power2.out",
-          overwrite: "auto",
-          force3D: true
-        }, 0)
-        .to(expandedContent, {
-          opacity: 1,
-          duration: 0.25,
-          ease: "power2.out",
-          overwrite: "auto",
-          force3D: true
-        }, 0.1)
+        .to(
+          textContent,
+          {
+            opacity: 0,
+            duration: 0.15,
+            ease: "power2.out",
+            overwrite: "auto",
+            force3D: true,
+          },
+          0
+        )
+        .to(
+          expandedContent,
+          {
+            opacity: 1,
+            duration: 0.25,
+            ease: "power2.out",
+            overwrite: "auto",
+            force3D: true,
+          },
+          0.1
+        );
     } else {
-      const normalHeight = window.innerWidth < 640 ? "180px" : window.innerWidth < 1024 ? "220px" : "250px"
+      const normalHeight =
+        window.innerWidth < 640
+          ? "180px"
+          : window.innerWidth < 1024
+          ? "220px"
+          : "250px";
 
       // Use a timeline for better synchronization
-      const tl = gsap.timeline()
+      const tl = gsap.timeline();
 
       tl.to(expandedContent, {
         opacity: 0,
         duration: 0.15,
         ease: "power2.out",
         overwrite: "auto",
-        force3D: true
+        force3D: true,
       })
-        .to(element, {
-          height: normalHeight,
-          duration: 0.35,
-          ease: "power2.out",
-          overwrite: "auto",
-          force3D: true
-        }, 0)
-        .to(textContent, {
-          opacity: 1,
-          duration: 0.25,
-          ease: "power2.out",
-          overwrite: "auto",
-          force3D: true
-        }, 0.1)
+        .to(
+          element,
+          {
+            height: normalHeight,
+            duration: 0.35,
+            ease: "power2.out",
+            overwrite: "auto",
+            force3D: true,
+          },
+          0
+        )
+        .to(
+          textContent,
+          {
+            opacity: 1,
+            duration: 0.25,
+            ease: "power2.out",
+            overwrite: "auto",
+            force3D: true,
+          },
+          0.1
+        );
     }
-  }
+  };
 
   useEffect(() => {
     // Kill existing ScrollTrigger animations only
-    ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
     // Reset all animated elements to initial visible state
     const resetElements = [
@@ -149,96 +179,110 @@ const Home = () => {
       boldMovesHeadingRef.current,
       testimonialsHeadingRef.current,
       testimonialImageRef.current,
-      insightsHeadingRef.current
-    ]
+      insightsHeadingRef.current,
+    ];
 
     // Reset testimonial elements specifically
     if (testimonialImageRef.current) {
-      const footerQuote = testimonialImageRef.current.querySelector('.footer-quote')
-      const footerAuthor = testimonialImageRef.current.querySelector('.footer-author')
-      const footerPlay = testimonialImageRef.current.querySelector('.footer-play')
-      if (footerQuote) gsap.set(footerQuote, { clearProps: "all" })
-      if (footerAuthor) gsap.set(footerAuthor, { clearProps: "all" })
-      if (footerPlay) gsap.set(footerPlay, { clearProps: "all" })
+      const footerQuote =
+        testimonialImageRef.current.querySelector(".footer-quote");
+      const footerAuthor =
+        testimonialImageRef.current.querySelector(".footer-author");
+      const footerPlay =
+        testimonialImageRef.current.querySelector(".footer-play");
+      if (footerQuote) gsap.set(footerQuote, { clearProps: "all" });
+      if (footerAuthor) gsap.set(footerAuthor, { clearProps: "all" });
+      if (footerPlay) gsap.set(footerPlay, { clearProps: "all" });
     }
 
-    resetElements.forEach(el => {
-      if (el) gsap.set(el, { clearProps: "all" })
-    })
+    resetElements.forEach((el) => {
+      if (el) gsap.set(el, { clearProps: "all" });
+    });
 
     // Reset arrays of elements
-    serviceItemsRef.current.forEach(el => {
-      if (el) gsap.set(el, { clearProps: "all" })
-    })
+    serviceItemsRef.current.forEach((el) => {
+      if (el) gsap.set(el, { clearProps: "all" });
+    });
 
-    boldMovesRef.current.forEach(el => {
-      if (el) gsap.set(el, { clearProps: "all" })
-    })
+    boldMovesRef.current.forEach((el) => {
+      if (el) gsap.set(el, { clearProps: "all" });
+    });
 
-    faqItemsRef.current.forEach(el => {
-      if (el) gsap.set(el, { clearProps: "all" })
-    })
+    faqItemsRef.current.forEach((el) => {
+      if (el) gsap.set(el, { clearProps: "all" });
+    });
 
-    if (heroButtonsRef.current) gsap.set(heroButtonsRef.current.children, { clearProps: "all" })
-    if (heroContentWrapperRef.current) gsap.set(heroContentWrapperRef.current, { clearProps: "all" })
-    if (startupLogosRef.current) gsap.set(startupLogosRef.current.children, { clearProps: "all" })
+    if (heroButtonsRef.current)
+      gsap.set(heroButtonsRef.current.children, { clearProps: "all" });
+    if (heroContentWrapperRef.current)
+      gsap.set(heroContentWrapperRef.current, { clearProps: "all" });
+    if (startupLogosRef.current)
+      gsap.set(startupLogosRef.current.children, { clearProps: "all" });
 
     // Ensure CTA section elements are always visible - set inline styles
     if (ctaBirdRef.current) {
-      ctaBirdRef.current.style.opacity = '1'
-      ctaBirdRef.current.style.visibility = 'visible'
+      ctaBirdRef.current.style.opacity = "1";
+      ctaBirdRef.current.style.visibility = "visible";
     }
     if (ctaContentRef.current) {
-      ctaContentRef.current.style.opacity = '1'
-      ctaContentRef.current.style.visibility = 'visible'
-      const children = ctaContentRef.current.querySelectorAll('*')
+      ctaContentRef.current.style.opacity = "1";
+      ctaContentRef.current.style.visibility = "visible";
+      const children = ctaContentRef.current.querySelectorAll("*");
       children.forEach((child: Element) => {
         if (child instanceof HTMLElement) {
-          child.style.opacity = '1'
-          child.style.visibility = 'visible'
+          child.style.opacity = "1";
+          child.style.visibility = "visible";
         }
-      })
+      });
     }
     if (ctaCloudLeftRef.current) {
-      ctaCloudLeftRef.current.style.opacity = '1'
-      ctaCloudLeftRef.current.style.visibility = 'visible'
+      ctaCloudLeftRef.current.style.opacity = "1";
+      ctaCloudLeftRef.current.style.visibility = "visible";
     }
     if (ctaCloudRightRef.current) {
-      ctaCloudRightRef.current.style.opacity = '1'
-      ctaCloudRightRef.current.style.visibility = 'visible'
+      ctaCloudRightRef.current.style.opacity = "1";
+      ctaCloudRightRef.current.style.visibility = "visible";
     }
     if (ctaCloudBottomRef.current) {
-      ctaCloudBottomRef.current.style.opacity = '1'
-      ctaCloudBottomRef.current.style.visibility = 'visible'
+      ctaCloudBottomRef.current.style.opacity = "1";
+      ctaCloudBottomRef.current.style.visibility = "visible";
     }
 
     // Hero Section Animations
-    const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } })
+    const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     if (heroHeadingRef.current) {
       heroTl.from(heroHeadingRef.current, {
         y: 50,
         opacity: 0,
         duration: 1,
-        delay: 0.3
-      })
+        delay: 0.3,
+      });
     }
 
     if (heroDescRef.current) {
-      heroTl.from(heroDescRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8
-      }, "-=0.5")
+      heroTl.from(
+        heroDescRef.current,
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+        },
+        "-=0.5"
+      );
     }
 
     if (heroButtonsRef.current) {
-      heroTl.from(heroButtonsRef.current.children, {
-        y: 20,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.2
-      }, "-=0.4")
+      heroTl.from(
+        heroButtonsRef.current.children,
+        {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.2,
+        },
+        "-=0.4"
+      );
     }
 
     // Hero Section - Text shrinks in center position and stays pinned (graphic design style)
@@ -249,8 +293,8 @@ const Home = () => {
         start: "top top",
         end: "bottom center", // Unpin when hero section is halfway scrolled
         pin: heroContentWrapperRef.current,
-        pinSpacing: false
-      })
+        pinSpacing: false,
+      });
 
       // Then shrink it in place (no y movement, stays centered)
       gsap.to(heroContentWrapperRef.current, {
@@ -264,13 +308,13 @@ const Home = () => {
           scrub: 1,
           onUpdate: (self) => {
             // Dispatch custom event with scroll progress for birds
-            const event = new CustomEvent('heroTextFade', {
-              detail: { progress: self.progress }
-            })
-            window.dispatchEvent(event)
-          }
-        }
-      })
+            const event = new CustomEvent("heroTextFade", {
+              detail: { progress: self.progress },
+            });
+            window.dispatchEvent(event);
+          },
+        },
+      });
     }
 
     // Startups Section
@@ -283,9 +327,9 @@ const Home = () => {
           trigger: startupsHeadingRef.current,
           start: "top 80%",
           end: "top 50%",
-          once: true
-        }
-      })
+          once: true,
+        },
+      });
     }
 
     if (startupLogosRef.current) {
@@ -297,19 +341,19 @@ const Home = () => {
         scrollTrigger: {
           trigger: startupLogosRef.current,
           start: "top 80%",
-          once: true
-        }
-      })
+          once: true,
+        },
+      });
     }
 
     // Services Section - keep visible without animation
     if (servicesHeadingRef.current) {
-      gsap.set(servicesHeadingRef.current, { opacity: 1, x: 0 })
+      gsap.set(servicesHeadingRef.current, { opacity: 1, x: 0 });
     }
 
     // IT Consulting section - keep visible without animation
     if (itConsultingRef.current) {
-      gsap.set(itConsultingRef.current, { opacity: 1, y: 0 })
+      gsap.set(itConsultingRef.current, { opacity: 1, y: 0 });
     }
 
     // Service Items Stagger
@@ -322,11 +366,11 @@ const Home = () => {
           scrollTrigger: {
             trigger: item,
             start: "top 85%",
-            once: true
-          }
-        })
+            once: true,
+          },
+        });
       }
-    })
+    });
 
     // Develop Idea Image
     if (developIdeaRef.current) {
@@ -337,9 +381,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: developIdeaRef.current,
           start: "top 75%",
-          once: true
-        }
-      })
+          once: true,
+        },
+      });
     }
 
     // Success/Stats Section
@@ -351,9 +395,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: successHeadingRef.current,
           start: "top 75%",
-          once: true
-        }
-      })
+          once: true,
+        },
+      });
     }
 
     if (statsCardsRef.current) {
@@ -364,22 +408,22 @@ const Home = () => {
         scrollTrigger: {
           trigger: statsCardsRef.current,
           start: "top 75%",
-          once: true
-        }
-      })
+          once: true,
+        },
+      });
 
       // Animate stat numbers with counter effect
-      const statNumbers = statsCardsRef.current.querySelectorAll('h1')
+      const statNumbers = statsCardsRef.current.querySelectorAll("h1");
       statNumbers.forEach((stat) => {
-        const text = stat.textContent || ''
-        const numberMatch = text.match(/\d+/)
+        const text = stat.textContent || "";
+        const numberMatch = text.match(/\d+/);
 
         if (numberMatch) {
-          const targetNumber = parseInt(numberMatch[0])
-          const suffix = text.match(/[+%x]/i)?.[0] || ''
+          const targetNumber = parseInt(numberMatch[0]);
+          const suffix = text.match(/[+%x]/i)?.[0] || "";
 
           // Create a counter object
-          const counter = { value: 0 }
+          const counter = { value: 0 };
 
           gsap.to(counter, {
             value: targetNumber,
@@ -388,21 +432,21 @@ const Home = () => {
             scrollTrigger: {
               trigger: stat,
               start: "top 80%",
-              toggleActions: "play none none none"
+              toggleActions: "play none none none",
             },
             onUpdate: function () {
-              const current = Math.ceil(counter.value)
+              const current = Math.ceil(counter.value);
               // Preserve the HTML structure with the colored span
-              stat.innerHTML = `${current}<span class="text-[#FF662A]">${suffix}</span>`
-            }
-          })
+              stat.innerHTML = `${current}<span class="text-[#FF662A]">${suffix}</span>`;
+            },
+          });
         }
-      })
+      });
     }
 
     // Bold Moves Section
     if (boldMovesHeadingRef.current) {
-      gsap.set(boldMovesHeadingRef.current.children, { opacity: 1, y: 0 })
+      gsap.set(boldMovesHeadingRef.current.children, { opacity: 1, y: 0 });
       gsap.from(boldMovesHeadingRef.current.children, {
         y: 30,
         opacity: 0,
@@ -411,9 +455,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: boldMovesHeadingRef.current,
           start: "top 75%",
-          toggleActions: "play none none none"
-        }
-      })
+          toggleActions: "play none none none",
+        },
+      });
     }
 
     // Bold Moves Cards Stagger
@@ -427,15 +471,15 @@ const Home = () => {
           scrollTrigger: {
             trigger: card,
             start: "top 85%",
-            once: true
-          }
-        })
+            once: true,
+          },
+        });
       }
-    })
+    });
 
     // Testimonials Section
     if (testimonialsHeadingRef.current) {
-      gsap.set(testimonialsHeadingRef.current.children, { opacity: 1, y: 0 })
+      gsap.set(testimonialsHeadingRef.current.children, { opacity: 1, y: 0 });
       gsap.from(testimonialsHeadingRef.current.children, {
         y: 30,
         opacity: 0,
@@ -444,16 +488,16 @@ const Home = () => {
         scrollTrigger: {
           trigger: testimonialsHeadingRef.current,
           start: "top 75%",
-          toggleActions: "play none none none"
-        }
-      })
+          toggleActions: "play none none none",
+        },
+      });
     }
 
     // Testimonial Image - No animations
 
     // Insights Section
     if (insightsHeadingRef.current) {
-      gsap.set(insightsHeadingRef.current.children, { opacity: 1, y: 0 })
+      gsap.set(insightsHeadingRef.current.children, { opacity: 1, y: 0 });
       gsap.from(insightsHeadingRef.current.children, {
         y: 30,
         opacity: 0,
@@ -462,14 +506,14 @@ const Home = () => {
         scrollTrigger: {
           trigger: insightsHeadingRef.current,
           start: "top 75%",
-          toggleActions: "play none none none"
-        }
-      })
+          toggleActions: "play none none none",
+        },
+      });
     }
 
     // FAQ Section - keep visible without animation
     if (faqHeadingRef.current) {
-      gsap.set(faqHeadingRef.current, { opacity: 1, y: 0 })
+      gsap.set(faqHeadingRef.current, { opacity: 1, y: 0 });
     }
 
     // FAQ Items animation removed - keeping FAQ heading always visible
@@ -484,18 +528,18 @@ const Home = () => {
           scrollTrigger: {
             trigger: item,
             start: "top 90%",
-            once: true
-          }
-        })
+            once: true,
+          },
+        });
       }
-    })
+    });
 
     // CTA Section - Bird with floating animation
     if (ctaBirdRef.current) {
-      const birdImg = ctaBirdRef.current.querySelector('img')
+      const birdImg = ctaBirdRef.current.querySelector("img");
       if (birdImg instanceof HTMLElement) {
-        birdImg.style.opacity = '1'
-        birdImg.style.visibility = 'visible'
+        birdImg.style.opacity = "1";
+        birdImg.style.visibility = "visible";
       }
 
       // Continuous floating animation only
@@ -504,8 +548,8 @@ const Home = () => {
         duration: 3.5,
         ease: "sine.inOut",
         repeat: -1,
-        yoyo: true
-      })
+        yoyo: true,
+      });
 
       // Subtle rotation animation
       gsap.to(birdImg, {
@@ -513,8 +557,8 @@ const Home = () => {
         duration: 3.5,
         ease: "sine.inOut",
         repeat: -1,
-        yoyo: true
-      })
+        yoyo: true,
+      });
     }
 
     // CTA Content
@@ -523,26 +567,35 @@ const Home = () => {
         scrollTrigger: {
           trigger: ctaContentRef.current,
           start: "top 75%",
-          once: true
-        }
-      })
+          once: true,
+        },
+      });
 
-      ctaTl.from(ctaContentRef.current.querySelector('h2'), {
-        y: 50,
-        opacity: 0,
-        duration: 0.8
-      })
-        .from(ctaContentRef.current.querySelector('p'), {
-          y: 30,
+      ctaTl
+        .from(ctaContentRef.current.querySelector("h2"), {
+          y: 50,
           opacity: 0,
-          duration: 0.6
-        }, "-=0.4")
-        .from(ctaContentRef.current.querySelectorAll('button'), {
-          y: 20,
-          opacity: 0,
-          duration: 0.5,
-          stagger: 0.2
-        }, "-=0.3")
+          duration: 0.8,
+        })
+        .from(
+          ctaContentRef.current.querySelector("p"),
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+          },
+          "-=0.4"
+        )
+        .from(
+          ctaContentRef.current.querySelectorAll("button"),
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.2,
+          },
+          "-=0.3"
+        );
     }
 
     // Cloud Animations - Smooth continuous loop without reset
@@ -556,9 +609,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: ctaSectionRef.current,
           start: "top 70%",
-          toggleActions: "play none none reverse"
-        }
-      })
+          toggleActions: "play none none reverse",
+        },
+      });
 
       // Smooth continuous loop - goes to 90% and back seamlessly
       gsap.to(ctaCloudLeftRef.current, {
@@ -571,9 +624,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: ctaSectionRef.current,
           start: "top 70%",
-          toggleActions: "play pause resume pause"
-        }
-      })
+          toggleActions: "play pause resume pause",
+        },
+      });
     }
 
     if (ctaCloudRightRef.current) {
@@ -587,9 +640,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: ctaSectionRef.current,
           start: "top 70%",
-          toggleActions: "play none none reverse"
-        }
-      })
+          toggleActions: "play none none reverse",
+        },
+      });
 
       // Smooth continuous loop - goes to 90% and back seamlessly
       gsap.to(ctaCloudRightRef.current, {
@@ -603,9 +656,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: ctaSectionRef.current,
           start: "top 70%",
-          toggleActions: "play pause resume pause"
-        }
-      })
+          toggleActions: "play pause resume pause",
+        },
+      });
     }
 
     if (ctaCloudBottomRef.current) {
@@ -619,9 +672,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: ctaSectionRef.current,
           start: "top 70%",
-          toggleActions: "play none none reverse"
-        }
-      })
+          toggleActions: "play none none reverse",
+        },
+      });
 
       // Smooth continuous loop - goes to 90% and back seamlessly
       gsap.to(ctaCloudBottomRef.current, {
@@ -634,59 +687,61 @@ const Home = () => {
         scrollTrigger: {
           trigger: ctaSectionRef.current,
           start: "top 70%",
-          toggleActions: "play pause resume pause"
-        }
-      })
+          toggleActions: "play pause resume pause",
+        },
+      });
     }
 
     // Refresh ScrollTrigger after all animations are set up
-    ScrollTrigger.refresh()
+    ScrollTrigger.refresh();
 
     // Cleanup
     return () => {
       // Kill all ScrollTrigger instances
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
       // Kill all GSAP tweens
-      gsap.killTweensOf("*")
-    }
-  }, [])
+      gsap.killTweensOf("*");
+    };
+  }, []);
 
   // Counter animation effect
   useEffect(() => {
     const counters = [
-      { ref: stat1Ref, target: 200, suffix: '+' },
-      { ref: stat2Ref, target: 10, suffix: 'x' },
-      { ref: stat3Ref, target: 97, suffix: '%' },
-      { ref: stat4Ref, target: 5, suffix: '+' }
-    ]
+      { ref: stat1Ref, target: 200, suffix: "+" },
+      { ref: stat2Ref, target: 10, suffix: "x" },
+      { ref: stat3Ref, target: 97, suffix: "%" },
+      { ref: stat4Ref, target: 5, suffix: "+" },
+    ];
 
     counters.forEach(({ ref, target, suffix }) => {
       if (ref.current && statsCardsRef.current) {
-        const counter = { value: 0 }
+        const counter = { value: 0 };
 
         gsap.to(counter, {
           value: target,
           duration: 2,
-          ease: 'power2.out',
+          ease: "power2.out",
           scrollTrigger: {
             trigger: statsCardsRef.current,
-            start: 'top 80%',
-            once: true
+            start: "top 80%",
+            once: true,
           },
           onUpdate: () => {
             if (ref.current) {
-              ref.current.innerHTML = `${Math.round(counter.value)}<span class="text-[#FF662A]">${suffix}</span>`
+              ref.current.innerHTML = `${Math.round(
+                counter.value
+              )}<span class="text-[#FF662A]">${suffix}</span>`;
             }
-          }
-        })
+          },
+        });
       }
-    })
+    });
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    }
-  }, [])
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <>
@@ -709,31 +764,68 @@ const Home = () => {
           pointer-events: auto;
         }
       `}</style>
-      <div style={{ width: '100%', minHeight: '100vh', fontFamily: 'Montserrat, -apple-system, BlinkMacSystemFont, sans-serif', overflowX: 'hidden' }}>
+
+      <div
+        style={{
+          width: "100%",
+          minHeight: "100vh",
+          fontFamily:
+            "Montserrat, -apple-system, BlinkMacSystemFont, sans-serif",
+          overflowX: "hidden",
+        }}
+      >
         {/* header */}
         <div
           ref={heroSectionRef}
           className="w-full flex relative px-4 justify-center h-[700px] sm:h-[800px] md:h-[900px] lg:h-[1000px]"
           style={{
-            background: 'linear-gradient(to bottom, #010917 1%, #006BCB 85%, #ffffff 100%)'
-          }}>
+            background:
+              "linear-gradient(to bottom, #010917 1%, #006BCB 85%, #ffffff 100%)",
+          }}
+        >
           {/* Image at the very top */}
           <div className="absolute top-[120px] left-0 w-full h-[50vh] z-0">
-            <Image src="/Images/boxes.png" alt="Boxes" width={3000} height={1000} className="w-[90%] h-[120%] object-cover opacity-20" />
+            <Image
+              src="/Images/boxes.png"
+              alt="Boxes"
+              width={3000}
+              height={1000}
+              className="w-[90%] h-[120%] object-cover opacity-20"
+            />
           </div>
 
-          <div ref={heroContentWrapperRef} className="flex flex-col items-center mt-16 sm:mt-18 md:mt-16 lg:mt-18  2xl:mt-28 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10">
-            <h1 ref={heroHeadingRef} className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[82px] font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2">
+          <div
+            ref={heroContentWrapperRef}
+            className="flex flex-col items-center mt-16 sm:mt-18 md:mt-16 lg:mt-18  2xl:mt-28 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10"
+          >
+            <h1
+              ref={heroHeadingRef}
+              className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[82px] font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2"
+            >
               Transforming Ideas into <br /> Scalable Digital Solutions
             </h1>
-            <p ref={heroDescRef} className="text-white font-light mt-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-3xl leading-relaxed 2xl:max-w-6xl mb-6 sm:mb-7 xl:mb-8 2xl:mb-10 px-4">
-              Grobird accelerates innovation through IT consulting, software <br className="hidden sm:block" /> development, and cloud solutions.
+            <p
+              ref={heroDescRef}
+              className="text-white font-light mt-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-3xl leading-relaxed 2xl:max-w-6xl mb-6 sm:mb-7 xl:mb-8 2xl:mb-10 px-4"
+            >
+              Grobird accelerates innovation through IT consulting, software{" "}
+              <br className="hidden sm:block" /> development, and cloud
+              solutions.
             </p>
-            <div ref={heroButtonsRef} className="flex flex-row gap-3 sm:gap-4 items-center justify-center">
-              <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3  rounded-full text-xs sm:text-sm  md:text-[17px] hover:bg-[#e55a24] transition-colors">
+            <div
+              ref={heroButtonsRef}
+              className="flex flex-row gap-3 sm:gap-4 items-center justify-center"
+            >
+              <button
+                onClick={() => router.push("/contact")}
+                className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3  rounded-full text-xs sm:text-sm  md:text-[17px] hover:bg-[#e55a24] transition-colors"
+              >
                 Talk to Us
               </button>
-              <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium ">
+              <button
+                onClick={() => router.push("/services")}
+                className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium "
+              >
                 Explore Services
               </button>
             </div>
@@ -744,14 +836,14 @@ const Home = () => {
         </div>
 
         {/* Startups Section */}
-        <div className="w-full py-16 px-4 sm:px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
-            <h2 ref={startupsHeadingRef} className="text-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center mb-6 sm:mb-8 mt-14">
-              The startups shaping tomorrow trust Grobird
-            </h2>
+        {/* <div className="w-full py-16 px-4 sm:px-6 md:px-10 lg:px-16"> */}
+        {/* <div className="max-w-[1400px] mx-auto">/ */}
+        {/* <h2 ref={startupsHeadingRef} className="text-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center mb-6 sm:mb-8 mt-14"> */}
+        {/* The startups shaping tomorrow trust Grobird */}
+        {/* </h2> */}
 
-            {/* Startup Company Images Row */}
-            <div ref={startupLogosRef} className="flex justify-center items-center gap-2 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14">
+        {/* Startup Company Images Row */}
+        {/* <div ref={startupLogosRef} className="flex justify-center items-center gap-2 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14">
               <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
                 <Image
                   src="/Images/startups/company1.png"
@@ -804,196 +896,489 @@ const Home = () => {
               </div>
             </div>
           </div>
+        </div> */}
+
+
+        {/* businesses  cards */}
+        <section className="businesses">
+
+          {/* hedline  */}
+          <div className="businesses_hed">
+            <h1>
+              The impact we’ve created <br /> <span>for businesses</span>
+            </h1>
+          </div>
+
+          {/* cards  */}
+          <div className="businesses_card">
+            <div className="card">
+              <h1>10X</h1>
+              <p>Higher Client Retention</p>
+            </div>
+            <div className="card">
+              <h1>200+</h1>
+              <p>Successfully delivered high-quality projects</p>
+            </div>
+            <div className="card">
+              <h1>97%</h1>
+              <p>Client satisfaction based on surveys</p>
+            </div>
+            <div className="card">
+              <h1>5+</h1>
+              <p>Continents Served</p>
+            </div>
+          </div>
+
+        {/* images sidee */}
+        {/* <div className="businesses_images"></div> */}
+
+        <div className="businesses_section">
+      <div className="businesses_images">
+        <div className="logo_row">
+          <div className="logo_item">
+            <img src="/logos/logo1.png" alt="" />
+          </div>
+          <div className="logo_item">
+            <img src="/logos/logo2.png" alt="" />
+          </div>
+          <div className="logo_item">
+            <img src="/logos/logo3.png" alt="" />
+          </div>
+          <div className="logo_item">
+            <img src="/logos/logo4.png" alt="" />
+          </div>
+          <div className="logo_item">
+            <img src="/logos/logo5.png" alt="" />
+          </div>
+        </div>
+      </div>
         </div>
 
-        {/* 10x drive */}
-        <div>
-          <div className="flex flex-col mx-[4%] mt-8   md:mt-16 lg:mt-20 xl:mt-28">
-            <div ref={servicesHeadingRef} className="flex flex-col md:flex-row justify-between items-start mb-4 md:mb-6 lg:mb-8 xl:mb-12 gap-4">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#000A1B] w-full md:w-[80%] leading-tight">Driving <span className="text-[#FE4C00]">10x</span> client <br /> engagement and <span className="text-[#FE4C00]">40%</span> faster <br /> time-to-market </h1>
+        </section>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] text-[#000A1B] mt-0 md:mt-3">Services</h3>
+        {/* our prosecces  */}
+
+        <section className="our_prosess">
+          <div className="our_prosess_hed">
+            <span>Our Process</span>
+            <h1>A Proven, Data-Backed Process That</h1>
+            <p>Converts Strategy Into Results</p>
+          </div>
+
+        <div className="our_process_box">
+      {/* Box 1 */}
+      <div className="our_box">
+        <div className="our_box_logo">
+          <img src={logo.src} alt="Deep Dive Discovery" />
+        </div>
+        <div className="our_box_content">
+          <h1>Deep Dive & <span> ( 01 )</span> <br /> Discovery</h1>
+          <p>Through strategy calls and audits, we uncover what's working, missing, and the biggest opportunities lie.</p>
+        </div>
+      </div>
+      
+      {/* Box 2 - Orange Background */}
+      <div className="our_box our_box_orange">
+        <div className="our_box_logo">
+          <img src={logo2.src} alt="Launch Execute" />
+        </div>
+        <div className="our_box_content">
+          <h1>Launch & <span> ( 02 )</span> <br /> Execute</h1>
+          <p>With strategy locked, we roll out high-impact campaigns, creative content, and across key channels.</p>
+        </div>
+      </div>
+      
+      {/* Box 3 */}
+      <div className="our_box">
+        <div className="our_box_logo">
+          <img src={logo3.src} alt="Optimize Scale" />
+        </div>
+        <div className="our_box_content">
+          <h1>Optimize & <span> ( 03 )</span> <br /> Scale</h1>
+          <p>We continuously test, analyze, and refine. From A/B testing to, our team fine-tunes your campaigns.</p>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+        </section>
+
+
+
+
+
+
+        {/* 10x drive */}
+        {/* <div>
+          <div className="flex flex-col mx-[4%] mt-8   md:mt-16 lg:mt-20 xl:mt-28">
+            <div
+              ref={servicesHeadingRef}
+              className="flex flex-col md:flex-row justify-between items-start mb-4 md:mb-6 lg:mb-8 xl:mb-12 gap-4"
+            >
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#000A1B] w-full md:w-[80%] leading-tight">
+                Driving <span className="text-[#FE4C00]">10x</span> client{" "}
+                <br /> engagement and{" "}
+                <span className="text-[#FE4C00]">40%</span> faster <br />{" "}
+                time-to-market{" "}
+              </h1>
+
+              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] text-[#000A1B] mt-0 md:mt-3">
+                Services
+              </h3>
             </div>
 
             <div
               ref={itConsultingRef}
-              onClick={() => router.push('/services/servisPages/itConsulting')}
+              onClick={() => router.push("/services/servisPages/itConsulting")}
               onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
               onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
               className="service-hover-item w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
             >
               <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
-                <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">IT Consulting</p>
-                <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">
+                  IT Consulting
+                </p>
+                <Image
+                  src="/Images/arrowBlack.png"
+                  alt="Arrow"
+                  width={60}
+                  height={60}
+                  className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0"
+                />
               </div>
-              <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
+              <div
+                className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
                 style={{
-                  background: 'linear-gradient(to bottom, #020A18, #023362)'
-                }}>
+                  background: "linear-gradient(to bottom, #020A18, #023362)",
+                }}
+              >
                 <div className="flex flex-col gap-3 md:gap-4 lg:gap-2">
-                  <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">01</div>
-                  <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">IT Consulting</h3>
+                  <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">
+                    01
+                  </div>
+                  <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">
+                    IT Consulting
+                  </h3>
                   <div className="flex justify-between items-end gap-4">
                     <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
-                      From complex enterprise systems to innovative consumer <br /> apps, our solutions solve real-world challenges while ensuring <br /> smooth performance, maintainability, and long-term growth.
+                      From complex enterprise systems to innovative consumer{" "}
+                      <br /> apps, our solutions solve real-world challenges
+                      while ensuring <br /> smooth performance, maintainability,
+                      and long-term growth.
                     </p>
-                    <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                    <Image
+                      src="/Images/arrow.png"
+                      alt="Arrow"
+                      width={60}
+                      height={60}
+                      className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0"
+                    />
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col gap-1 items-center mb-6 md:mb-10 lg:mb-12 xl:mb-14">
-
               <div
-                ref={el => { if (el) serviceItemsRef.current[0] = el }}
-                onClick={() => router.push('/services/servisPages/customSoftwareDevelopment')}
+                ref={(el) => {
+                  if (el) serviceItemsRef.current[0] = el;
+                }}
+                onClick={() =>
+                  router.push("/services/servisPages/customSoftwareDevelopment")
+                }
                 onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
                 className="service-hover-item w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
               >
                 <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
-                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Custom Software Development</p>
-                  <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">
+                    Custom Software Development
+                  </p>
+                  <Image
+                    src="/Images/arrowBlack.png"
+                    alt="Arrow"
+                    width={60}
+                    height={60}
+                    className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0"
+                  />
                 </div>
-                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
+                <div
+                  className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
                   style={{
-                    background: 'linear-gradient(to bottom, #020A18, #023362)'
-                  }}>
+                    background: "linear-gradient(to bottom, #020A18, #023362)",
+                  }}
+                >
                   <div className="flex flex-col gap-3 md:gap-4 lg:gap-2">
-                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">02</div>
-                    <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">Custom Software Development</h3>
+                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">
+                      02
+                    </div>
+                    <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">
+                      Custom Software Development
+                    </h3>
                     <div className="flex justify-between items-end gap-4">
                       <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
-                        We build scalable, secure, and user-focused <br /> applications tailored to your specific business needs.
+                        We build scalable, secure, and user-focused <br />{" "}
+                        applications tailored to your specific business needs.
                       </p>
-                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                      <Image
+                        src="/Images/arrow.png"
+                        alt="Arrow"
+                        width={60}
+                        height={60}
+                        className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
 
               <div
-                ref={el => { if (el) serviceItemsRef.current[1] = el }}
-                onClick={() => router.push('/services/servisPages/Cloud&Infrastructure')}
+                ref={(el) => {
+                  if (el) serviceItemsRef.current[1] = el;
+                }}
+                onClick={() =>
+                  router.push("/services/servisPages/Cloud&Infrastructure")
+                }
                 onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
                 className="service-hover-item w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
               >
                 <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
-                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Cloud & Infrastructure</p>
-                  <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">
+                    Cloud & Infrastructure
+                  </p>
+                  <Image
+                    src="/Images/arrowBlack.png"
+                    alt="Arrow"
+                    width={60}
+                    height={60}
+                    className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0"
+                  />
                 </div>
-                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
+                <div
+                  className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
                   style={{
-                    background: 'linear-gradient(to bottom, #020A18, #023362)'
-                  }}>
+                    background: "linear-gradient(to bottom, #020A18, #023362)",
+                  }}
+                >
                   <div className="flex flex-col gap-3 md:gap-4 lg:gap-2">
-                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">03</div>
-                    <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">Cloud & Infrastructure</h3>
+                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">
+                      03
+                    </div>
+                    <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">
+                      Cloud & Infrastructure
+                    </h3>
                     <div className="flex justify-between items-end gap-4">
                       <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
-                        Our solutions ensure seamless scalability, reliable <br /> performance, and robust security, enabling your business to <br /> operate efficiently and adapt quickly to changing demands.
+                        Our solutions ensure seamless scalability, reliable{" "}
+                        <br /> performance, and robust security, enabling your
+                        business to <br /> operate efficiently and adapt quickly
+                        to changing demands.
                       </p>
-                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                      <Image
+                        src="/Images/arrow.png"
+                        alt="Arrow"
+                        width={60}
+                        height={60}
+                        className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
 
               <div
-                ref={el => { if (el) serviceItemsRef.current[2] = el }}
-                onClick={() => router.push('/services/servisPages/productEngineering')}
+                ref={(el) => {
+                  if (el) serviceItemsRef.current[2] = el;
+                }}
+                onClick={() =>
+                  router.push("/services/servisPages/productEngineering")
+                }
                 onMouseEnter={(e) => handleServiceHover(e.currentTarget, true)}
                 onMouseLeave={(e) => handleServiceHover(e.currentTarget, false)}
                 className="service-hover-item w-full h-[200px] sm:h-[220px] lg:h-[250px] cursor-pointer relative overflow-hidden"
               >
                 <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
-                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">Product Engineering</p>
-                  <Image src="/Images/arrowBlack.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                  <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">
+                    Product Engineering
+                  </p>
+                  <Image
+                    src="/Images/arrowBlack.png"
+                    alt="Arrow"
+                    width={60}
+                    height={60}
+                    className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0"
+                  />
                 </div>
-                <div className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
+                <div
+                  className="service-expanded-content w-full h-full p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 flex flex-col justify-between opacity-0 absolute inset-0"
                   style={{
-                    background: 'linear-gradient(to bottom, #020A18, #023362)'
-                  }}>
+                    background: "linear-gradient(to bottom, #020A18, #023362)",
+                  }}
+                >
                   <div className="flex flex-col gap-3 md:gap-4 lg:gap-2">
-                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">04</div>
-                    <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">Product Engineering</h3>
+                    <div className="text-white text-5xl md:text-6xl lg:text-7xl xl:text-[100px] font-light">
+                      04
+                    </div>
+                    <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">
+                      Product Engineering
+                    </h3>
                     <div className="flex justify-between items-end gap-4">
                       <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
-                        Our team designs, develops, and maintains software that <br /> delights users, drives engagement, and supports your <br /> business growth through innovation and technical excellence.
+                        Our team designs, develops, and maintains software that{" "}
+                        <br /> delights users, drives engagement, and supports
+                        your <br /> business growth through innovation and
+                        technical excellence.
                       </p>
-                      <Image src="/Images/arrow.png" alt="Arrow" width={60} height={60} className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0" />
+                      <Image
+                        src="/Images/arrow.png"
+                        alt="Arrow"
+                        width={60}
+                        height={60}
+                        className="object-contain w-10 h-10 md:w-12 md:h-12 lg:w-[60px] lg:h-[60px] flex-shrink-0"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
 
               <button
-                onClick={() => router.push('/services')}
+                onClick={() => router.push("/services")}
                 className="text-white bg-[#FF662A] px-6 py-3 mt-8 md:mt-12 lg:mt-16 text-sm md:text-base rounded-sm hover:bg-[#e55a24] transition-colors mb-10"
               >
                 View all services
               </button>
-
-            </div>
+            </div> */}
 
             {/* Vision Background Image */}
-            <div ref={developIdeaRef} className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[559px] mb-8 md:mb-12 relative">
-              <Image src="/Images/visonbackgroundblack.png" alt="Vision Background" width={1920} height={1080} className="w-full rounded-xl h-full object-cover" />
+            {/* <div
+              ref={developIdeaRef}
+              className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[559px] mb-8 md:mb-12 relative"
+            >
+              <Image
+                src="/Images/visonbackgroundblack.png"
+                alt="Vision Background"
+                width={1920}
+                height={1080}
+                className="w-full rounded-xl h-full object-cover"
+              />
               <div className="absolute inset-0 flex items-center justify-center">
-                <Image src="/Images/miniBird.png" alt="Bird" width={150} height={150} className="object-contain" />
+                <Image
+                  src="/Images/miniBird.png"
+                  alt="Bird"
+                  width={150}
+                  height={150}
+                  className="object-contain"
+                />
               </div>
               <div className="bg-white w-[200px] sm:w-[250px] md:w-[300px] lg:w-[335px] h-[150px] sm:h-[180px] md:h-[200px] lg:h-[230px] absolute bottom-0 right-0 flex items-end justify-end">
                 <div
-                  onClick={() => router.push('/contact')}
+                  onClick={() => router.push("/contact")}
                   className="w-[180px] sm:w-[220px] md:w-[280px] lg:w-[310px] h-[130px] sm:h-[160px] md:h-[180px] lg:h-[200px] bg-[#FE4C00] rounded-xl flex items-center justify-between p-3 sm:p-4 md:p-5 lg:p-6 cursor-pointer hover:bg-[#e55a24] transition-colors"
                 >
                   <div className="flex flex-col">
-                    <p className="text-white text-sm sm:text-lg md:text-xl lg:text-[28px] font-normal">Develop <br /> Your Idea</p>
-                    <p className="text-white text-lg sm:text-2xl md:text-3xl lg:text-[42px] font-bold">Now</p>
+                    <p className="text-white text-sm sm:text-lg md:text-xl lg:text-[28px] font-normal">
+                      Develop <br /> Your Idea
+                    </p>
+                    <p className="text-white text-lg sm:text-2xl md:text-3xl lg:text-[42px] font-bold">
+                      Now
+                    </p>
                   </div>
-                  <Image src="/Images/roundedArrow.png" alt="Rounded Arrow" width={110} height={110} className="object-contain w-12 sm:w-16 md:w-20 lg:w-[110px] h-12 sm:h-16 md:h-20 lg:h-[110px]" />
+                  <Image
+                    src="/Images/roundedArrow.png"
+                    alt="Rounded Arrow"
+                    width={110}
+                    height={110}
+                    className="object-contain w-12 sm:w-16 md:w-20 lg:w-[110px] h-12 sm:h-16 md:h-20 lg:h-[110px]"
+                  />
                 </div>
               </div>
-
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* our success */}
         <div>
           <div className="mx-[4%]">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
-              <h1 ref={successHeadingRef} className="text-[#0F1011] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium w-full lg:w-[65%] leading-tight">
-                <span className="text-[#3B3B3D73]">Our Success, Quantified:</span><br />Driving Growth, Innovation, and Scale
+              <h1
+                ref={successHeadingRef}
+                className="text-[#0F1011] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium w-full lg:w-[65%] leading-tight"
+              >
+                <span className="text-[#3B3B3D73]">
+                  Our Success, Quantified:
+                </span>
+                <br />
+                Driving Growth, Innovation, and Scale
               </h1>
 
-
-              <div ref={statsCardsRef} className="w-full lg:w-[50%] h-full bg-[#D3D3D347] flex flex-col gap-6 md:gap-8 lg:gap-12 p-4 md:p-5 lg:px-5">
+              <div
+                ref={statsCardsRef}
+                className="w-full lg:w-[50%] h-full bg-[#D3D3D347] flex flex-col gap-6 md:gap-8 lg:gap-12 p-4 md:p-5 lg:px-5"
+              >
                 <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 lg:gap-8">
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 ref={stat1Ref} className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">0<span className="text-[#FF662A]">+</span></h1>
-                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">On-time delivery rate</p>
-                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">Projects delivered on schedule, every time</p>
+                    <h1
+                      ref={stat1Ref}
+                      className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold"
+                    >
+                      0<span className="text-[#FF662A]">+</span>
+                    </h1>
+                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">
+                      On-time delivery rate
+                    </p>
+                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">
+                      Projects delivered on schedule, every time
+                    </p>
                   </div>
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 ref={stat2Ref} className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">0<span className="text-[#FF662A]">x</span></h1>
-                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">Higher Client Retention</p>
-                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">Clients keep coming back for more</p>
+                    <h1
+                      ref={stat2Ref}
+                      className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold"
+                    >
+                      0<span className="text-[#FF662A]">x</span>
+                    </h1>
+                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">
+                      Higher Client Retention
+                    </p>
+                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">
+                      Clients keep coming back for more
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 lg:gap-8">
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 ref={stat3Ref} className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">0<span className="text-[#FF662A]">%</span></h1>
-                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">Client Satisfaction Rate</p>
-                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">Ensuring every client is delighted</p>
+                    <h1
+                      ref={stat3Ref}
+                      className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold"
+                    >
+                      0<span className="text-[#FF662A]">%</span>
+                    </h1>
+                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">
+                      Client Satisfaction Rate
+                    </p>
+                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">
+                      Ensuring every client is delighted
+                    </p>
                   </div>
                   <div className="flex-col flex items-center justify-center gap-2 md:gap-3 w-full sm:w-[200px] md:w-[240px] lg:w-[280px] h-[140px] md:h-[160px] lg:h-[180px]">
-                    <h1 ref={stat4Ref} className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold">0<span className="text-[#FF662A]">+</span></h1>
-                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">Continents Served</p>
-                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">Delivering solutions across multiple<br />continents</p>
+                    <h1
+                      ref={stat4Ref}
+                      className="text-[#060B13] text-2xl sm:text-3xl md:text-4xl xl:text-[43.5px] font-semibold"
+                    >
+                      0<span className="text-[#FF662A]">+</span>
+                    </h1>
+                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] font-semibold text-center">
+                      Continents Served
+                    </p>
+                    <p className="text-[#363D4F] text-xs sm:text-sm md:text-base xl:text-[16px] text-center">
+                      Delivering solutions across multiple
+                      <br />
+                      continents
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1002,12 +1387,17 @@ const Home = () => {
         </div>
 
         {/* bold moves */}
-        <div style={{
-          background: 'linear-gradient(to bottom, #FFFFFF, #F4F4F45C)'
-        }}>
+        <div
+          style={{
+            background: "linear-gradient(to bottom, #FFFFFF, #F4F4F45C)",
+          }}
+        >
           <div className="mx-[4%] pb-1">
             <div className="w-full items-center flex flex-col mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-6 md:mb-8 lg:mb-10 xl:mb-12">
-              <div ref={boldMovesHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full my-6 sm:my-8 md:my-12 lg:my-16 xl:my-20 gap-4 sm:gap-6 md:gap-8">
+              <div
+                ref={boldMovesHeadingRef}
+                className="flex flex-col sm:flex-row justify-between items-start w-full my-6 sm:my-8 md:my-12 lg:my-16 xl:my-20 gap-4 sm:gap-6 md:gap-8"
+              >
                 <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 leading-tight">
                   <p>Big Steps, Bold Moves</p>
                   <p className="text-black">Our Latest Releases</p>
@@ -1017,10 +1407,15 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="flex gap-3 md:gap-4 lg:gap-5 items-center justify-start md:justify-center w-full md:w-[95%] lg:w-[90%] h-auto md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 px-4 md:px-0" style={{ scrollbarWidth: 'thin' }}>
+              <div
+                className="flex gap-3 md:gap-4 lg:gap-5 items-center justify-start md:justify-center w-full md:w-[95%] lg:w-[90%] h-auto md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 px-4 md:px-0"
+                style={{ scrollbarWidth: "thin" }}
+              >
                 <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
                   <div
-                    ref={el => { if (el) boldMovesRef.current[0] = el }}
+                    ref={(el) => {
+                      if (el) boldMovesRef.current[0] = el;
+                    }}
                     className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
@@ -1032,7 +1427,9 @@ const Home = () => {
                       className="object-cover rounded-lg"
                     />
                     <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
-                      <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+                      <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">
+                        A2Y Consultants Website
+                      </p>
                       <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                         Read Release
                       </button>
@@ -1042,7 +1439,9 @@ const Home = () => {
 
                 <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
                   <div
-                    ref={el => { if (el) boldMovesRef.current[1] = el }}
+                    ref={(el) => {
+                      if (el) boldMovesRef.current[1] = el;
+                    }}
                     className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
@@ -1054,7 +1453,9 @@ const Home = () => {
                       className="object-cover rounded-lg"
                     />
                     <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
-                      <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+                      <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">
+                        A2Y Consultants Website
+                      </p>
                       <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                         Read Release
                       </button>
@@ -1062,7 +1463,9 @@ const Home = () => {
                   </div>
 
                   <div
-                    ref={el => { if (el) boldMovesRef.current[2] = el }}
+                    ref={(el) => {
+                      if (el) boldMovesRef.current[2] = el;
+                    }}
                     className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
@@ -1074,17 +1477,23 @@ const Home = () => {
                       className="object-cover rounded-lg"
                     />
                     <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3">
-                      <p className="text-white text-3xl md:text-4xl lg:text-5xl">92%</p>
+                      <p className="text-white text-3xl md:text-4xl lg:text-5xl">
+                        92%
+                      </p>
                     </div>
                     <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3">
-                      <p className="text-white text-xs md:text-sm lg:text-md uppercase">Product Adoption Rate</p>
+                      <p className="text-white text-xs md:text-sm lg:text-md uppercase">
+                        Product Adoption Rate
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
                   <div
-                    ref={el => { if (el) boldMovesRef.current[3] = el }}
+                    ref={(el) => {
+                      if (el) boldMovesRef.current[3] = el;
+                    }}
                     className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
@@ -1096,7 +1505,9 @@ const Home = () => {
                       className="object-cover rounded-lg"
                     />
                     <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
-                      <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">AHMADYAR Website</p>
+                      <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">
+                        AHMADYAR Website
+                      </p>
                       <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                         Read Release
                       </button>
@@ -1106,7 +1517,9 @@ const Home = () => {
 
                 <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
                   <div
-                    ref={el => { if (el) boldMovesRef.current[4] = el }}
+                    ref={(el) => {
+                      if (el) boldMovesRef.current[4] = el;
+                    }}
                     className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
@@ -1118,15 +1531,21 @@ const Home = () => {
                       className="object-cover rounded-lg"
                     />
                     <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3">
-                      <p className="text-white text-3xl md:text-4xl lg:text-5xl">3X</p>
+                      <p className="text-white text-3xl md:text-4xl lg:text-5xl">
+                        3X
+                      </p>
                     </div>
                     <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2">
-                      <p className="text-white text-xs md:text-sm lg:text-md uppercase">Faster Go-to-Market</p>
+                      <p className="text-white text-xs md:text-sm lg:text-md uppercase">
+                        Faster Go-to-Market
+                      </p>
                     </div>
                   </div>
 
                   <div
-                    ref={el => { if (el) boldMovesRef.current[5] = el }}
+                    ref={(el) => {
+                      if (el) boldMovesRef.current[5] = el;
+                    }}
                     className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
                     onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
                     onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
@@ -1138,7 +1557,9 @@ const Home = () => {
                       className="object-cover rounded-lg"
                     />
                     <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
-                      <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+                      <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">
+                        A2Y Consultants Website
+                      </p>
                       <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
                         Read Release
                       </button>
@@ -1147,14 +1568,15 @@ const Home = () => {
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
 
         {/* Testimonials Section */}
         <div className="mx-[4%]">
-          <div ref={testimonialsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-4 sm:gap-6 md:gap-8">
+          <div
+            ref={testimonialsHeadingRef}
+            className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-4 sm:gap-6 md:gap-8"
+          >
             <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
               <p>98% client </p>
               <p className="text-[#3B3B3D73]">satisfaction rate</p>
@@ -1165,9 +1587,11 @@ const Home = () => {
           </div>
         </div>
 
-
         {/* Footer Section with Testimonial */}
-        <div ref={testimonialImageRef} className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24">
+        <div
+          ref={testimonialImageRef}
+          className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24"
+        >
           <Image
             src="/Images/serviseImages/footer.jpg"
             alt="Roadmap Image"
@@ -1177,7 +1601,11 @@ const Home = () => {
           />
           <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] ml-[4%] md:ml-[2%] mb-12 sm:mb-16 md:mb-32 lg:mb-44 justify-start">
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-start px-2 md:px-4 font-extralight leading-relaxed">
-              &ldquo;Looking for process improvements, <br className="hidden sm:block" /> we found a solution that <br className="hidden sm:block" /> transformed our entire data <br className="hidden sm:block" /> strategy. The depth of insights was <br className="hidden sm:block" /> remarkable.&rdquo;
+              &ldquo;Looking for process improvements,{" "}
+              <br className="hidden sm:block" /> we found a solution that{" "}
+              <br className="hidden sm:block" /> transformed our entire data{" "}
+              <br className="hidden sm:block" /> strategy. The depth of insights
+              was <br className="hidden sm:block" /> remarkable.&rdquo;
             </p>
           </div>
 
@@ -1194,13 +1622,18 @@ const Home = () => {
                 alt="video play"
                 className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
               />
-              <p className="text-white text-[10px] sm:text-xs md:text-sm lg:text-md">Watch video</p>
+              <p className="text-white text-[10px] sm:text-xs md:text-sm lg:text-md">
+                Watch video
+              </p>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col mx-[4%]">
-          <div ref={insightsHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8 mt-8 mb-14">
+          <div
+            ref={insightsHeadingRef}
+            className="flex flex-col sm:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8 mt-8 mb-14"
+          >
             <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
               <p>Insights from Grobird</p>
               <p className="text-[#3B3B3D73]">Experts</p>
@@ -1224,7 +1657,7 @@ const Home = () => {
                 category: "Branding",
                 date: "Mar 1, 2025",
                 readTime: "8min read",
-                imageAlt: "The art of storytelling in branding and advertising"
+                imageAlt: "The art of storytelling in branding and advertising",
               },
               {
                 imageSrc: "/Images/insights2.png",
@@ -1232,7 +1665,7 @@ const Home = () => {
                 category: "Technology",
                 date: "Feb 28, 2025",
                 readTime: "10min read",
-                imageAlt: "Building scalable cloud infrastructure"
+                imageAlt: "Building scalable cloud infrastructure",
               },
               {
                 imageSrc: "/Images/insights3.png",
@@ -1240,39 +1673,55 @@ const Home = () => {
                 category: "Development",
                 date: "Feb 25, 2025",
                 readTime: "12min read",
-                imageAlt: "Product engineering best practices"
-              }
+                imageAlt: "Product engineering best practices",
+              },
             ]}
           />
 
           {/* More Articles Button */}
           <div className="flex justify-center items-center mx-[4%] pt-5 mb-8 md:mb-16 lg:mb-20">
             <button
-              onClick={() => router.push('/insights')}
+              onClick={() => router.push("/insights")}
               className="bg-[#FF662A] text-white px-6 py-3 text-sm flex items-center gap-2 hover:bg-[#e55a24] transition-colors rounded-sm"
             >
               More articles
-              <Image src="/Images/arrow.png" alt="Arrow" width={20} height={20} className="object-contain" />
+              <Image
+                src="/Images/arrow.png"
+                alt="Arrow"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
             </button>
           </div>
         </div>
 
         {/* question */}
         <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 mx-[4%] mb-12 md:mb-16 lg:mb-20">
-          <div ref={faqHeadingRef} className="flex flex-col lg:flex-row justify-between items-start w-full mt-12 md:mt-16 lg:mt-20 mb-5 gap-6 md:gap-8">
+          <div
+            ref={faqHeadingRef}
+            className="flex flex-col lg:flex-row justify-between items-start w-full mt-12 md:mt-16 lg:mt-20 mb-5 gap-6 md:gap-8"
+          >
             <div className="flex w-full lg:w-[60%] items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
               <p>Frequently Asked</p>
               <p className="text-[#3B3B3D73]">Questions</p>
             </div>
             <p className="text-[#2D2C2C] text-xs sm:text-sm md:text-base lg:text-lg w-full lg:w-[40%] xl:text-3xl leading-relaxed">
-              From setup to security, here&apos;s everything you
-              need to know before getting started.
+              From setup to security, here&apos;s everything you need to know
+              before getting started.
             </p>
           </div>
 
           <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
-            <div ref={el => { if (el) faqItemsRef.current[0] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">What kind of teams use Relay?</p>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[0] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                What kind of teams use Relay?
+              </p>
               <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
@@ -1282,8 +1731,15 @@ const Home = () => {
               />
             </div>
 
-            <div ref={el => { if (el) faqItemsRef.current[1] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay work with Slack and Microsoft Teams?</p>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[1] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Does Relay work with Slack and Microsoft Teams?
+              </p>
               <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
@@ -1293,8 +1749,15 @@ const Home = () => {
               />
             </div>
 
-            <div ref={el => { if (el) faqItemsRef.current[2] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is there a free trial?</p>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[2] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Is there a free trial?
+              </p>
               <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
@@ -1304,8 +1767,15 @@ const Home = () => {
               />
             </div>
 
-            <div ref={el => { if (el) faqItemsRef.current[3] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is my data secure?</p>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[3] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Is my data secure?
+              </p>
               <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
@@ -1315,8 +1785,15 @@ const Home = () => {
               />
             </div>
 
-            <div ref={el => { if (el) faqItemsRef.current[4] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I collaborate with my engineering team inside Relay?</p>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[4] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Can I collaborate with my engineering team inside Relay?
+              </p>
               <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
@@ -1326,8 +1803,15 @@ const Home = () => {
               />
             </div>
 
-            <div ref={el => { if (el) faqItemsRef.current[5] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay support multi-channel communication?</p>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[5] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Does Relay support multi-channel communication?
+              </p>
               <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
@@ -1337,8 +1821,15 @@ const Home = () => {
               />
             </div>
 
-            <div ref={el => { if (el) faqItemsRef.current[6] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I customize how Relay works for my team?</p>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[6] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Can I customize how Relay works for my team?
+              </p>
               <Image
                 src="/Images/serviseImages/plus.png"
                 alt="plus"
@@ -1351,11 +1842,19 @@ const Home = () => {
         </div>
 
         {/* Gradient Box */}
-        <div ref={ctaSectionRef} className="w-full h-[900px] sm:h-[1100px] md:h-[1400px] lg:h-[1700px] xl:h-[2180px] relative overflow-hidden" style={{
-          background: 'linear-gradient(to bottom, #FFFFFF 2%, #FE4B00A1 92%, #FFFFFF 100%)'
-        }}>
+        <div
+          ref={ctaSectionRef}
+          className="w-full h-[900px] sm:h-[1100px] md:h-[1400px] lg:h-[1700px] xl:h-[2180px] relative overflow-hidden"
+          style={{
+            background:
+              "linear-gradient(to bottom, #FFFFFF 2%, #FE4B00A1 92%, #FFFFFF 100%)",
+          }}
+        >
           {/* Bird Image Container */}
-          <div ref={ctaBirdRef} className="absolute top-0 left-[5%] sm:left-[8%] md:left-[12%] lg:left-40 w-[90%] sm:w-[85%] md:w-full h-full flex items-start justify-center md:justify-start">
+          <div
+            ref={ctaBirdRef}
+            className="absolute top-0 left-[5%] sm:left-[8%] md:left-[12%] lg:left-40 w-[90%] sm:w-[85%] md:w-full h-full flex items-start justify-center md:justify-start"
+          >
             <Image
               src="/Images/takeFlight.png"
               alt="Take Flight"
@@ -1367,25 +1866,39 @@ const Home = () => {
           </div>
 
           {/* Content Section */}
-          <div ref={ctaContentRef} className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-center md:items-start text-center md:text-start px-4 sm:px-6 md:px-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl">
+          <div
+            ref={ctaContentRef}
+            className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-center md:items-start text-center md:text-start px-4 sm:px-6 md:px-6 gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl"
+          >
             <h2 className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[100px] font-light leading-tight">
               Ideas take flight here
             </h2>
             <p className="text-black font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl">
-              From concept to code, we transform bold visions into living digital experiences that soar.
+              From concept to code, we transform bold visions into living
+              digital experiences that soar.
             </p>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 items-center mt-2 md:mt-4 w-full sm:w-auto">
-              <button onClick={() => router.push('/contact')} className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto">
+              <button
+                onClick={() => router.push("/contact")}
+                className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto"
+              >
                 Talk to Us
               </button>
-              <button onClick={() => router.push('/services')} className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto border border-gray-200">
+              <button
+                onClick={() => router.push("/services")}
+                className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto border border-gray-200"
+              >
                 Explore Services
               </button>
             </div>
           </div>
 
           {/* Cloud Image at Bottom */}
-          <div ref={ctaCloudLeftRef} className="absolute -bottom-24 sm:-bottom-32 md:-bottom-48 lg:-bottom-70 xl:-bottom-90 -left-8 md:-left-16 lg:-left-24 w-[110%] md:w-[108%] lg:w-[106%] z-10" style={{ willChange: 'transform' }}>
+          <div
+            ref={ctaCloudLeftRef}
+            className="absolute -bottom-24 sm:-bottom-32 md:-bottom-48 lg:-bottom-70 xl:-bottom-90 -left-8 md:-left-16 lg:-left-24 w-[110%] md:w-[108%] lg:w-[106%] z-10"
+            style={{ willChange: "transform" }}
+          >
             <Image
               src="/Images/clouds/c2.png"
               alt="Cloud"
@@ -1394,7 +1907,11 @@ const Home = () => {
               className="w-full h-auto object-cover"
             />
           </div>
-          <div ref={ctaCloudBottomRef} className="absolute -bottom-8 sm:-bottom-12 md:-bottom-16 lg:-bottom-20 -right-12 sm:-right-16 md:-right-24 lg:-right-50 z-10 opacity-30 sm:opacity-40 w-[65%] sm:w-[55%] md:w-auto" style={{ willChange: 'transform' }}>
+          <div
+            ref={ctaCloudBottomRef}
+            className="absolute -bottom-8 sm:-bottom-12 md:-bottom-16 lg:-bottom-20 -right-12 sm:-right-16 md:-right-24 lg:-right-50 z-10 opacity-30 sm:opacity-40 w-[65%] sm:w-[55%] md:w-auto"
+            style={{ willChange: "transform" }}
+          >
             <Image
               src="/Images/clouds/c4.png"
               alt="Cloud"
@@ -1404,7 +1921,11 @@ const Home = () => {
             />
           </div>
 
-          <div ref={ctaCloudRightRef} className="absolute -bottom-24 sm:-bottom-32 md:-bottom-48 lg:-bottom-70 xl:-bottom-90 -right-8 md:-right-16 lg:-right-24 w-[110%] md:w-[108%] lg:w-[106%] z-10" style={{ willChange: 'transform' }}>
+          <div
+            ref={ctaCloudRightRef}
+            className="absolute -bottom-24 sm:-bottom-32 md:-bottom-48 lg:-bottom-70 xl:-bottom-90 -right-8 md:-right-16 lg:-right-24 w-[110%] md:w-[108%] lg:w-[106%] z-10"
+            style={{ willChange: "transform" }}
+          >
             <Image
               src="/Images/clouds/c2.png"
               alt="Cloud"
@@ -1419,10 +1940,9 @@ const Home = () => {
         <div>
           <FooterSimple />
         </div>
-
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-custom-bg: #000A1B;
+  --color-custom-bg: #000a1b;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-montserrat);
@@ -119,12 +119,16 @@
   }
 
   html {
-    font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont,
+      "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont,
+      "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
     background: white;
     overflow-x: hidden;
   }
@@ -147,5 +151,252 @@
 
   *::-webkit-scrollbar-thumb {
     display: none;
+  }
+}
+
+/* page section custom css */
+
+.businesses {
+  width: 100%;
+  background-color: #fff;
+  padding: 3rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.businesses_hed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.businesses_hed h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+
+.businesses_hed h1 span {
+  opacity: 0.2;
+}
+
+.businesses_card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  gap: 4rem;
+}
+
+.businesses_card .card {
+  width: 100%;
+  height: 250px;
+  border-radius: 20px;
+  background-color: #F6F6F6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 0 2rem;
+}
+
+.businesses_card .card h1 {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.businesses_card .card p {
+  font-size: 0.9rem;
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* .businesses_images {
+  width: 100%;
+  height: 300px;
+  background-color: red;
+  border-radius: 10px;
+} */
+
+
+/* Full section background */
+.businesses_section {
+  width: 100%;
+  /* background: red; */
+  padding: 60px 40px;
+}
+
+/* Rounded container */
+.businesses_images {
+  width: 100%;
+  height: 300px;
+  background-color: #F6F6F6; /* change back from red */
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+/* Logo row */
+.logo_row {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Logo cards */
+.logo_item {
+  background: #ffffff;
+  padding: 16px 24px;
+  border-radius: 12px;
+  height: 70px;
+  min-width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo images */
+.logo_item img {
+  max-height: 40px;
+  max-width: 140px;
+  object-fit: contain;
+}
+
+
+
+/* our_prosess css */
+
+
+.our_prosess {
+  width: 100%;
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.our_prosess_hed {
+  display: flex;
+  flex-direction: column;
+}
+
+.our_prosess_hed h1 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.our_prosess_hed p {
+  opacity: 0.7;
+  font-size: 2rem;
+}
+
+
+.our_process_box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.our_process_box .our_box {
+  width: 100%;
+  height: 450px;
+  background-color: #F6F6F6;
+  border-radius: 15px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.our_process_box .our_box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.our_process_box .our_box_orange {
+  background-color: #FE4B00 !important;
+  color: white;
+}
+
+.our_box_logo {
+  margin-bottom: 2rem;
+}
+
+.our_box_logo img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.our_box_content h1 {
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.our_box_content h1 span {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  margin-left: 0.5rem;
+}
+
+.our_box_orange .our_box_content h1 span {
+  color: white;
+  opacity: 0.9;
+}
+
+.our_box_content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  font-weight: 400;
+}
+
+.our_box_orange .our_box_content p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .our_process_box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .our_process_box .our_box:nth-child(3) {
+    grid-column: span 2;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .our_process_box {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .our_process_box .our_box:nth-child(3) {
+    grid-column: 1;
+    max-width: 100%;
+  }
+  
+  .our_process_box .our_box {
+    height: auto;
+    min-height: 400px;
+    padding: 2rem 1.5rem;
+  }
+  
+  .our_box_content h1 {
+    font-size: 1.8rem;
   }
 }
