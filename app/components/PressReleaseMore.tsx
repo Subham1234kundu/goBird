@@ -4,13 +4,9 @@ import { useState, useEffect } from "react"
 import InsightsSection from "@/app/components/service/InsightsSection"
 import FooterSimple from "@/app/components/FooterSimple"
 import { useRouter } from "next/navigation"
-import { createClient } from "@supabase/supabase-js"
+import { supabase } from "@/lib/supabase"
 import type { PressRelease } from "@/lib/types/pressRelease"
 import { formatDate } from "@/lib/utils/dateFormatter"
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-const supabase = createClient(supabaseUrl, supabaseKey)
 
 interface PressReleaseMoreProps {
   pressReleaseId?: string

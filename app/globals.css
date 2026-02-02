@@ -135,8 +135,10 @@
 
   /* Completely hide scrollbar - no white bar */
   * {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
   }
 
   *::-webkit-scrollbar {
@@ -224,40 +226,72 @@
 .businesses_section {
   width: 100%;
   /* background: red; */
-  padding: 60px 40px;
+  
 }
 
-/* Rounded container */
+/* Logo marquee styles with slanted shape */
 .businesses_images {
-  width: 100%;
-  height: 300px;
-  background-color: #F6F6F6; /* change back from red */
-  border-radius: 30px;
+  width: calc(100% - 80px);
+  /* Account for skew margin */
+  margin: 0 auto;
+  min-height: 250px;
+  background-color: #F6F6F6;
+  border-radius: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px;
+  padding: 20px 0;
+  overflow: hidden;
+  position: relative;
+  transform: skewX(-12deg);
+  /* Constant slant matching the design */
 }
 
-/* Logo row */
+.logo_marquee_container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  transform: skewX(12deg);
+  /* Un-skew content to keep logos upright */
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
 .logo_row {
   display: flex;
-  gap: 30px;
+  flex-wrap: nowrap;
+  gap: 40px;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  width: max-content;
+  animation: logo-scroll 40s linear infinite;
+}
+
+@keyframes logo-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo_row:hover {
+  animation-play-state: paused;
 }
 
 /* Logo cards */
 .logo_item {
   background: #ffffff;
-  padding: 16px 24px;
+  padding: 16px 32px;
   border-radius: 12px;
-  height: 70px;
-  min-width: 160px;
+  height: 80px;
+  min-width: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 /* Logo images */
@@ -370,7 +404,7 @@
   .our_process_box {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .our_process_box .our_box:nth-child(3) {
     grid-column: span 2;
     max-width: 500px;
@@ -384,18 +418,18 @@
     gap: 1.5rem;
     padding: 1rem;
   }
-  
+
   .our_process_box .our_box:nth-child(3) {
     grid-column: 1;
     max-width: 100%;
   }
-  
+
   .our_process_box .our_box {
     height: auto;
     min-height: 400px;
     padding: 2rem 1.5rem;
   }
-  
+
   .our_box_content h1 {
     font-size: 1.8rem;
   }
@@ -437,7 +471,7 @@
   border-radius: 20px;
 }
 
-.our_process_images_box:nth-child(2) .image_box:nth-child(1){
+.our_process_images_box:nth-child(2) .image_box:nth-child(1) {
   object-fit: cover;
   overflow: hidden;
 }
@@ -448,7 +482,7 @@
   object-fit: cover;
 }
 
-.our_process_images_box:nth-child(2) .image_box:nth-child(2){
+.our_process_images_box:nth-child(2) .image_box:nth-child(2) {
   background-color: #000;
   color: #fff;
   display: flex;
@@ -466,7 +500,7 @@
 }
 
 
-.our_process_images_box:nth-child(2) .image_box:nth-child(2) button{
+.our_process_images_box:nth-child(2) .image_box:nth-child(2) button {
   background-color: #777474;
   width: 60%;
   height: 4vw;
@@ -476,7 +510,7 @@
   transition: all 0.3s ease;
 }
 
-.our_process_images_box:nth-child(2) .image_box:nth-child(2) button:hover{
+.our_process_images_box:nth-child(2) .image_box:nth-child(2) button:hover {
   background-color: #fff;
   color: #000;
 }
@@ -490,7 +524,7 @@
 .our_process_images_box:nth-child(3) .image_box:first-child {
   min-height: 300px;
   border-radius: 20px;
-   background-image: url(../public/Images/g-img1.png);
+  background-image: url(../public/Images/g-img1.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -511,7 +545,7 @@
 
 .our_servives {
   width: 100%;
-  background-color: #000;
+  background-color: #000A1B;
   color: #fff;
   padding: 2rem 4rem;
   display: flex;
@@ -522,7 +556,7 @@
 .our_servives_hed {
   display: flex;
   flex-direction: column;
-  gap: 1rem;  
+  gap: 1rem;
 }
 
 .our_servives_hed span {
@@ -542,7 +576,8 @@
   grid-template-columns: 40% 55%;
   gap: 2rem;
   padding: 2rem;
-  background-color: #000; /* Add background for white text to show */
+ 
+  /* Add background for white text to show */
 }
 
 .services_card_left {
@@ -551,7 +586,8 @@
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
-  color: #fff; /* White text for left side */
+  color: #fff;
+  /* White text for left side */
 }
 
 .services_card_left img {
@@ -561,14 +597,16 @@
 .services_card_left h3 {
   font-size: 1.2rem;
   transition: color 0.3s ease;
-  color: #fff; /* White text */
+  color: #fff;
+  /* White text */
 }
 
 .services_card_left p {
   font-size: 0.8rem;
   opacity: 0.8;
   transition: opacity 0.3s ease;
-  color: #fff; /* White text */
+  color: #fff;
+  /* White text */
 }
 
 .services_card_right {
@@ -602,12 +640,14 @@
 
 /* ACTIVE CARD: WHITE TEXT */
 .services_card_right .services_card_right_card.active h1 {
-  color: #fff; /* White for active card */
+  color: #fff;
+  /* White for active card */
 }
 
 /* INACTIVE CARDS: GREY TEXT */
 .services_card_right .services_card_right_card:not(.active) h1 {
-  color: #999; /* Grey for inactive cards */
+  color: #999;
+  /* Grey for inactive cards */
 }
 
 /* Content (p and button) - hidden by default */
@@ -629,12 +669,15 @@
   opacity: 0.8;
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  color: #fff; /* White text for description */
+  color: #fff;
+  /* White text for description */
 }
 
 .services_card_right .services_card_right_card button {
-  background-color: #fff; /* White background */
-  color: #000; /* Black text */
+  background-color: #fff;
+  /* White background */
+  color: #000;
+  /* Black text */
   border: 2px solid #fff;
   border-radius: 30px;
   width: 25%;
@@ -645,14 +688,18 @@
 }
 
 .services_card_right .services_card_right_card button:hover {
-  background-color: #000; /* Black background on hover */
-  color: #fff; /* White text on hover */
+  background-color: #000;
+  /* Black background on hover */
+  color: #fff;
+  /* White text on hover */
   border-color: #fff;
+
 }
 
 /* Hover effect for inactive cards */
 .services_card_right .services_card_right_card:not(.active):hover h1 {
-  color: #ccc; /* Lighter grey on hover */
+  color: #ccc;
+  /* Lighter grey on hover */
 }
 
 /* Optional: Add hover effect to entire card */
@@ -662,7 +709,8 @@
 
 /* If you want the button text to also be white when active */
 .services_card_right .services_card_right_card.active .card_content button {
-  color: #000; /* Keep black text on white button */
+  color: #000;
+  /* Keep black text on white button */
 }
 
 /* If you want white button with white text */
@@ -724,7 +772,7 @@
   padding: 2rem 1rem;
 }
 
-.top_cards .card  {
+.top_cards .card {
   width: 100%;
   height: 650px;
   overflow: hidden;
@@ -760,15 +808,15 @@
   font-weight: 500;
 }
 
-.card_text_right ul{
+.card_text_right ul {
   display: flex;
   gap: 1rem;
   cursor: pointer;
 }
 
-.card_text_right ul li{
+.card_text_right ul li {
   font-size: 1rem;
-} 
+}
 
 
 .center_cards {
@@ -816,7 +864,7 @@
 }
 
 .center_card_text_right ul {
-   display: flex;
+  display: flex;
   gap: 1rem;
   cursor: pointer;
 }
