@@ -11,7 +11,10 @@ import { useRouter } from "next/navigation";
 import logo from "../public/Images/Group 70.png";
 import logo2 from "../public/Images/Group 71.png";
 import logo3 from "../public/Images/Group 72.png";
+import box_img1 from "../public/Images/List → Listitem → Link.png";
 import box_img from "../public/Images/Image.png";
+import box_img2 from "../public/Images/g-img1.png";
+import box_img3 from "../public/Images/g-img.png";
 import img_mobile from "../public/Images/insights2.png";
 import workimg from "../public/Images/insights2.png";
 import workmanimg from "../public/Images/workman.png";
@@ -20,6 +23,7 @@ import p2 from "../public/Images/p-2.png";
 import p3 from "../public/Images/p-3.png";
 import b1 from "../public/Images/b-1.png";
 import b2 from "../public/Images/b-2.png";
+
 
 // Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -839,35 +843,41 @@ const Home = () => {
 
           <div
             ref={heroContentWrapperRef}
-            className="flex flex-col items-center mt-16 sm:mt-18 md:mt-16 lg:mt-18  2xl:mt-28 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10"
+            className="flex flex-col items-center justify-center sm:justify-start sm:mt-16 sm:mt-18 md:mt-16 lg:mt-18 2xl:mt-28 text-center w-full max-w-7xl 2xl:max-w-8xl relative z-10"
           >
+            {/* Heading - Centered and larger on mobile */}
             <h1
               ref={heroHeadingRef}
-              className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[82px] font-light leading-snug sm:leading-tight mb-2 sm:mb-1 px-2"
+              className="text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-tight sm:leading-snug mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full"
             >
-              Transforming Ideas into <br /> Scalable Digital Solutions
+              Transforming Ideas into <br className="hidden xs:block" />{" "}
+              Scalable Digital Solutions
             </h1>
+
+            {/* Description - Centered and larger on mobile */}
             <p
               ref={heroDescRef}
-              className="text-white font-light mt-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-3xl leading-relaxed 2xl:max-w-6xl mb-6 sm:mb-7 xl:mb-8 2xl:mb-10 px-4"
+              className="text-white font-light mt-4 sm:mt-2 text-base sm:text-sm md:text-lg lg:text-xl xl:text-3xl leading-relaxed max-w-[90%] sm:max-w-full 2xl:max-w-6xl mb-8 sm:mb-7 xl:mb-8 2xl:mb-10 px-4 sm:px-4 text-center"
             >
               Grobird accelerates innovation through IT consulting, software{" "}
               <br className="hidden sm:block" /> development, and cloud
               solutions.
             </p>
+
+            {/* Buttons - Stacked vertically on mobile, horizontal on desktop */}
             <div
               ref={heroButtonsRef}
-              className="flex flex-row gap-3 sm:gap-4 items-center justify-center"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-4 items-center justify-center w-full sm:w-auto"
             >
               <button
                 onClick={() => router.push("/contact")}
-                className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3  rounded-full text-xs sm:text-sm  md:text-[17px] hover:bg-[#e55a24] transition-colors"
+                className="bg-[#FF672C] text-white px-8 sm:px-6 lg:px-18 font-medium py-3 sm:py-2 md:py-3 rounded-full text-base sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto max-w-[280px] sm:max-w-none"
               >
                 Talk to Us
               </button>
               <button
                 onClick={() => router.push("/services")}
-                className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium "
+                className="bg-white text-black px-8 sm:px-6 lg:px-14 py-3 sm:py-2 md:py-3 rounded-full text-base sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto max-w-[280px] sm:max-w-none"
               >
                 Explore Services
               </button>
@@ -943,6 +953,9 @@ const Home = () => {
 
 
         {/* businesses  cards */}
+
+
+
         <section className="businesses">
 
           {/* hedline  */}
@@ -973,25 +986,34 @@ const Home = () => {
           </div>
 
         {/* images sidee */}
-        {/* <div className="businesses_images"></div> */}
 
         <div className="businesses_section">
       <div className="businesses_images">
         <div className="logo_row">
           <div className="logo_item">
-            <img src="/logos/logo1.png" alt="" />
+            <Image  alt="Boxes"
+              width={300}
+              height={100} src="/Images/clogo.png"/>
           </div>
           <div className="logo_item">
-            <img src="/logos/logo2.png" alt="" />
+            <Image  alt="Boxes"
+              width={300}
+              height={100} src="/Images/clogo1.png"/>
           </div>
           <div className="logo_item">
-            <img src="/logos/logo3.png" alt="" />
+            <Image  alt="Boxes"
+              width={300}
+              height={100} src="/Images/clogo2.png"/>
           </div>
           <div className="logo_item">
-            <img src="/logos/logo4.png" alt="" />
+             <Image  alt="Boxes"
+              width={300}
+              height={100} src="/Images/clogo3.png"/>
           </div>
           <div className="logo_item">
-            <img src="/logos/logo5.png" alt="" />
+             <Image  alt="Boxes"
+              width={300}
+              height={100} src="/Images/clogo4.png"/>
           </div>
         </div>
       </div>
@@ -999,69 +1021,110 @@ const Home = () => {
 
         </section>
 
+
         {/* our prosecces  */}
 
         <section className="our_prosess">
           <div className="our_prosess_hed">
             <span>Our Process</span>
-            <h1>A Proven, Data-Backed Process That</h1>
-            <p>Converts Strategy Into Results</p>
+            <h1>A Proven, Data-Backed Process That <br /> <span>Converts Strategy Into Results</span></h1>
+            <p></p>
           </div>
 
-          <div className="our_process_box">
-          {/* Box 1 */}
-          <div className="our_box">
-            <div className="our_box_logo">
-              <img src={logo.src} alt="Deep Dive Discovery" />
-            </div>
-            <div className="our_box_content">
-              <h1>Deep Dive & <span> ( 01 )</span> <br /> Discovery</h1>
-              <p>Through strategy calls and audits, we uncover what's working, missing, and the biggest opportunities lie.</p>
-            </div>
-          </div>
-      
-            {/* Box 2 - Orange Background */}
-            <div className="our_box our_box_orange">  
-            <div className="our_box_lo  go">
-              <img src={logo2.src} alt="Launch Exe  cute" />
-            </div>
-              <div className="our_box_content">
-            <h1>Launch & <span> ( 02 )</span> <br /> Execute</h1>
-            <p>With strategy locked, we roll out high-impact campaigns, creative content, and across key channels.</p>
-          </div>
-        </div>
-      
-      {/* Box 3 */}
-      <div className="our_box">
-        <div className="our_box_logo">
-          <img src={logo3.src} alt="Optimize Scale" />
-        </div>
-        <div className="our_box_content">
-          <h1>Optimize & <span> ( 03 )</span> <br /> Scale</h1>
-          <p>We continuously test, analyze, and refine. From A/B testing to, our team fine-tunes your campaigns.</p>
-        </div>
+                <div className="our_process_box">
+    {/* Box 1 */}
+    <div className="our_box">
+      <div className="our_box_logo">
+        <Image 
+          alt="Discovery Icon" 
+          src="/Images/Group 70.png"
+          className="process_image"
+          width={100}
+          height={10}
+          
+        />
       </div>
-          </div>
+      <div className="our_box_content">
+        <h1>Deep Dive & <span> ( 01 )</span> <br /> Discovery</h1>
+        <p>Through strategy calls and audits, we uncover what's working, missing, and the biggest opportunities lie.</p>
+      </div>
+    </div>
+  
+    {/* Box 2 - Orange Background */}
+    <div className="our_box our_box_orange">  
+      <div className="our_box_logo">
+        <Image 
+          alt="Execute Icon" 
+          src="/Images/Group 71.png"
+          className="process_image"
+          width={100}
+          height={10}
+         
+        />
+      </div>
+      <div className="our_box_content">
+        <h1>Launch & <span> ( 02 )</span> <br /> Execute</h1>
+        <p>With strategy locked, we roll out high-impact campaigns, creative content, and across key channels.</p>
+      </div>
+    </div>
 
-          <div className="our_process_images">
-            <div className="our_process_images_box"></div>
-            <div className="our_process_images_box">
-              <div className="image_box">
-                <img src={box_img.src} alt="image" />
-              </div>
-              <div className="image_box">
-                <h1>“Smart concepts, seamless delivery. Performance you can rely on.”</h1>
-                <button>Create Experience with Us</button>
-              </div>
-            </div>
+    {/* Box 3 */}
+    <div className="our_box">
+      <div className="our_box_logo">
+        <Image 
+          alt="Scale Icon" 
+          src="/Images/Group 72.png"
+          className="process_image"
+          width={100}
+          height={10}
+         
+        />
+      </div>
+      <div className="our_box_content">
+        <h1>Optimize & <span> ( 03 )</span> <br /> Scale</h1>
+        <p>We continuously test, analyze, and refine. From A/B testing to, our team fine-tunes your campaigns.</p>
+      </div>
+    </div>
+        </div>
 
-            <div className="our_process_images_box">
-              <div className="image_box"></div>
-              <div className="image_box"></div>
-            </div>
+       <div className="grid-wrapper">
+  <div className="grid-container">
 
-          </div>
+    {/* Left Tall */}
+    <div className="grid-item tall">
+      <img src={box_img1.src} alt="" />
+    </div>
 
+   {/* Middle Column */}
+<div className="grid-col">
+  <div className="grid-item">
+    <img src={box_img.src} alt="img" />
+  </div>
+
+  {/* Content Box */}
+  <div className="grid-item content-box">
+    <h1>
+      Smart concepts, seamless delivery.
+      Performance you can rely on.
+    </h1>
+
+    <button>Create Experience with Us</button>
+  </div>
+</div>
+
+
+    {/* Right Column */}
+    <div className="grid-col right-col">
+      <div className="grid-item">
+       <img src={box_img2.src} alt="" />
+      </div>
+      <div className="grid-item">
+        <img src={box_img3.src} alt="img" />
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 
@@ -1076,10 +1139,6 @@ const Home = () => {
             <span>Our Services</span>
             <h1>Performance-Driven Solutions <br /> That Turn Traffic Into Revenue</h1>
           </div>
-
-    
-
-
            <div className="services_card">
       <div className="services_card_left">
         <img src={img_mobile.src} alt="image" />
@@ -1096,8 +1155,7 @@ const Home = () => {
             onMouseEnter={() => setActiveCard(index)}
           >
             <h1>{card.title}</h1>
-            
-            {/* Show description and button only for active card */}
+      
             <div className="card_content">
               <p>{card.description}</p>
               <button>Explore Now!</button>
@@ -1105,8 +1163,11 @@ const Home = () => {
           </div>
         ))}
       </div>
-    </div>
+          </div>
 
+          <div className="bottom_button">
+            <button>See all services</button>
+          </div>
 
         </section>
 
@@ -1222,8 +1283,8 @@ const Home = () => {
                   </div>
                   <div className="card_text_right">
                     <ul>
-                      <li>• Website Design</li>
-                      <li>• Development</li>
+                      <li>• Website </li>
+                      {/* <li>• Development</li> */}
                       <li>• Marketing</li>
                     </ul>
                   </div>
@@ -1824,62 +1885,79 @@ const Home = () => {
         </div> */}
 
         {/* Testimonials Section */}
-        <div className="mx-[4%]">
-          <div
-            ref={testimonialsHeadingRef}
-            className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-4 sm:gap-6 md:gap-8"
-          >
-            <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
-              <p>98% client </p>
-              <p className="text-[#3B3B3D73]">satisfaction rate</p>
-            </div>
-            <p className="text-[#2D2C2C] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed">
-              Testimonials
-            </p>
-          </div>
-        </div>
+
+       <div className="mx-[4%]">
+  <div
+    ref={testimonialsHeadingRef}
+    className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-[0.3rem] sm:gap-6 md:gap-8"
+  >
+    {/* Testimonials */}
+    <p className="text-[#2D2C2C] text-[21px] font-medium sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-tight order-1 sm:order-2">
+      Testimonials
+    </p>
+
+    {/* Satisfaction block */}
+    <div className="flex items-start flex-col gap-[0.3rem] sm:gap-2 leading-tight order-2 sm:order-1">
+      <p className="text-[28px] font-medium sm:text-2xl md:text-3xl">
+        98% client
+      </p>
+
+      <p className="text-[28px] font-medium sm:text-2xl md:text-3xl text-[#3B3B3D73]">
+        satisfaction rate
+      </p>
+    </div>
+  </div>
+</div>
+
 
         {/* Footer Section with Testimonial */}
+
         <div
-          ref={testimonialImageRef}
-          className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24"
-        >
-          <Image
-            src="/Images/serviseImages/footer.jpg"
-            alt="Roadmap Image"
-            width={1920}
-            height={200}
-            className="object-cover w-full h-[350px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
-          />
-          <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] ml-[4%] md:ml-[2%] mb-12 sm:mb-16 md:mb-32 lg:mb-44 justify-start">
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-start px-2 md:px-4 font-extralight leading-relaxed">
-              &ldquo;Looking for process improvements,{" "}
-              <br className="hidden sm:block" /> we found a solution that{" "}
-              <br className="hidden sm:block" /> transformed our entire data{" "}
-              <br className="hidden sm:block" /> strategy. The depth of insights
-              was <br className="hidden sm:block" /> remarkable.&rdquo;
-            </p>
-          </div>
+  ref={testimonialImageRef}
+  className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24"
+>
+  <Image
+    src="/Images/serviseImages/footer.jpg"
+    alt="Roadmap Image"
+    width={1920}
+    height={200}
+    className="object-cover w-full h-[450px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
+  />
 
-          <div className="absolute inset-0 flex items-end mx-[4%] md:mx-[3%] my-[3%] sm:my-[2%] md:my-[1%] justify-between">
-            <p className="footer-author text-white text-[10px] sm:text-xs md:text-sm">
-              Maya Singh <br /> Product Strategy Lead
-            </p>
+  {/* Quote */}
+  <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] ml-[4%] md:ml-[2%] mb-12 sm:mb-16 md:mb-32 lg:mb-44 justify-center sm:justify-start">
+    <p className="text-[20px] sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-center sm:text-start px-2 md:px-4 font-extralight leading-relaxed">
+      &ldquo;Looking for process improvements,{" "}
+      <br className="hidden sm:block" /> we found a solution that{" "}
+      <br className="hidden sm:block" /> transformed our entire data{" "}
+      <br className="hidden sm:block" /> strategy. The depth of insights
+      was <br className="hidden sm:block" /> remarkable.&rdquo;
+    </p>
+  </div>
 
-            <div className="flex items-center gap-1 md:gap-2">
-              <Image
-                src="/Images/serviseImages/play.png"
-                width={40}
-                height={40}
-                alt="video play"
-                className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
-              />
-              <p className="text-white text-[10px] sm:text-xs md:text-sm lg:text-md">
-                Watch video
-              </p>
-            </div>
-          </div>
-        </div>
+  {/* Bottom section */}
+  <div className="absolute inset-0 flex items-end mx-[4%] md:mx-[3%] my-[3%] sm:my-[2%] md:my-[1%] justify-between">
+    <p className="footer-author text-white text-[13px] sm:text-xs md:text-sm">
+      Maya Singh <br /> Product Strategy Lead
+    </p>
+
+    <div className="flex items-center gap-1 md:gap-2">
+      <Image
+        src="/Images/serviseImages/play.png"
+        width={40}
+        height={40}
+        alt="video play"
+        className="w-7 h-7 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
+      />
+      <p className="text-white text-[13px] sm:text-xs md:text-sm lg:text-md">
+        Watch video
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
 
         <div className="flex flex-col mx-[4%]">
           <div
@@ -1895,6 +1973,9 @@ const Home = () => {
             </p>
           </div>
         </div>
+
+
+        
 
         {/* Insights Section */}
         <div>
