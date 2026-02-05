@@ -8,8 +8,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import InsightsSection from "@/app/components/service/InsightsSection";
 import FooterSimple from "./components/FooterSimple";
 import { useRouter } from "next/navigation";
-import logo from "../public/Images/Group 70.png";
-import logo2 from "../public/Images/Group 71.png";
+// import logo from "../public/Images/Group 70.png";
+// import logo2 from "../public/Images/Group 71.png";
 import logo3 from "../public/Images/Group 72.png";
 import box_img1 from "../public/Images/List → Listitem → Link.png";
 import box_img from "../public/Images/Image.png";
@@ -23,7 +23,6 @@ import p2 from "../public/Images/p-2.png";
 import p3 from "../public/Images/p-3.png";
 import b1 from "../public/Images/b-1.png";
 import b2 from "../public/Images/b-2.png";
-
 
 // Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -62,119 +61,119 @@ const Home = () => {
   const stat3Ref = useRef<HTMLHeadingElement>(null);
   const stat4Ref = useRef<HTMLHeadingElement>(null);
 
-  //   const handleMouseEnter = (element: HTMLDivElement) => {
-  //     // Kill any existing animations on this element first
-  //     gsap.killTweensOf(element);
+  const handleMouseEnter = (element: HTMLDivElement) => {
+    // Kill any existing animations on this element first
+    gsap.killTweensOf(element);
 
-  //     gsap.to(element, {
-  //       scale: 1.05,
-  //       duration: 0.3,
-  //       ease: "power2.out",
-  //       overwrite: "auto",
-  //     });
-  //   };
+    gsap.to(element, {
+      scale: 1.05,
+      duration: 0.3,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+  };
 
-  //   const handleMouseLeave = (element: HTMLDivElement) => {
-  //     // Kill any existing animations on this element first
-  //     gsap.killTweensOf(element);
+  const handleMouseLeave = (element: HTMLDivElement) => {
+    // Kill any existing animations on this element first
+    gsap.killTweensOf(element);
 
-  //     gsap.to(element, {
-  //       scale: 1,
-  //       duration: 0.3,
-  //       ease: "power2.out",
-  //       overwrite: "auto",
-  //     });
-  //   };
+    gsap.to(element, {
+      scale: 1,
+      duration: 0.3,
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+  };
 
-  //   const handleServiceHover = (element: HTMLDivElement, isEntering: boolean) => {
-  //     const textContent = element.querySelector(".service-text-content");
-  //     const expandedContent = element.querySelector(".service-expanded-content");
+  const handleServiceHover = (element: HTMLDivElement, isEntering: boolean) => {
+    const textContent = element.querySelector(".service-text-content");
+    const expandedContent = element.querySelector(".service-expanded-content");
 
-  //     // Kill all existing animations on these elements to prevent glitches
-  //     gsap.killTweensOf([element, textContent, expandedContent]);
+    // Kill all existing animations on these elements to prevent glitches
+    gsap.killTweensOf([element, textContent, expandedContent]);
 
-  //     if (isEntering) {
-  //       const expandedHeight =
-  //         window.innerWidth < 640
-  //           ? "320px"
-  //           : window.innerWidth < 1024
-  //             ? "380px"
-  //             : "450px";
+    if (isEntering) {
+      const expandedHeight =
+        window.innerWidth < 640
+          ? "320px"
+          : window.innerWidth < 1024
+          ? "380px"
+          : "450px";
 
-  //       // Use a timeline for better synchronization
-  //       const tl = gsap.timeline();
+      // Use a timeline for better synchronization
+      const tl = gsap.timeline();
 
-  //       tl.to(element, {
-  //         height: expandedHeight,
-  //         duration: 0.35,
-  //         ease: "power2.out",
-  //         overwrite: "auto",
-  //         force3D: true,
-  //       })
-  //         .to(
-  //           textContent,
-  //           {
-  //             opacity: 0,
-  //             duration: 0.15,
-  //             ease: "power2.out",
-  //             overwrite: "auto",
-  //             force3D: true,
-  //           },
-  //           0
-  //         )
-  //         .to(
-  //           expandedContent,
-  //           {
-  //             opacity: 1,
-  //             duration: 0.25,
-  //             ease: "power2.out",
-  //             overwrite: "auto",
-  //             force3D: true,
-  //           },
-  //           0.1
-  //         );
-  //     } else {
-  //       const normalHeight =
-  //         window.innerWidth < 640
-  //           ? "180px"
-  //           : window.innerWidth < 1024
-  //             ? "220px"
-  //             : "250px";
+      tl.to(element, {
+        height: expandedHeight,
+        duration: 0.35,
+        ease: "power2.out",
+        overwrite: "auto",
+        force3D: true,
+      })
+        .to(
+          textContent,
+          {
+            opacity: 0,
+            duration: 0.15,
+            ease: "power2.out",
+            overwrite: "auto",
+            force3D: true,
+          },
+          0
+        )
+        .to(
+          expandedContent,
+          {
+            opacity: 1,
+            duration: 0.25,
+            ease: "power2.out",
+            overwrite: "auto",
+            force3D: true,
+          },
+          0.1
+        );
+    } else {
+      const normalHeight =
+        window.innerWidth < 640
+          ? "180px"
+          : window.innerWidth < 1024
+          ? "220px"
+          : "250px";
 
-  //       // Use a timeline for better synchronization
-  //       const tl = gsap.timeline();
+      // Use a timeline for better synchronization
+      const tl = gsap.timeline();
 
-  //       tl.to(expandedContent, {
-  //         opacity: 0,
-  //         duration: 0.15,
-  //         ease: "power2.out",
-  //         overwrite: "auto",
-  //         force3D: true,
-  //       })
-  //         .to(
-  //           element,
-  //           {
-  //             height: normalHeight,
-  //             duration: 0.35,
-  //             ease: "power2.out",
-  //             overwrite: "auto",
-  //             force3D: true,
-  //           },
-  //           0
-  //         )
-  //         .to(
-  //           textContent,
-  //           {
-  //             opacity: 1,
-  //             duration: 0.25,
-  //             ease: "power2.out",
-  //             overwrite: "auto",
-  //             force3D: true,
-  //           },
-  //           0.1
-  //         );
-  //     }
-  //   };
+      tl.to(expandedContent, {
+        opacity: 0,
+        duration: 0.15,
+        ease: "power2.out",
+        overwrite: "auto",
+        force3D: true,
+      })
+        .to(
+          element,
+          {
+            height: normalHeight,
+            duration: 0.35,
+            ease: "power2.out",
+            overwrite: "auto",
+            force3D: true,
+          },
+          0
+        )
+        .to(
+          textContent,
+          {
+            opacity: 1,
+            duration: 0.25,
+            ease: "power2.out",
+            overwrite: "auto",
+            force3D: true,
+          },
+          0.1
+        );
+    }
+  };
 
   useEffect(() => {
     // Kill existing ScrollTrigger animations only
@@ -755,39 +754,41 @@ const Home = () => {
     };
   }, []);
 
-
-
   const [activeCard, setActiveCard] = useState(0); // First card open by default
 
   const cards = [
     {
       title: "SaaS Platform Development",
-      description: "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+      description:
+        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
       leftTitle: "Cyber Security Ecosystem",
       leftSubtitle: "For E7 Cyber",
-      leftText: "We create impactful brand identities that differentiate."
+      leftText: "We create impactful brand identities that differentiate.",
     },
     {
       title: "Product Engineering",
-      description: "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+      description:
+        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
       leftTitle: "Product Design & Development",
       leftSubtitle: "For Innovators",
-      leftText: "Building scalable products with cutting-edge technology."
+      leftText: "Building scalable products with cutting-edge technology.",
     },
     {
       title: "MVP Development",
-      description: "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+      description:
+        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
       leftTitle: "Rapid Prototyping",
       leftSubtitle: "For Startups",
-      leftText: "Quickly validate ideas with minimum viable products."
+      leftText: "Quickly validate ideas with minimum viable products.",
     },
     {
       title: "Cloud & Infrastructure",
-      description: "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+      description:
+        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
       leftTitle: "Cloud Solutions",
       leftSubtitle: "For Enterprises",
-      leftText: "Scalable and secure cloud infrastructure solutions."
-    }
+      leftText: "Scalable and secure cloud infrastructure solutions.",
+    },
   ];
 
   return (
@@ -951,13 +952,9 @@ const Home = () => {
           </div>
         </div> */}
 
-
         {/* businesses  cards */}
 
-
-
         <section className="businesses">
-
           {/* hedline  */}
           <div className="businesses_hed">
             <h1>
@@ -985,57 +982,65 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="businesses_section">
+          {/* images sidee */}
 
+          <div className="businesses_section">
             <div className="businesses_images">
-              <div className="logo_marquee_container">
-                <div className="logo_row">
-                  {/* First set of logos */}
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company1.png" alt="Startup Company 1" width={140} height={40} className="object-contain" />
-                  </div>
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company2.png" alt="Startup Company 2" width={140} height={40} className="object-contain" />
-                  </div>
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company3.png" alt="Startup Company 3" width={140} height={40} className="object-contain" />
-                  </div>
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company4.png" alt="Startup Company 4" width={140} height={40} className="object-contain" />
-                  </div>
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company5.png" alt="Startup Company 5" width={140} height={40} className="object-contain" />
-                  </div>
-                  {/* Duplicate set for seamless loop */}
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company1.png" alt="Startup Company 1" width={140} height={40} className="object-contain" />
-                  </div>
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company2.png" alt="Startup Company 2" width={140} height={40} className="object-contain" />
-                  </div>
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company3.png" alt="Startup Company 3" width={140} height={40} className="object-contain" />
-                  </div>
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company4.png" alt="Startup Company 4" width={140} height={40} className="object-contain" />
-                  </div>
-                  <div className="logo_item">
-                    <Image src="/Images/startups/company5.png" alt="Startup Company 5" width={140} height={40} className="object-contain" />
-                  </div>
+              <div className="logo_row">
+                <div className="logo_item">
+                  <Image
+                    alt="Boxes"
+                    width={300}
+                    height={100}
+                    src="/Images/clogo.png"
+                  />
+                </div>
+                <div className="logo_item">
+                  <Image
+                    alt="Boxes"
+                    width={300}
+                    height={100}
+                    src="/Images/clogo1.png"
+                  />
+                </div>
+                <div className="logo_item">
+                  <Image
+                    alt="Boxes"
+                    width={300}
+                    height={100}
+                    src="/Images/clogo2.png"
+                  />
+                </div>
+                <div className="logo_item">
+                  <Image
+                    alt="Boxes"
+                    width={300}
+                    height={100}
+                    src="/Images/clogo3.png"
+                  />
+                </div>
+                <div className="logo_item">
+                  <Image
+                    alt="Boxes"
+                    width={300}
+                    height={100}
+                    src="/Images/clogo4.png"
+                  />
                 </div>
               </div>
             </div>
           </div>
-
         </section>
-
 
         {/* our prosecces  */}
 
         <section className="our_prosess">
           <div className="our_prosess_hed">
             <span>Our Process</span>
-            <h1>A Proven, Data-Backed Process That <br /> <span>Converts Strategy Into Results</span></h1>
+            <h1>
+              A Proven, Data-Backed Process That <br />{" "}
+              <span>Converts Strategy Into Results</span>
+            </h1>
             <p></p>
           </div>
 
@@ -1043,98 +1048,124 @@ const Home = () => {
             {/* Box 1 */}
             <div className="our_box">
               <div className="our_box_logo">
-                <img src={logo.src} alt="Deep Dive Discovery" />
+                <Image
+                  alt="Discovery Icon"
+                  src="/Images/Group 70.png"
+                  className="process_image"
+                  width={100}
+                  height={10}
+                />
               </div>
               <div className="our_box_content">
-                <h1>Deep Dive & <span> ( 01 )</span> <br /> Discovery</h1>
-                <p>Through strategy calls and audits, we uncover what&apos;s working, missing, and the biggest opportunities lie.</p>
+                <h1>
+                  Deep Dive & <span> ( 01 )</span> <br /> Discovery
+                </h1>
+                <p>
+                  Through strategy calls and audits, we uncover what's working,
+                  missing, and the biggest opportunities lie.
+                </p>
               </div>
             </div>
 
             {/* Box 2 - Orange Background */}
             <div className="our_box our_box_orange">
-              <div className="our_box_lo  go">
-                <img src={logo2.src} alt="Launch Exe  cute" />
+              <div className="our_box_logo">
+                <Image
+                  alt="Execute Icon"
+                  src="/Images/Group 71.png"
+                  className="process_image"
+                  width={100}
+                  height={10}
+                />
               </div>
               <div className="our_box_content">
-                <h1>Launch & <span> ( 02 )</span> <br /> Execute</h1>
-                <p>With strategy locked, we roll out high-impact campaigns, creative content, and across key channels.</p>
+                <h1>
+                  Launch & <span> ( 02 )</span> <br /> Execute
+                </h1>
+                <p>
+                  With strategy locked, we roll out high-impact campaigns,
+                  creative content, and across key channels.
+                </p>
               </div>
             </div>
 
             {/* Box 3 */}
             <div className="our_box">
               <div className="our_box_logo">
-                <img src={logo3.src} alt="Optimize Scale" />
+                <Image
+                  alt="Scale Icon"
+                  src="/Images/Group 72.png"
+                  className="process_image"
+                  width={100}
+                  height={10}
+                />
               </div>
               <div className="our_box_content">
-                <h1>Optimize & <span> ( 03 )</span> <br /> Scale</h1>
-                <p>We continuously test, analyze, and refine. From A/B testing to, our team fine-tunes your campaigns.</p>
+                <h1>
+                  Optimize & <span> ( 03 )</span> <br /> Scale
+                </h1>
+                <p>
+                  We continuously test, analyze, and refine. From A/B testing
+                  to, our team fine-tunes your campaigns.
+                </p>
               </div>
             </div>
           </div>
 
-       <div className="grid-wrapper">
-  <div className="grid-container">
+          <div className="grid-wrapper">
+            <div className="grid-container">
+              {/* Left Tall */}
+              <div className="grid-item tall">
+                <img src={box_img1.src} alt="" />
+              </div>
 
-    {/* Left Tall */}
-    <div className="grid-item tall">
-      <img src={box_img1.src} alt="" />
-    </div>
+              {/* Middle Column */}
+              <div className="grid-col">
+                <div className="grid-item">
+                  <img src={box_img.src} alt="img" />
+                </div>
 
-   {/* Middle Column */}
-<div className="grid-col">
-  <div className="grid-item">
-    <img src={box_img.src} alt="img" />
-  </div>
+                {/* Content Box */}
+                <div className="grid-item content-box">
+                  <h1>
+                    Smart concepts, seamless delivery. Performance you can rely
+                    on.
+                  </h1>
 
-  {/* Content Box */}
-  <div className="grid-item content-box">
-    <h1>
-      Smart concepts, seamless delivery.
-      Performance you can rely on.
-    </h1>
+                  <button>Create Experience with Us</button>
+                </div>
+              </div>
 
-    <button>Create Experience with Us</button>
-  </div>
-</div>
-
-
-    {/* Right Column */}
-    <div className="grid-col right-col">
-      <div className="grid-item">
-       <img src={box_img2.src} alt="" />
-      </div>
-      <div className="grid-item">
-        <img src={box_img3.src} alt="img" />
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
+              {/* Right Column */}
+              <div className="grid-col right-col">
+                <div className="grid-item">
+                  <img src={box_img2.src} alt="" />
+                </div>
+                <div className="grid-item">
+                  <img src={box_img3.src} alt="img" />
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
-
 
         {/* our services  */}
 
-
-        <section className="our_servives bg-[#000A1B]">
+        <section className="our_servives">
           <div className="our_servives_hed">
             <span>Our Services</span>
-            <h1>Performance-Driven Solutions <br /> That Turn Traffic Into Revenue</h1>
+            <h1>
+              Performance-Driven Solutions <br /> That Turn Traffic Into Revenue
+            </h1>
           </div>
-
-
-
-
           <div className="services_card">
             <div className="services_card_left">
               <img src={img_mobile.src} alt="image" />
               <br />
-              <h3>{cards[activeCard].leftTitle} <br /> {cards[activeCard].leftSubtitle}</h3>
+              <h3>
+                {cards[activeCard].leftTitle} <br />{" "}
+                {cards[activeCard].leftSubtitle}
+              </h3>
               <p>{cards[activeCard].leftText}</p>
             </div>
 
@@ -1142,13 +1173,14 @@ const Home = () => {
               {cards.map((card, index) => (
                 <div
                   key={index}
-                  className={`services_card_right_card ${activeCard === index ? 'active' : ''}`}
+                  className={`services_card_right_card ${
+                    activeCard === index ? "active" : ""
+                  }`}
                   onMouseEnter={() => setActiveCard(index)}
                 >
                   <h1>{card.title}</h1>
 
-                  {/* Show description and button only for active card */}
-                  <div className="card_content ">
+                  <div className="card_content">
                     <p>{card.description}</p>
                     <button>Explore Now!</button>
                   </div>
@@ -1160,20 +1192,20 @@ const Home = () => {
           <div className="bottom_button">
             <button>See all services</button>
           </div>
-
         </section>
-
 
         {/* our work */}
 
         <section className="our_work">
           <div className="our_work_hed">
             <span>Our Work</span>
-            <h1>A Proven, Data-Backed Process That <br /> <span>Converts Strategy Into Results</span></h1>
+            <h1>
+              A Proven, Data-Backed Process That <br />{" "}
+              <span>Converts Strategy Into Results</span>
+            </h1>
           </div>
 
           <div className="wors_cards">
-
             <div className="top_cards">
               <div className="card">
                 <div className="card_img">
@@ -1212,7 +1244,6 @@ const Home = () => {
             </div>
 
             <div className="center_cards">
-
               <div className="center_card">
                 <div className="center_card_img">
                   <img src={p1.src} alt="" />
@@ -1263,7 +1294,6 @@ const Home = () => {
               </div>
             </div>
 
-
             <div className="top_cards">
               <div className="card">
                 <div className="card_img">
@@ -1300,20 +1330,8 @@ const Home = () => {
                 </div>
               </div>
             </div>
-
           </div>
-
-
-
-
-
-
         </section>
-
-
-
-
-
 
         {/* 10x drive */}
         {/* <div>
@@ -1878,78 +1896,74 @@ const Home = () => {
 
         {/* Testimonials Section */}
 
-       <div className="mx-[4%]">
-  <div
-    ref={testimonialsHeadingRef}
-    className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-[0.3rem] sm:gap-6 md:gap-8"
-  >
-    {/* Testimonials */}
-    <p className="text-[#2D2C2C] text-[21px] font-medium sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-tight order-1 sm:order-2">
-      Testimonials
-    </p>
+        <div className="mx-[4%]">
+          <div
+            ref={testimonialsHeadingRef}
+            className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-[0.3rem] sm:gap-6 md:gap-8"
+          >
+            {/* Testimonials */}
+            <p className="text-[#2D2C2C] text-[21px] font-medium sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-tight order-1 sm:order-2">
+              Testimonials
+            </p>
 
-    {/* Satisfaction block */}
-    <div className="flex items-start flex-col gap-[0.3rem] sm:gap-2 leading-tight order-2 sm:order-1">
-      <p className="text-[28px] font-medium sm:text-2xl md:text-3xl">
-        98% client
-      </p>
+            {/* Satisfaction block */}
+            <div className="flex items-start flex-col gap-[0.3rem] sm:gap-2 leading-tight order-2 sm:order-1">
+              <p className="text-[28px] font-medium sm:text-2xl md:text-3xl">
+                98% client
+              </p>
 
-      <p className="text-[28px] font-medium sm:text-2xl md:text-3xl text-[#3B3B3D73]">
-        satisfaction rate
-      </p>
-    </div>
-  </div>
-       </div>
-
+              <p className="text-[28px] font-medium sm:text-2xl md:text-3xl text-[#3B3B3D73]">
+                satisfaction rate
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* Footer Section with Testimonial */}
 
         <div
-  ref={testimonialImageRef}
-  className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24"
->
-  <Image
-    src="/Images/serviseImages/footer.jpg"
-    alt="Roadmap Image"
-    width={1920}
-    height={200}
-    className="object-cover w-full h-[450px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
-  />
+          ref={testimonialImageRef}
+          className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24"
+        >
+          <Image
+            src="/Images/serviseImages/footer.jpg"
+            alt="Roadmap Image"
+            width={1920}
+            height={200}
+            className="object-cover w-full h-[450px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
+          />
 
-  {/* Quote */}
-  <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] ml-[4%] md:ml-[2%] mb-12 sm:mb-16 md:mb-32 lg:mb-44 justify-center sm:justify-start">
-    <p className="text-[20px] sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-center sm:text-start px-2 md:px-4 font-extralight leading-relaxed">
-      &ldquo;Looking for process improvements,{" "}
-      <br className="hidden sm:block" /> we found a solution that{" "}
-      <br className="hidden sm:block" /> transformed our entire data{" "}
-      <br className="hidden sm:block" /> strategy. The depth of insights
-      was <br className="hidden sm:block" /> remarkable.&rdquo;
-    </p>
-  </div>
+          {/* Quote */}
+          <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] ml-[4%] md:ml-[2%] mb-12 sm:mb-16 md:mb-32 lg:mb-44 justify-center sm:justify-start">
+            <p className="text-[20px] sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-center sm:text-start px-2 md:px-4 font-extralight leading-relaxed">
+              &ldquo;Looking for process improvements,{" "}
+              <br className="hidden sm:block" /> we found a solution that{" "}
+              <br className="hidden sm:block" /> transformed our entire data{" "}
+              <br className="hidden sm:block" /> strategy. The depth of insights
+              was <br className="hidden sm:block" /> remarkable.&rdquo;
+            </p>
+          </div>
 
-  {/* Bottom section */}
-  <div className="absolute inset-0 flex items-end mx-[4%] md:mx-[3%] my-[3%] sm:my-[2%] md:my-[1%] justify-between">
-    <p className="footer-author text-white text-[13px] sm:text-xs md:text-sm">
-      Maya Singh <br /> Product Strategy Lead
-    </p>
+          {/* Bottom section */}
+          <div className="absolute inset-0 flex items-end mx-[4%] md:mx-[3%] my-[3%] sm:my-[2%] md:my-[1%] justify-between">
+            <p className="footer-author text-white text-[13px] sm:text-xs md:text-sm">
+              Maya Singh <br /> Product Strategy Lead
+            </p>
 
-    <div className="flex items-center gap-1 md:gap-2">
-      <Image
-        src="/Images/serviseImages/play.png"
-        width={40}
-        height={40}
-        alt="video play"
-        className="w-7 h-7 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
-      />
-      <p className="text-white text-[13px] sm:text-xs md:text-sm lg:text-md">
-        Watch video
-      </p>
-    </div>
-  </div>
+            <div className="flex items-center gap-1 md:gap-2">
+              <Image
+                src="/Images/serviseImages/play.png"
+                width={40}
+                height={40}
+                alt="video play"
+                className="w-7 h-7 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
+              />
+              <p className="text-white text-[13px] sm:text-xs md:text-sm lg:text-md">
+                Watch video
+              </p>
+            </div>
+          </div>
         </div>
-
-
-
 
         <div className="flex flex-col mx-[4%]">
           <div
@@ -1965,9 +1979,6 @@ const Home = () => {
             </p>
           </div>
         </div>
-
-
-        
 
         {/* Insights Section */}
         <div>
