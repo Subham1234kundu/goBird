@@ -1907,7 +1907,7 @@ const Home = () => {
       </p>
     </div>
   </div>
-</div>
+       </div>
 
 
         {/* Footer Section with Testimonial */}
@@ -1954,7 +1954,7 @@ const Home = () => {
       </p>
     </div>
   </div>
-</div>
+        </div>
 
 
 
