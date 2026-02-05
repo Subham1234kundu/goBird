@@ -62,119 +62,119 @@ const Home = () => {
   const stat3Ref = useRef<HTMLHeadingElement>(null);
   const stat4Ref = useRef<HTMLHeadingElement>(null);
 
-  const handleMouseEnter = (element: HTMLDivElement) => {
-    // Kill any existing animations on this element first
-    gsap.killTweensOf(element);
+  //   const handleMouseEnter = (element: HTMLDivElement) => {
+  //     // Kill any existing animations on this element first
+  //     gsap.killTweensOf(element);
 
-    gsap.to(element, {
-      scale: 1.05,
-      duration: 0.3,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-  };
+  //     gsap.to(element, {
+  //       scale: 1.05,
+  //       duration: 0.3,
+  //       ease: "power2.out",
+  //       overwrite: "auto",
+  //     });
+  //   };
 
-  const handleMouseLeave = (element: HTMLDivElement) => {
-    // Kill any existing animations on this element first
-    gsap.killTweensOf(element);
+  //   const handleMouseLeave = (element: HTMLDivElement) => {
+  //     // Kill any existing animations on this element first
+  //     gsap.killTweensOf(element);
 
-    gsap.to(element, {
-      scale: 1,
-      duration: 0.3,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-  };
+  //     gsap.to(element, {
+  //       scale: 1,
+  //       duration: 0.3,
+  //       ease: "power2.out",
+  //       overwrite: "auto",
+  //     });
+  //   };
 
-  const handleServiceHover = (element: HTMLDivElement, isEntering: boolean) => {
-    const textContent = element.querySelector(".service-text-content");
-    const expandedContent = element.querySelector(".service-expanded-content");
+  //   const handleServiceHover = (element: HTMLDivElement, isEntering: boolean) => {
+  //     const textContent = element.querySelector(".service-text-content");
+  //     const expandedContent = element.querySelector(".service-expanded-content");
 
-    // Kill all existing animations on these elements to prevent glitches
-    gsap.killTweensOf([element, textContent, expandedContent]);
+  //     // Kill all existing animations on these elements to prevent glitches
+  //     gsap.killTweensOf([element, textContent, expandedContent]);
 
-    if (isEntering) {
-      const expandedHeight =
-        window.innerWidth < 640
-          ? "320px"
-          : window.innerWidth < 1024
-          ? "380px"
-          : "450px";
+  //     if (isEntering) {
+  //       const expandedHeight =
+  //         window.innerWidth < 640
+  //           ? "320px"
+  //           : window.innerWidth < 1024
+  //             ? "380px"
+  //             : "450px";
 
-      // Use a timeline for better synchronization
-      const tl = gsap.timeline();
+  //       // Use a timeline for better synchronization
+  //       const tl = gsap.timeline();
 
-      tl.to(element, {
-        height: expandedHeight,
-        duration: 0.35,
-        ease: "power2.out",
-        overwrite: "auto",
-        force3D: true,
-      })
-        .to(
-          textContent,
-          {
-            opacity: 0,
-            duration: 0.15,
-            ease: "power2.out",
-            overwrite: "auto",
-            force3D: true,
-          },
-          0
-        )
-        .to(
-          expandedContent,
-          {
-            opacity: 1,
-            duration: 0.25,
-            ease: "power2.out",
-            overwrite: "auto",
-            force3D: true,
-          },
-          0.1
-        );
-    } else {
-      const normalHeight =
-        window.innerWidth < 640
-          ? "180px"
-          : window.innerWidth < 1024
-          ? "220px"
-          : "250px";
+  //       tl.to(element, {
+  //         height: expandedHeight,
+  //         duration: 0.35,
+  //         ease: "power2.out",
+  //         overwrite: "auto",
+  //         force3D: true,
+  //       })
+  //         .to(
+  //           textContent,
+  //           {
+  //             opacity: 0,
+  //             duration: 0.15,
+  //             ease: "power2.out",
+  //             overwrite: "auto",
+  //             force3D: true,
+  //           },
+  //           0
+  //         )
+  //         .to(
+  //           expandedContent,
+  //           {
+  //             opacity: 1,
+  //             duration: 0.25,
+  //             ease: "power2.out",
+  //             overwrite: "auto",
+  //             force3D: true,
+  //           },
+  //           0.1
+  //         );
+  //     } else {
+  //       const normalHeight =
+  //         window.innerWidth < 640
+  //           ? "180px"
+  //           : window.innerWidth < 1024
+  //             ? "220px"
+  //             : "250px";
 
-      // Use a timeline for better synchronization
-      const tl = gsap.timeline();
+  //       // Use a timeline for better synchronization
+  //       const tl = gsap.timeline();
 
-      tl.to(expandedContent, {
-        opacity: 0,
-        duration: 0.15,
-        ease: "power2.out",
-        overwrite: "auto",
-        force3D: true,
-      })
-        .to(
-          element,
-          {
-            height: normalHeight,
-            duration: 0.35,
-            ease: "power2.out",
-            overwrite: "auto",
-            force3D: true,
-          },
-          0
-        )
-        .to(
-          textContent,
-          {
-            opacity: 1,
-            duration: 0.25,
-            ease: "power2.out",
-            overwrite: "auto",
-            force3D: true,
-          },
-          0.1
-        );
-    }
-  };
+  //       tl.to(expandedContent, {
+  //         opacity: 0,
+  //         duration: 0.15,
+  //         ease: "power2.out",
+  //         overwrite: "auto",
+  //         force3D: true,
+  //       })
+  //         .to(
+  //           element,
+  //           {
+  //             height: normalHeight,
+  //             duration: 0.35,
+  //             ease: "power2.out",
+  //             overwrite: "auto",
+  //             force3D: true,
+  //           },
+  //           0
+  //         )
+  //         .to(
+  //           textContent,
+  //           {
+  //             opacity: 1,
+  //             duration: 0.25,
+  //             ease: "power2.out",
+  //             overwrite: "auto",
+  //             force3D: true,
+  //           },
+  //           0.1
+  //         );
+  //     }
+  //   };
 
   useEffect(() => {
     // Kill existing ScrollTrigger animations only
@@ -985,39 +985,47 @@ const Home = () => {
             </div>
           </div>
 
-        {/* images sidee */}
+          <div className="businesses_section">
 
-        <div className="businesses_section">
-      <div className="businesses_images">
-        <div className="logo_row">
-          <div className="logo_item">
-            <Image  alt="Boxes"
-              width={300}
-              height={100} src="/Images/clogo.png"/>
+            <div className="businesses_images">
+              <div className="logo_marquee_container">
+                <div className="logo_row">
+                  {/* First set of logos */}
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company1.png" alt="Startup Company 1" width={140} height={40} className="object-contain" />
+                  </div>
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company2.png" alt="Startup Company 2" width={140} height={40} className="object-contain" />
+                  </div>
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company3.png" alt="Startup Company 3" width={140} height={40} className="object-contain" />
+                  </div>
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company4.png" alt="Startup Company 4" width={140} height={40} className="object-contain" />
+                  </div>
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company5.png" alt="Startup Company 5" width={140} height={40} className="object-contain" />
+                  </div>
+                  {/* Duplicate set for seamless loop */}
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company1.png" alt="Startup Company 1" width={140} height={40} className="object-contain" />
+                  </div>
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company2.png" alt="Startup Company 2" width={140} height={40} className="object-contain" />
+                  </div>
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company3.png" alt="Startup Company 3" width={140} height={40} className="object-contain" />
+                  </div>
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company4.png" alt="Startup Company 4" width={140} height={40} className="object-contain" />
+                  </div>
+                  <div className="logo_item">
+                    <Image src="/Images/startups/company5.png" alt="Startup Company 5" width={140} height={40} className="object-contain" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="logo_item">
-            <Image  alt="Boxes"
-              width={300}
-              height={100} src="/Images/clogo1.png"/>
-          </div>
-          <div className="logo_item">
-            <Image  alt="Boxes"
-              width={300}
-              height={100} src="/Images/clogo2.png"/>
-          </div>
-          <div className="logo_item">
-             <Image  alt="Boxes"
-              width={300}
-              height={100} src="/Images/clogo3.png"/>
-          </div>
-          <div className="logo_item">
-             <Image  alt="Boxes"
-              width={300}
-              height={100} src="/Images/clogo4.png"/>
-          </div>
-        </div>
-      </div>
-        </div>
 
         </section>
 
@@ -1031,61 +1039,40 @@ const Home = () => {
             <p></p>
           </div>
 
-                <div className="our_process_box">
-    {/* Box 1 */}
-    <div className="our_box">
-      <div className="our_box_logo">
-        <Image 
-          alt="Discovery Icon" 
-          src="/Images/Group 70.png"
-          className="process_image"
-          width={100}
-          height={10}
-          
-        />
-      </div>
-      <div className="our_box_content">
-        <h1>Deep Dive & <span> ( 01 )</span> <br /> Discovery</h1>
-        <p>Through strategy calls and audits, we uncover what's working, missing, and the biggest opportunities lie.</p>
-      </div>
-    </div>
-  
-    {/* Box 2 - Orange Background */}
-    <div className="our_box our_box_orange">  
-      <div className="our_box_logo">
-        <Image 
-          alt="Execute Icon" 
-          src="/Images/Group 71.png"
-          className="process_image"
-          width={100}
-          height={10}
-         
-        />
-      </div>
-      <div className="our_box_content">
-        <h1>Launch & <span> ( 02 )</span> <br /> Execute</h1>
-        <p>With strategy locked, we roll out high-impact campaigns, creative content, and across key channels.</p>
-      </div>
-    </div>
+          <div className="our_process_box">
+            {/* Box 1 */}
+            <div className="our_box">
+              <div className="our_box_logo">
+                <img src={logo.src} alt="Deep Dive Discovery" />
+              </div>
+              <div className="our_box_content">
+                <h1>Deep Dive & <span> ( 01 )</span> <br /> Discovery</h1>
+                <p>Through strategy calls and audits, we uncover what&apos;s working, missing, and the biggest opportunities lie.</p>
+              </div>
+            </div>
 
-    {/* Box 3 */}
-    <div className="our_box">
-      <div className="our_box_logo">
-        <Image 
-          alt="Scale Icon" 
-          src="/Images/Group 72.png"
-          className="process_image"
-          width={100}
-          height={10}
-         
-        />
-      </div>
-      <div className="our_box_content">
-        <h1>Optimize & <span> ( 03 )</span> <br /> Scale</h1>
-        <p>We continuously test, analyze, and refine. From A/B testing to, our team fine-tunes your campaigns.</p>
-      </div>
-    </div>
-        </div>
+            {/* Box 2 - Orange Background */}
+            <div className="our_box our_box_orange">
+              <div className="our_box_lo  go">
+                <img src={logo2.src} alt="Launch Exe  cute" />
+              </div>
+              <div className="our_box_content">
+                <h1>Launch & <span> ( 02 )</span> <br /> Execute</h1>
+                <p>With strategy locked, we roll out high-impact campaigns, creative content, and across key channels.</p>
+              </div>
+            </div>
+
+            {/* Box 3 */}
+            <div className="our_box">
+              <div className="our_box_logo">
+                <img src={logo3.src} alt="Optimize Scale" />
+              </div>
+              <div className="our_box_content">
+                <h1>Optimize & <span> ( 03 )</span> <br /> Scale</h1>
+                <p>We continuously test, analyze, and refine. From A/B testing to, our team fine-tunes your campaigns.</p>
+              </div>
+            </div>
+          </div>
 
        <div className="grid-wrapper">
   <div className="grid-container">
@@ -1134,35 +1121,40 @@ const Home = () => {
         {/* our services  */}
 
 
-        <section className="our_servives">
+        <section className="our_servives bg-[#000A1B]">
           <div className="our_servives_hed">
             <span>Our Services</span>
             <h1>Performance-Driven Solutions <br /> That Turn Traffic Into Revenue</h1>
           </div>
-           <div className="services_card">
-      <div className="services_card_left">
-        <img src={img_mobile.src} alt="image" />
-        <br />
-        <h3>{cards[activeCard].leftTitle} <br /> {cards[activeCard].leftSubtitle}</h3>
-        <p>{cards[activeCard].leftText}</p>
-      </div>
-      
-      <div className="services_card_right">
-        {cards.map((card, index) => (
-          <div 
-            key={index}
-            className={`services_card_right_card ${activeCard === index ? 'active' : ''}`}
-            onMouseEnter={() => setActiveCard(index)}
-          >
-            <h1>{card.title}</h1>
-      
-            <div className="card_content">
-              <p>{card.description}</p>
-              <button>Explore Now!</button>
+
+
+
+
+          <div className="services_card">
+            <div className="services_card_left">
+              <img src={img_mobile.src} alt="image" />
+              <br />
+              <h3>{cards[activeCard].leftTitle} <br /> {cards[activeCard].leftSubtitle}</h3>
+              <p>{cards[activeCard].leftText}</p>
             </div>
-          </div>
-        ))}
-      </div>
+
+            <div className="services_card_right">
+              {cards.map((card, index) => (
+                <div
+                  key={index}
+                  className={`services_card_right_card ${activeCard === index ? 'active' : ''}`}
+                  onMouseEnter={() => setActiveCard(index)}
+                >
+                  <h1>{card.title}</h1>
+
+                  {/* Show description and button only for active card */}
+                  <div className="card_content ">
+                    <p>{card.description}</p>
+                    <button>Explore Now!</button>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="bottom_button">
@@ -1201,7 +1193,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="card">
-                 <div className="card_img">
+                <div className="card_img">
                   <img src={workmanimg.src} alt="iamge" />
                 </div>
                 <div className="card_text">
@@ -1272,7 +1264,7 @@ const Home = () => {
             </div>
 
 
-             <div className="top_cards">
+            <div className="top_cards">
               <div className="card">
                 <div className="card_img">
                   <img src={b1.src} alt="iamge" />
@@ -1291,7 +1283,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="card">
-                 <div className="card_img">
+                <div className="card_img">
                   <img src={b2.src} alt="iamge" />
                 </div>
                 <div className="card_text">
@@ -1565,8 +1557,8 @@ const Home = () => {
               </button>
             </div> */}
 
-            {/* Vision Background Image */}
-            {/* <div
+        {/* Vision Background Image */}
+        {/* <div
               ref={developIdeaRef}
               className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[559px] mb-8 md:mb-12 relative"
             >
@@ -1614,7 +1606,7 @@ const Home = () => {
 
         {/* our success */}
         {/* <div> */}
-          {/* <div className="mx-[4%]">
+        {/* <div className="mx-[4%]">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-12">
               <h1
                 ref={successHeadingRef}

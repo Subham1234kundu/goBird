@@ -53,7 +53,7 @@ const InsightsSection = ({
             <Button onClick={onButtonClick} className="self-start sm:self-auto xl:text-[16px] p-6 flex items-center gap-2">
               {buttonText}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Button>
           )}
@@ -63,7 +63,7 @@ const InsightsSection = ({
       {/* Insights Side Scroll */}
       <div
         className="overflow-x-auto px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-6 sm:pb-8 md:pb-12 lg:pb-16 mt-8"
-        style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         <style jsx>{`
           div::-webkit-scrollbar {
@@ -88,7 +88,7 @@ const InsightsSection = ({
                 />
               </div>
               <h3 className="text-[#0B0B0B]  text-sm sm:text-lg lg:text-[32px]  mt-3 sm:mt-4 text-start w-[90%]">
-               {insight.title} 
+                {insight.title}
               </h3>
               <p className="text-[#666666] text-xs md:text-base mt-4 w-[90%] font-normal">
                 {insight.category} • {insight.date} • {insight.readTime}

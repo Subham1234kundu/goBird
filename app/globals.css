@@ -135,8 +135,10 @@
 
   /* Completely hide scrollbar - no white bar */
   * {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
   }
 
   *::-webkit-scrollbar {
@@ -212,6 +214,7 @@
   opacity: 0.8;
 }
 
+<<<<<<< HEAD
 /* Rounded container */
 .businesses_images {
   width: 100%;
@@ -221,26 +224,93 @@
   align-items: center;
   justify-content: center;
   padding: 7rem 2rem;
+=======
+/* .businesses_images {
+  width: 100%;
+  height: 300px;
+  background-color: red;
+  border-radius: 10px;
+} */
+
+
+/* Full section background */
+.businesses_section {
+  width: 100%;
+  /* background: red; */
+  
 }
 
-/* Logo row */
-.logo_row {
+/* Logo marquee styles with slanted shape */
+.businesses_images {
+  width: calc(100% - 80px);
+  /* Account for skew margin */
+  margin: 0 auto;
+  min-height: 250px;
+  background-color: #F6F6F6;
+  border-radius: 40px;
   display: flex;
-  gap: 2vw;
   align-items: center;
   justify-content: center;
+  padding: 20px 0;
+  overflow: hidden;
+  position: relative;
+  transform: skewX(-12deg);
+  /* Constant slant matching the design */
+}
+
+.logo_marquee_container {
   width: 100%;
+  overflow: hidden;
+  position: relative;
+  transform: skewX(12deg);
+  /* Un-skew content to keep logos upright */
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
+}
+
+.logo_row {
+  display: flex;
+<<<<<<< HEAD
+  gap: 2vw;
+=======
+  flex-wrap: nowrap;
+  gap: 40px;
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
+  align-items: center;
+  width: max-content;
+  animation: logo-scroll 40s linear infinite;
+}
+
+@keyframes logo-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo_row:hover {
+  animation-play-state: paused;
 }
 
 .logo_item {
   background: #ffffff;
+<<<<<<< HEAD
   padding: 2rem 1rem;
+=======
+  padding: 16px 32px;
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
   border-radius: 12px;
-  height: 70px;
-  min-width: 160px;
+  height: 80px;
+  min-width: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .logo_item img {
@@ -434,7 +504,47 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+<<<<<<< HEAD
 .grid-wrapper {
+=======
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .our_process_box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .our_process_box .our_box:nth-child(3) {
+    grid-column: span 2;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .our_process_box {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .our_process_box .our_box:nth-child(3) {
+    grid-column: 1;
+    max-width: 100%;
+  }
+
+  .our_process_box .our_box {
+    height: auto;
+    min-height: 400px;
+    padding: 2rem 1.5rem;
+  }
+
+  .our_box_content h1 {
+    font-size: 1.8rem;
+  }
+}
+
+.our_process_images {
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
   width: 100%;
 }
 
@@ -459,8 +569,23 @@
   width: 100%;
   height: 100%;
   display: flex;
+<<<<<<< HEAD
   align-items: center;
   justify-content: center;
+=======
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.our_process_images_box:nth-child(2) .image_box {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.our_process_images_box:nth-child(2) .image_box:nth-child(1) {
+  object-fit: cover;
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
   overflow: hidden;
 }
 
@@ -472,12 +597,17 @@
   display: block;
 }
 
+<<<<<<< HEAD
 .grid-item.tall {
   border-radius: 10px;
 }
 
 .content-box {
   background: #000;
+=======
+.our_process_images_box:nth-child(2) .image_box:nth-child(2) {
+  background-color: #000;
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
   color: #fff;
   flex-direction: column;
   justify-content: space-between;
@@ -491,31 +621,58 @@
   margin: 0;
 }
 
+<<<<<<< HEAD
 .content-box button {
   padding: 12px 20px;
   border: none;
   background: white;
   color: black;
+=======
+
+.our_process_images_box:nth-child(2) .image_box:nth-child(2) button {
+  background-color: #777474;
+  width: 60%;
+  height: 4vw;
+  border-radius: 20px;
+  color: #fff;
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
   cursor: pointer;
   font-weight: 600;
   border-radius: 30px;
 }
 
+<<<<<<< HEAD
 
 
 @media (max-width: 450px) {
   .our_prosess {
   padding: 3rem 1rem;
   gap: 3rem;
+=======
+.our_process_images_box:nth-child(2) .image_box:nth-child(2) button:hover {
+  background-color: #fff;
+  color: #000;
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
 }
 
 .our_prosess_hed {
   gap: 1rem;
 }
 
+<<<<<<< HEAD
 .our_prosess_hed h1 {
   font-size: 2rem;
   white-space: normal;
+=======
+.our_process_images_box:nth-child(3) .image_box:first-child {
+  min-height: 300px;
+  border-radius: 20px;
+  background-image: url(../public/Images/g-img1.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
 }
 
 .our_prosess_hed h1 br {
@@ -627,7 +784,7 @@
 .our_servives_hed {
   display: flex;
   flex-direction: column;
-  gap: 1rem;  
+  gap: 1rem;
 }
 
 .our_servives_hed span {
@@ -647,7 +804,12 @@
   grid-template-columns: 40% 55%;
   gap: 2rem;
   padding: 2rem;
+<<<<<<< HEAD
   /* background-color: #000; */
+=======
+ 
+  /* Add background for white text to show */
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
 }
 
 .services_card_left {
@@ -657,6 +819,10 @@
   flex-direction: column;
   transition: all 0.3s ease;
   color: #fff;
+<<<<<<< HEAD
+=======
+  /* White text for left side */
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
 }
 
 .services_card_left img {
@@ -667,6 +833,10 @@
   font-size: 1.2rem;
   transition: color 0.3s ease;
   color: #fff;
+<<<<<<< HEAD
+=======
+  /* White text */
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
 }
 
 .services_card_left p {
@@ -674,6 +844,10 @@
   opacity: 0.8;
   transition: opacity 0.3s ease;
   color: #fff;
+<<<<<<< HEAD
+=======
+  /* White text */
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
 }
 
 .services_card_right {
@@ -707,12 +881,14 @@
 
 /* ACTIVE CARD: WHITE TEXT */
 .services_card_right .services_card_right_card.active h1 {
-  color: #fff; /* White for active card */
+  color: #fff;
+  /* White for active card */
 }
 
 /* INACTIVE CARDS: GREY TEXT */
 .services_card_right .services_card_right_card:not(.active) h1 {
-  color: #999; /* Grey for inactive cards */
+  color: #999;
+  /* Grey for inactive cards */
 }
 
 /* Content (p and button) - hidden by default */
@@ -734,12 +910,15 @@
   opacity: 0.8;
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  color: #fff; /* White text for description */
+  color: #fff;
+  /* White text for description */
 }
 
 .services_card_right .services_card_right_card button {
-  background-color: #fff; /* White background */
-  color: #000; /* Black text */
+  background-color: #fff;
+  /* White background */
+  color: #000;
+  /* Black text */
   border: 2px solid #fff;
   border-radius: 30px;
   width: 25%;
@@ -750,14 +929,18 @@
 }
 
 .services_card_right .services_card_right_card button:hover {
-  background-color: #000; /* Black background on hover */
-  color: #fff; /* White text on hover */
+  background-color: #000;
+  /* Black background on hover */
+  color: #fff;
+  /* White text on hover */
   border-color: #fff;
+
 }
 
 /* Hover effect for inactive cards */
 .services_card_right .services_card_right_card:not(.active):hover h1 {
-  color: #ccc; /* Lighter grey on hover */
+  color: #ccc;
+  /* Lighter grey on hover */
 }
 
 /* Optional: Add hover effect to entire card */
@@ -767,7 +950,8 @@
 
 /* If you want the button text to also be white when active */
 .services_card_right .services_card_right_card.active .card_content button {
-  color: #000; /* Keep black text on white button */
+  color: #000;
+  /* Keep black text on white button */
 }
 
 /* If you want white button with white text */
@@ -970,7 +1154,11 @@
 }
 
 .card_text_right ul li {
+<<<<<<< HEAD
   font-size: clamp(0.85rem, 1vw, 1rem);
+=======
+  font-size: 1rem;
+>>>>>>> 51f26c8e46f97f005180ab62aee02eab89ea3ed2
 }
 
 /* ============================= */
