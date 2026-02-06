@@ -61,46 +61,53 @@ const InsightsSection = ({
       )}
 
       {/* Insights Side Scroll */}
-      <div
-        className="overflow-x-auto px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-6 sm:pb-8 md:pb-12 lg:pb-16 mt-8"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        <style jsx>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
+    <div
+  className="overflow-x-auto px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-6 sm:pb-8 md:pb-12 lg:pb-16 mt-8"
+  style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+>
+  <style jsx>{`
+    div::-webkit-scrollbar {
+      display: none;
+    }
+  `}</style>
 
-        <div className="flex gap-4 sm:gap-6 min-w-max">
-          {insights.map((insight, index) => (
-            <div
-              key={index}
-              ref={el => { if (el) insightItemsRef.current[index] = el }}
-              className="flex flex-col w-[280px] sm:w-[400px] lg:w-[600px]"
-            >
-              <div className="overflow-hidden ">
-                <Image
-                  src={insight.imageSrc}
-                  alt={insight.imageAlt || insight.title}
-                  width={600}
-                  height={388}
-                  className="w-[280px] sm:w-[400px] lg:w-[500px] h-[200px] sm:h-[300px] lg:h-[388px] xl:h-[488px] xl:w-[600px]  object-cover"
-                />
-              </div>
-              <h3 className="text-[#0B0B0B]  text-sm sm:text-lg lg:text-[32px]  mt-3 sm:mt-4 text-start w-[90%]">
-                {insight.title}
-              </h3>
-              <p className="text-[#666666] text-xs md:text-base mt-4 w-[90%] font-normal">
-                {insight.category} • {insight.date} • {insight.readTime}
-              </p>
-              <div className="relative w-[90%] mt-4">
-                <p className="text-[#0B0B0B] text-base">Read more</p>
-                <div className="absolute bottom-0 left-0 w-16 sm:w-20 h-px bg-[#0B0B0B]"></div>
-              </div>
-            </div>
-          ))}
+  {/* Scroll container */}
+  <div className="flex gap-4 sm:gap-6 min-w-full snap-x snap-mandatory">
+    {insights.map((insight, index) => (
+      <div
+        key={index}
+        ref={(el) => {
+          if (el) insightItemsRef.current[index] = el;
+        }}
+        className="flex flex-col w-full sm:w-[400px] lg:w-[600px] snap-start flex-shrink-0"
+      >
+        <div className="overflow-hidden">
+          <Image
+            src={insight.imageSrc}
+            alt={insight.imageAlt || insight.title}
+            width={600}
+            height={388}
+            className="w-full sm:w-[400px] lg:w-[500px] h-[220px] sm:h-[300px] lg:h-[388px] xl:h-[488px] xl:w-[600px] object-cover"
+          />
+        </div>
+
+       <h3 className="text-[#0B0B0B] text-lg sm:text-lg lg:text-[32px] mt-3 sm:mt-4 text-start w-[90%]">
+        {insight.title}
+      </h3>
+
+
+        <p className="text-[#666666] text-sm md:text-base mt-4 w-[90%] font-normal">
+          {insight.category} • {insight.date} • {insight.readTime}
+        </p>
+
+        <div className="relative w-[90%] mt-4">
+          <p className="text-[#0B0B0B] text-base">Read more</p>
+          <div className="absolute bottom-0 left-0 w-16 sm:w-20 h-px bg-[#0B0B0B]"></div>
         </div>
       </div>
+    ))}
+  </div>
+</div>
     </div>
   )
 }
