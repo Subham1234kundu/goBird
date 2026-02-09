@@ -61,119 +61,6 @@ const Home = () => {
   const stat3Ref = useRef<HTMLHeadingElement>(null);
   const stat4Ref = useRef<HTMLHeadingElement>(null);
 
-  const handleMouseEnter = (element: HTMLDivElement) => {
-    // Kill any existing animations on this element first
-    gsap.killTweensOf(element);
-
-    gsap.to(element, {
-      scale: 1.05,
-      duration: 0.3,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-  };
-
-  const handleMouseLeave = (element: HTMLDivElement) => {
-    // Kill any existing animations on this element first
-    gsap.killTweensOf(element);
-
-    gsap.to(element, {
-      scale: 1,
-      duration: 0.3,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-  };
-
-  const handleServiceHover = (element: HTMLDivElement, isEntering: boolean) => {
-    const textContent = element.querySelector(".service-text-content");
-    const expandedContent = element.querySelector(".service-expanded-content");
-
-    // Kill all existing animations on these elements to prevent glitches
-    gsap.killTweensOf([element, textContent, expandedContent]);
-
-    if (isEntering) {
-      const expandedHeight =
-        window.innerWidth < 640
-          ? "320px"
-          : window.innerWidth < 1024
-          ? "380px"
-          : "450px";
-
-      // Use a timeline for better synchronization
-      const tl = gsap.timeline();
-
-      tl.to(element, {
-        height: expandedHeight,
-        duration: 0.35,
-        ease: "power2.out",
-        overwrite: "auto",
-        force3D: true,
-      })
-        .to(
-          textContent,
-          {
-            opacity: 0,
-            duration: 0.15,
-            ease: "power2.out",
-            overwrite: "auto",
-            force3D: true,
-          },
-          0
-        )
-        .to(
-          expandedContent,
-          {
-            opacity: 1,
-            duration: 0.25,
-            ease: "power2.out",
-            overwrite: "auto",
-            force3D: true,
-          },
-          0.1
-        );
-    } else {
-      const normalHeight =
-        window.innerWidth < 640
-          ? "180px"
-          : window.innerWidth < 1024
-          ? "220px"
-          : "250px";
-
-      // Use a timeline for better synchronization
-      const tl = gsap.timeline();
-
-      tl.to(expandedContent, {
-        opacity: 0,
-        duration: 0.15,
-        ease: "power2.out",
-        overwrite: "auto",
-        force3D: true,
-      })
-        .to(
-          element,
-          {
-            height: normalHeight,
-            duration: 0.35,
-            ease: "power2.out",
-            overwrite: "auto",
-            force3D: true,
-          },
-          0
-        )
-        .to(
-          textContent,
-          {
-            opacity: 1,
-            duration: 0.25,
-            ease: "power2.out",
-            overwrite: "auto",
-            force3D: true,
-          },
-          0.1
-        );
-    }
-  };
 
   useEffect(() => {
     // Kill existing ScrollTrigger animations only
@@ -1063,7 +950,7 @@ const Home = () => {
                   Deep Dive & <span> ( 01 )</span> <br /> Discovery
                 </h1>
                 <p>
-                  Through strategy calls and audits, we uncover what's working,
+                  Through strategy calls and audits, we uncover what&apos;s working,
                   missing, and the biggest opportunities lie.
                 </p>
               </div>
@@ -1118,13 +1005,13 @@ const Home = () => {
             <div className="grid-container">
               {/* Left Tall */}
               <div className="grid-item tall">
-                <img src={box_img1.src} alt="" />
+                <Image src={box_img1} alt="Business insights" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
               </div>
 
               {/* Middle Column */}
               <div className="grid-col">
                 <div className="grid-item">
-                  <img src={box_img.src} alt="img" />
+                  <Image src={box_img} alt="Business insights image" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
                 </div>
 
                 {/* Content Box */}
@@ -1141,10 +1028,10 @@ const Home = () => {
               {/* Right Column */}
               <div className="grid-col right-col">
                 <div className="grid-item">
-                  <img src={box_img2.src} alt="" />
+                  <Image src={box_img2} alt="Business insights" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
                 </div>
                 <div className="grid-item">
-                  <img src={box_img3.src} alt="img" />
+                  <Image src={box_img3} alt="Business insights image" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
                 </div>
               </div>
             </div>
@@ -1162,7 +1049,7 @@ const Home = () => {
           </div>
           <div className="services_card">
             <div className="services_card_left">
-              <img src={img_mobile.src} alt="image" />
+              <Image src={img_mobile} alt="Service demonstration" style={{width: '100%', height: 'auto'}} />
               <br />
               <h3>
                 {cards[activeCard].leftTitle} <br />{" "}
@@ -1211,7 +1098,7 @@ const Home = () => {
             <div className="top_cards">
               <div className="card">
                 <div className="card_img">
-                  <img src={workimg.src} alt="iamge" />
+                  <Image src={workimg} alt="E7 Cyber project" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
                 </div>
                 <div className="card_text">
                   <div className="card_text_left">
