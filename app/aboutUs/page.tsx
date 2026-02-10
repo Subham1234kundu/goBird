@@ -22,7 +22,7 @@ const AboutUs = () => {
   const testimonialRefs = useRef<HTMLDivElement[]>([])
   const storyHeadingRef = useRef<HTMLHeadingElement>(null)
   const storyContentRef = useRef<HTMLDivElement>(null)
-  const storyImagesRef = useRef<HTMLImageElement[]>([])
+  const storyImagesRef = useRef<HTMLDivElement[]>([])
   const moreThanServiceRef = useRef<HTMLDivElement>(null)
   const statsRefs = useRef<HTMLDivElement[]>([])
   const servicesHeadingRef = useRef<HTMLDivElement>(null)
@@ -391,171 +391,290 @@ const AboutUs = () => {
     <div className="w-full overflow-x-hidden">
       <div>
         {/* heading */}
-          <div className="bg-custom-bg w-full h-full
+        
+         <div className="bg-custom-bg w-full h-full
            pt-6 sm:pt-8 md:pt-12 lg:pt-24 relative pl-4 sm:pl-6 md:pl-10 lg:pl-16 xl:pl-18">
             <div className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10">
-              <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-12 ">
-                <h1 ref={headingRef} className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light w-full lg:w-[70%] leading-tight">
-                  We build<br />technology that<br />builds businesses
-                </h1>
-                <h3 ref={subheadingRef} className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-10 mt-6px sm:mt-8px md:mt-10px lg:mt-12px xl:mt-14">
-                  Whether you&apos;re rethinking IT infrastructure, building custom software, or scaling digital products we help you move with speed and confidence.
-                </h3>
-              </div>
+
+              <div className="flex flex-col lg:flex-row items-start justify-between gap-8 sm:gap-6 md:gap-8 lg:gap-12">
+              
+               <h1
+              ref={headingRef}
+              className="text-white text-[42px] pt-8 sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light w-full lg:w-[70%] leading-tight"
+            >
+              We build<br />technology that<br />builds businesses
+            </h1>
+
+              <h3
+                ref={subheadingRef}
+                className="text-white font-light text-[14px] sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-6 sm:leading-10 mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14"
+              >
+                Whether you&apos;re rethinking IT infrastructure, building custom
+                software, or scaling digital products we help you move with speed
+                and confidence.
+              </h3>
+
+            </div>
 
               <div className="w-full relative aspect-[2/1] sm:aspect-[2.5/1] md:aspect-[3/1]">
-                <Image ref={boxesRef} src="/Images/boxes.png" alt="Boxes" width={800} height={300} className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[120%] sm:w-[110%] md:w-full lg:w-full xl:w-full h-auto object-contain" />
-                <Image ref={birdRef} src="/Images/orangeBird.png" alt="Orange Bird" width={900} height={500} className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100%] sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] h-auto z-20" />
+                <Image
+                  ref={boxesRef}
+                  src="/Images/boxes.png"
+                  alt="Boxes"
+                  width={800}
+                  height={300}
+                  className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[120%] sm:w-[110%] md:w-full lg:w-full xl:w-full h-auto object-contain"
+                />
+                <Image
+                  ref={birdRef}
+                  src="/Images/orangeBird.png"
+                  alt="Orange Bird"
+                  width={900}
+                  height={500}
+                  className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100%] sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] h-auto z-20"
+                />
               </div>
+            
             </div>
-          </div>
+         </div>
 
         {/* descp */}
-          <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-12 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16  mx-auto ">
-            <h2 className="text-[#000A1B] text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-tight w-full lg:w-[70%]">
-              <span className="text-[#3B3B3D73]">Turning Bold Ideas</span> <br /> into Impactful <br /> Products
+
+          <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-12 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16 mx-auto">
+
+            {/* H3 first on mobile */}
+           <h3 className="text-[#000A1B] text-[24px] font-normal pt-8 md:pt-0 md:text-3xl lg:text-4xl lg:w-[30%] text-start lg:text-end order-1 lg:order-2">
+            Our Mission/Vision
+            </h3>
+
+
+            {/* H2 second on mobile */}
+            <h2 className="text-[#000A1B] text-[32px] font-medium md:text-4xl lg:text-5xl xl:text-6xl leading-tight w-full lg:w-[70%] order-2 lg:order-1">
+              <span className="text-[#3B3B3D73]">Turning Bold Ideas</span> <br />
+              into Impactful <br />
+              Products
             </h2>
-            <h3 className="text-[#000A1B] text-2xl md:text-3xl lg:text-4xl lg:w-[30%] text-end">Our Mission/Vision</h3>
+
           </div>
 
         {/* vision boxes  */}
-        <div ref={missionSectionRef} className="flex flex-col lg:flex-row gap-2 lg:gap-1 px-4 sm:px-4 md:px-8 lg:px-12 xl:px-14 pb-6 sm:pb-8 md:pb-12 lg:pb-2 mx-auto">
-          {/* our blue */}
-          <div ref={missionBoxRef} className="w-full lg:w-[37%] bg-gradient-to-br from-[#020B18] to-[#023362] rounded-lg p-4 sm:p-6 py-6 sm:py-7 text-white font-inter h-[480px]">
-            <div className="mb-6 sm:mb-8">
-              <h3 className="text-xl sm:text-2xl xl:text-[32px] font-semibold mb-2">Our Mission</h3>
-              <p className="text-sm sm:text-lg xl:text-[24px] mb-4 sm:mb-6 leading-9 font-light">To empower businesses with technology that delivers measurable impact and long-term value.</p>
-            </div>
+       <div
+        ref={missionSectionRef}
+        className="flex flex-col lg:flex-row gap-2 lg:gap-1 px-4 sm:px-4 md:px-8 lg:px-12 xl:px-14 pb-6 sm:pb-8 md:pb-12 lg:pb-2 mx-auto"
+        >
 
-            <div>
-              <h3 className="text-xl sm:text-2xl xl:text-[32px] font-semibold mb-2">Our Vision</h3>
-              <p className="text-sm sm:text-lg xl:text-[24px] font-light leading-9">A future where digital transformation is seamless, sustainable, and accessible to every business.</p>
-            </div>
+  {/* Mission Box */}
+  <div
+  ref={missionBoxRef}
+  className="w-full lg:w-[37%] bg-gradient-to-br from-[#020B18] to-[#023362] rounded-[20px] px-8 sm:p-6 py-6 sm:py-7 text-white font-inter mt-4 lg:mt-0 h-auto lg:h-[480px]"
+>
+  {/* Mission */}
+  <div className="mb-10 sm:mb-8">
+    <h3 className="text-[20px] leading-[28.6px] font-medium sm:text-2xl xl:text-[32px] mb-3">
+      Our Mission
+    </h3>
 
-          </div>
+    <p className="text-[16px] font-normal sm:text-lg xl:text-[24px] mb-6 sm:mb-6 leading-6 sm:leading-9">
+      To empower businesses with technology that delivers measurable
+      impact and long-term value.
+    </p>
+  </div>
 
-          {/* vison black */}
-          <div ref={visionBoxRef} className="w-full lg:w-[63%] relative rounded-lg overflow-hidden h-64 sm:h-80 lg:h-[480px]">
-            <Image src="/Images/visonbackgroundblack.png" alt="Vision Background" width={600} height={200} className="w-full h-full object-cover" />
-            <Image src="/Images/minibird.png" alt="Mini Bird" width={100} height={100} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 object-contain" />
-            <p className="absolute bottom-4 sm:bottom-6 right-2 sm:right-4 text-white text-sm sm:text-xl xl:text-[32px] font-inter font-medium text-end opacity-42 leading-10">From vision to velocity that&apos;s <br /> the Grobird way</p>
-          </div>
-          
-        </div>
-        
+  {/* Vision */}
+  <div className="pt-4 sm:pt-0">
+    <h3 className="text-[20px] leading-[28.6px] font-medium sm:text-2xl xl:text-[32px] mb-3">
+      Our Vision
+    </h3>
+
+    <p className="text-[16px] font-normal sm:text-lg xl:text-[24px] leading-6 sm:leading-9">
+      A future where digital transformation is seamless, sustainable,
+      and accessible to every business.
+    </p>
+  </div>
+  </div>
+
+
+
+
+  {/* Vision box hidden only on mobile */}
+  <div
+    ref={visionBoxRef}
+    className="hidden lg:block w-full lg:w-[63%] relative rounded-lg overflow-hidden h-64 sm:h-80 lg:h-[480px]"
+  >
+    <Image
+      src="/Images/visonbackgroundblack.png"
+      alt="Vision Background"
+      width={600}
+      height={200}
+      className="w-full h-full object-cover"
+    />
+
+    <Image
+      src="/Images/minibird.png"
+      alt="Mini Bird"
+      width={100}
+      height={100}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 object-contain"
+    />
+
+    <p className="absolute bottom-4 sm:bottom-6 right-2 sm:right-4 text-white text-sm sm:text-xl xl:text-[32px] font-inter font-medium text-end opacity-42 leading-10">
+      From vision to velocity that&apos;s <br /> the Grobird way
+    </p>
+    </div>
+  </div>
+
+
         {/* three boxes review  */}
         <div className="flex flex-col md:flex-row gap-4 md:gap-1 px-4 sm:px-4 md:px-8 lg:px-12 xl:px-14 pb-6 sm:pb-8 md:pb-12 lg:pb-16 mx-auto">
           <div ref={el => { if (el) testimonialRefs.current[0] = el }} className="w-full md:w-1/3 h-auto md:h-[326px] bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between">
             <div>
-              <div className="flex gap-1 mb-4 sm:mb-7">
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
+              <div className="flex gap-1 mb-8 md:mb-7">
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
               </div>
-              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-medium leading-relaxed">Grobird turned our early-stage idea into a fully functional product within months. Their team felt like an extension of ours — fast, responsive, and genuinely invested in our success.</p>
+              <p className="text-[#0B0B0B] text-[16px] font-normal leading-[25.8px] md:text-base md:font-medium md:leading-relaxed xl:text-[18px]">Grobird turned our early-stage idea into a fully functional product within months. Their team felt like an extension of ours — fast, responsive, and genuinely invested in our success.</p>
             </div>
-            <div className="mt-4">
-              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-semibold">Ankit Sharma</p>
-              <p className="text-[#666666] text-xs xl:text-[13px]">Founder, EdTech Startup</p>
+            <div className="mt-8 md:mt-4">
+              <p className="text-[#0B0B0B] text-[18px] font-medium leading-[20.8px] md:text-base md:font-semibold xl:text-[18px]">Ankit Sharma</p>
+              <p className="text-[#666666] text-[13.88px] font-medium leading-[22.4px] md:text-xs xl:text-[13px]">Founder, EdTech Startup</p>
             </div>
           </div>
           <div ref={el => { if (el) testimonialRefs.current[1] = el }} className="w-full md:w-1/3 h-auto md:h-[326px] bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between">
             <div>
-              <div className="flex gap-1 mb-4 sm:mb-7">
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
+              <div className="flex gap-1 mb-8 md:mb-7">
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
               </div>
-              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-medium leading-relaxed">What impressed us most was Grobird&apos;s ability to balance speed with quality. They helped us scale our platform without downtime, and their support didn&apos;t stop after launch.</p>
+              <p className="text-[#0B0B0B] text-[16px] font-normal leading-[25.8px] md:text-base md:font-medium md:leading-relaxed xl:text-[18px]">What impressed us most was Grobird&apos;s ability to balance speed with quality. They helped us scale our platform without downtime, and their support didn&apos;t stop after launch.</p>
             </div>
-            <div className="mt-4">
-              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-semibold">Ankit Sharma</p>
-              <p className="text-[#666666] text-xs xl:text-[13px]">Founder, EdTech Startup</p>
+            <div className="mt-8 md:mt-4">
+              <p className="text-[#0B0B0B] text-[18px] font-medium leading-[20.8px] md:text-base md:font-semibold xl:text-[18px]">Ankit Sharma</p>
+              <p className="text-[#666666] text-[13.88px] font-medium leading-[22.4px] md:text-xs xl:text-[13px]">Founder, EdTech Startup</p>
             </div>
           </div>
           <div ref={el => { if (el) testimonialRefs.current[2] = el }} className="w-full md:w-1/3 h-auto md:h-[326px] bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between">
             <div>
-              <div className="flex gap-1 mb-4 sm:mb-7">
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
-                <Image src="/Images/starblue.png" alt="Star" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4" />
+              <div className="flex gap-1 mb-8 md:mb-7">
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
+                <Image src="/Images/starblue.png" alt="Star" width={18} height={16.7} className="w-[18px] h-[16.7px] md:w-4 md:h-4" />
               </div>
-              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-medium leading-relaxed">Partnering with Grobird gave us the confidence to dream bigger. Their expertise in product engineering and cloud solutions helped us grow faster than we imagined.</p>
+              <p className="text-[#0B0B0B] text-[16px] font-normal leading-[25.8px] md:text-base md:font-medium md:leading-relaxed xl:text-[18px]">Partnering with Grobird gave us the confidence to dream bigger. Their expertise in product engineering and cloud solutions helped us grow faster than we imagined.</p>
             </div>
-            <div className="mt-4">
-              <p className="text-[#0B0B0B] text-sm sm:text-base xl:text-[18px] font-semibold">Ankit Sharma</p>
-              <p className="text-[#666666] text-xs xl:text-[13px]">Founder, EdTech Startup</p>
+            <div className="mt-8 md:mt-4">
+              <p className="text-[#0B0B0B] text-[18px] font-medium leading-[20.8px] md:text-base md:font-semibold xl:text-[18px]">Ankit Sharma</p>
+              <p className="text-[#666666] text-[13.88px] font-medium leading-[22.4px] md:text-xs xl:text-[13px]">Founder, EdTech Startup</p>
             </div>
           </div>
         </div>
 
         {/* OUR STORY  */}
         <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16 px-4 sm:px-4 md:px-8 lg:px-12 xl:px-14 pb-6 sm:pb-8 md:pb-12 lg:pb-2 mx-auto xl:py-10">
-            <h2 ref={storyHeadingRef} className="text-[#000A1B] flex  text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium leading-tight w-full lg:w-[30%]">
+            <h2 ref={storyHeadingRef} className="text-[#000A1B] flex text-[32px] font-medium leading-tight pt-8 sm:text-3xl sm:pt-0 md:text-4xl xl:text-[64px] 2xl:text-6xl w-full lg:w-[30%]">
               <span className="text-[#3B3B3D73] mr-3">Our</span> <span className="text-[#000000]">Story</span>
             </h2>
-            <div ref={storyContentRef} className="flex flex-col gap-6 sm:gap-8 w-full lg:w-[65%]">
-              <p className="text-sm md:text-base lg:text-lg xl:text-[32px] leading-10 xl:mt-20 md:mt-16px">GroBird began with a simple belief — technology should not just solve problems, it should inspire growth. What started as a small team of passionate engineers and designers has now evolved into a full-scale digital partner trusted by businesses worldwide.</p>
-              <p className="text-[#3D3D3DDB] text-sm md:text-base lg:text-lg xl:text-[32px] leading-10">Over the years, we&apos;ve delivered 100+ transformative projects, empowered 50+ global clients, and expanded our expertise across consulting, development, hosting, and design. But at the heart of every milestone lies one constant — our commitment to crafting human-centered solutions that create lasting impact.</p>
-              <p className="text-[#3D3D3DDB] text-sm md:text-base lg:text-lg xl:text-[32px] leading-10">From our very first line of code to the innovative platforms we build today, GroBird has always been about more than technology. We are about people, ideas, and the journeys that shape them.</p>
+            <div ref={storyContentRef} className="flex flex-col sm:gap-8 w-full lg:w-[65%]">
+              <p className="text-[16px] font-normal leading-[36px] md:text-base md:leading-10 lg:text-lg xl:text-[32px] xl:mt-20 md:mt-16px">GroBird began with a simple belief — technology should not just solve problems, it should inspire growth. What started as a small team of passionate engineers and designers has now evolved into a full-scale digital partner trusted by businesses worldwide.</p>
+              <p className="text-[#3D3D3DDB] text-[16px] font-normal leading-[36px] md:text-base md:leading-10 lg:text-lg xl:text-[32px]">Over the years, we&apos;ve delivered 100+ transformative projects, empowered 50+ global clients, and expanded our expertise across consulting, development, hosting, and design. But at the heart of every milestone lies one constant — our commitment to crafting human-centered solutions that create lasting impact.</p>
+              <p className="text-[#3D3D3DDB] text-[16px] font-normal leading-[36px] md:text-base md:leading-10 lg:text-lg xl:text-[32px]">From our very first line of code to the innovative platforms we build today, GroBird has always been about more than technology. We are about people, ideas, and the journeys that shape them.</p>
             </div>
         </div>
 
           {/* our story boxes  */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-1 px-4 sm:px-3 md:px-4 lg:px-5 xl:px-8 pb-6 sm:py-6 md:py-9 lg:py-14 mx-auto items-center justify-center">
-            <Image ref={el => { if (el) storyImagesRef.current[0] = el }} src="/Images/ourStory1.png" alt="Our Story 1" width={352} height={352} className="w-full sm:w-1/3 h-auto sm:h-[452px] object-contain" />
-            <Image ref={el => { if (el) storyImagesRef.current[1] = el }} src="/Images/ourStory2.png" alt="Our Story 2" width={352} height={352} className="w-full sm:w-1/3 h-auto sm:h-[452px] object-contain" />
-            <Image ref={el => { if (el) storyImagesRef.current[2] = el }} src="/Images/ourStory3.png" alt="Our Story 3" width={352} height={352} className="w-full sm:w-1/3 h-auto sm:h-[452px] object-contain" />
+
+         <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 px-4 sm:px-3 md:px-4 lg:px-5 xl:px-8 pb-6 sm:py-6 md:py-9 lg:py-14 mx-auto items-center justify-center">
+  <div 
+    ref={el => { if (el) storyImagesRef.current[0] = el }} 
+    className="w-full sm:w-1/3 h-[452px] sm:h-[452px] bg-cover bg-center bg-no-repeat rounded-lg"
+    style={{ backgroundImage: "url('/Images/ourStory1.png')" }}
+  />
+  <div 
+    ref={el => { if (el) storyImagesRef.current[1] = el }} 
+    className="w-full sm:w-1/3 h-[452px] sm:h-[452px] bg-cover bg-center bg-no-repeat rounded-lg"
+    style={{ backgroundImage: "url('/Images/ourStory2.png')" }}
+  />
+  <div 
+    ref={el => { if (el) storyImagesRef.current[2] = el }} 
+    className="w-full sm:w-1/3 h-[452px] sm:h-[452px] bg-cover bg-center bg-no-repeat rounded-lg relative"
+    style={{ backgroundImage: "url('/Images/ourStory3.png')" }}
+  >
+    <div className="absolute inset-0 flex flex-col justify-between pl-6 pt-4 pb-8">
+      <h2 className="text-white font-medium text-[20px] leading-[33.6px] sm:text-[28px] sm:leading-[33.6px]">
+        "We expected performance improvements, but the strategic implementation delivered unprecedented operational excellence."
+      </h2>
+      <div className="text-white text-[14px] leading-[19.6px] font-normal mb-4 sm:mb-6">
+        <div>Paula Bennett</div>
+        <div>VP of Product Development, Morance</div>
+      </div>
+    </div>
+  </div>
           </div>
 
+
           {/* more than a service  */}
-          <div ref={moreThanServiceRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-10 lg:pb-18 mx-auto items-start sm:items-center justify-between  pt-5 lg:pt-16">
-            <h2 className="text-[#000A1B] flex flex-col text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium leading-tight w-full lg:w-[80%]">
-              <span className="text-[#3B3B3D73]">More than a service</span>
-               <span className="text-[#0B0B0B]">A strategic design </span>
-               <span className="text-[#0B0B0B]">partner.</span>
-            </h2>   
-            <h3 className="text-[#000A1B] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1">Why Grobird?</h3>
-          </div>
+
+          <div ref={moreThanServiceRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-10 lg:pb-18 mx-auto items-start sm:items-center justify-between pt-5 lg:pt-16">
+  <div className="order-2 sm:order-1 w-full">
+    <h2 className="text-[#000A1B] flex flex-col text-[32px] font-medium sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl sm:font-medium leading-tight w-full lg:w-[80%]">
+      <span className="text-[#3B3B3D73]">More than a service</span>
+      <span className="text-[#0B0B0B]">A strategic design </span>
+      <span className="text-[#0B0B0B]">partner.</span>
+    </h2>   
+  </div>
+  <h3 className="text-[#000A1B] text-[24px] font-normal order-1 sm:order-2 sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1">Why Grobird?</h3>
+            </div>
       
          {/* more than a servis boxes */}
+        
          <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-4 lg:pb-6 mx-auto pt-2">
-            <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain" />
-            <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
-              <h3 ref={aboutStatCounter1Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">x</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Higher Client Retention</p>
-            </div>
-             <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
-              <h3 ref={aboutStatCounter2Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
-            </div>
-            <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
-              <h3 ref={aboutStatCounter3Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">%</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
-            </div>
-            <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start min-h-[120px]">
-              <h3 ref={aboutStatCounter4Ref} className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold">0<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px]">Continents Served</p>
-            </div>
+  <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain mb-4 md:mb-0" />
+  
+  <div className="grid grid-cols-2 gap-4 md:contents">
+    <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-[191.5px] h-[198px] md:w-auto md:h-auto md:min-h-[120px]">
+      <h3 ref={aboutStatCounter1Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">x</span></h3>
+      <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Higher Client Retention</p>
+    </div>
+    
+    <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-[191.5px] h-[198px] md:w-auto md:h-auto md:min-h-[120px]">
+      <h3 ref={aboutStatCounter2Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
+      <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
+    </div>
+    
+    <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-[191.5px] h-[198px] md:w-auto md:h-auto md:min-h-[120px]">
+      <h3 ref={aboutStatCounter3Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">%</span></h3>
+      <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
+    </div>
+    
+    <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-[191.5px] h-[198px] md:w-auto md:h-auto md:min-h-[120px]">
+      <h3 ref={aboutStatCounter4Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
+      <p className="text-[#5A5A5A] text-[14px] font-normal sm:text-sm sm:font-inherit xl:text-[18px]">Continents Served</p>
+    </div>
+  </div>
           </div>
          </div>
 
+
+
+
           {/* help  */}
-          <div ref={servicesHeadingRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-10 lg:pb-24 mx-auto items-start sm:items-center justify-between pt-5 lg:pt-32">
-            <h2 className="text-[#000A1B] flex flex-col text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium leading-tight w-full lg:w-[80%]">
-              <span className="text-[#3B3B3D73]">How We Help</span>
-               <span className="text-[#0B0B0B]">Businesses Grow</span>
-            </h2>   
-            <h3 className="text-[#000A1B] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1">Services</h3>
+         <div ref={servicesHeadingRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-10 lg:pb-24 mx-auto items-start sm:items-center justify-between pt-5 lg:pt-32">
+  <h2 className="text-[#000A1B] flex flex-col text-[32px] font-medium sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl sm:font-medium leading-tight w-full lg:w-[80%] order-2 sm:order-1">
+    <span className="text-[#3B3B3D73]">How We Help</span>
+    <span className="text-[#0B0B0B]">Businesses Grow</span>
+  </h2>   
+  <h3 className="text-[#000A1B] text-[14px] font-normal order-1 sm:order-2 sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1">Services</h3>
           </div>
 
           {/* help points*/}
+          
           <div className="w-full gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-3 sm:pb-5 md:pb-8 lg:pb-12 mx-auto flex flex-col pt-2">
             <div ref={el => { if (el) servicesItemsRef.current[0] = el }} className="flex flex-col lg:flex-row">
             <div className="border-y-1 border-y-[#dbdbdb] flex flex-row items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-6 sm:py-10 xl:py-12">
@@ -587,6 +706,14 @@ const AboutUs = () => {
             <p className="text-xs sm:text-sm mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%]">End-to-end product design, development, and scaling from concept to launch so you can bring innovative ideas to market faster</p>
             </div>           
           </div>
+
+
+
+
+
+
+
+
           
           {/* Meet people */}
           <div ref={teamSectionRef} className="flex flex-col gap-8 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-3 sm:py-5 md:py-8 lg:py-12 mx-auto item-center justify-center pt-2">
