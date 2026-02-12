@@ -388,27 +388,28 @@ const AboutUs = () => {
   }, [])
 
   return (
+
     <div className="w-full overflow-x-hidden">
       <div>
         {/* heading */}
         <div className="bg-custom-bg w-full h-full pt-6 sm:pt-8 md:pt-12 lg:pt-24 relative pl-4 sm:pl-6 md:pl-10 lg:pl-16 xl:pl-18">
           <div className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10">
-            <div className="flex flex-col lg:flex-row items-start justify-between gap-8 sm:gap-6 md:gap-8 lg:gap-12">
-              <h1
-                ref={headingRef}
-                className="text-white text-[42px] pt-8 sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light w-full lg:w-[70%] leading-tight"
-              >
-                We build<br />technology that<br />builds businesses
-              </h1>
+           <div className="flex flex-col lg:flex-row items-start justify-between gap-2 sm:gap-6 md:gap-8 lg:gap-12">
+  <h1
+    ref={headingRef}
+    className="text-white text-[42px] pt-8 sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light w-full lg:w-[70%] leading-tight"
+  >
+    We build<br />technology that<br />builds businesses
+  </h1>
 
-              <h3
-                ref={subheadingRef}
-                className="text-white font-light text-[14px] sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-6 sm:leading-10 mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14"
-              >
-                Whether you&apos;re rethinking IT infrastructure, building custom
-                software, or scaling digital products we help you move with speed
-                and confidence.
-              </h3>
+  <h3
+    ref={subheadingRef}
+    className="text-white font-light text-[14px] sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-6 sm:leading-10 mt-2 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14"
+  >
+    Whether you&apos;re rethinking IT infrastructure, building custom
+    software, or scaling digital products we help you move with speed
+    and confidence.
+  </h3>
             </div>
 
             <div className="w-full relative pt-4 sm:pt-0 sm:aspect-[2.5/1] md:aspect-[3/1] -ml-4 sm:ml-0">
@@ -639,32 +640,80 @@ const AboutUs = () => {
         </div>
       
         {/* more than a servis boxes */}
-        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-2 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-4 lg:pb-6 mx-auto pt-2">
-          <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain mb-4 md:mb-0" />
-          
-          <div className="grid grid-cols-2 gap-4 md:contents">
-            <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-[191.5px] h-[198px] md:w-auto md:h-auto md:min-h-[120px]">
-              <h3 ref={aboutStatCounter1Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">x</span></h3>
-              <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Higher Client Retention</p>
-            </div>
-            
-            <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-[191.5px] h-[198px] md:w-auto md:h-auto md:min-h-[120px]">
-              <h3 ref={aboutStatCounter2Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
-            </div>
-            
-            <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-[191.5px] h-[198px] md:w-auto md:h-auto md:min-h-[120px]">
-              <h3 ref={aboutStatCounter3Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">%</span></h3>
-              <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
-            </div>
-            
-            <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-[191.5px] h-[198px] md:w-auto md:h-auto md:min-h-[120px]">
-              <h3 ref={aboutStatCounter4Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
-              <p className="text-[#5A5A5A] text-[14px] font-normal sm:text-sm sm:font-inherit xl:text-[18px]">Continents Served</p>
-            </div>
-          </div>
+       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-2 px-6 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-4 lg:pb-6 mx-auto pt-2">
+  <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain mb-4 md:mb-0" />
+  
+  <div className="grid grid-cols-2 gap-6 md:contents">
+    <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-full md:w-auto md:h-auto md:min-h-[120px] h-[198px]">
+      <h3 ref={aboutStatCounter1Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">x</span></h3>
+      <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Higher Client Retention</p>
+    </div>
+    
+    <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-full md:w-auto md:h-auto md:min-h-[120px] h-[198px]">
+      <h3 ref={aboutStatCounter2Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
+      <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
+    </div>
+    
+    <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-full md:w-auto md:h-auto md:min-h-[120px] h-[198px]">
+      <h3 ref={aboutStatCounter3Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">%</span></h3>
+      <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
+    </div>
+    
+    <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-full md:w-auto md:h-auto md:min-h-[120px] h-[198px]">
+      <h3 ref={aboutStatCounter4Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
+      <p className="text-[#5A5A5A] text-[14px] font-normal sm:text-sm sm:font-inherit xl:text-[18px]">Continents Served</p>
+    </div>
+  </div>
+       </div>
+
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 px-6 sm:px-3 md:px-4 lg:px-5 xl:px-8 pb-6 sm:py-6 md:py-9 lg:py-14 mx-auto items-center justify-center">
+  <div 
+    ref={el => { if (el) storyImagesRef.current[0] = el }} 
+    className="w-full sm:w-1/3 h-[452px] sm:h-[452px] relative rounded-lg overflow-hidden"
+  >
+    <Image 
+      src="/Images/ourStory1.png" 
+      alt="Our Story 1" 
+      fill 
+      className="object-cover"
+    />
+  </div>
+  <div 
+    ref={el => { if (el) storyImagesRef.current[1] = el }} 
+    className="w-full sm:w-1/3 h-[452px] sm:h-[452px] relative rounded-lg overflow-hidden"
+  >
+    <Image 
+      src="/Images/ourStory2.png" 
+      alt="Our Story 2" 
+      fill 
+      className="object-cover"
+    />
+  </div>
+  <div 
+    ref={el => { if (el) storyImagesRef.current[2] = el }} 
+    className="w-full sm:w-1/3 h-[452px] sm:h-[452px] relative rounded-lg overflow-hidden"
+  >
+    <Image 
+      src="/Images/ourStory3.png" 
+      alt="Our Story 3" 
+      fill 
+      className="object-cover"
+    />
+    <div className="absolute inset-0 flex flex-col justify-between pl-6 pt-4 pb-8">
+      <h2 className="text-white font-medium text-[20px] leading-[33.6px] sm:text-[28px] sm:leading-[33.6px]">
+        &quot;We expected performance improvements, but the strategic implementation delivered unprecedented operational excellence.&quot;
+      </h2>
+      <div className="text-white text-[14px] leading-[19.6px] font-normal mb-4 sm:mb-6">
+        <div>Paula Bennett</div>
+        <div>VP of Product Development, Morance</div>
+      </div>
+    </div>
+  </div>
         </div>
       </div>
+
+
+
 
       {/* Services Section - UNCOMMENTED AND FIXED with mobile responsive */}
       <div ref={servicesHeadingRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-10 lg:pb-24 mx-auto items-start sm:items-center justify-between pt-5 lg:pt-32">
@@ -675,55 +724,75 @@ const AboutUs = () => {
         <h3 className="text-[#000A1B] text-[14px] font-normal order-1 sm:order-2 sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1">Services</h3>
       </div>
 
+
       {/* help points - FIXED: Mobile responsive with 2rem padding, h3 24px, h4 20px, p 16px */}
-      <div className="w-full gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-3 sm:pb-5 md:pb-8 lg:pb-12 mx-auto flex flex-col pt-2">
-        {/* Item 1 */}
-        <div ref={el => { if (el) servicesItemsRef.current[0] = el }} className="flex flex-col lg:flex-row py-8 sm:py-0">
-          <div className="border-y-1 border-y-[#dbdbdb] flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-6 sm:py-10 xl:py-12">
-            <div className="flex items-center gap-4 w-full sm:w-auto">
-              <h3 className="text-[#C3C3C3] text-2xl font-medium sm:text-2xl lg:text-3xl xl:text-[48px] sm:font-normal">01.</h3>
-              <h4 className="text-xl font-medium sm:text-base lg:text-lg xl:text-[32px] xl:font-medium">Custom Software Development</h4>
-            </div>
-          </div>
-          <p className="text-base font-normal mt-6 sm:text-sm sm:mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%]">We design and build tailor-made software solutions that solve complex business challenges, improve efficiency</p>
-        </div>
-
-        {/* Item 2 */}
-        <div ref={el => { if (el) servicesItemsRef.current[1] = el }} className="flex flex-col lg:flex-row py-8 sm:py-0">
-          <div className="border-b-1 border-b-[#dbdbdb] flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-6 sm:py-10 xl:py-12">
-            <div className="flex items-center gap-4 w-full sm:w-auto">
-              <h3 className="text-[#C3C3C3] text-2xl font-medium sm:text-2xl lg:text-3xl xl:text-[48px] sm:font-normal">02.</h3>
-              <h4 className="text-xl font-medium sm:text-base lg:text-lg xl:text-[32px] xl:font-medium">IT Consulting</h4>
-            </div>
-          </div>
-          <p className="text-base font-normal mt-6 sm:text-sm sm:mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%]">Our experts guide you through technology strategy, digital transformation, and process optimization.</p>
-        </div>
-
-        {/* Item 3 */}
-        <div ref={el => { if (el) servicesItemsRef.current[2] = el }} className="flex flex-col lg:flex-row py-8 sm:py-0">
-          <div className="border-b-1 border-b-[#dbdbdb] flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-6 sm:py-10 xl:py-12">
-            <div className="flex items-center gap-4 w-full sm:w-auto">
-              <h3 className="text-[#C3C3C3] text-2xl font-medium sm:text-2xl lg:text-3xl xl:text-[48px] sm:font-normal">03.</h3>
-              <h4 className="text-xl font-medium sm:text-base lg:text-lg xl:text-[32px] xl:font-medium">Cloud & Infrastructure Services</h4>
-            </div>
-          </div>
-          <p className="text-base font-normal mt-6 sm:text-sm sm:mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%]">From migration to management, we deliver scalable, secure, and cost-effective cloud infrastructure</p>
-        </div>
-
-        {/* Item 4 */}
-        <div ref={el => { if (el) servicesItemsRef.current[3] = el }} className="flex flex-col lg:flex-row py-8 sm:py-0">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full lg:w-[60%] py-6 sm:py-10 xl:py-12">
-            <div className="flex items-center gap-4 w-full sm:w-auto">
-              <h3 className="text-[#C3C3C3] text-2xl font-medium sm:text-2xl lg:text-3xl xl:text-[48px] sm:font-normal">04.</h3>
-              <h4 className="text-xl font-medium sm:text-base lg:text-lg xl:text-[32px] xl:font-medium">Product Engineering</h4>
-            </div>
-          </div>
-          <p className="text-base font-normal mt-6 sm:text-sm sm:mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%]">End-to-end product design, development, and scaling from concept to launch so you can bring innovative ideas to market faster</p>
-        </div>           
+     <div className="w-full gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-3 sm:pb-5 md:pb-8 lg:pb-12 mx-auto flex flex-col pt-2 max-w-full overflow-hidden">
+  {/* Item 1 */}
+  <div ref={el => { if (el) servicesItemsRef.current[0] = el }} className="flex flex-col lg:flex-row pb-4 sm:py-0 w-full">
+    <div className="border-t-1 border-t-[#dbdbdb] flex flex-col sm:flex-row items-start sm:items-center w-full lg:w-[60%] pt-5 sm:pt-10 xl:pt-12 pb-3 sm:pb-10 xl:pb-12">
+      <div className="flex items-center w-full sm:w-auto">
+        <h4 className="text-[#C3C3C3] text-2xl font-medium sm:text-2xl lg:text-3xl xl:text-[48px] sm:font-normal w-[50px] flex-shrink-0 leading-none">01.</h4>
+        <h3 className="text-[17px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
+          Custom Software Development
+        </h3>
       </div>
+    </div>
+    <p className="text-[16px] sm:text-sm sm:mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%] ml-[calc(50px+1rem)] sm:ml-0 leading-relaxed break-words pr-4 sm:pr-0 max-w-[calc(100vw-100px)]">
+      We design and build tailor-made software solutions that solve complex business challenges, improve efficiency
+    </p>
+  </div>
 
-      {/* Meet people - UNCOMMENTED AND FIXED */}
-      <div ref={teamSectionRef} className="flex flex-col gap-8 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-3 sm:py-5 md:py-8 lg:py-12 mx-auto item-center justify-center pt-2">
+  {/* Item 2 */}
+  <div ref={el => { if (el) servicesItemsRef.current[1] = el }} className="flex flex-col lg:flex-row pb-4 sm:py-0 w-full">
+    <div className="border-t-1 border-t-[#dbdbdb] flex flex-col sm:flex-row items-start sm:items-center w-full lg:w-[60%] pt-5 sm:pt-10 xl:pt-12 pb-3 sm:pb-10 xl:pb-12">
+      <div className="flex items-center w-full sm:w-auto">
+        <h4 className="text-[#C3C3C3] text-2xl font-medium sm:text-2xl lg:text-3xl xl:text-[48px] sm:font-normal w-[50px] flex-shrink-0 leading-none">02.</h4>
+        <h3 className="text-[17px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
+          IT Consulting
+        </h3>
+      </div>
+    </div>
+    <p className="text-[16px] sm:text-sm sm:mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%] ml-[calc(50px+1rem)] sm:ml-0 leading-relaxed break-words pr-4 sm:pr-0 max-w-[calc(100vw-100px)]">
+      Our experts guide you through technology strategy, digital transformation, and process optimization
+    </p>
+  </div>
+
+  {/* Item 3 */}
+  <div ref={el => { if (el) servicesItemsRef.current[2] = el }} className="flex flex-col lg:flex-row pb-4 sm:py-0 w-full">
+    <div className="border-t-1 border-t-[#dbdbdb] flex flex-col sm:flex-row items-start sm:items-center w-full lg:w-[60%] pt-5 sm:pt-10 xl:pt-12 pb-3 sm:pb-10 xl:pb-12">
+      <div className="flex items-center w-full sm:w-auto">
+        <h4 className="text-[#C3C3C3] text-2xl font-medium sm:text-2xl lg:text-3xl xl:text-[48px] sm:font-normal w-[50px] flex-shrink-0 leading-none">03.</h4>
+        <h3 className="text-[17px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
+          Cloud & Infrastructure Services
+        </h3>
+      </div>
+    </div>
+    <p className="text-[16px] sm:text-sm sm:mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%] ml-[calc(50px+1rem)] sm:ml-0 leading-relaxed break-words pr-4 sm:pr-0 max-w-[calc(100vw-100px)]">
+      From migration to management, we deliver scalable, secure, and cost-effective cloud infrastructure
+    </p>
+  </div>
+
+  {/* Item 4 */}
+  <div ref={el => { if (el) servicesItemsRef.current[3] = el }} className="flex flex-col lg:flex-row pb-4 sm:py-0 w-full">
+    <div className="border-t-1 border-t-[#dbdbdb] flex flex-col sm:flex-row items-start sm:items-center w-full lg:w-[60%] pt-5 sm:pt-10 xl:pt-12 pb-3 sm:pb-10 xl:pb-12">
+      <div className="flex items-center w-full sm:w-auto">
+        <h4 className="text-[#C3C3C3] text-2xl font-medium sm:text-2xl lg:text-3xl xl:text-[48px] sm:font-normal w-[50px] flex-shrink-0 leading-none">04.</h4>
+        <h3 className="text-[17px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
+          Product Engineering
+        </h3>
+      </div>
+    </div>
+    <p className="text-[16px] sm:text-sm sm:mt-2 lg:mt-3 xl:text-[24px] text-[#737373] w-full lg:w-[40%] ml-[calc(50px+1rem)] sm:ml-0 leading-relaxed break-words pr-4 sm:pr-0 max-w-[calc(100vw-100px)]">
+      End-to-end product design, development, and scaling from concept to launch so you can bring innovative ideas to market faster
+    </p>
+  </div>           
+     </div>
+
+
+      
+
+      {/* Meet people - UNCOMMENTED AND FIXED  */}
+      {/* <div ref={teamSectionRef} className="flex flex-col gap-8 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-3 sm:py-5 md:py-8 lg:py-12 mx-auto item-center justify-center pt-2">
         <h2 ref={teamHeadingRef} className="text-[#000A1B] mb-5 text-center flex flex-col text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium ">
           <span className="text-[#3B3B3D73]">Meet the People</span>
           <span className="text-[#0B0B0B]">Behind Grobird</span>
@@ -767,7 +836,7 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Insights */}
       <InsightsSection
