@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import InsightsSection from "@/app/components/service/InsightsSection"
 import Footer from "@/app/components/Footer"
 import { useRouter } from "next/navigation"
+import FooterSimple from "../components/FooterSimple"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -640,32 +641,38 @@ const AboutUs = () => {
         </div>
       
         {/* more than a servis boxes */}
-       <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-2 px-6 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-4 lg:pb-6 mx-auto pt-2">
+
+
+        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-2 px-6 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-4 lg:pb-6 mx-auto pt-2">
   <Image ref={el => { if (el) statsRefs.current[0] = el }} src="/Images/morethanService.png" alt="More than Service" width={416} height={672} className="w-full md:row-span-2 h-auto object-contain mb-4 md:mb-0" />
   
-  <div className="grid grid-cols-2 gap-6 md:contents">
+  <div className="grid grid-cols-2 gap-4 md:contents">
     <div ref={el => { if (el) statsRefs.current[1] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-full md:w-auto md:h-auto md:min-h-[120px] h-[198px]">
-      <h3 ref={aboutStatCounter1Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">x</span></h3>
+      <h3 ref={aboutStatCounter1Ref} className="flex text-[42px] font-semibold mb-5 md:mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">x</span></h3>
       <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Higher Client Retention</p>
     </div>
     
     <div ref={el => { if (el) statsRefs.current[2] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-full md:w-auto md:h-auto md:min-h-[120px] h-[198px]">
-      <h3 ref={aboutStatCounter2Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
+      <h3 ref={aboutStatCounter2Ref} className="flex text-[42px] font-semibold mb-5 md:mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
       <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Successfully delivered high-quality projects</p>
     </div>
     
     <div ref={el => { if (el) statsRefs.current[3] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-full md:w-auto md:h-auto md:min-h-[120px] h-[198px]">
-      <h3 ref={aboutStatCounter3Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">%</span></h3>
+      <h3 ref={aboutStatCounter3Ref} className="flex text-[42px] font-semibold mb-5 md:mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">%</span></h3>
       <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">Client satisfaction based on surveys</p>
     </div>
     
     <div ref={el => { if (el) statsRefs.current[4] = el }} className="bg-[#D3D3D347] rounded-[20px] md:rounded-lg flex flex-col justify-between p-6 sm:p-8 lg:p-10 items-start w-full md:w-auto md:h-auto md:min-h-[120px] h-[198px]">
-      <h3 ref={aboutStatCounter4Ref} className="flex text-[42px] font-semibold mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
+      <h3 ref={aboutStatCounter4Ref} className="flex text-[42px] font-semibold mb-5 md:mb-8 md:text-3xl sm:text-4xl md:text-5xl lg:text-7xl md:mb-0">0<span className="text-[#F95524]">+</span></h3>
       <p className="text-[#5A5A5A] text-[14px] font-normal sm:text-sm sm:font-inherit xl:text-[18px]">Continents Served</p>
     </div>
   </div>
-       </div>
+</div>
 
+
+
+
+{/* new */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 px-6 sm:px-3 md:px-4 lg:px-5 xl:px-8 pb-6 sm:py-6 md:py-9 lg:py-14 mx-auto items-center justify-center">
   <div 
     ref={el => { if (el) storyImagesRef.current[0] = el }} 
@@ -712,9 +719,6 @@ const AboutUs = () => {
         </div>
       </div>
 
-
-
-
       {/* Services Section - UNCOMMENTED AND FIXED with mobile responsive */}
       <div ref={servicesHeadingRef} className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-10 lg:pb-24 mx-auto items-start sm:items-center justify-between pt-5 lg:pt-32">
         <h2 className="text-[#000A1B] flex flex-col text-[32px] font-medium sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl sm:font-medium leading-tight w-full lg:w-[80%] order-2 sm:order-1">
@@ -723,7 +727,6 @@ const AboutUs = () => {
         </h2>   
         <h3 className="text-[#000A1B] text-[14px] font-normal order-1 sm:order-2 sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1">Services</h3>
       </div>
-
 
       {/* help points - FIXED: Mobile responsive with 2rem padding, h3 24px, h4 20px, p 16px */}
      <div className="w-full gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-3 sm:pb-5 md:pb-8 lg:pb-12 mx-auto flex flex-col pt-2 max-w-full overflow-hidden">
@@ -788,8 +791,6 @@ const AboutUs = () => {
   </div>           
      </div>
 
-
-      
 
       {/* Meet people - UNCOMMENTED AND FIXED  */}
       {/* <div ref={teamSectionRef} className="flex flex-col gap-8 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 py-3 sm:py-5 md:py-8 lg:py-12 mx-auto item-center justify-center pt-2">
@@ -874,6 +875,9 @@ const AboutUs = () => {
 
       {/* Footer */}
       <Footer/>
+      <div className="block sm:hidden">
+  <FooterSimple/>
+      </div>
     </div>
   )
 }
