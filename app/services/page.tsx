@@ -709,535 +709,705 @@ const Services = () => {
             </div>
           </div>
 
-          <div ref={headerContentRef} className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10 pb-16">
-            <h1 className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] 2xl:text-7xl font-light leading-tight mb-8 w-full sm:w-[90%]  " style={{ fontWeight: 300 }}>
-              From strategy to <br /> execution, Grobird covers <br /> the full lifecycle of digital <br /> solutions.
-            </h1>
-            <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-10">
-              Whether you&apos;re rethinking IT infrastructure, building custom software, or scaling digital products — we help you move with speed and confidence.
-            </h3>
-            <button className="mt-12 sm:mt-16 md:mt-20 bg-white border border-white rounded-full text-black text-xs sm:text-sm xl:text-[18px] px-8 sm:px-12 py-2 w-fit">
-              View Products
-            </button>
+         <div ref={headerContentRef} className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10 pb-16">
+  <h1 
+    className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] 2xl:text-7xl font-light leading-tight mb-8 w-full sm:w-[90%]" 
+    style={{ fontWeight: 300 }}
+  >
+    <span className="hidden sm:inline">From strategy to <br /> execution, Grobird covers <br /> the full lifecycle of digital <br /> solutions.</span>
+    <span className="sm:hidden block" style={{ fontSize: '40px', fontWeight: 200, marginTop: '3rem' }}>From strategy to execution, Grobird covers the full lifecycle of digital solutions.</span>
+  </h1>
+  <h3 
+    className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-10"
+  >
+    <span className="hidden sm:inline">Whether you&apos;re rethinking IT infrastructure, building custom software, or scaling digital products — we help you move with speed and confidence.</span>
+    <span className="sm:hidden block" style={{ fontSize: '14px', fontWeight: 400, lineHeight: '1.5rem' }}>Whether you&apos;re rethinking IT infrastructure, building custom software, or scaling digital products — we help you move with speed and confidence.</span>
+  </h3>
+  <button className="mt-12 sm:mt-16 md:mt-20 bg-white border border-white rounded-full text-black text-xs sm:text-sm xl:text-[18px] px-8 sm:px-12 py-2 w-fit sm:block hidden">
+    View Products
+  </button>
           </div>
+
+
+
         </div>
 
         {/* Startups Section */}
-        <div className="w-full py-16 px-4 sm:px-6 md:px-10 lg:px-16">
-          <div className="max-w-[1400px] mx-auto">
-            <h2 className="text-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center mb-6 sm:mb-12 mt-6">
-              The startups shaping tomorrow trust Grobird
-            </h2>
+        <div className="w-full py-16 pb-16 pt-[1.3rem] sm:pt-16 px-0 sm:px-6 md:px-10 lg:px-16">
+  <div className="max-w-[1400px] mx-auto">
 
-            {/* Startup Company Images Row */}
-            <div className="flex justify-center items-center gap-2 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14">
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
-                <Image
-                  src="/Images/startups/company1.png"
-                  alt="Startup Company 1"
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
-                />
-              </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
-                <Image
-                  src="/Images/startups/company2.png"
-                  alt="Startup Company 2"
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
-                />
-              </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
-                <Image
-                  src="/Images/startups/company3.png"
-                  alt="Startup Company 3"
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
-                />
-              </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
-                <Image
-                  src="/Images/startups/company4.png"
-                  alt="Startup Company 4"
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
-                />
-              </div>
-              <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-r border-[#E9EBF1]">
-                <Image
-                  src="/Images/startups/company5.png"
-                  alt="Startup Company 5"
-                  fill
-                  className="object-contain"
-                  priority
-                  sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px"
-                />
-              </div>
-            </div>
+    {/* h2 – mobile full width, mb-8 gives 2rem gap to images */}
+    <h2 className="text-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center sm:mb-12 sm:mt-6 mb-8">
+      {/* Desktop version – unchanged */}
+      <span className="hidden sm:inline">The startups shaping tomorrow trust Grobird</span>
+      {/* Mobile version – exactly as shown */}
+      <span className="sm:hidden block" style={{
+        fontSize: '24px',
+        fontWeight: 500,
+        marginTop: '1.5rem',
+        textAlign: 'center'
+      }}>
+        The startups shaping tomorrow <br />
+        trust <span style={{ color: '#FF662A' }}>Grobird</span>
+      </span>
+    </h2>
+
+    {/* DESKTOP IMAGE ROW – static, wrapping (unchanged) */}
+    <div className="hidden sm:flex justify-center items-center gap-2 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-16 2xl:gap-14 flex-wrap">
+      {/* Company 1 */}
+      <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
+        <Image src="/Images/startups/company1.png" alt="Startup Company 1" fill className="object-contain" priority sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px" />
+      </div>
+      {/* Company 2 */}
+      <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
+        <Image src="/Images/startups/company2.png" alt="Startup Company 2" fill className="object-contain" priority sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px" />
+      </div>
+      {/* Company 3 */}
+      <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
+        <Image src="/Images/startups/company3.png" alt="Startup Company 3" fill className="object-contain" priority sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px" />
+      </div>
+      {/* Company 4 */}
+      <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-[#E9EBF1]">
+        <Image src="/Images/startups/company4.png" alt="Startup Company 4" fill className="object-contain" priority sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px" />
+      </div>
+      {/* Company 5 – with right border */}
+      <div className="relative w-14 h-7 sm:w-24 sm:h-12 md:w-32 md:h-16 lg:w-36 lg:h-18 xl:w-40 xl:h-20 2xl:w-44 2xl:h-22 flex-shrink-0 border-l border-r border-[#E9EBF1]">
+        <Image src="/Images/startups/company5.png" alt="Startup Company 5" fill className="object-contain" priority sizes="(max-width: 640px) 56px, (max-width: 768px) 96px, (max-width: 1024px) 128px, (max-width: 1280px) 144px, (max-width: 1536px) 160px, 176px" />
+      </div>
+    </div>
+
+    {/* MOBILE IMAGE ROW – horizontally scrolling, infinite loop */}
+    <div className="flex sm:hidden overflow-hidden">
+      <div className="flex gap-2 animate-marquee">
+        {/* First set of 5 images */}
+        {[1, 2, 3, 4, 5].map((num) => (
+          <div key={`mobile-${num}`} className="relative w-[180px] h-[80px] flex-shrink-0 border-l border-[#E9EBF1] rounded-lg">
+            <Image
+              src={`/Images/startups/company${num}.png`}
+              alt={`Startup Company ${num}`}
+              fill
+              className="object-contain"
+              priority
+              sizes="180px"
+            />
           </div>
+        ))}
+        {/* Duplicate set – creates seamless loop */}
+        {[1, 2, 3, 4, 5].map((num) => (
+          <div key={`mobile-duplicate-${num}`} className="relative w-[180px] h-[80px] flex-shrink-0 border-l border-[#E9EBF1] rounded-lg">
+            <Image
+              src={`/Images/startups/company${num}.png`}
+              alt={`Startup Company ${num}`}
+              fill
+              className="object-contain"
+              priority
+              sizes="180px"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Animation keyframes – added via style tag */}
+    <style jsx>{`
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-180px * 5 - 0.5rem * 4)); }
+      }
+      .animate-marquee {
+        animation: marquee 20s linear infinite;
+      }
+      /* Add right border to the last visible item on mobile for consistency */
+      @media (max-width: 640px) {
+        .border-l:last-child {
+          border-right: 1px solid #E9EBF1;
+        }
+      }
+    `}</style>
+  </div>
         </div>
 
         {/* Full-width auto-changing images section with absolute positioned medium images */}
         <div
-          ref={imageContainerRef}
-          className="relative w-full h-[600px] sm:h-[800px] md:h-[1000px] lg:h-[1200px] xl:h-[1400px] overflow-hidden cursor-pointer"
-          onClick={() => handleImageClick(currentIndex)}
-        >
-          <div
-            ref={el => { if (el) imagesRef.current[0] = el }}
-            className="w-full h-full"
-          >
-              <Image
-                src="/Images/serviseImages/BigImage/b1.png"
-                alt="Startup Image 1"
-                fill
-                className="object-cover"
-                priority
-                quality={90}
-              />
-            </div>
-            <div
-              ref={el => { if (el) imagesRef.current[1] = el }}
-              className="w-full h-full"
-            >
-              <Image
-                src="/Images/serviseImages/BigImage/b2.png"
-                alt="Startup Image 2"
-                fill
-                className="object-cover"
-                quality={90}
-              />
-            </div>
-            <div
-              ref={el => { if (el) imagesRef.current[2] = el }}
-              className="w-full h-full"
-            >
-              <Image
-                src="/Images/serviseImages/BigImage/b3.png"
-                alt="Startup Image 3"
-                fill
-                className="object-cover"
-                quality={90}
-              />
-            </div>
-            <div
-              ref={el => { if (el) imagesRef.current[3] = el }}
-              className="w-full h-full"
-            >
-              <Image
-                src="/Images/serviseImages/BigImage/b4.png"
-                alt="Startup Image 4"
-                fill
-                className="object-cover"
-                quality={90}
-              />
-            </div>
+  ref={imageContainerRef}
+  className="relative w-full h-[600px] sm:h-[800px] md:h-[1000px] lg:h-[1200px] xl:h-[1400px] overflow-hidden cursor-pointer"
+  onClick={() => handleImageClick(currentIndex)}
+>
+  {/* Background images – unchanged */}
+  <div ref={el => { if (el) imagesRef.current[0] = el }} className="w-full h-full">
+    <Image
+      src="/Images/serviseImages/BigImage/b1.png"
+      alt="Startup Image 1"
+      fill
+      className="object-cover"
+      priority
+      quality={90}
+    />
+  </div>
+  <div ref={el => { if (el) imagesRef.current[1] = el }} className="w-full h-full">
+    <Image
+      src="/Images/serviseImages/BigImage/b2.png"
+      alt="Startup Image 2"
+      fill
+      className="object-cover"
+      quality={90}
+    />
+  </div>
+  <div ref={el => { if (el) imagesRef.current[2] = el }} className="w-full h-full">
+    <Image
+      src="/Images/serviseImages/BigImage/b3.png"
+      alt="Startup Image 3"
+      fill
+      className="object-cover"
+      quality={90}
+    />
+  </div>
+  <div ref={el => { if (el) imagesRef.current[3] = el }} className="w-full h-full">
+    <Image
+      src="/Images/serviseImages/BigImage/b4.png"
+      alt="Startup Image 4"
+      fill
+      className="object-cover"
+      quality={90}
+    />
+  </div>
 
-          {/* M1, M2, M3, M4 Images - Absolutely positioned at 50% from top */}
-          <div className="absolute top-[50%] left-1/2 -translate-x-1/2 w-[94%] h-[250px] sm:h-[350px] md:h-[400px] lg:h-[520px]">
-            {/* M1 Image */}
-            <div
-              ref={el => { if (el) mediumImagesRef.current[0] = el }}
-              className="w-full h-full relative"
-            >
-              <Image
-                src="/Images/serviseImages/mediumImage/m1.png"
-                alt="Service Image M1"
-                fill
-                className="object-cover"
-                quality={90}
-              />
-              {/* Text overlay on M1 image */}
-              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 md:top-6 md:left-6 lg:top-8 lg:left-8 z-10 flex flex-col lg:flex-row text-white justify-between w-[94%] h-[93%] gap-4 lg:gap-0">
-                <div className="mb-4 lg:mb-8 w-full lg:w-[65%]  ">
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light mb-3 sm:mb-4 md:mb-5 lg:mb-7" style={{ fontWeight: 300 }}>
-                    Strategic guidance for<br className="hidden sm:block" /> a digital-first world
-                  </h3>
-                  <p className="text-xs sm:text-sm md:text-base font-light" style={{ fontWeight: 300 }}>
-                    We help businesses define IT strategies, assess systems, and create roadmaps for transformation.
-                  </p>
-                </div>
-                <div className="flex justify-start mb-10 lg:justify-end align-bottom flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-5">
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 bg-white rounded-full flex-shrink-0"></div>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" style={{ fontWeight: 300 }}>IT Roadmaps & Strategy</p>
-                  </div>
-
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 bg-white rounded-full flex-shrink-0"></div>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" style={{ fontWeight: 300 }}>System Audits & Optimization</p>
-                  </div>
-
-                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 bg-white rounded-full flex-shrink-0"></div>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" style={{ fontWeight: 300 }}>Digital Transformation Guidance</p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-            {/* M2 Image */}
-            <div
-              ref={el => { if (el) mediumImagesRef.current[1] = el }}
-              className="w-full h-full"
-            >
-              <Image
-                src="/Images/serviseImages/mediumImage/m2.png"
-                alt="Service Image M2"
-                fill
-                className="object-cover"
-                quality={90}
-              />
-            </div>
-
-            {/* M3 Image */}
-            <div
-              ref={el => { if (el) mediumImagesRef.current[2] = el }}
-              className="w-full h-full"
-            >
-              <Image
-                src="/Images/serviseImages/mediumImage/m3.png"
-                alt="Service Image M3"
-                fill
-                className="object-cover"
-                quality={90}
-              />
-            </div>
-
-            {/* M4 Image */}
-            <div
-              ref={el => { if (el) mediumImagesRef.current[3] = el }}
-              className="w-full h-full"
-            >
-              <Image
-                src="/Images/serviseImages/mediumImage/m4.png"
-                alt="Service Image M4"
-                fill
-                className="object-cover"
-                quality={90}
-              />
-            </div>
+  {/* Medium images container – unchanged */}
+  <div className="absolute top-[50%] left-1/2 -translate-x-1/2 w-[94%] h-[250px] sm:h-[350px] md:h-[400px] lg:h-[520px]">
+    {/* M1 Image */}
+    <div ref={el => { if (el) mediumImagesRef.current[0] = el }} className="w-full h-full relative">
+      <Image
+        src="/Images/serviseImages/mediumImage/m1.png"
+        alt="Service Image M1"
+        fill
+        className="object-cover"
+        quality={90}
+      />
+      {/* Text overlay on M1 image – unchanged */}
+      <div className="absolute top-3 left-3 sm:top-4 sm:left-4 md:top-6 md:left-6 lg:top-8 lg:left-8 z-10 flex flex-col lg:flex-row text-white justify-between w-[94%] h-[93%] gap-4 lg:gap-0">
+        <div className="mb-4 lg:mb-8 w-full lg:w-[65%]">
+          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light mb-3 sm:mb-4 md:mb-5 lg:mb-7" style={{ fontWeight: 300 }}>
+            Strategic guidance for<br className="hidden sm:block" /> a digital-first world
+          </h3>
+          <p className="text-xs sm:text-sm md:text-base font-light" style={{ fontWeight: 300 }}>
+            We help businesses define IT strategies, assess systems, and create roadmaps for transformation.
+          </p>
+        </div>
+        <div className="flex justify-start mb-10 lg:justify-end align-bottom flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-5">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 bg-white rounded-full flex-shrink-0"></div>
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" style={{ fontWeight: 300 }}>IT Roadmaps & Strategy</p>
           </div>
-
-          {/* Text Labels - Absolutely positioned at top right */}
-          <div className="absolute top-6 right-0 sm:top-8 md:top-12 lg:top-16 xl:top-20 z-20 w-[60%] sm:w-[55%] md:w-[50%] lg:w-[45%] pr-3 sm:pr-4 md:pr-6 lg:pr-8 xl:pr-10 flex flex-col items-end">
-            {/* IT Consulting - 1st image */}
-            <div
-              ref={el => { if (el) textRef.current[0] = el }}
-              className="text-white flex flex-col items-end absolute"
-              style={{ opacity: 0 }}
-            >
-              <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light text-right mb-3 sm:mb-4 md:mb-5 text-black" style={{ fontWeight: 300 }}>
-                {titles[0]}
-              </h2>
-              <button
-                className="bg-white text-black text-[10px] sm:text-xs px-4 sm:px-5 md:px-7 py-1.5 sm:py-2 rounded-full whitespace-nowrap hover:bg-gray-100 transition-colors"
-                onClick={(e) => { e.stopPropagation(); handleImageClick(0); }}
-              >
-                Book a Strategy Session
-              </button>
-            </div>
-
-            {/* Custom Software Development - 2nd image */}
-            <div
-              ref={el => { if (el) textRef.current[1] = el }}
-              className="text-white flex flex-col items-end absolute"
-              style={{ opacity: 0 }}
-            >
-              <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light text-right mb-3 sm:mb-4 md:mb-5" style={{ fontWeight: 300 }}>
-                {titles[1]}
-              </h2>
-              <button
-                className="bg-white text-black text-[10px] sm:text-xs px-4 sm:px-5 md:px-7 py-1.5 sm:py-2 rounded-full whitespace-nowrap hover:bg-gray-100 transition-colors"
-                onClick={(e) => { e.stopPropagation(); handleImageClick(1); }}
-              >
-                Request a Proposal
-              </button>
-            </div>
-
-            {/* Cloud & Infrastructure - 3rd image */}
-            <div
-              ref={el => { if (el) textRef.current[2] = el }}
-              className="text-white flex flex-col items-end absolute"
-              style={{ opacity: 0 }}
-            >
-              <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light text-right mb-3 sm:mb-4 md:mb-5" style={{ fontWeight: 300 }}>
-                {titles[2]}
-              </h2>
-              <button
-                className="bg-white text-black text-[10px] sm:text-xs px-4 sm:px-5 md:px-7 py-1.5 sm:py-2 rounded-full whitespace-nowrap hover:bg-gray-100 transition-colors"
-                onClick={(e) => { e.stopPropagation(); handleImageClick(2); }}
-              >
-                See Cloud Services
-              </button>
-            </div>
-
-            {/* Product Engineering - 4th image */}
-            <div
-              ref={el => { if (el) textRef.current[3] = el }}
-              className="text-white flex flex-col items-end absolute"
-              style={{ opacity: 0 }}
-            >
-              <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light text-right mb-3 sm:mb-4 md:mb-5" style={{ fontWeight: 300 }}>
-                {titles[3]}
-              </h2>
-              <button
-                className="bg-white text-black text-[10px] sm:text-xs px-4 sm:px-5 md:px-7 py-1.5 sm:py-2 rounded-full whitespace-nowrap hover:bg-gray-100 transition-colors"
-                onClick={(e) => { e.stopPropagation(); handleImageClick(3); }}
-              >
-                Explore Product Engineering
-              </button>
-            </div>
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 bg-white rounded-full flex-shrink-0"></div>
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" style={{ fontWeight: 300 }}>System Audits & Optimization</p>
           </div>
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 mt-1 bg-white rounded-full flex-shrink-0"></div>
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" style={{ fontWeight: 300 }}>Digital Transformation Guidance</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* M2, M3, M4 images – unchanged */}
+    <div ref={el => { if (el) mediumImagesRef.current[1] = el }} className="w-full h-full">
+      <Image src="/Images/serviseImages/mediumImage/m2.png" alt="Service Image M2" fill className="object-cover" quality={90} />
+    </div>
+    <div ref={el => { if (el) mediumImagesRef.current[2] = el }} className="w-full h-full">
+      <Image src="/Images/serviseImages/mediumImage/m3.png" alt="Service Image M3" fill className="object-cover" quality={90} />
+    </div>
+    <div ref={el => { if (el) mediumImagesRef.current[3] = el }} className="w-full h-full">
+      <Image src="/Images/serviseImages/mediumImage/m4.png" alt="Service Image M4" fill className="object-cover" quality={90} />
+    </div>
+  </div>
+
+  {/* Text Labels - Absolutely positioned at top right */}
+  <div className="absolute top-6 right-0 sm:top-8 md:top-12 lg:top-16 xl:top-20 z-20 w-[60%] sm:w-[55%] md:w-[50%] lg:w-[45%] pr-3 sm:pr-4 md:pr-6 lg:pr-8 xl:pr-10 flex flex-col items-end">
+    {/* IT Consulting - 1st image */}
+    <div
+      ref={el => { if (el) textRef.current[0] = el }}
+      className="text-white flex flex-col items-end absolute mobile-text-item"
+      style={{ opacity: 0 }}
+    >
+      <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light text-right mb-3 sm:mb-4 md:mb-5 text-black" style={{ fontWeight: 300 }}>
+        {titles[0]}
+      </h2>
+      <button
+        className="bg-white text-black text-[10px] sm:text-xs px-4 sm:px-5 md:px-7 py-1.5 sm:py-2 rounded-full whitespace-nowrap hover:bg-gray-100 transition-colors"
+        onClick={(e) => { e.stopPropagation(); handleImageClick(0); }}
+      >
+        Book a Strategy Session
+      </button>
+    </div>
+
+    {/* Custom Software Development - 2nd image */}
+    <div
+      ref={el => { if (el) textRef.current[1] = el }}
+      className="text-white flex flex-col items-end absolute mobile-text-item"
+      style={{ opacity: 0 }}
+    >
+      <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light text-right mb-3 sm:mb-4 md:mb-5" style={{ fontWeight: 300 }}>
+        {titles[1]}
+      </h2>
+      <button
+        className="bg-white text-black text-[10px] sm:text-xs px-4 sm:px-5 md:px-7 py-1.5 sm:py-2 rounded-full whitespace-nowrap hover:bg-gray-100 transition-colors"
+        onClick={(e) => { e.stopPropagation(); handleImageClick(1); }}
+      >
+        Request a Proposal
+      </button>
+    </div>
+
+    {/* Cloud & Infrastructure - 3rd image */}
+    <div
+      ref={el => { if (el) textRef.current[2] = el }}
+      className="text-white flex flex-col items-end absolute mobile-text-item"
+      style={{ opacity: 0 }}
+    >
+      <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light text-right mb-3 sm:mb-4 md:mb-5" style={{ fontWeight: 300 }}>
+        {titles[2]}
+      </h2>
+      <button
+        className="bg-white text-black text-[10px] sm:text-xs px-4 sm:px-5 md:px-7 py-1.5 sm:py-2 rounded-full whitespace-nowrap hover:bg-gray-100 transition-colors"
+        onClick={(e) => { e.stopPropagation(); handleImageClick(2); }}
+      >
+        See Cloud Services
+      </button>
+    </div>
+
+    {/* Product Engineering - 4th image */}
+    <div
+      ref={el => { if (el) textRef.current[3] = el }}
+      className="text-white flex flex-col items-end absolute mobile-text-item"
+      style={{ opacity: 0 }}
+    >
+      <h2 className="text-base sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light text-right mb-3 sm:mb-4 md:mb-5" style={{ fontWeight: 300 }}>
+        {titles[3]}
+      </h2>
+      <button
+        className="bg-white text-black text-[10px] sm:text-xs px-4 sm:px-5 md:px-7 py-1.5 sm:py-2 rounded-full whitespace-nowrap hover:bg-gray-100 transition-colors"
+        onClick={(e) => { e.stopPropagation(); handleImageClick(3); }}
+      >
+        Explore Product Engineering
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile-only style overrides */}
+  <style jsx>{`
+    @media (max-width: 640px) {
+      .mobile-text-item h2 {
+        font-size: 32px !important;
+        font-weight: 400 !important;
+      }
+      .mobile-text-item button {
+        font-size: 18px !important;
+        font-weight: 500 !important;
+      }
+    }
+  `}</style>
         </div>
 
         {/* we serve */}
         <div ref={serveSectionRef} className="w-full items-center flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
-          <div ref={serveHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full  my-12 sm:my-16 md:my-20 gap-6 sm:gap-8">
-            <div className="flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium text-black flex-col leading-18">
-              <p>Industries We</p>
-              <p className="text-[#3B3B3D73]">Serve</p>
-            </div>
-            <p className="text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] leading-relaxed lg:w-[25%]">
-              Every industry has its own challenges, and at Grobird we tailor software to meet those unique needs
-            </p>
-          </div>
+        <div ref={serveHeadingRef} className="flex flex-col sm:flex-row justify-between items-start w-full my-12 sm:my-16 md:my-20 gap-4 sm:gap-8">
+  {/* Title part – "Industries We" and "Serve" stacked */}
+  <div className="industries-title flex items-start text-2xl sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl font-medium text-black flex-col leading-18">
+    <p>Industries We</p>
+    <p className="text-[#3B3B3D73]">Serve</p>
+  </div>
 
+  {/* Description paragraph */}
+  <p className="industries-description text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] leading-relaxed lg:w-[25%]">
+    Every industry has its own challenges, and at Grobird we tailor software to meet those unique needs
+  </p>
 
+  {/* Mobile style overrides (only screens ≤640px) */}
+  <style jsx>{`
+    @media (max-width: 640px) {
+      /* Title container: no gap, line‑height 1.2 */
+      .industries-title {
+        gap: 0;
+        line-height: 1.2;
+      }
+      /* Remove default paragraph margins, set font size/weight, inherit line‑height */
+      .industries-title p {
+        margin: 0;
+        font-size: 32px !important;
+        font-weight: 500 !important;
+        line-height: inherit;
+      }
+      /* Description paragraph: 16px/400 */
+      .industries-description {
+        font-size: 16px !important;
+        font-weight: 400 !important;
+      }
+    }
+  `}</style>
+        </div>
         </div>
 
         {/* Horizontally scrollable images section - hidden scrollbar */}
-        <div className=" mb-12 sm:mb-16 md:mb-20 pl-3 sm:pl-4 md:pl-8 lg:pl-10">
-            <div
-              className="flex gap-3 sm:gap-4 md:gap-6 overflow-x-auto"
-              style={{
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
-                WebkitOverflowScrolling: 'touch'
-              }}
-            >
-              <style jsx>{`
-                div::-webkit-scrollbar {
-                  display: none;
-                }
-              `}</style>
+        <div className="serve-images-container mb-12 sm:mb-16 md:mb-20 pl-3 sm:pl-4 md:pl-8 lg:pl-10">
+  <div
+    className="serve-scroll-container flex gap-3 sm:gap-4 md:gap-6 overflow-x-auto"
+    style={{
+      scrollbarWidth: 'none',
+      msOverflowStyle: 'none',
+      WebkitOverflowScrolling: 'touch'
+    }}
+  >
+    {/* Image 1 - Logistics (no break needed) */}
+    <div ref={el => { if (el) serveImagesRef.current[0] = el }} className="serve-image-item relative flex-shrink-0 w-[280px] h-[600px] sm:w-[320px] sm:h-[700px] md:w-[350px] md:h-[800px] lg:w-[380px] lg:h-[850px]">
+      <Image
+        src="/Images/serviseImages/serve/s1.jpg"
+        alt="Logistics"
+        fill
+        className="object-cover"
+        quality={90}
+      />
+      <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] text-right" style={{ fontWeight: 400 }}>
+        Logistics
+      </p>
+    </div>
 
-              {/* Image 1 - Logistics */}
-              <div ref={el => { if (el) serveImagesRef.current[0] = el }} className="relative flex-shrink-0 w-[280px] h-[600px] sm:w-[320px] sm:h-[700px] md:w-[350px] md:h-[800px] lg:w-[380px] lg:h-[850px]">
-                <Image
-                  src="/Images/serviseImages/serve/s1.jpg"
-                  alt="Logistics"
-                  fill
-                  className="object-cover"
-                  quality={90}
-                />
-                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px]" style={{ fontWeight: 400 }}>
-                  Logistics
-                </p>
-              </div>
+    {/* Image 2 - Travel & Hospitality (with line break on mobile) */}
+    <div ref={el => { if (el) serveImagesRef.current[1] = el }} className="serve-image-item relative flex-shrink-0 w-[280px] h-[600px] sm:w-[320px] sm:h-[700px] md:w-[350px] md:h-[800px] lg:w-[380px] lg:h-[850px]">
+      <Image
+        src="/Images/serviseImages/serve/s2.jpg"
+        alt="Travel & Hospitality"
+        fill
+        className="object-cover"
+        quality={90}
+      />
+      <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] text-right" style={{ fontWeight: 400 }}>
+        <span className="hidden sm:inline">Travel & Hospitality</span>
+        <span className="sm:hidden">Travel &<br />Hospitality</span>
+      </p>
+    </div>
 
-              {/* Image 2 - Travel & Hospitality */}
-              <div ref={el => { if (el) serveImagesRef.current[1] = el }} className="relative flex-shrink-0 w-[280px] h-[600px] sm:w-[320px] sm:h-[700px] md:w-[350px] md:h-[800px] lg:w-[380px] lg:h-[850px]">
-                <Image
-                  src="/Images/serviseImages/serve/s2.jpg"
-                  alt="Travel & Hospitality"
-                  fill
-                  className="object-cover"
-                  quality={90}
-                />
-                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px]" style={{ fontWeight: 400 }}>
-                  Travel & Hospitality
-                </p>
-              </div>
+    {/* Image 3 - E-Commerce & Retail (with line break on mobile) */}
+    <div ref={el => { if (el) serveImagesRef.current[2] = el }} className="serve-image-item relative flex-shrink-0 w-[280px] h-[600px] sm:w-[320px] sm:h-[700px] md:w-[350px] md:h-[800px] lg:w-[380px] lg:h-[850px]">
+      <Image
+        src="/Images/serviseImages/serve/s3.jpg"
+        alt="E-Commerce & Retail"
+        fill
+        className="object-cover"
+        quality={90}
+      />
+      <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] text-right" style={{ fontWeight: 400 }}>
+        <span className="hidden sm:inline">E-Commerce & Retail</span>
+        <span className="sm:hidden">E-Commerce &<br />Retail</span>
+      </p>
+    </div>
 
-              {/* Image 3 - E-Commerce & Retail */}
-              <div ref={el => { if (el) serveImagesRef.current[2] = el }} className="relative flex-shrink-0 w-[280px] h-[600px] sm:w-[320px] sm:h-[700px] md:w-[350px] md:h-[800px] lg:w-[380px] lg:h-[850px]">
-                <Image
-                  src="/Images/serviseImages/serve/s3.jpg"
-                  alt="E-Commerce & Retail"
-                  fill
-                  className="object-cover"
-                  quality={90}
-                />
-                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px]" style={{ fontWeight: 400 }}>
-                  E-Commerce & Retail
-                </p>
-              </div>
+    {/* Image 4 - Service (no break needed) */}
+    <div ref={el => { if (el) serveImagesRef.current[3] = el }} className="serve-image-item relative flex-shrink-0 w-[280px] h-[600px] sm:w-[320px] sm:h-[700px] md:w-[350px] md:h-[800px] lg:w-[380px] lg:h-[850px]">
+      <Image
+        src="/Images/serviseImages/serve/s4.jpg"
+        alt="Service"
+        fill
+        className="object-cover"
+        quality={90}
+      />
+      <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] text-right" style={{ fontWeight: 400 }}>
+        Service
+      </p>
+    </div>
+  </div>
 
-              {/* Image 4 - Service */}
-              <div ref={el => { if (el) serveImagesRef.current[3] = el }} className="relative flex-shrink-0 w-[280px] h-[600px] sm:w-[320px] sm:h-[700px] md:w-[350px] md:h-[800px] lg:w-[380px] lg:h-[850px]">
-                <Image
-                  src="/Images/serviseImages/serve/s4.jpg"
-                  alt="Service"
-                  fill
-                  className="object-cover"
-                  quality={90}
-                />
-                <p className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-5 md:right-5 text-white text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px]" style={{ fontWeight: 400 }}>
-                  Service
-                </p>
-              </div>
-            </div>
+  {/* Single styled-jsx block for all custom styles */}
+  <style jsx>{`
+    /* Hide scrollbar for the scrolling container */
+    .serve-scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Mobile overrides (max-width: 640px) */
+    @media (max-width: 640px) {
+      /* Remove left padding from main container */
+      .serve-images-container {
+        padding-left: 0 !important;
+      }
+      /* Change inner container to column, centered, with gap 1rem, no scroll */
+      .serve-scroll-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        overflow-x: visible !important;
+      }
+      /* Each image item: fixed size */
+      .serve-image-item {
+        width: 397px !important;
+        height: 443px !important;
+        flex-shrink: 0;
+      }
+      /* Industry label (p) inside each image: 32px, 400 weight */
+      .serve-image-item p {
+        font-size: 32px !important;
+        font-weight: 400 !important;
+      }
+    }
+  `}</style>
         </div>
 
         {/* bold moves */}
         <div ref={boldMovesSectionRef} className="w-full items-center flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
-          <div ref={boldMovesHeadingRef} className="flex flex-col sm:flex-row justify-between items-center w-full  my-12 sm:my-16 md:my-20 gap-6 sm:gap-8 ">
-            <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 leading-tight">
-              <p>Big Steps, Bold Moves </p>
-              <p className="text-black">Our Latest Releases</p>
-            </div>
-            <p className="text-[#2D2C2C] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed">
-              Press Release 
-            </p>
-          </div>
 
-          <div className="flex gap-3 md:gap-4 lg:gap-5 items-center justify-start md:justify-center w-full md:w-[95%] lg:w-[90%] h-auto md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 px-4 md:px-0" style={{scrollbarWidth: 'thin'}}>
-            <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
-              <div
-                ref={el => { if (el) boldMovesRef.current[0] = el }}
-                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
-                onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
-                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-              >
-                <Image
-                  src="/Images/serviseImages/boldmoves/1bm.jpg"
-                  alt="Bold Move 1"
-                  fill
-                  className="object-cover rounded-lg"
-                />
-                <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
-                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2 z-10">
-                  <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
-                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
-                    Read Release
-                  </button>
-                </div>
-              </div>
-            </div>
+        <div ref={boldMovesHeadingRef} className="flex flex-col sm:flex-row justify-between items-center w-full my-12 sm:my-16 md:my-20 gap-6 sm:gap-8">
+  {/* Heading lines – now with mobile class */}
+  <div className="bold-moves-heading flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 leading-tight">
+    <p>Big Steps, Bold Moves</p>
+    <p className="text-black">Our Latest Releases</p>
+  </div>
 
-            <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
-              <div
-                ref={el => { if (el) boldMovesRef.current[1] = el }}
-                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
-                onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
-                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-              >
-                <Image
-                  src="/Images/serviseImages/boldmoves/2bm.jpg"
-                  alt="Bold Move 2"
-                  fill
-                  className="object-cover rounded-lg"
-                />
-                <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
-                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2 z-10">
-                  <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
-                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
-                    Read Release
-                  </button>
-                </div>
-              </div>
+  {/* Press Release – hidden on mobile, visible on desktop */}
+  <p className="text-[#2D2C2C] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed hidden sm:block">
+    Press Release
+  </p>
 
-              <div
-                ref={el => { if (el) boldMovesRef.current[2] = el }}
-                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
-                onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
-                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-              >
-                <Image
-                  src="/Images/serviseImages/boldmoves/3bm.png"
-                  alt="Bold Move 3"
-                  fill
-                  className="object-cover rounded-lg"
-                />
-                <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
-                <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3 z-10">
-                  <p className="text-white text-3xl md:text-4xl lg:text-5xl">92%</p>
-                </div>
-                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 z-10">
-                  <p className="text-white text-xs md:text-sm lg:text-md uppercase">Product Adoption Rate</p>
-                </div>
-              </div>
-            </div>
+  {/* Mobile style overrides (only screens ≤640px) */}
+  <style jsx>{`
+    @media (max-width: 640px) {
+      .bold-moves-heading {
+        margin-left: 0 !important;
+        gap: 0.25rem !important; /* matches Tailwind gap-1 */
+      }
+      .bold-moves-heading p {
+        font-size: 32px !important;
+        font-weight: 500 !important;
+      }
+    }
+  `}</style>
+        </div>
 
-            <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
-              <div
-                ref={el => { if (el) boldMovesRef.current[3] = el }}
-                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
-                onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
-                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-              >
-                <Image
-                  src="/Images/serviseImages/boldmoves/4bm.jpg"
-                  alt="Bold Move 4"
-                  fill
-                  className="object-cover rounded-lg"
-                />
-                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
-                  <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">AHMADYAR Website</p>
-                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
-                    Read Release
-                  </button>
-                </div>
-              </div>
-            </div>
 
-            <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
-              <div
-                ref={el => { if (el) boldMovesRef.current[4] = el }}
-                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
-                onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
-                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-              >
-                <Image
-                  src="/Images/serviseImages/boldmoves/5bm.png"
-                  alt="Bold Move 5"
-                  fill
-                  className="object-cover rounded-lg"
-                />
-                <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3">
-                  <p className="text-white text-3xl md:text-4xl lg:text-5xl">3X</p>
-                </div>
-                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2">
-                  <p className="text-white text-xs md:text-sm lg:text-md uppercase">Faster Go-to-Market</p>
-                </div>
-              </div>
+        <div
+  className="bold-moves-gallery flex gap-3 md:gap-4 lg:gap-5 items-center justify-start md:justify-center w-full md:w-[95%] lg:w-[90%] h-auto md:h-[500px] lg:h-[600px] xl:h-[700px] overflow-x-auto md:overflow-x-visible pb-4 md:pb-0 px-4 md:px-0"
+  style={{ scrollbarWidth: 'thin' }}
+>
+  {/* Left single image – hidden on mobile */}
+  <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
+    <div
+      ref={el => { if (el) boldMovesRef.current[0] = el }}
+      data-index="0"
+      className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+      onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
+      onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+    >
+      <Image
+        src="/Images/serviseImages/boldmoves/1bm.jpg"
+        alt="Bold Move 1"
+        fill
+        className="object-cover rounded-lg"
+      />
+      <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+      <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2 z-10">
+        <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+        <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
+          Read Release
+        </button>
+      </div>
+    </div>
+  </div>
 
-              <div
-                ref={el => { if (el) boldMovesRef.current[5] = el }}
-                className="relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
-                onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
-                onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-              >
-                <Image
-                  src="/Images/serviseImages/boldmoves/6bm.jpg"
-                  alt="Bold Move 6"
-                  fill
-                  className="object-cover rounded-lg"
-                />
-                <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
-                  <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
-                  <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
-                    Read Release
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+  {/* Middle column with two stacked images (indices 1 & 2) */}
+  <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
+    <div
+      ref={el => { if (el) boldMovesRef.current[1] = el }}
+      data-index="1"
+      className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+      onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
+      onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+    >
+      <Image
+        src="/Images/serviseImages/boldmoves/2bm.jpg"
+        alt="Bold Move 2"
+        fill
+        className="object-cover rounded-lg"
+      />
+      <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+      <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2 z-10">
+        <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+        <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
+          Read Release
+        </button>
+      </div>
+    </div>
 
-          
+    <div
+      ref={el => { if (el) boldMovesRef.current[2] = el }}
+      data-index="2"
+      className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+      onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
+      onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+    >
+      <Image
+        src="/Images/serviseImages/boldmoves/3bm.png"
+        alt="Bold Move 3"
+        fill
+        className="object-cover rounded-lg"
+      />
+      <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+      <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3 z-10">
+        <p className="text-white text-3xl md:text-4xl lg:text-5xl">92%</p>
+      </div>
+      <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 z-10">
+        <p className="text-white text-xs md:text-sm lg:text-md uppercase">Product Adoption Rate</p>
+      </div>
+    </div>
+  </div>
 
+  {/* Right single image (index 3) */}
+  <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
+    <div
+      ref={el => { if (el) boldMovesRef.current[3] = el }}
+      data-index="3"
+      className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[300px] md:h-[350px] lg:h-[380px] xl:h-[477px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+      onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
+      onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+    >
+      <Image
+        src="/Images/serviseImages/boldmoves/4bm.jpg"
+        alt="Bold Move 4"
+        fill
+        className="object-cover rounded-lg"
+      />
+      <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
+        <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">AHMADYAR Website</p>
+        <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
+          Read Release
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/* Second middle column with two stacked images (indices 4 & 5) */}
+  <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
+    <div
+      ref={el => { if (el) boldMovesRef.current[4] = el }}
+      data-index="4"
+      className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+      onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
+      onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+    >
+      <Image
+        src="/Images/serviseImages/boldmoves/5bm.png"
+        alt="Bold Move 5"
+        fill
+        className="object-cover rounded-lg"
+      />
+      <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3">
+        <p className="text-white text-3xl md:text-4xl lg:text-5xl">3X</p>
+      </div>
+      <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2">
+        <p className="text-white text-xs md:text-sm lg:text-md uppercase">Faster Go-to-Market</p>
+      </div>
+    </div>
+
+    <div
+      ref={el => { if (el) boldMovesRef.current[5] = el }}
+      data-index="5"
+      className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+      onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
+      onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+    >
+      <Image
+        src="/Images/serviseImages/boldmoves/6bm.jpg"
+        alt="Bold Move 6"
+        fill
+        className="object-cover rounded-lg"
+      />
+      <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2">
+        <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+        <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
+          Read Release
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile style overrides */}
+  <style jsx>{`
+    @media (max-width: 640px) {
+      /* Vertical stacking with 2rem gap between groups */
+      .bold-moves-gallery {
+        flex-direction: column !important;
+        gap: 2rem !important;
+        overflow-x: visible !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+      }
+      .bold-moves-gallery > div {
+        flex-direction: column !important;
+        gap: 2rem !important;
+        height: auto !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+      }
+      /* All image cards: width 288px, keep original heights except where overridden */
+      .bold-move-item {
+        width: 288px !important;
+      }
+      /* Text and button styles (as requested earlier) */
+      .bold-move-item p {
+        font-size: 32px !important;
+        font-weight: 300 !important;
+      }
+      .bold-move-item button {
+        font-size: 16px !important;
+        font-weight: 400 !important;
+      }
+      /* Hide index 0 and index 5 */
+      [data-index="0"],
+      [data-index="5"] {
+        display: none !important;
+      }
+      /* Index 1: height 321.99px, add 2rem padding */
+      [data-index="1"] {
+        height: 321.99px !important;
+        padding: 2rem !important;
+      }
+      /* Index 2: height 288px */
+      [data-index="2"] {
+        height: 288px !important;
+      }
+      /* Index 3: height 444px */
+      [data-index="3"] {
+        height: 444px !important;
+      }
+      /* Index 4: height 288px */
+      [data-index="4"] {
+        height: 288px !important;
+      }
+    }
+  `}</style>
+        </div>
 
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         {/* Asked */}
         <div className="w-full bg-[#F4F4F4] py-24 items-start flex flex-col  relative">
@@ -1366,6 +1536,7 @@ const Services = () => {
       
 
       {/* footer image */}
+
       <div ref={footerSectionRef} className="w-full relative ">
         <Image
           src="/Images/serviseImages/footer.jpg"
@@ -1400,6 +1571,8 @@ const Services = () => {
 
 
       </div>
+
+      
 
       {/* Footer */}
       <FooterSimple />
