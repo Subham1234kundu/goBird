@@ -16,68 +16,88 @@ const Insights = () => {
 
   return (
     <div className="w-full">
+
+
       {/* Header Section */}
       <div className="w-full h-full  sm:pt-8 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18 relative pt-14 md:pt-18 lg:pt-24 " style={{ backgroundColor: '#000A1B' }}>
         <div className="flex flex-col w-full relative z-10 pb-16">
-          <div className=" w-[80%]">
-          <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[82px] font-light leading-tight mb-8 w-full sm:w-[90%]" style={{ fontWeight: 300 }}>
+
+          <div className=" w-[80%] max-sm:w-full">
+          <h1 className="text-white max-sm:text-[42px] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[82px] font-light leading-tight mb-8 w-full sm:w-[90%]" style={{ fontWeight: 300 }}>
             Ideas, trends, and <br /> lessons from the <br /> frontlines of tech
           </h1>
-          <h3 className="text-white font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] w-full sm:w-[90%]  leading-10 mb-12 sm:mb-16 md:mb-20">
+          <h3 className="text-white max-sm:text-[14px] max-sm:leading-[24px] font-light text-sm sm:text-base md:text-lg lg:text-xl xl:text-[32px] w-full sm:w-[90%]  leading-10 mb-12 sm:mb-16 md:mb-20">
             Our experts share deep dives, strategies, and stories from the world of IT consulting, design, and software development so you can stay ahead of the curve.
           </h3>
           </div>
-          <div className="w-full relative">
-            <Image
-              src="/Images/InsightsHeader.jpg"
-              alt="Insights Header"
-              width={1200}
-              height={600}
-              className="w-full h-[500px] rounded-lg object-cover"
-            />
-            {/* Top Left Design Button */}
-            <div className="absolute top-4 left-4 px-8 py-1 rounded-full" style={{ backgroundColor: '#F5F5F514' }}>
-              <span className="text-white text-sm">Design</span>
-            </div>
-            {/* Bottom Text */}
-            <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8" >
-              <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-thin mb-2 sm:mb-3 md:mb-4">
-                5 UX principles that drive <br className="hidden sm:block" /> conversions
-              </h2>
-              <div className="flex items-center justify-between gap-2 text-white text-xs sm:text-sm md:text-base xl:text-[16px]">
-                <div className="flex items-center gap-1 sm:gap-2">
-                <span>Mar 1, 2025</span>
-                <span>•</span>
-                <span>8 min read</span>
-                </div>
 
-                <span className="underline cursor-pointer" onClick={() => setShowInsightsMore(true)}>Read more</span>
-              </div>
-            </div>
-          </div>
+
+       <div className="w-full relative">
+  <Image
+    src="/Images/InsightsHeader.jpg"
+    alt="Insights Header"
+    width={1200}
+    height={600}
+    className="w-full h-[500px] rounded-lg object-cover"
+  />
+  
+  {/* Top Left Design Button - positioned higher with left padding */}
+  <div className="absolute left-6 sm:left-4 px-8 py-1 rounded-full sm:top-4" 
+       style={{ backgroundColor: '#F5F5F514', top: '15%' }}>
+    <span className="text-white text-sm ml-4 sm:ml-0">Design</span>
+  </div>
+  
+  {/* Bottom Text Container - full height to allow vertical centering */}
+  <div className="absolute inset-0 flex flex-col justify-center sm:block sm:inset-auto sm:bottom-4 sm:left-6 md:bottom-8 md:left-8">
+    {/* Content wrapper with left padding */}
+    <div className="pl-8 sm:pl-0">
+      {/* Headline - vertically centered and left-aligned with bottom padding */}
+      <h2 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-thin mb-6 sm:mb-3 md:mb-4 leading-tight text-left">
+        <span className="sm:hidden">5 UX principles that drive conversions</span>
+        <span className="hidden sm:inline">5 UX principles that drive conversions</span>
+      </h2>
+      
+      {/* Metadata and Read More - left-aligned with bottom padding */}
+      <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-2 text-white text-xs sm:text-sm md:text-base xl:text-[16px] pb-8 sm:pb-0">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <span>Mar 1, 2025</span>
+          <span>•</span>
+          <span>8 min read</span>
+        </div>
+        
+        <span className="underline cursor-pointer" onClick={() => setShowInsightsMore(true)}>Read more</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
         </div>
       </div>
+
 
       {/* All Insights Header with Categories */}
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18 pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 md:pb-10">
-        <div className="w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8">
-          {/* Left Side - All Insights */}
-          <h2 className="text-[#0B0B0B] text-4xl sm:text-5xl md:text-6xl xl:text-[64px] font-normal">
-            All Insights
-          </h2>
 
-          {/* Right Side - Categories */}
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 text-black text-base sm:text-lg md:text-xl xl:text-[24px] font-light">
-            <span className="cursor-pointer hover:opacity-70 transition-opacity ">Branding</span>
-            <span className="text-[#666666]">|</span>
-            <span className="cursor-pointer hover:opacity-70 transition-opacity">Technology</span>
-            <span className="text-[#666666]">|</span>
-            <span className="cursor-pointer hover:opacity-70 transition-opacity">Design</span>
-            <span className="text-[#666666]">|</span>
-            <span className="cursor-pointer hover:opacity-70 transition-opacity">Development</span>
-          </div>
-        </div>
-      </div>
+      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-18 pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 md:pb-10">
+  <div className="w-full max-w-[1400px] mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8">
+    {/* Left Side - All Insights */}
+    <h2 className="text-[#0B0B0B] text-4xl sm:text-5xl md:text-6xl xl:text-[64px] font-normal max-sm:text-[32px]">
+      All Insights
+    </h2>
+
+    {/* Right Side - Categories */}
+    <div className="flex flex-wrap items-center max-sm:gap-[4px] gap-2 sm:gap-3 md:gap-4 text-black text-base sm:text-lg md:text-xl xl:text-[24px] font-light max-sm:font-normal">
+      <span className="cursor-pointer hover:opacity-70 transition-opacity">Branding</span>
+      <span className="text-[#666666]">|</span>
+      <span className="cursor-pointer hover:opacity-70 transition-opacity">Technology</span>
+      <span className="text-[#666666]">|</span>
+      <span className="cursor-pointer hover:opacity-70 transition-opacity">Design</span>
+      <span className="text-[#666666]">|</span>
+      <span className="cursor-pointer hover:opacity-70 transition-opacity">Development</span>
+    </div>
+  </div>
+</div>
 
       {/* All Insights Grid */}
       <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 pb-12 sm:pb-16 md:pb-20">
