@@ -27,6 +27,9 @@ const Services = () => {
   const headerBirdRef = useRef<HTMLDivElement>(null)
   const headerContentRef = useRef<HTMLDivElement>(null)
   const askedItemsRef = useRef<HTMLDivElement[]>([])
+  const faqHeadingRef = useRef<HTMLDivElement>(null);
+  const faqItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const testimonialImageRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const titles = [
@@ -1154,33 +1157,42 @@ const Services = () => {
 
         {/* bold moves */}
         <div ref={boldMovesSectionRef} className="w-full items-center flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
-
-        <div ref={boldMovesHeadingRef} className="flex flex-col sm:flex-row justify-between items-center w-full my-12 sm:my-16 md:my-20 gap-6 sm:gap-8">
-  {/* Heading lines – now with mobile class */}
+      <div ref={boldMovesHeadingRef} className="flex flex-col sm:flex-row justify-between items-center w-full my-12 sm:my-16 md:my-20 gap-6 sm:gap-8 ">
+  {/* Heading lines */}
   <div className="bold-moves-heading flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 leading-tight">
     <p>Big Steps, Bold Moves</p>
     <p className="text-black">Our Latest Releases</p>
   </div>
 
-  {/* Press Release – hidden on mobile, visible on desktop */}
+  {/* Press Release – hidden on mobile */}
   <p className="text-[#2D2C2C] text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed hidden sm:block">
     Press Release
   </p>
 
-  {/* Mobile style overrides (only screens ≤640px) */}
+  {/* Mobile style overrides */}
   <style jsx>{`
     @media (max-width: 640px) {
+      /* Remove any inherited spacing from the outer container */
       .bold-moves-heading {
         margin-left: 0 !important;
-        gap: 0.25rem !important; /* matches Tailwind gap-1 */
+        padding-left: 0 !important;
+        width: 100% !important;
       }
       .bold-moves-heading p {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
         font-size: 32px !important;
         font-weight: 500 !important;
       }
+      /* Also ensure the outer div (with red background) has no left padding/margin */
+      div[ref="boldMovesHeadingRef"] {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+      }
     }
   `}</style>
-        </div>
+      </div>
+
 
 
         <div
@@ -1214,50 +1226,58 @@ const Services = () => {
 
   {/* Middle column with two stacked images (indices 1 & 2) */}
   <div className="flex flex-col gap-3 md:gap-4 h-[350px] md:h-full items-center justify-center flex-shrink-0">
-    <div
-      ref={el => { if (el) boldMovesRef.current[1] = el }}
-      data-index="1"
-      className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
-      onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
-      onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-    >
-      <Image
-        src="/Images/serviseImages/boldmoves/2bm.jpg"
-        alt="Bold Move 2"
-        fill
-        className="object-cover rounded-lg"
-      />
-      <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
-      <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2 z-10">
-        <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl">A2Y Consultants Website</p>
-        <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
-          Read Release
-        </button>
-      </div>
-    </div>
+
+
+   <div
+  ref={el => { if (el) boldMovesRef.current[1] = el }}
+  data-index="1"
+  className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[220px] md:h-[250px] lg:h-[280px] xl:h-[318px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+  onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
+  onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+>
+  <Image
+    src="/Images/serviseImages/boldmoves/2bm.jpg"
+    alt="Bold Move 2"
+    fill
+    className="object-cover rounded-lg"
+  />
+  <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+  <div className="absolute bottom-6 md:bottom-4 left-2 md:left-3 right-2 md:right-3 flex flex-col gap-1 md:gap-2 z-10">
+    <p className="text-white text-xs md:text-[32px] lg:text-lg xl:text-xl">A2Y Consultants Website</p>
+    <button className="bg-white border border-gray-300 rounded-full text-black text-xs px-3 md:px-4 py-1 md:py-1.5 w-fit hover:bg-gray-100 transition-colors">
+      Read Release
+    </button>
+  </div>
+</div>
+
+    
 
     <div
-      ref={el => { if (el) boldMovesRef.current[2] = el }}
-      data-index="2"
-      className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
-      onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
-      onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
-    >
-      <Image
-        src="/Images/serviseImages/boldmoves/3bm.png"
-        alt="Bold Move 3"
-        fill
-        className="object-cover rounded-lg"
-      />
-      <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
-      <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3 z-10">
-        <p className="text-white text-3xl md:text-4xl lg:text-5xl">92%</p>
-      </div>
-      <div className="absolute bottom-2 md:bottom-3 left-2 md:left-3 right-2 md:right-3 z-10">
-        <p className="text-white text-xs md:text-sm lg:text-md uppercase">Product Adoption Rate</p>
-      </div>
-    </div>
+  ref={el => { if (el) boldMovesRef.current[2] = el }}
+  data-index="2"
+  className="bold-move-item relative w-[160px] md:w-[180px] lg:w-[200px] xl:w-[279px] h-[180px] md:h-[200px] lg:h-[230px] xl:h-[275px] cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
+  onMouseEnter={(e) => handleMouseEnter(e.currentTarget)}
+  onMouseLeave={(e) => handleMouseLeave(e.currentTarget)}
+>
+  <Image
+    src="/Images/serviseImages/boldmoves/3bm.png"
+    alt="Bold Move 3"
+    fill
+    className="object-cover rounded-lg"
+  />
+  <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+  <div className="absolute top-6 left-6 md:top-4 lg:top-5 md:left-3 right-2 md:right-3 z-10">
+    <p className="text-white text-3xl md:text-4xl lg:text-5xl percentage-number">92%</p>
   </div>
+  <div className="absolute bottom-6 md:bottom-3 left-6 md:left-3 right-2 md:right-3 z-10">
+    <p className="text-white text-xs md:text-sm lg:text-md uppercase percentage-label">Product Adoption Rate</p>
+  </div>
+</div>
+
+
+
+  </div>
+  
 
   {/* Right single image (index 3) */}
   <div className="flex h-[350px] md:h-full items-center justify-center flex-shrink-0">
@@ -1390,187 +1410,221 @@ const Services = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         {/* Asked */}
-        <div className="w-full bg-[#F4F4F4] py-24 items-start flex flex-col  relative">
-          {/* White gradient at top */}
-          <div className="absolute top-0 left-0 right-0 h-32 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent)' }}></div>
-
-          <div className="flex flex-col lg:flex-row justify-between items-start w-full mb-12 md:mb-16 lg:mb-20 gap-6 md:gap-8 px-2 md:px-6 lg:px-10">
-            <div className="flex w-full lg:w-[60%] items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
-              <p>Frequently Asked</p>
-              <p className="text-[#3B3B3D73]">Questions</p>
-            </div>
-            <p className="text-[#2D2C2C] text-base sm:text-lg md:text-xl lg:text-2xl w-full lg:w-[40%] xl:text-[32px] leading-relaxed">
-              From setup to security, here&apos;s everything you need to know.
-            </p>
-          </div>
-
-          <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
-
-
-            <div ref={el => { if (el) askedItemsRef.current[0] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">What kind of teams use Relay?</p>
-                <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-
-            </div>
-
-
-            <div ref={el => { if (el) askedItemsRef.current[1] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay work with Slack and Microsoft Teams?</p>
-                <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-
-            </div>
-
-
-            <div ref={el => { if (el) askedItemsRef.current[2] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is there a free trial?</p>
-                <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-
-            </div>
-
-            <div ref={el => { if (el) askedItemsRef.current[3] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Is my data secure?</p>
-                <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-
-            </div>
-
-            <div ref={el => { if (el) askedItemsRef.current[4] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I collaborate with my engineering team inside Relay?</p>
-                <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-
-            </div>
-
-             <div ref={el => { if (el) askedItemsRef.current[5] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Does Relay support multi-channel communication?</p>
-                <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-
-            </div>
-
-            <div ref={el => { if (el) askedItemsRef.current[6] = el }} className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4">
-                <p className="text-[#111111] text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px]">Can I customize how Relay works for my team?</p>
-                <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-                />
-
-            </div>
-
-            
-         
-          </div>
+         <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 mx-[4%] mb-12 md:mb-16 lg:mb-20">
+                  <div
+                    ref={faqHeadingRef}
+                    className="flex flex-col lg:flex-row justify-between items-start w-full mt-12 md:mt-16 lg:mt-20 mb-5 gap-6 md:gap-8"
+                  >
+                   <div className="flex w-full lg:w-[60%] items-start text-4xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
+          <p>Frequently Asked</p>
+          <p className="text-[#3B3B3D73]">Questions</p>
         </div>
+        
+                    <p className="text-[#2D2C2C] text-sm sm:text-sm md:text-base lg:text-lg w-full lg:w-[40%] xl:text-3xl leading-relaxed">
+                      From setup to security, here&apos;s everything you need to know
+                      before getting started.
+                    </p>
+                  </div>
+        
+                 <div className="flex flex-col w-full px-0 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
+        
+                <div
+            ref={(el) => { if (el) faqItemsRef.current[0] = el; }}
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+          >
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+              What kind of teams use Relay?
+            </p>
+            <Image
+              src="/Images/serviseImages/plus.png"
+              alt="plus"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+            />
+                </div>
+        
+          <div
+            ref={(el) => { if (el) faqItemsRef.current[1] = el; }}
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+          >
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+              Does Relay work with Slack and Microsoft Teams?
+            </p>
+            <Image
+              src="/Images/serviseImages/plus.png"
+              alt="plus"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+            />
+          </div>
+        
+          <div
+            ref={(el) => { if (el) faqItemsRef.current[2] = el; }}
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+          >
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+              Is there a free trial?
+            </p>
+            <Image
+              src="/Images/serviseImages/plus.png"
+              alt="plus"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+            />
+          </div>
+        
+          <div
+            ref={(el) => { if (el) faqItemsRef.current[3] = el; }}
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+          >
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+              Is my data secure?
+            </p>
+            <Image
+              src="/Images/serviseImages/plus.png"
+              alt="plus"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+            />
+          </div>
+        
+          <div
+            ref={(el) => { if (el) faqItemsRef.current[4] = el; }}
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+          >
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+              Can I collaborate with my engineering team inside Relay?
+            </p>
+            <Image
+              src="/Images/serviseImages/plus.png"
+              alt="plus"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+            />
+          </div>
+        
+          <div
+            ref={(el) => { if (el) faqItemsRef.current[5] = el; }}
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+          >
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+              Does Relay support multi-channel communication?
+            </p>
+            <Image
+              src="/Images/serviseImages/plus.png"
+              alt="plus"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+            />
+          </div>
+        
+          <div
+            ref={(el) => { if (el) faqItemsRef.current[6] = el; }}
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+          >
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+              Can I customize how Relay works for my team?
+            </p>
+            <Image
+              src="/Images/serviseImages/plus.png"
+              alt="plus"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+            />
+          </div>
+        
+                 </div>
+        
+        
+        
+        
+          </div>
 
         
       {/* roadmap */}
       <div ref={roadmapSectionRef} className="w-full py-20 gap-8 items-start flex flex-col px-3 sm:px-4 md:px-8 lg:px-10">
-        <div className="roadmap-heading flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 leading-tight">
-              <p>Let&apos;s design the right technology </p>
-              <p className="text-black">roadmap for your business.</p>
-        </div>
+  {/* Heading – one line, colors preserved */}
+  <div className="roadmap-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium leading-tight">
+    <span className="text-[#3B3B3D73]">Let&apos;s design the right technology </span>
+    <span className="text-black">roadmap for your business.</span>
+  </div>
 
-        <button onClick={() => router.push('/contact')} className="bg-[#FF662A] p-2 px-4 rounded-sm flex gap-2 items-center hover:bg-[#e55a24] transition-colors">
-          <p className="text-white text-sm sm:text-sm md:text-base xl:text-[16px]">Start a Conversation</p>
-          <Image src="/Images/arrow.png" alt="Arrow" width={20} height={20} className="object-contain" />
-        </button>
+  <button onClick={() => router.push('/contact')} className="bg-[#FF662A] p-2 px-4 rounded-sm flex gap-2 items-center hover:bg-[#e55a24] transition-colors">
+    <p className="text-white text-sm sm:text-sm md:text-base xl:text-[16px]">Start a Conversation</p>
+    <Image src="/Images/arrow.png" alt="Arrow" width={20} height={20} className="object-contain" />
+  </button>
 
-      </div>
+  {/* Mobile style overrides – only font size/weight, colors untouched */}
+  <style jsx>{`
+    @media (max-width: 640px) {
+      .roadmap-heading span {
+        font-size: 24px !important;
+        font-weight: 500 !important;
+      }
+    }
+  `}</style>
+</div>
 
       
 
       {/* footer image */}
 
-      <div ref={footerSectionRef} className="w-full relative ">
+       <div
+        ref={testimonialImageRef}
+        className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24"
+      >
         <Image
           src="/Images/serviseImages/footer.jpg"
           alt="Roadmap Image"
           width={1920}
           height={200}
-          className="object-cover w-full h-[800px]"
+          className="object-cover w-full h-[450px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
         />
-        <div className="footer-quote absolute inset-0 flex items-center w-[50%] ml-[2%] mb-44 justify-start">
-          <p className="text-4xl  md:text-5xl lg:text-3xl xl:text-3xl text-white text-start px-4 font-extralight ">
-            &ldquo;Looking for process improvements, <br /> we found a solution that <br /> transformed our entire data <br /> strategy. The depth of insights was <br /> remarkable.&rdquo;
+      
+        {/* Quote */}
+      
+        <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] pl-[1rem] sm:ml-[4%] md:ml-[2%] pb-[4rem] sm:pb-0 justify-start">
+          <p className="text-[22px] sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-start px-0 md:px-4 font-extralight leading-relaxed">
+            &ldquo;Looking for process improvements,{" "}
+            <br className="hidden sm:block" /> we found a solution that{" "}
+            <br className="hidden sm:block" /> transformed our entire data{" "}
+            <br className="hidden sm:block" /> strategy. The depth of insights
+            was <br className="hidden sm:block" /> remarkable.&rdquo;
           </p>
         </div>
-
-
-
-          <div className="absolute inset-0 flex items-end mx-[3%] my-[1%]  justify-between">
-            <p className="footer-author text-white text-xs ">
-              Maya Singh <br /> Product Strategy Lead
-            </p>
-
-            <div className="footer-play flex items-center gap-2">
-              <Image
+      
+        {/* Bottom section */}
+        <div className="absolute inset-0 flex items-end mx-[4%] md:mx-[3%] my-[3%] sm:my-[2%] md:my-[1%] justify-between">
+          
+          {/* Author */}
+          <p className="footer-author text-white text-[17px] sm:text-xs md:text-sm pb-[4rem] sm:pb-0">
+            Maya Singh <br /> Product Strategy Lead
+          </p>
+      
+          {/* Video button */}
+          <div className="flex items-center gap-1 md:gap-2">
+            <Image
               src="/Images/serviseImages/play.png"
               width={40}
-              alt="video play"
               height={40}
-              />
-              <p className="text-white text-md">Watch video</p>
-            </div>
+              alt="video play"
+              className="hidden sm:block w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
+            />
+      
+            <p className="hidden sm:block text-white sm:text-xs md:text-sm lg:text-md">
+              Watch video
+            </p>
           </div>
-
-
-      </div>
+        </div>
+              </div>
 
       {/* add */}
 

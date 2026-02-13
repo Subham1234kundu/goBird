@@ -1823,6 +1823,7 @@ const Home = () => {
   />
 
   {/* Quote */}
+
   <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] pl-[1rem] sm:ml-[4%] md:ml-[2%] pb-[4rem] sm:pb-0 justify-start">
     <p className="text-[22px] sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-start px-0 md:px-4 font-extralight leading-relaxed">
       &ldquo;Looking for process improvements,{" "}
