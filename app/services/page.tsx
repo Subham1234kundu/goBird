@@ -984,7 +984,7 @@ const Services = () => {
         <div className="w-full py-16 pb-16 pt-[1.3rem] sm:pt-16 px-0 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-[1400px] mx-auto">
             {/* h2 – mobile full width, mb-8 gives 2rem gap to images */}
-            <h2 className="text-black max-sm:text-[24px] sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center sm:mb-12 sm:mt-6 mb-8 mx-auto w-[95%] sm:w-full">
+            <h2 className="text-black max-sm:text-[22px] sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center sm:mb-12 sm:mt-6 mb-8 mx-auto w-[95%] sm:w-full">
               {/* Desktop version – unchanged */}
               <span className="hidden sm:inline">
                 The startups shaping tomorrow trust Grobird
