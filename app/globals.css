@@ -1095,17 +1095,25 @@
   }
 }
 
-
-
-
-  @media (max-width: 640px) {
-
-    [data-index="2"] .percentage-number {
-      font-size: 72px !important;
-      font-weight: 400 !important;
-    }
-    [data-index="2"] .percentage-label {
-      font-size: 20px !important;
-      font-weight: 400 !important;
-    }
+@media (max-width: 640px) {
+  [data-index="2"] .percentage-number {
+    font-size: 72px !important;
+    font-weight: 400 !important;
   }
+  [data-index="2"] .percentage-label {
+    font-size: 20px !important;
+    font-weight: 400 !important;
+  }
+}
+
+/* Mobile overrides (max-width: 640px) */
+@media (max-width: 640px) {
+  /* Remove left padding from main container and add 2rem margin on both sides */
+  .serve-images-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 4rem !important;
+    margin-right: 4rem !important;
+  }
+  /* ... rest of your styles ... */
+}
