@@ -974,7 +974,7 @@ const Services = () => {
                 with speed and confidence.
               </span>
             </h3>
-            <button className="mt-8 sm:mt-16 md:mt-20 bg-white border border-white rounded-full text-black text-xs sm:text-sm xl:text-[18px] px-8 sm:px-12 py-3 w-fit block">
+            <button className="hidden sm:block mt-8 sm:mt-16 md:mt-20 bg-white border border-white rounded-full text-black text-xs sm:text-sm xl:text-[18px] px-8 sm:px-12 py-3 w-fit">
               View Products
             </button>
           </div>
@@ -984,21 +984,13 @@ const Services = () => {
         <div className="w-full py-16 pb-16 pt-[1.3rem] sm:pt-16 px-0 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-[1400px] mx-auto">
             {/* h2 – mobile full width, mb-8 gives 2rem gap to images */}
-            <h2 className="text-black text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center sm:mb-12 sm:mt-6 mb-8 mx-auto w-[95%] sm:w-full">
+            <h2 className="text-black max-sm:text-[24px] sm:text-lg md:text-xl lg:text-2xl xl:text-[28.75px] font-medium text-center sm:mb-12 sm:mt-6 mb-8 mx-auto w-[95%] sm:w-full">
               {/* Desktop version – unchanged */}
               <span className="hidden sm:inline">
                 The startups shaping tomorrow trust Grobird
               </span>
               {/* Mobile version – exactly as shown */}
-              <span
-                className="sm:hidden block"
-                style={{
-                  fontSize: "24px",
-                  fontWeight: 500,
-                  marginTop: "1.5rem",
-                  textAlign: "center",
-                }}
-              >
+              <span className="sm:hidden block mt-6 text-center">
                 The startups shaping tomorrow <br />
                 trust <span style={{ color: "#FF662A" }}>Grobird</span>
               </span>
