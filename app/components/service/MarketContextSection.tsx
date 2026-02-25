@@ -106,7 +106,7 @@ const MarketContextSection = ({
 
       {/* White box - above image on mobile/tablet, overlapping on desktop */}
       <div className="lg:hidden bg-white p-4 mb-6 w-full">
-        <p className="text-base sm:text-lg text-[#2D2C2C] leading-10">
+        <p className="text-base sm:text-lg text-[#2D2C2C] leading-[25px] sm:leading-10">
           {marketDescription}
         </p>
       </div>

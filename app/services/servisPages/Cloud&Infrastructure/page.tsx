@@ -264,7 +264,7 @@ const CloudInfrastructure = () => {
           <h1 className="cloud-infra-title text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] 2xl:text-7xl font-light leading-tight mb-8 lg:mb-12 w-full sm:w-[90%]" style={{ fontWeight: 300 }}>
             Cloud & <br className="block sm:hidden" /> Infrastructure
           </h1>
-          <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-10">
+          <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-[25px] sm:leading-10">
             Grobird helps businesses design, deploy, and manage cloud infrastructure that&apos;s secure, scalable, and cost-efficient enabling your teams to focus on innovation, not maintenance.
           </h3>
 
