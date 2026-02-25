@@ -112,8 +112,37 @@ const WhyChooseSection = ({
   return (
     <div ref={whyChooseSectionRef} className="flex flex-col my-8 md:my-12 lg:my-16 xl:my-20 mx-[3%] md:mx-[4%] lg:mx-[5%] xl:mx-[3%] gap-6 md:gap-8 lg:gap-10 xl:gap-12">
       <div ref={whyChooseTextRef} className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-[64px] text-[#3B3B3D73] font-medium mb-4 md:mb-6 lg:mb-8">
-        <div>
-          <p className="whitespace-nowrap">{title} <span className="text-[#000A1B]">{titleHighlight}</span></p>
+        <style jsx>{`
+          @media (max-width: 639px) {
+            .mobile-why-choose-heading {
+              width: 398px !important;
+              max-width: 100% !important;
+              height: auto !important;
+              min-height: 78px !important;
+              font-family: 'Montserrat', sans-serif !important;
+              font-style: normal !important;
+              font-weight: 500 !important;
+              font-size: 32px !important;
+              line-height: 39px !important;
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: flex-start !important;
+              justify-content: center !important;
+              color: rgba(59, 59, 61, 0.45) !important;
+              flex: none !important;
+              order: 0 !important;
+              align-self: stretch !important;
+              flex-grow: 0 !important;
+            }
+            .mobile-why-choose-heading p {
+              white-space: normal !important;
+              font-size: 32px !important;
+              line-height: 39px !important;
+            }
+          }
+        `}</style>
+        <div className="mobile-why-choose-heading w-full">
+          <p className="whitespace-nowrap sm:whitespace-normal">{title} <span className="text-[#000A1B]">{titleHighlight}</span></p>
           <p className="text-[#000A1B]">{subtitle}</p>
         </div>
       </div>
@@ -127,7 +156,7 @@ const WhyChooseSection = ({
                 <p
                   key={index}
                   ref={el => { if (el) whyChooseItemsRef.current[index] = el }}
-                  className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-[32px]"
+                  className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-[32px] text-center sm:text-left"
                 >
                   {item.text}
                 </p>
@@ -142,7 +171,7 @@ const WhyChooseSection = ({
                   ref={el => { if (el) whyChooseItemsRef.current[index] = el }}
                   className="border-b border-[#8F9096] pb-6 md:pb-8 lg:pb-10"
                 >
-                  <p className="p-3 md:p-4 pl-4 md:pl-5 lg:pl-7 text-base md:text-lg lg:text-xl xl:text-[32px] bg-[#dfe1ed] font-semibold rounded-sm text-[#0F1011]">
+                  <p className="p-3 md:p-4 pl-4 md:pl-5 lg:pl-7 text-base md:text-lg lg:text-xl xl:text-[32px] bg-[#dfe1ed] font-semibold rounded-sm text-[#0F1011] text-center sm:text-left">
                     {item.text}
                   </p>
                 </div>
@@ -154,7 +183,7 @@ const WhyChooseSection = ({
               <p
                 key={index}
                 ref={el => { if (el) whyChooseItemsRef.current[index] = el }}
-                className="text-[#000A1B] text-lg md:text-xl lg:text-xl xl:text-[32px] font-semibold border-b border-[#8F9096] pb-6 md:pb-8 lg:pb-10 xl:pb-12"
+                className="text-[#000A1B] text-lg md:text-xl lg:text-xl xl:text-[32px] font-semibold border-b border-[#8F9096] pb-6 md:pb-8 lg:pb-10 xl:pb-12 text-center sm:text-left"
               >
                 {item.text}
               </p>
@@ -162,7 +191,7 @@ const WhyChooseSection = ({
           })}
         </div>
 
-        <div ref={whyChooseImageRef} className="flex w-full lg:w-[45%] xl:w-[40%] items-center justify-center lg:justify-end mt-8 lg:mt-0">
+        <div ref={whyChooseImageRef} className="hidden sm:flex w-full lg:w-[45%] xl:w-[40%] items-center justify-center lg:justify-end mt-8 lg:mt-0">
           <div className="relative w-full sm:w-[350px] md:w-[380px] lg:w-[380px] xl:w-[425px] h-[500px] sm:h-[600px] md:h-[650px] lg:h-[500px] xl:h-[800px]">
             <Image
               src={imageSrc}

@@ -116,8 +116,26 @@ const ITConsulting = () => {
         </div>
 
         <div ref={headerContentRef} className="flex flex-col w-full max-w-[1400px] mx-auto relative z-10 pb-16">
-          <h1 className="text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] 2xl:text-7xl font-light leading-tight mb-8 lg:mb-12 w-full sm:w-[90%]" style={{ fontWeight: 300 }}>
-            IT Consulting
+          <style jsx>{`
+            @media (max-width: 639px) {
+              .it-consulting-title {
+                width: 336px !important;
+                height: 85px !important;
+                font-family: 'Geist', sans-serif !important;
+                font-style: normal !important;
+                font-weight: 200 !important;
+                font-size: 42px !important;
+                line-height: 55px !important;
+                color: #FFFFFF !important;
+                display: block !important;
+                flex: none !important;
+                order: 0 !important;
+                flex-grow: 0 !important;
+              }
+            }
+          `}</style>
+          <h1 className="it-consulting-title text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] 2xl:text-7xl font-light leading-tight mb-8 lg:mb-12 w-full sm:w-[90%]" style={{ fontWeight: 300 }}>
+            IT <br className="block sm:hidden" /> Consulting
           </h1>
           <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-10">
             From strategy to execution, Grobird helps you make smarter technology decisions, modernize your IT landscape, and unlock long-term efficiency and scalability.
