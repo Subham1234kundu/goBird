@@ -2012,7 +2012,7 @@ const Services = () => {
                   letter-spacing: 0.2px !important;
                   position: absolute !important;
                   top: 24px !important;
-                  left: 8px !important;
+                  left: 6px !important;
                   transform: none !important; /* Reset any centering transforms */
                 }
                 /* Label Product Adoption */
