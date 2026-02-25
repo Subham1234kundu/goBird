@@ -132,8 +132,8 @@ const ITConsulting = () => {
       {/* Why Choose Section */}
       <WhyChooseSection
         title="Why Choose"
-        titleHighlight="Grobird for"
-        subtitle="IT Consulting"
+        titleHighlight="Grobird"
+        subtitle="for IT Consulting"
         items={[
           {
             text: "Our team combines deep technical expertise with a user-first mindset, ensuring solutions that are intuitive, scalable, and future-ready. With an agile and transparent process, you're always in the loop, from idea to launch and beyond."

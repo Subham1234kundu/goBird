@@ -128,20 +128,20 @@ const Services = () => {
             index === 0
               ? 0.05
               : index === 1
-              ? 0.25
-              : index === 2
-              ? 0.4
-              : index === 3
-              ? 0.62
-              : index === 4
-              ? 0.7
-              : index === 5
-              ? 0.58
-              : index === 6
-              ? 0.4
-              : index === 7
-              ? 0.3
-              : 0.2,
+                ? 0.25
+                : index === 2
+                  ? 0.4
+                  : index === 3
+                    ? 0.62
+                    : index === 4
+                      ? 0.7
+                      : index === 5
+                        ? 0.58
+                        : index === 6
+                          ? 0.4
+                          : index === 7
+                            ? 0.3
+                            : 0.2,
           x: 0,
           duration: 1,
           delay: 0.1 * index,
@@ -1416,9 +1416,8 @@ const Services = () => {
           {mobileSlides.map((slide, index) => (
             <div
               key={index}
-              className={`absolute inset-0 w-full h-full flex flex-col items-center py-12 px-4 transition-opacity duration-1000 ease-in-out ${
-                index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
+              className={`absolute inset-0 w-full h-full flex flex-col items-center py-12 px-4 transition-opacity duration-1000 ease-in-out ${index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
             >
               {/* Background Image */}
               <div className="absolute inset-0 z-0">
@@ -1669,10 +1668,10 @@ const Services = () => {
                 gap: 1.5rem !important;
                 overflow-x: visible !important;
               }
-              /* Each image item: fixed size */
+              /* Each image item: responsive size, full width */
               .serve-image-item {
-                width: 397px !important;
-                height: 443px !important;
+                width: 338px !important;
+                height: 500px !important;
                 flex-shrink: 0;
                 border-radius: 0px !important; /* Figma shows square 0px radius based on 0px in rectangle code? No, main container has 32px radius but individual items... Frame 114 background has rectangle 85 with 0px radius, but main component might have 16px? Sticking to design provided: Rectangle 85 has 0px radius linear gradient */
                 overflow: hidden !important;
@@ -2013,7 +2012,7 @@ const Services = () => {
                   letter-spacing: 0.2px !important;
                   position: absolute !important;
                   top: 24px !important;
-                  left: 24px !important;
+                  left: 6px !important;
                   transform: none !important; /* Reset any centering transforms */
                 }
                 /* Label Product Adoption */
@@ -2021,12 +2020,12 @@ const Services = () => {
                   font-family: "Inter", sans-serif !important;
                   font-size: 20.2px !important;
                   font-weight: 400 !important;
-                  line-height: 27px !important;
+                  line-height: 26.8px !important;
                   letter-spacing: 0.2px !important;
                   text-transform: uppercase !important;
                   position: absolute !important;
                   bottom: 24px !important;
-                  left: 24px !important;
+                  left: 8px !important;
                   width: 220px !important;
                   text-align: left !important;
                 }
@@ -2083,21 +2082,21 @@ const Services = () => {
                   letter-spacing: 0.2px !important;
                   position: absolute !important;
                   top: 24px !important;
-                  left: 24px !important;
+                  left: 8px !important;
                 }
                 /* Label Faster Go-To-Market */
                 [data-index="4"] div:last-child {
-                  font-family: "Inter", sans-serif !important;
+                  font-family: "Inter", Regular !important;
                   font-size: 20.6px !important;
                   font-weight: 400 !important;
-                  line-height: 27px !important;
+                  line-height: 26.8px !important;
                   letter-spacing: 0.2px !important;
                   text-transform: uppercase !important;
                   position: absolute !important;
                   bottom: 90px !important; /* Increased from 24px to prevent clipping */
-                  left: 24px !important;
+                  left: 8px !important;
                   width: 247px !important;
-                  height: auto !important;
+                  height: 27px !important;
                   z-index: 20 !important; /* Ensure it's on top */
                   color: #faf9f7 !important; /* Context: Figma color */
                 }
