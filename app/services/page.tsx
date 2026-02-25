@@ -1894,13 +1894,13 @@ const Services = () => {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute top-3 md:top-4 lg:top-5 left-2 md:left-3 right-2 md:right-3">
+                <div className="absolute top-3 md:top-4 lg:top-5 left-1 sm:left-2 md:left-3 right-2 md:right-3">
                   <p className="text-white text-3xl md:text-4xl lg:text-5xl">
                     3X
                   </p>
                 </div>
-                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-2 md:left-3 right-2">
-                  <p className="text-white text-xs md:text-sm lg:text-md uppercase">
+                <div className="absolute bottom-4 md:bottom-6 lg:bottom-8 left-0 sm:left-2 md:left-3 right-2">
+                  <p className="text-white text-xs md:text-sm lg:text-md uppercase  pl-0">
                     Faster Go-to-Market
                   </p>
                 </div>
