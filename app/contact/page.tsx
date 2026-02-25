@@ -1189,42 +1189,39 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* FAQ Section */}
-      <div
-        className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 px-4 sm:px-6 md:px-8 lg:px-[4%] py-10 sm:py-12 md:py-16 lg:py-20 my-6 sm:my-8 md:my-12 lg:my-16 "
-        style={{
-          background: "linear-gradient(to bottom, #FFFFFF 0%, #F4F4F4 100%)",
-        }}
-      >
+      {/* Asked */}
+      <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 mx-[4%] mb-12 md:mb-16 lg:mb-20">
         <div
           ref={faqHeadingRef}
-          className="flex flex-col lg:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8"
+          className="flex flex-col lg:flex-row justify-between items-start w-full mt-12 md:mt-16 lg:mt-20 mb-5 gap-6 md:gap-8"
         >
-          <div className="flex w-full lg:w-[60%] items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-[#3B3B3D73] flex-col gap-2 xl:pb-10">
+          <div className="flex w-full lg:w-[60%] items-start text-4xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
             <p>Frequently Asked</p>
-            <p className="text-black">Questions</p>
+            <p className="text-[#3B3B3D73]">Questions</p>
           </div>
-          <p className="text-[#2D2C2C] text-xs sm:text-sm md:text-base lg:text-lg xl:text-[32px] w-full lg:w-[32%] leading-10">
-            From setup to security, here&apos;s everything you need to know.
+
+          <p className="text-[#2D2C2C] text-sm sm:text-sm md:text-base lg:text-lg w-full lg:w-[40%] xl:text-3xl leading-relaxed">
+            From setup to security, here&apos;s everything you need to know
+            before getting started.
           </p>
         </div>
 
-        <div className="flex flex-col w-full px-2 md:px-6 lg:px-10 items-center gap-3 md:gap-4">
+        <div className="flex flex-col w-full px-0 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
           <div
             ref={(el) => {
               if (el) faqItemsRef.current[0] = el;
             }}
-            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
           >
-            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
               What kind of teams use Relay?
             </p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
-              width={25}
-              height={25}
-              className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
             />
           </div>
 
@@ -1232,17 +1229,17 @@ const Contact = () => {
             ref={(el) => {
               if (el) faqItemsRef.current[1] = el;
             }}
-            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
           >
-            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
               Does Relay work with Slack and Microsoft Teams?
             </p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
-              width={25}
-              height={25}
-              className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
             />
           </div>
 
@@ -1250,17 +1247,17 @@ const Contact = () => {
             ref={(el) => {
               if (el) faqItemsRef.current[2] = el;
             }}
-            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
           >
-            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
               Is there a free trial?
             </p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
-              width={25}
-              height={25}
-              className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
             />
           </div>
 
@@ -1268,17 +1265,17 @@ const Contact = () => {
             ref={(el) => {
               if (el) faqItemsRef.current[3] = el;
             }}
-            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
           >
-            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
               Is my data secure?
             </p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
-              width={25}
-              height={25}
-              className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
             />
           </div>
 
@@ -1286,17 +1283,17 @@ const Contact = () => {
             ref={(el) => {
               if (el) faqItemsRef.current[4] = el;
             }}
-            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
           >
-            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
               Can I collaborate with my engineering team inside Relay?
             </p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
-              width={25}
-              height={25}
-              className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
             />
           </div>
 
@@ -1304,17 +1301,17 @@ const Contact = () => {
             ref={(el) => {
               if (el) faqItemsRef.current[5] = el;
             }}
-            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
           >
-            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
               Does Relay support multi-channel communication?
             </p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
-              width={25}
-              height={25}
-              className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
             />
           </div>
 
@@ -1322,17 +1319,17 @@ const Contact = () => {
             ref={(el) => {
               if (el) faqItemsRef.current[6] = el;
             }}
-            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border-1 w-full flex items-center justify-between gap-4"
+            className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
           >
-            <p className="text-[#111111] text-sm md:text-base xl:text-[24px]">
+            <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
               Can I customize how Relay works for my team?
             </p>
             <Image
               src="/Images/serviseImages/plus.png"
               alt="plus"
-              width={25}
-              height={25}
-              className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0"
+              width={22}
+              height={22}
+              className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
             />
           </div>
         </div>
@@ -1343,11 +1340,11 @@ const Contact = () => {
         ref={ctaSectionRef}
         className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 px-4 sm:px-6 md:px-10 lg:px-16 py-8 sm:py-10 md:py-12 lg:py-16"
       >
-        <h2 className="text-black text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-medium leading-tight text-center sm:text-left">
+        <h2 className="text-black text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-medium leading-tight text-center sm:text-left max-sm:text-[24px] max-sm:font-medium max-sm:text-left">
           Driving 30% Cost Reductions Through <br className="hidden lg:block" />
           Smarter IT Decisions
         </h2>
-        <button className="bg-black text-white px-6 sm:px-8 py-2.5 rounded-full text-sm sm:text-base xl:text-[18px] hover:bg-gray-800 transition-colors whitespace-nowrap">
+        <button className="bg-black text-white px-6 sm:px-8 py-2.5 rounded-full text-sm sm:text-base xl:text-[18px] hover:bg-gray-800 transition-colors whitespace-nowrap max-sm:w-[153px] max-sm:h-[40px] max-sm:bg-[#000A1B] max-sm:px-[10px] max-sm:py-[10px] max-sm:flex max-sm:flex-row max-sm:justify-center max-sm:items-center max-sm:gap-[10px] max-sm:self-start">
           Connect Now!
         </button>
       </div>
