@@ -111,19 +111,39 @@ const IndustriesWeServeSection = ({
     <>
       {/* Industries We Serve section - only render if text content exists */}
       {hasTextContent && (
-        <div className="flex px-4 sm:px-6 md:px-8 flex-col lg:flex-row justify-between items-start gap-6 sm:gap-8 lg:gap-4 my-16 lg:my-24">
+        <div className="flex px-4 sm:px-6 md:px-8 flex-col lg:flex-row justify-between items-start gap-3 sm:gap-8 lg:gap-4 my-16 lg:my-24">
+
+          {/* Desktop/Tablet Title */}
           {(title || titleHighlight) && (
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium">
+            <p className="hidden sm:block text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium">
               {title && <span className="text-[#3B3B3D73]">{title}</span>}
               {title && titleHighlight && <br className="lg:hidden" />}
               {titleHighlight && <span className="text-[#000A1B]"> {titleHighlight}</span>}
             </p>
           )}
+
+          {/* Mobile Title */}
+          {(title || titleHighlight) && (
+            <p className="sm:hidden text-[28px] leading-tight font-medium">
+              {title && <span className="text-[#000A1B]">{title}</span>}
+              {titleHighlight && <span className="text-[#8F9096] font-light"> {titleHighlight}</span>}
+            </p>
+          )}
+
+          {/* Desktop/Tablet Description */}
           {description && (
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] text-[#2D2C2C] leading-relaxed lg:max-w-[50%] pt-0 sm:pt-4 lg:pt-24">
+            <p className="hidden sm:block text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] text-[#2D2C2C] leading-relaxed lg:max-w-[50%] pt-0 sm:pt-4 lg:pt-24">
               {description}
             </p>
           )}
+
+          {/* Mobile Description */}
+          {description && (
+            <p className="sm:hidden text-[14px] text-[#2D2C2C] leading-[22px] font-normal">
+              {description}
+            </p>
+          )}
+
         </div>
       )}
 

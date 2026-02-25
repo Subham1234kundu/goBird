@@ -256,8 +256,8 @@ const ITConsulting = () => {
 
       {/* Industries We Serve Section */}
       <IndustriesWeServeSection
-        title="Industries"
-        titleHighlight="We Serve"
+        title="Industries We"
+        titleHighlight="Serve"
         autoScroll={false}
         mobileLayout="stack"
         description="Every industry has its own challenges, and at Grobird we tailor software to meet those unique needs. From building engaging e-learning platforms for education to creating secure fintech solutions, our expertise spans across multiple domains."

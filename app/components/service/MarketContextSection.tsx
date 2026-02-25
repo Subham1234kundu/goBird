@@ -138,12 +138,24 @@ const MarketContextSection = ({
       </div>
 
       {/* Measurable Outcomes section */}
-      <div className="flex px-4 sm:px-6 md:px-8 flex-col lg:flex-row justify-between items-start gap-6 sm:gap-8 lg:gap-4 mt-16 lg:mt-24">
-        <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-medium">
+      <div className="flex px-4 sm:px-6 md:px-8 flex-col lg:flex-row justify-between items-start gap-3 sm:gap-8 lg:gap-4 mt-16 lg:mt-24">
+        {/* Desktop/Tablet Title */}
+        <p className="hidden sm:block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-medium">
           <span className="text-[#3B3B3D73]">{measurableTitle}</span><br className="lg:hidden" />
           <span className="text-[#000A1B]"> {measurableTitleHighlight}</span>
         </p>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] text-[#2D2C2C] leading-relaxed lg:max-w-[50%] mt-0 sm:mt-4 lg:mt-52">
+        {/* Mobile Title */}
+        <p className="sm:hidden text-[28px] leading-tight font-medium">
+          <span className="text-[#000A1B]">{measurableTitle}</span>
+          <span className="text-[#8F9096] font-light"> {measurableTitleHighlight}</span>
+        </p>
+
+        {/* Desktop/Tablet Description */}
+        <p className="hidden sm:block text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] text-[#2D2C2C] leading-relaxed lg:max-w-[50%] mt-0 sm:mt-4 lg:mt-52">
+          {measurableDescription}
+        </p>
+        {/* Mobile Description */}
+        <p className="sm:hidden text-[14px] text-[#2D2C2C] leading-[22px] font-normal">
           {measurableDescription}
         </p>
       </div>
