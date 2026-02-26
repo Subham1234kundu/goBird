@@ -399,7 +399,7 @@ const AboutUs = () => {
             <div className="flex flex-col lg:flex-row items-start justify-between gap-2 sm:gap-6 md:gap-8 lg:gap-12">
               <h1
                 ref={headingRef}
-                className="text-white text-[42px] pt-8 sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light w-full lg:w-[70%] leading-tight"
+                className="text-white text-[42px] pt-8 sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light w-full lg:w-[70%] leading-tight max-sm:font-extralight max-sm:leading-[55px]"
               >
                 We build
                 <br />
@@ -410,7 +410,7 @@ const AboutUs = () => {
 
               <h3
                 ref={subheadingRef}
-                className="text-white font-light text-[14px] sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-6 sm:leading-10 mt-2 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14"
+                className="text-white font-light text-[14px] sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-6 sm:leading-10 mt-2 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14 max-sm:font-normal max-sm:leading-[17px]"
               >
                 Whether you&apos;re rethinking IT infrastructure, building
                 custom software, or scaling digital products we help you move
@@ -453,7 +453,7 @@ const AboutUs = () => {
         {/* descp */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-12 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-10 py-6 sm:py-8 md:py-12 lg:py-16 mx-auto">
           {/* H3 first on mobile */}
-          <h3 className="text-[#000A1B] text-[24px] font-normal pt-8 md:pt-0 md:text-3xl lg:text-4xl lg:w-[30%] text-start lg:text-end order-1 lg:order-2">
+          <h3 className="text-[#000A1B] text-[24px] font-normal pt-8 md:pt-0 md:text-3xl lg:text-4xl lg:w-[30%] text-start lg:text-end order-1 lg:order-2 max-sm:leading-[29px]">
             Our Mission/Vision
           </h3>
 
@@ -473,27 +473,27 @@ const AboutUs = () => {
           {/* Mission Box */}
           <div
             ref={missionBoxRef}
-            className="w-full lg:w-[37%] bg-gradient-to-br from-[#020B18] to-[#023362] rounded-[20px] px-8 sm:p-6 py-6 sm:py-7 text-white font-inter mt-4 lg:mt-0 h-auto lg:h-[480px]"
+            className="w-full lg:w-[37%] bg-gradient-to-br from-[#020B18] to-[#023362] rounded-[20px] px-8 sm:p-6 py-6 sm:py-7 text-white font-inter mt-4 lg:mt-0 h-auto lg:h-[480px] max-sm:py-12"
           >
             {/* Mission */}
             <div className="mb-10 sm:mb-8">
-              <h3 className="text-[20px] leading-[28.6px] font-medium sm:text-2xl xl:text-[32px] mb-3">
+              <h3 className="text-[20px] leading-[28.6px] font-medium sm:text-2xl xl:text-[32px] mb-3 max-sm:leading-[29px]">
                 Our Mission
               </h3>
-              <p className="text-[16px] font-normal sm:text-lg xl:text-[24px] mb-6 sm:mb-6 leading-6 sm:leading-9">
+              <p className="text-[16px] font-normal sm:text-lg xl:text-[24px] mb-6 sm:mb-6 leading-6 sm:leading-9 max-sm:leading-[19px] max-sm:text-white/80">
                 To empower businesses with technology that delivers measurable
                 impact and long-term value.
               </p>
             </div>
 
             {/* Vision */}
-            <div className="pt-4 sm:pt-0">
-              <h3 className="text-[20px] leading-[28.6px] font-medium sm:text-2xl xl:text-[32px] mb-3">
+            <div>
+              <h3 className="text-[20px] leading-[28.6px] font-medium sm:text-2xl xl:text-[32px] mb-3 max-sm:leading-[29px]">
                 Our Vision
               </h3>
-              <p className="text-[16px] font-normal sm:text-lg xl:text-[24px] leading-6 sm:leading-9">
-                A future where digital transformation is seamless, sustainable,
-                and accessible to every business.
+              <p className="text-[16px] font-normal sm:text-lg xl:text-[24px] mb-6 sm:mb-6 leading-6 sm:leading-9 max-sm:leading-[19px] max-sm:text-white/80">
+                To be the catalyst for innovation, helping businesses thrive in
+                a digital-first world.
               </p>
             </div>
           </div>
@@ -527,9 +527,9 @@ const AboutUs = () => {
         <div className="flex flex-col md:flex-row gap-4 md:gap-1 px-4 sm:px-4 md:px-8 lg:px-12 xl:px-14 pb-6 sm:pb-8 md:pb-12 lg:pb-16 mx-auto">
           <div
             ref={(el) => {
-              if (el) testimonialRefs.current[0] = el;
+              if (el) testimonialRefs.current[2] = el;
             }}
-            className="w-full md:w-1/3 h-auto md:h-[326px] bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between"
+            className="w-full md:w-1/3 h-auto md:h-[326px] bg-[#D3D3D347] rounded-lg p-4 sm:p-6 flex flex-col justify-between max-sm:pl-8 max-sm:pt-12 max-sm:pb-12 max-sm:hidden"
           >
             <div>
               <div className="flex gap-1 mb-8 md:mb-7">
@@ -570,9 +570,9 @@ const AboutUs = () => {
                 />
               </div>
               <p className="text-[#0B0B0B] text-[16px] font-normal leading-[25.8px] md:text-base md:font-medium md:leading-relaxed xl:text-[18px]">
-                Grobird turned our early-stage idea into a fully functional
-                product within months. Their team felt like an extension of ours
-                &mdash; fast, responsive, and genuinely invested in our success.
+                Partnering with Grobird gave us the confidence to dream bigger.
+                Their expertise in product engineering and cloud solutions
+                helped us grow faster than we imagined.
               </p>
             </div>
             <div className="mt-8 md:mt-4">
@@ -584,6 +584,7 @@ const AboutUs = () => {
               </p>
             </div>
           </div>
+
           <div
             ref={(el) => {
               if (el) testimonialRefs.current[1] = el;
@@ -717,12 +718,13 @@ const AboutUs = () => {
             ref={storyContentRef}
             className="flex flex-col sm:gap-8 w-full lg:w-[65%]"
           >
-            <p className="text-[16px] font-normal leading-[36px] md:text-base md:leading-10 lg:text-lg xl:text-[32px] xl:mt-20 md:mt-16px">
+            <p className="text-[16px] font-normal leading-[36px] text-black md:text-base md:leading-10 lg:text-lg xl:text-[32px] xl:mt-20 md:mt-16px">
               GroBird began with a simple belief &mdash; technology should not
               just solve problems, it should inspire growth. What started as a
               small team of passionate engineers and designers has now evolved
               into a full-scale digital partner trusted by businesses worldwide.
             </p>
+
             <p className="text-[#3D3D3DDB] text-[16px] font-normal leading-[36px] md:text-base md:leading-10 lg:text-lg xl:text-[32px]">
               Over the years, we&apos;ve delivered 100+ transformative projects,
               empowered 50+ global clients, and expanded our expertise across
@@ -906,7 +908,7 @@ const AboutUs = () => {
           <span className="text-[#3B3B3D73]">How We Help</span>
           <span className="text-[#0B0B0B]">Businesses Grow</span>
         </h2>
-        <h3 className="text-[#000A1B] text-[14px] font-normal order-1 sm:order-2 sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1">
+        <h3 className="text-[#000A1B] text-[14px] font-normal order-1 sm:order-2 sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1 max-sm:text-[24px] max-sm:leading-[29px]">
           Services
         </h3>
       </div>
@@ -925,7 +927,8 @@ const AboutUs = () => {
               <h4 className="text-[#C3C3C3] text-2xl font-medium sm:text-2xl lg:text-3xl xl:text-[48px] sm:font-normal w-[50px] flex-shrink-0 leading-none">
                 01.
               </h4>
-              <h3 className="text-[17px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
+
+              <h3 className="text-[16px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
                 Custom Software Development
               </h3>
             </div>
