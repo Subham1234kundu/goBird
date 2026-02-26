@@ -171,7 +171,7 @@ const WeBuildSection = ({
       <div className={`w-full lg:w-[55%] ${isITConsulting ? 'h-[700px]' : 'h-[400px] sm:h-[500px] md:h-[600px] lg:h-[70%]'}`}>
         <div
           ref={scrollContainerRef}
-          className={`flex overflow-x-auto h-full ${isITConsulting ? 'gap-8' : 'gap-3 sm:gap-4 md:gap-6'}`}
+          className={`flex overflow-x-auto h-full snap-x snap-mandatory ${isITConsulting ? 'gap-8' : 'gap-3 sm:gap-4 md:gap-6'} px-4 sm:px-0`}
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
@@ -188,9 +188,9 @@ const WeBuildSection = ({
             <div
               key={index}
               ref={el => { if (el) weBuildItemsRef.current[index] = el }}
-              className={`flex flex-col flex-shrink-0 ${isITConsulting ? 'w-[388px]' : 'w-[200px] sm:w-[240px] md:w-[280px] lg:w-[320px] xl:w-[547px]'}`}
+              className={`flex flex-col flex-shrink-0 snap-center relative ${isITConsulting ? 'w-[320px] sm:w-[388px]' : 'w-[200px] sm:w-[240px] md:w-[280px] lg:w-[320px] xl:w-[547px]'}`}
             >
-              <div className={`relative w-full mb-3 sm:mb-4 md:mb-5 lg:mb-7 ${isITConsulting ? 'h-[645px]' : 'h-[300px] sm:h-[360px] md:h-[420px] lg:h-[480px] xl:h-[821px]'}`}>
+              <div className={`relative w-full mb-3 sm:mb-4 md:mb-5 lg:mb-7 ${isITConsulting ? 'h-[480px] sm:h-[583px]' : 'h-[300px] sm:h-[360px] md:h-[420px] lg:h-[480px] xl:h-[821px]'}`}>
                 <Image
                   src={item.imageSrc}
                   alt={item.title}
@@ -198,15 +198,11 @@ const WeBuildSection = ({
                   className={`object-cover ${isITConsulting ? 'rounded-[40px]' : 'rounded-xl'}`}
                   quality={90}
                 />
-                {/* Overlay for IT Consulting variant */}
-                {isITConsulting && (
-                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent rounded-b-[40px] pointer-events-none"></div>
-                )}
               </div>
               <p
                 className={`text-white leading-tight ${isITConsulting
-                  ? 'absolute bottom-[50px] left-8 text-2xl font-medium z-10' // IT Consulting style: Overlay text
-                  : 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px]' // Default style: Text below image
+                  ? 'text-xl sm:text-2xl font-medium mt-2 sm:mt-0 text-left' // Text below image on all screens now
+                  : 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] text-left'
                   }`}
                 style={{ fontWeight: isITConsulting ? 500 : 400 }}
               >

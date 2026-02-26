@@ -951,7 +951,7 @@ const Services = () => {
                 digital solutions.
               </span>
             </h1>
-            <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-10">
+            <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-[25px] sm:leading-10">
               <span className="hidden sm:inline">
                 Whether you&apos;re rethinking IT infrastructure, building
                 custom software, or scaling digital products — we help you move
