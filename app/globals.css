@@ -173,11 +173,13 @@
 
 .businesses_hed h1 {
   text-align: center;
-  font-size: 3rem;
+  font-size: 64px;
+  font-weight: 400;
 }
 
 .businesses_hed h1 span {
-  opacity: 0.5;
+  /* opacity: 0.5; */
+  color: #A7A7A7;
 }
 
 .businesses_card {
@@ -189,7 +191,7 @@
 
 .businesses_card .card {
   width: 100%;
-  height: 20vw;
+  height: 280px;
   border-radius: 32px;
   background-color: #f6f6f6;
   display: flex;
@@ -201,14 +203,15 @@
 }
 
 .businesses_card .card h1 {
-  font-size: 3rem;
+  font-size: 64px;
   font-weight: 500;
 }
 
 .businesses_card .card p {
-  font-size: 1rem;
+  font-size: 15.6px;
+  font-weight: 400;
   text-align: center;
-  opacity: 0.8;
+  color: #4A4D5A;
 }
 
 /* Rounded container */
@@ -252,14 +255,16 @@
   .businesses {
     padding: 3rem 1rem;
     gap: 5rem;
+    /* background-color: red; */
   }
 
   .businesses_hed h1 {
-    font-size: 1.6rem;
-  }
-
-  .businesses_hed h1 span {
-    opacity: 0.5;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 39px;
+    /* display: flex; */
   }
 
   .businesses_card {
@@ -340,16 +345,16 @@
 }
 
 .our_prosess_hed span {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 32px;
+  font-weight: 400;
   color: #000a1b;
 }
 
 .our_prosess_hed h1 {
-  font-size: 3rem;
-  font-weight: 500;
-  line-height: 1.2;
-  white-space: nowrap;
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 76.8px;
+  /* white-space: nowrap; */
 }
 
 .our_prosess_hed h1 span {
@@ -374,6 +379,7 @@
   background-color: #f6f6f6;
   border-radius: 15px;
   padding: 3rem 2rem;
+  height: 466px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -399,18 +405,24 @@
   object-fit: contain;
 }
 
-.our_box_content h1 {
-  font-size: 2.2rem;
-  font-weight: 500;
-  line-height: 1.2;
+.our_box_content .our_box_content_num {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.our_box_content .our_box_content_num h1 {
+  font-size: 36px;
+  font-weight: 400;
+  /* line-height: 1.2; */
   margin-bottom: 1.5rem;
 }
 
-.our_box_content h1 span {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #333;
-  margin-left: 0.5rem;
+.our_box_content .our_box_content_num span {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000a1b;
+  margin-top: 14px;
 }
 
 .our_box_orange .our_box_content h1 span {

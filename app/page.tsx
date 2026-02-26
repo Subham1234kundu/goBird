@@ -61,7 +61,6 @@ const Home = () => {
   const stat3Ref = useRef<HTMLHeadingElement>(null);
   const stat4Ref = useRef<HTMLHeadingElement>(null);
 
-
   useEffect(() => {
     // Kill existing ScrollTrigger animations only
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -736,16 +735,17 @@ const Home = () => {
             {/* Heading - Centered and larger on mobile */}
             <h1
               ref={heroHeadingRef}
-              className="text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-tight sm:leading-snug mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full"
+              className="text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-tight sm:leading-snug mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full max-sm:text-[45px] max-sm:font-normal max-sm:px-0"
             >
               Transforming Ideas into <br className="hidden xs:block" />{" "}
               Scalable Digital Solutions
             </h1>
 
             {/* Description - Centered and larger on mobile */}
+
             <p
               ref={heroDescRef}
-              className="text-white font-light mt-4 sm:mt-2 text-base sm:text-sm md:text-lg lg:text-xl xl:text-3xl leading-relaxed max-w-[90%] sm:max-w-full 2xl:max-w-6xl mb-8 sm:mb-7 xl:mb-8 2xl:mb-10 px-4 sm:px-4 text-center"
+              className="text-white font-light mt-4 sm:mt-2 text-base sm:text-sm md:text-lg lg:text-xl xl:text-3xl leading-relaxed max-w-[90%] sm:max-w-full 2xl:max-w-6xl mb-8 sm:mb-7 xl:mb-8 2xl:mb-10 px-4 sm:px-4 text-center max-sm:px-0 max-sm:text-base max-sm:font-light max-sm:leading-5 max-sm:tracking-[-0.01em]"
             >
               Grobird accelerates innovation through IT consulting, software{" "}
               <br className="hidden sm:block" /> development, and cloud
@@ -755,17 +755,18 @@ const Home = () => {
             {/* Buttons - Stacked vertically on mobile, horizontal on desktop */}
             <div
               ref={heroButtonsRef}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-4 items-center justify-center w-full sm:w-auto"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-4 items-center justify-center w-full sm:w-auto max-sm:flex-row max-sm:justify-center max-sm:gap-8"
             >
               <button
                 onClick={() => router.push("/contact")}
-                className="bg-[#FF672C] text-white px-8 sm:px-6 lg:px-18 font-medium py-3 sm:py-2 md:py-3 rounded-full text-base sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto max-w-[280px] sm:max-w-none"
+                className="bg-[#FF672C] text-white px-8 sm:px-6 lg:px-18 font-medium py-3 sm:py-2 md:py-3 rounded-full text-base sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto max-w-[280px] sm:max-w-none max-sm:w-[152px] max-sm:h-[50px] max-sm:p-[10px] max-sm:flex max-sm:justify-center max-sm:items-center max-sm:text-[14px]"
               >
                 Talk to Us
               </button>
+
               <button
                 onClick={() => router.push("/services")}
-                className="bg-white text-black px-8 sm:px-6 lg:px-14 py-3 sm:py-2 md:py-3 rounded-full text-base sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto max-w-[280px] sm:max-w-none"
+                className="bg-white text-black px-8 sm:px-6 lg:px-14 py-3 sm:py-2 md:py-3 rounded-full text-base sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto max-w-[280px] sm:max-w-none max-sm:w-[152px] max-sm:h-[50px] max-sm:p-[10px] max-sm:flex max-sm:flex-row max-sm:justify-center max-sm:items-center max-sm:text-[14px]"
               >
                 Explore Services
               </button>
@@ -917,20 +918,16 @@ const Home = () => {
               </div>
             </div>
           </div>
-
-
         </section>
 
         {/* our prosecces  */}
-
         <section className="our_prosess">
           <div className="our_prosess_hed">
             <span>Our Process</span>
-            <h1>
-              A Proven, Data-Backed Process That <br />{" "}
-              <span>Converts Strategy Into Results</span>
+            <h1>A Proven, Data-Backed Process That</h1>
+            <h1 style={{ color: "#A7A7A7", fontSize: "64px" }}>
+              Converts Strategy Into Results
             </h1>
-            <p></p>
           </div>
 
           <div className="our_process_box">
@@ -946,12 +943,16 @@ const Home = () => {
                 />
               </div>
               <div className="our_box_content">
-                <h1>
-                  Deep Dive & <span> ( 01 )</span> <br /> Discovery
-                </h1>
+                <div className="our_box_content_num">
+                  <h1>
+                    Deep Dive & <br /> Discovery
+                  </h1>
+                  <span> ( 01 )</span>
+                </div>
+
                 <p>
-                  Through strategy calls and audits, we uncover what&apos;s working,
-                  missing, and the biggest opportunities lie.
+                  Through strategy calls and audits, we uncover what&apos;s
+                  working, missing, and the biggest opportunities lie.
                 </p>
               </div>
             </div>
@@ -968,9 +969,13 @@ const Home = () => {
                 />
               </div>
               <div className="our_box_content">
-                <h1>
-                  Launch & <span> ( 02 )</span> <br /> Execute
-                </h1>
+                <div className="our_box_content_num">
+                  <h1>
+                    Launch & <br /> Execute
+                  </h1>
+                  <span style={{ color: "#FFFFFF" }}> ( 02 )</span>
+                </div>
+
                 <p>
                   With strategy locked, we roll out high-impact campaigns,
                   creative content, and across key channels.
@@ -990,9 +995,13 @@ const Home = () => {
                 />
               </div>
               <div className="our_box_content">
-                <h1>
-                  Optimize & <span> ( 03 )</span> <br /> Scale
-                </h1>
+                <div className="our_box_content_num">
+                  <h1>
+                    Optimize & <br /> Scale
+                  </h1>
+                  <span> ( 03 )</span>
+                </div>
+
                 <p>
                   We continuously test, analyze, and refine. From A/B testing
                   to, our team fine-tunes your campaigns.
@@ -1005,13 +1014,25 @@ const Home = () => {
             <div className="grid-container">
               {/* Left Tall */}
               <div className="grid-item tall">
-                <Image src={box_img1} alt="Business insights" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                <Image
+                  src={box_img1}
+                  alt="Business insights"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
               </div>
 
               {/* Middle Column */}
               <div className="grid-col">
                 <div className="grid-item">
-                  <Image src={box_img} alt="Business insights image" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                  <Image
+                    src={box_img}
+                    alt="Business insights image"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
 
                 {/* Content Box */}
@@ -1028,10 +1049,26 @@ const Home = () => {
               {/* Right Column */}
               <div className="grid-col right-col">
                 <div className="grid-item">
-                  <Image src={box_img2} alt="Business insights" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                  <Image
+                    src={box_img2}
+                    alt="Business insights"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
                 <div className="grid-item">
-                  <Image src={box_img3} alt="Business insights image" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                  <Image
+                    src={box_img3}
+                    alt="Business insights image"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -1049,7 +1086,11 @@ const Home = () => {
           </div>
           <div className="services_card">
             <div className="services_card_left">
-              <Image src={img_mobile} alt="Service demonstration" style={{width: '100%', height: 'auto'}} />
+              <Image
+                src={img_mobile}
+                alt="Service demonstration"
+                style={{ width: "100%", height: "auto" }}
+              />
               <br />
               <h3>
                 {cards[activeCard].leftTitle} <br />{" "}
@@ -1098,7 +1139,15 @@ const Home = () => {
             <div className="top_cards">
               <div className="card">
                 <div className="card_img">
-                  <Image src={workimg} alt="E7 Cyber project" style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+                  <Image
+                    src={workimg}
+                    alt="E7 Cyber project"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
                 <div className="card_text">
                   <div className="card_text_left">
@@ -1811,131 +1860,123 @@ const Home = () => {
         {/* Footer Section with Testimonial */}
 
         <div
-  ref={testimonialImageRef}
-  className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24"
->
-  <Image
-    src="/Images/serviseImages/footer.jpg"
-    alt="Roadmap Image"
-    width={1920}
-    height={200}
-    className="object-cover w-full h-[450px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
-  />
+          ref={testimonialImageRef}
+          className="w-full relative mt-8 md:mt-12 lg:mt-16 xl:mt-20 mb-8 md:mb-12 lg:mb-16 xl:mb-24"
+        >
+          <Image
+            src="/Images/serviseImages/footer.jpg"
+            alt="Roadmap Image"
+            width={1920}
+            height={200}
+            className="object-cover w-full h-[450px] sm:h-[450px] md:h-[600px] lg:h-[700px] xl:h-[800px]"
+          />
 
-  {/* Quote */}
+          {/* Quote */}
 
-  <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] pl-[1rem] sm:ml-[4%] md:ml-[2%] pb-[4rem] sm:pb-0 justify-start">
-    <p className="text-[22px] sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-start px-0 md:px-4 font-extralight leading-relaxed">
-      &ldquo;Looking for process improvements,{" "}
-      <br className="hidden sm:block" /> we found a solution that{" "}
-      <br className="hidden sm:block" /> transformed our entire data{" "}
-      <br className="hidden sm:block" /> strategy. The depth of insights
-      was <br className="hidden sm:block" /> remarkable.&rdquo;
-    </p>
-  </div>
+          <div className="absolute inset-0 flex items-center w-full md:w-[60%] lg:w-[50%] pl-[1rem] sm:ml-[4%] md:ml-[2%] pb-[4rem] sm:pb-0 justify-start">
+            <p className="text-[22px] sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white text-start px-0 md:px-4 font-extralight leading-relaxed">
+              &ldquo;Looking for process improvements,{" "}
+              <br className="hidden sm:block" /> we found a solution that{" "}
+              <br className="hidden sm:block" /> transformed our entire data{" "}
+              <br className="hidden sm:block" /> strategy. The depth of insights
+              was <br className="hidden sm:block" /> remarkable.&rdquo;
+            </p>
+          </div>
 
-  {/* Bottom section */}
-  <div className="absolute inset-0 flex items-end mx-[4%] md:mx-[3%] my-[3%] sm:my-[2%] md:my-[1%] justify-between">
-    
-    {/* Author */}
-    <p className="footer-author text-white text-[17px] sm:text-xs md:text-sm pb-[4rem] sm:pb-0">
-      Maya Singh <br /> Product Strategy Lead
-    </p>
+          {/* Bottom section */}
+          <div className="absolute inset-0 flex items-end mx-[4%] md:mx-[3%] my-[3%] sm:my-[2%] md:my-[1%] justify-between">
+            {/* Author */}
+            <p className="footer-author text-white text-[17px] sm:text-xs md:text-sm pb-[4rem] sm:pb-0">
+              Maya Singh <br /> Product Strategy Lead
+            </p>
 
-    {/* Video button */}
-    <div className="flex items-center gap-1 md:gap-2">
-      <Image
-        src="/Images/serviseImages/play.png"
-        width={40}
-        height={40}
-        alt="video play"
-        className="hidden sm:block w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
-      />
+            {/* Video button */}
+            <div className="flex items-center gap-1 md:gap-2">
+              <Image
+                src="/Images/serviseImages/play.png"
+                width={40}
+                height={40}
+                alt="video play"
+                className="hidden sm:block w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
+              />
 
-      <p className="hidden sm:block text-white sm:text-xs md:text-sm lg:text-md">
-        Watch video
-      </p>
-    </div>
-  </div>
+              <p className="hidden sm:block text-white sm:text-xs md:text-sm lg:text-md">
+                Watch video
+              </p>
+            </div>
+          </div>
         </div>
 
+        <div className="flex flex-col mx-[4%]">
+          <div
+            ref={insightsHeadingRef}
+            className="flex flex-col sm:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8 mt-8 mb-14"
+          >
+            {/* Left heading */}
+            <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-1 leading-tight order-2 sm:order-1">
+              <p className="text-[26px] sm:text-2xl md:text-3xl">
+                Insights from Grobird
+              </p>
 
+              <p className="text-[24px] sm:text-2xl md:text-3xl text-[#3B3B3D73]">
+                Experts
+              </p>
+            </div>
 
-       <div className="flex flex-col mx-[4%]">
-  <div
-    ref={insightsHeadingRef}
-    className="flex flex-col sm:flex-row justify-between items-start w-full gap-4 sm:gap-6 md:gap-8 mt-8 mb-14"
-  >
-
-    {/* Left heading */}
-    <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-1 leading-tight order-2 sm:order-1">
-      
-      <p className="text-[26px] sm:text-2xl md:text-3xl">
-        Insights from Grobird
-      </p>
-
-      <p className="text-[24px] sm:text-2xl md:text-3xl text-[#3B3B3D73]">
-        Experts
-      </p>
-
-    </div>
-
-    {/* Blogs title */}
-    <p className="text-[#2D2C2C] text-[18px] sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed order-1 sm:order-2">
-      Blogs
-    </p>
-
-  </div>
+            {/* Blogs title */}
+            <p className="text-[#2D2C2C] text-[18px] sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed order-1 sm:order-2">
+              Blogs
+            </p>
+          </div>
         </div>
 
-
-       {/* Insights Section Wrapper */}
+        {/* Insights Section Wrapper */}
         <div>
-  <InsightsSection
-    title=""
-    titleHighlight=""
-    buttonText=""
-    insights={[
-      {
-        imageSrc: "/Images/insights1.png",
-        title: "The art of storytelling in branding and advertising",
-        category: "Branding",
-        date: "Mar 1, 2025",
-        readTime: "8min read",
-      },
-      {
-        imageSrc: "/Images/insights2.png",
-        title: "The art of storytelling in branding and advertising",
-        category: "Technology",
-        date: "Feb 28, 2025",
-        readTime: "10min read",
-      },
-      {
-        imageSrc: "/Images/insights3.png",
-        title: "Product engineering best practices for startups",
-        category: "Development",
-        date: "Feb 25, 2025",
-        readTime: "12min read",
-      },
-    ]}
-  />
+          <InsightsSection
+            title=""
+            titleHighlight=""
+            buttonText=""
+            insights={[
+              {
+                imageSrc: "/Images/insights1.png",
+                title: "The art of storytelling in branding and advertising",
+                category: "Branding",
+                date: "Mar 1, 2025",
+                readTime: "8min read",
+              },
+              {
+                imageSrc: "/Images/insights2.png",
+                title: "The art of storytelling in branding and advertising",
+                category: "Technology",
+                date: "Feb 28, 2025",
+                readTime: "10min read",
+              },
+              {
+                imageSrc: "/Images/insights3.png",
+                title: "Product engineering best practices for startups",
+                category: "Development",
+                date: "Feb 25, 2025",
+                readTime: "12min read",
+              },
+            ]}
+          />
 
-  {/* Button hidden on mobile */}
-  <div className="hidden sm:flex justify-center items-center mx-[4%] pt-5 mb-8 md:mb-16 lg:mb-20">
-    <button
-      onClick={() => router.push("/insights")}
-      className="bg-[#FF662A] text-white px-6 py-3 text-sm flex items-center gap-2 hover:bg-[#e55a24] transition-colors rounded-sm"
-    >
-      More articles
-      <Image
-        src="/Images/arrow.png"
-        alt="Arrow"
-        width={20}
-        height={20}
-        className="object-contain"
-      />
-    </button>
-  </div>
+          {/* Button hidden on mobile */}
+          <div className="hidden sm:flex justify-center items-center mx-[4%] pt-5 mb-8 md:mb-16 lg:mb-20">
+            <button
+              onClick={() => router.push("/insights")}
+              className="bg-[#FF662A] text-white px-6 py-3 text-sm flex items-center gap-2 hover:bg-[#e55a24] transition-colors rounded-sm"
+            >
+              More articles
+              <Image
+                src="/Images/arrow.png"
+                alt="Arrow"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
+            </button>
+          </div>
         </div>
 
         {/* question */}
@@ -1944,10 +1985,10 @@ const Home = () => {
             ref={faqHeadingRef}
             className="flex flex-col lg:flex-row justify-between items-start w-full mt-12 md:mt-16 lg:mt-20 mb-5 gap-6 md:gap-8"
           >
-           <div className="flex w-full lg:w-[60%] items-start text-4xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
-  <p>Frequently Asked</p>
-  <p className="text-[#3B3B3D73]">Questions</p>
-</div>
+            <div className="flex w-full lg:w-[60%] items-start text-4xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-2 leading-tight">
+              <p>Frequently Asked</p>
+              <p className="text-[#3B3B3D73]">Questions</p>
+            </div>
 
             <p className="text-[#2D2C2C] text-sm sm:text-sm md:text-base lg:text-lg w-full lg:w-[40%] xl:text-3xl leading-relaxed">
               From setup to security, here&apos;s everything you need to know
@@ -1955,125 +1996,133 @@ const Home = () => {
             </p>
           </div>
 
-         <div className="flex flex-col w-full px-0 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
+          <div className="flex flex-col w-full px-0 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[0] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                What kind of teams use Relay?
+              </p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
 
-        <div
-    ref={(el) => { if (el) faqItemsRef.current[0] = el; }}
-    className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-  >
-    <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-      What kind of teams use Relay?
-    </p>
-    <Image
-      src="/Images/serviseImages/plus.png"
-      alt="plus"
-      width={22}
-      height={22}
-      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-    />
-        </div>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[1] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Does Relay work with Slack and Microsoft Teams?
+              </p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
 
-  <div
-    ref={(el) => { if (el) faqItemsRef.current[1] = el; }}
-    className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-  >
-    <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-      Does Relay work with Slack and Microsoft Teams?
-    </p>
-    <Image
-      src="/Images/serviseImages/plus.png"
-      alt="plus"
-      width={22}
-      height={22}
-      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-    />
-  </div>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[2] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Is there a free trial?
+              </p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
 
-  <div
-    ref={(el) => { if (el) faqItemsRef.current[2] = el; }}
-    className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-  >
-    <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-      Is there a free trial?
-    </p>
-    <Image
-      src="/Images/serviseImages/plus.png"
-      alt="plus"
-      width={22}
-      height={22}
-      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-    />
-  </div>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[3] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Is my data secure?
+              </p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
 
-  <div
-    ref={(el) => { if (el) faqItemsRef.current[3] = el; }}
-    className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-  >
-    <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-      Is my data secure?
-    </p>
-    <Image
-      src="/Images/serviseImages/plus.png"
-      alt="plus"
-      width={22}
-      height={22}
-      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-    />
-  </div>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[4] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Can I collaborate with my engineering team inside Relay?
+              </p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
 
-  <div
-    ref={(el) => { if (el) faqItemsRef.current[4] = el; }}
-    className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-  >
-    <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-      Can I collaborate with my engineering team inside Relay?
-    </p>
-    <Image
-      src="/Images/serviseImages/plus.png"
-      alt="plus"
-      width={22}
-      height={22}
-      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-    />
-  </div>
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[5] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Does Relay support multi-channel communication?
+              </p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
 
-  <div
-    ref={(el) => { if (el) faqItemsRef.current[5] = el; }}
-    className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-  >
-    <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-      Does Relay support multi-channel communication?
-    </p>
-    <Image
-      src="/Images/serviseImages/plus.png"
-      alt="plus"
-      width={22}
-      height={22}
-      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-    />
-  </div>
-
-  <div
-    ref={(el) => { if (el) faqItemsRef.current[6] = el; }}
-    className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-  >
-    <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-      Can I customize how Relay works for my team?
-    </p>
-    <Image
-      src="/Images/serviseImages/plus.png"
-      alt="plus"
-      width={22}
-      height={22}
-      className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-    />
-  </div>
-
-         </div>
-
-
-
-
+            <div
+              ref={(el) => {
+                if (el) faqItemsRef.current[6] = el;
+              }}
+              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
+            >
+              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                Can I customize how Relay works for my team?
+              </p>
+              <Image
+                src="/Images/serviseImages/plus.png"
+                alt="plus"
+                width={22}
+                height={22}
+                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Gradient Box */}
@@ -2103,47 +2152,45 @@ const Home = () => {
           {/* Content Section */}
 
           <div
-  ref={ctaContentRef}
-  className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-start text-start pl-[3rem] sm:px-6 md:px-6 gap-5 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl"
->
-  {/* Heading */}
-  <h2 className="text-black text-[30px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[100px] font-light leading-tight">
-    Ideas take <br className="sm:hidden" /> flight here
-  </h2>
+            ref={ctaContentRef}
+            className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-start text-start pl-[3rem] sm:px-6 md:px-6 gap-5 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl"
+          >
+            {/* Heading */}
+            <h2 className="text-black text-[30px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[100px] font-light leading-tight">
+              Ideas take <br className="sm:hidden" /> flight here
+            </h2>
 
-  {/* Description */}
-  <p className="text-black font-light text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[32px] leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl">
-    From concept to code, we transform bold visions into living
-    digital experiences that soar.
-  </p>
+            {/* Description */}
+            <p className="text-black font-light text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[32px] leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl">
+              From concept to code, we transform bold visions into living
+              digital experiences that soar.
+            </p>
 
-  {/* Desktop buttons */}
-  <div className="hidden sm:flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 items-center mt-2 md:mt-4 w-full sm:w-auto">
-    <button
-      onClick={() => router.push("/contact")}
-      className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto"
-    >
-      Talk to Us
-    </button>
+            {/* Desktop buttons */}
+            <div className="hidden sm:flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 items-center mt-2 md:mt-4 w-full sm:w-auto">
+              <button
+                onClick={() => router.push("/contact")}
+                className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto"
+              >
+                Talk to Us
+              </button>
 
-    <button
-      onClick={() => router.push("/services")}
-      className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto border border-gray-200"
-    >
-      Explore Services
-    </button>
-  </div>
+              <button
+                onClick={() => router.push("/services")}
+                className="bg-white text-black px-4 sm:px-6 lg:px-14 py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm hover:bg-gray-100 transition-colors md:text-[17px] font-medium w-full sm:w-auto border border-gray-200"
+              >
+                Explore Services
+              </button>
+            </div>
 
-  {/* Mobile-only button */}
-  <button
-    onClick={() => router.push("/contact")}
-    className="sm:hidden bg-white text-black px-8 py-4 rounded-[30px] font-medium mt-2"
-  >
-    Get In Touch
-  </button>
+            {/* Mobile-only button */}
+            <button
+              onClick={() => router.push("/contact")}
+              className="sm:hidden bg-white text-black px-8 py-4 rounded-[30px] font-medium mt-2"
+            >
+              Get In Touch
+            </button>
           </div>
-
-
 
           {/* Cloud Image at Bottom */}
 
