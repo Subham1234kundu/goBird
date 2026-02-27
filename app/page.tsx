@@ -841,30 +841,28 @@ const Home = () => {
         </div> */}
 
         {/* businesses  cards */}
-
         <section className="businesses">
           {/* hedline  */}
+
           <div className="businesses_hed">
-            <h1>
-              The impact we’ve created <br /> <span>for businesses</span>
-            </h1>
+            <h1>The impact we’ve created</h1>
+            <h1 style={{ color: "#A7A7A7" }}>for businesses</h1>
           </div>
 
-          {/* cards  */}
-          <div className="businesses_card">
-            <div className="card">
-              <h1>10X</h1>
+          <div className="businesses_cards">
+            <div className="businesses_card">
+              <h1>10x</h1>
               <p>Higher Client Retention</p>
             </div>
-            <div className="card">
+            <div className="businesses_card">
               <h1>200+</h1>
-              <p>Successfully delivered high-quality projects</p>
+              <p>Successfully delivered high- quality projects</p>
             </div>
-            <div className="card">
+            <div className="businesses_card">
               <h1>97%</h1>
               <p>Client satisfaction based on surveys</p>
             </div>
-            <div className="card">
+            <div className="businesses_card">
               <h1>5+</h1>
               <p>Continents Served</p>
             </div>
@@ -872,7 +870,7 @@ const Home = () => {
 
           {/* images sidee */}
 
-          <div className="businesses_section">
+          {/* <div className="businesses_section">
             <div className="businesses_images">
               <div className="logo_row">
                 <div className="logo_item">
@@ -917,16 +915,17 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
 
         {/* our prosecces  */}
         <section className="our_prosess">
           <div className="our_prosess_hed">
             <span>Our Process</span>
-            <h1>A Proven, Data-Backed Process That</h1>
-            <h1 style={{ color: "#A7A7A7", fontSize: "64px" }}>
-              Converts Strategy Into Results
+            <h1>
+              A Proven, Data-Backed Process That{" "}
+              <br className="hidden sm:block" />
+              <span>Converts Strategy Into Results</span>
             </h1>
           </div>
 
@@ -945,10 +944,18 @@ const Home = () => {
               <div className="our_box_content">
                 <div className="our_box_content_num">
                   <h1>
-                    Deep Dive & <br /> Discovery
+                    {/* Shown only on small screens (below sm) */}
+                    <span className="sm:hidden">Deep Dive & Discovery</span>
+
+                    {/* Shown only on larger screens (sm and above) */}
+                    <span className="hidden sm:inline">
+                      Deep Dive & <br /> Discovery
+                    </span>
                   </h1>
                   <span> ( 01 )</span>
                 </div>
+
+                <br />
 
                 <p>
                   Through strategy calls and audits, we uncover what&apos;s
@@ -971,10 +978,17 @@ const Home = () => {
               <div className="our_box_content">
                 <div className="our_box_content_num">
                   <h1>
-                    Launch & <br /> Execute
+                    {/* Shown only on small screens (below sm) */}
+                    <span className="sm:hidden">Deep Dive & Discovery</span>
+
+                    {/* Shown only on larger screens (sm and above) */}
+                    <span className="hidden sm:inline">
+                      Launch & <br /> Execute
+                    </span>
                   </h1>
-                  <span style={{ color: "#FFFFFF" }}> ( 02 )</span>
+                  <span style={{ color: "#fff" }}> ( 02 )</span>
                 </div>
+                <br />
 
                 <p>
                   With strategy locked, we roll out high-impact campaigns,
@@ -997,10 +1011,17 @@ const Home = () => {
               <div className="our_box_content">
                 <div className="our_box_content_num">
                   <h1>
-                    Optimize & <br /> Scale
+                    {/* Shown only on small screens (below sm) */}
+                    <span className="sm:hidden">Deep Dive & Discovery</span>
+
+                    {/* Shown only on larger screens (sm and above) */}
+                    <span className="hidden sm:inline">
+                      Optimize & <br /> Scale
+                    </span>
                   </h1>
                   <span> ( 03 )</span>
                 </div>
+                <br />
 
                 <p>
                   We continuously test, analyze, and refine. From A/B testing

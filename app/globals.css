@@ -159,7 +159,7 @@
 .businesses {
   width: 100%;
   background-color: #fff;
-  padding: 3rem 10rem;
+  padding: 3rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -167,54 +167,53 @@
 
 .businesses_hed {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
 }
 
 .businesses_hed h1 {
-  text-align: center;
   font-size: 64px;
   font-weight: 400;
+  line-height: 110%;
 }
 
-.businesses_hed h1 span {
-  /* opacity: 0.5; */
-  color: #A7A7A7;
-}
-
-.businesses_card {
+.businesses_cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  align-items: center;
   gap: 1rem;
+  padding: 0 10rem;
 }
 
-.businesses_card .card {
+.businesses_cards .businesses_card {
   width: 100%;
   height: 280px;
-  border-radius: 32px;
   background-color: #f6f6f6;
+  border-radius: 32px;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 3rem;
-  padding: 0 2rem;
+  gap: 2rem;
+  padding: 4rem 2rem;
 }
 
-.businesses_card .card h1 {
+.businesses_cards .businesses_card h1 {
+  text-align: center;
   font-size: 64px;
   font-weight: 500;
+  color: #000416;
 }
 
-.businesses_card .card p {
-  font-size: 15.6px;
-  font-weight: 400;
+.businesses_cards .businesses_card p {
   text-align: center;
-  color: #4A4D5A;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 /* Rounded container */
+
+.businesses_section {
+  padding: 0 10rem;
+}
 .businesses_images {
   width: 100%;
   background-color: #f6f6f6;
@@ -253,40 +252,55 @@
 
 @media (max-width: 450px) {
   .businesses {
-    padding: 3rem 1rem;
-    gap: 5rem;
-    /* background-color: red; */
+    width: 100%;
+    background-color: #fff;
+    padding: 3rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .businesses_hed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .businesses_hed h1 {
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: 400;
     font-size: 28px;
-    line-height: 39px;
-    /* display: flex; */
   }
 
-  .businesses_card {
+  .businesses_cards {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    padding: 0;
+    overflow: hidden;
   }
 
-  .businesses_card .card {
+  .businesses_cards .businesses_card {
     width: 100%;
-    height: 60vw;
-    border-radius: 32px;
-    gap: 3rem;
-    padding: 0 2rem;
+    height: 250px;
+    padding: 4rem 1rem;
   }
 
-  .businesses_card .card p {
-    font-size: 1rem;
+  .businesses_cards .businesses_card h1 {
+    font-size: 32px;
+    font-weight: 500;
   }
+
+  .businesses_cards .businesses_card p {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .businesses_section {
+    padding: 0;
+  }
+
   .businesses_images {
     padding: 2rem 1rem;
     border-radius: 20px;
-    overflow: hidden; /* Hide overflow for slider effect */
+    overflow: hidden;
   }
 
   .logo_row {
@@ -335,13 +349,13 @@
   padding: 3rem 4rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 5rem;
 }
 
 .our_prosess_hed {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .our_prosess_hed span {
@@ -353,18 +367,13 @@
 .our_prosess_hed h1 {
   font-size: 64px;
   font-weight: 400;
-  line-height: 76.8px;
-  /* white-space: nowrap; */
+  line-height: 110%;
 }
 
 .our_prosess_hed h1 span {
-  font-size: 3rem;
-  opacity: 0.7;
-}
-
-.our_prosess_hed p {
-  opacity: 0.7;
-  font-size: 2rem;
+  font-size: 64px;
+  font-weight: 400;
+  color: #a7a7a7;
 }
 
 .our_process_box {
@@ -378,11 +387,12 @@
   width: 100%;
   background-color: #f6f6f6;
   border-radius: 15px;
-  padding: 3rem 2rem;
+  padding: 2rem;
   height: 466px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 0rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -401,7 +411,8 @@
 }
 
 .our_box_logo img {
-  width: 25%;
+  width: 144px;
+  height: 143px;
   object-fit: contain;
 }
 
@@ -411,10 +422,9 @@
   gap: 3rem;
 }
 
-.our_box_content .our_box_content_num h1 {
+.our_box_content .our_box_content_num h1 span {
   font-size: 36px;
   font-weight: 400;
-  /* line-height: 1.2; */
   margin-bottom: 1.5rem;
 }
 
@@ -431,15 +441,17 @@
 }
 
 .our_box_content p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #555;
-  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000a1b;
+  font-weight: 500;
 }
 
 .our_box_orange .our_box_content p {
   color: rgba(255, 255, 255, 0.9);
 }
+
+/* grid  */
 
 .grid-wrapper {
   width: 100%;
@@ -510,7 +522,7 @@
 
 @media (max-width: 450px) {
   .our_prosess {
-    padding: 3rem 1rem;
+    padding: 1rem;
     gap: 3rem;
   }
 
@@ -518,51 +530,75 @@
     gap: 1rem;
   }
 
+  .our_prosess_hed span {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
   .our_prosess_hed h1 {
-    font-size: 2rem;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 110%;
     white-space: normal;
   }
 
-  .our_prosess_hed h1 br {
-    display: none;
-  }
-
   .our_prosess_hed h1 span {
-    font-size: 2rem;
-    opacity: 0.7;
-  }
-
-  .our_prosess_hed p {
-    opacity: 0.7;
-    font-size: 2rem;
+    font-size: 28px;
+    font-weight: 400;
+    color: #a7a7a7;
   }
 
   .our_process_box {
     grid-template-columns: repeat(1, 1fr);
-    gap: 3rem;
+    gap: 2rem;
+    margin: 0 auto;
   }
 
+  .our_process_box .our_box {
+    border-radius: 16px;
+    padding: 3em 1rem;
+    height: 425px;
+    gap: 1rem;
+  }
   .our_box_logo img {
-    width: 35%;
-    object-fit: contain;
+    width: 133px;
   }
 
-  .our_box_content h1 {
-    font-size: 2.2rem;
+  .our_box_content .our_box_content_num {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
-  .our_box_content h1 span {
-    font-size: 1.2rem;
+  .our_box_content .our_box_content_num h1 span {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+
+  .our_box_content .our_box_content_num span {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000a1b;
+    margin-top: 10px;
+  }
+
+  .our_box_orange .our_box_content h1 span {
+    color: white;
+    opacity: 0.9;
   }
 
   .our_box_content p {
-    font-size: 1rem;
+    font-size: 16px;
+    font-weight: 400;
   }
+
+  /*  new for gird */
 
   .grid-container {
     grid-template-columns: 1fr;
     height: auto;
-    gap: 1rem; /* smaller gap */
+    gap: 1rem; 
   }
 
   /* Tall first image */
