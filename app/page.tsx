@@ -752,7 +752,7 @@ const Home = () => {
             {/* Buttons - Stacked vertically on mobile, horizontal on desktop */}
             <div
               ref={heroButtonsRef}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-4 items-center justify-center w-full sm:w-auto max-sm:flex-row max-sm:justify-center max-sm:gap-8"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-4 items-center justify-center w-full sm:w-auto max-sm:flex-row max-sm:justify-center"
             >
               <button
                 onClick={() => router.push("/contact")}
@@ -1105,7 +1105,8 @@ const Home = () => {
               <h3>
                 {cards[activeCard].leftTitle} <br />{" "}
                 {cards[activeCard].leftSubtitle}
-              </h3>
+              </h3>{" "}
+              <br />
               <p>{cards[activeCard].leftText}</p>
             </div>
 
@@ -1119,7 +1120,6 @@ const Home = () => {
                   onMouseEnter={() => setActiveCard(index)}
                 >
                   <h1>{card.title}</h1>
-
                   <div className="card_content">
                     <p>{card.description}</p>
                     <button>Explore Now!</button>
