@@ -735,7 +735,7 @@ const Home = () => {
             {/* Heading - Centered and larger on mobile */}
             <h1
               ref={heroHeadingRef}
-              className="text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-tight sm:leading-snug mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full max-sm:text-[45px] max-sm:font-normal max-sm:px-0"
+              className="text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-tight sm:leading-snug mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full max-sm:text-[45px] max-sm:font-normal max-sm:px-0 max-sm:-mt-20"
             >
               Transforming Ideas into <br className="hidden xs:block" />{" "}
               Scalable Digital Solutions
