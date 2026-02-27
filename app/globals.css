@@ -817,269 +817,91 @@
 
 /*   our services*/
 
-.our_servives {
+.services {
   width: 100%;
+  /* height: 100vh; */
   background-color: #000a1b;
-  color: #fff;
-  padding: 5rem 4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
 }
 
-.our_servives_hed {
+.services .services_hed {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
+  padding: 3rem 2rem;
 }
 
-.our_servives_hed span {
+.services .services_hed span {
   font-size: 32px;
-  font-weight: 400;
-}
-
-.our_servives_hed h1 {
-  font-size: 64px;
-  font-weight: 400;
-  line-height: 76px;
-}
-
-.services_card {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 40% 55%;
-  gap: 3rem;
-  padding: 2rem;
-  /* background-color: #000; */
-}
-
-.services_card_left {
-  width: 250px;
-  height: 210px;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease;
-  color: #fff;
-}
-
-.services_card_left img {
-  width: 100%;
-}
-
-.services_card_left h3 {
-  font-size: 16px;
-  transition: color 0.3s ease;
-  color: #fff;
-  font-weight: 700;
-}
-
-.services_card_left p {
-  font-size: 16px;
-  font-weight: 400;
-  transition: opacity 0.3s ease;
-  color: #54545a;
-}
-
-.services_card_right {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.services_card_right .services_card_right_card {
-  border-bottom: 2px solid #333;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 2.5rem 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.services_card_right .services_card_right_card h1 {
-  font-size: 52px;
   font-weight: 400;
   color: #ffffff;
 }
 
-.card_content p {
-  font-size: 14px;
+.services .services_hed h1 {
+  font-size: 64px;
   font-weight: 400;
-  color: #54545a;
+  color: #ffffff;
+  line-height: 70px;
 }
 
-.services_card_right .services_card_right_card .card_content {
+.services_cards {
+  width: 100%;
+  height: 100vh;
+  /* background-color: green; */
+  color: #fff;
+  padding: 3rem 7rem;
+}
+
+.services_cards .cards {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+
+.services_cards .cards .cards_left {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  /* background-color: red; */
 }
 
-/* Active card (open by default or hovered) */
-.services_card_right .services_card_right_card.active {
-  border-bottom-color: #fff;
-}
-
-/* Title styling for active vs inactive */
-.services_card_right .services_card_right_card h1 {
-  font-size: 52px;
-  font-weight: 400;
-  transition: all 0.3s ease;
-}
-
-/* ACTIVE CARD: WHITE TEXT */
-.services_card_right .services_card_right_card.active h1 {
-  color: #fff; /* White for active card */
-}
-
-/* INACTIVE CARDS: GREY TEXT */
-.services_card_right .services_card_right_card:not(.active) h1 {
-  color: #999; /* Grey for inactive cards */
-}
-
-/* Content (p and button) - hidden by default */
-.services_card_right .services_card_right_card .card_content {
-  max-height: 0;
+.services_cards .cards .cards_left .cards_left_img {
+  width: 250px;
+  height: 210px;
   overflow: hidden;
-  opacity: 0;
-  transition: all 0.3s ease;
 }
 
-/* Show content for active card */
-.services_card_right .services_card_right_card.active .card_content {
-  max-height: 200px;
-  opacity: 1;
-  margin-top: 0.5rem;
+.services_cards .cards .cards_left .cards_left_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.services_card_right .services_card_right_card.active .card_content p {
-  opacity: 0.8;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: #fff; /* White text for description */
-}
-
-.services_card_right .services_card_right_card button {
-  width: 136px;
-  height: 36px;
-  background-color: #ffffff;
-  border-radius: 100px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #000111;
-}
-
-/* Hover effect for inactive cards */
-.services_card_right .services_card_right_card:not(.active):hover h1 {
-  color: #ccc; /* Lighter grey on hover */
-}
-
-/* Optional: Add hover effect to entire card */
-.services_card_right .services_card_right_card:hover {
-  border-bottom-color: #fff;
-}
-
-/* If you want the button text to also be white when active */
-.services_card_right .services_card_right_card.active .card_content button {
-  color: #000; /* Keep black text on white button */
-}
-
-/* If you want white button with white text */
-.services_card_right .services_card_right_card.active .card_content button {
-  background-color: #fff;
-  color: #000;
-  border-color: #fff;
-}
-
-.services_card_right
-  .services_card_right_card.active
-  .card_content
-  button:hover {
-  background-color: #000;
-  color: #fff;
-  border-color: #fff;
-}
-
-.our_servives .bottom_button {
+.services_cards .cards .cards_left .cards_left_text {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-right: -2rem;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.our_servives .bottom_button button {
-  width: 136px;
-  height: 36px;
-  background-color: #ffffff;
-  border-radius: 100px;
+.services_cards .cards .cards_left .cards_left_text h3 {
   font-size: 16px;
-  font-weight: 500;
-  color: #000111;
+  font-weight: 700;
+  width: 40%;
+  /* background-color: yellow; */
 }
 
-@media (max-width: 450px) {
-  .our_servives {
-    width: 100%;
-    padding: 2rem 1rem;
-  }
+.services_cards .cards .cards_left .cards_left_text p {
+  color: #54545a;
+  font-size: 16px;
+  font-weight: 400;
+  width: 50%;
+  /* background-color: red; */
+}
 
-  .services_card {
-    grid-template-columns: 1fr;
-    padding: 1rem 0;
-    gap: 1rem;
-  }
-
-  /* Hide left panel */
-  .services_card_left {
-    display: none;
-  }
-
-  /* Right side full width */
-  .services_card_right {
-    width: 100%;
-    gap: 0.5rem;
-  }
-
-  /* Service card spacing */
-  .services_card_right .services_card_right_card {
-    padding: 1.2rem 0;
-  }
-
-  /* Title size */
-  .services_card_right .services_card_right_card h1 {
-    font-size: 1.4rem;
-    line-height: 1.4;
-  }
-
-  /* Content text */
-  .services_card_right .services_card_right_card.active .card_content p {
-    font-size: 0.9rem;
-    margin-bottom: 0.8rem;
-  }
-
-  /* Button mobile friendly */
-  .services_card_right .services_card_right_card button {
-    width: auto;
-    height: auto;
-    padding: 10px 16px;
-    font-size: 14px;
-  }
-
-  /* Accordion expand height */
-  .services_card_right .services_card_right_card.active .card_content {
-    max-height: 300px;
-  }
-
-  /* Heading spacing */
-  .our_servives {
-    gap: 2rem;
-  }
-
-  .our_servives_hed h1 {
-    font-size: 1.3rem;
-    line-height: 1.8rem;
-  }
+.services_cards .cards .cards_right {
+  width: 100%;
+  height: 100vh;
+  background-color: blue;
 }
 
 /*  our work css */

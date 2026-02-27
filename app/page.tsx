@@ -8,11 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import InsightsSection from "@/app/components/service/InsightsSection";
 import FooterSimple from "./components/FooterSimple";
 import { useRouter } from "next/navigation";
-import box_img1 from "../public/Images/boy.png";
-import box_img from "../public/Images/run.jpg";
-import box_img2 from "../public/Images/con3.jpg";
-import box_img3 from "../public/Images/sky.jpg";
-import img_mobile from "../public/Images/insights2.png";
 import workimg from "../public/Images/insights2.png";
 import workmanimg from "../public/Images/workman.png";
 import p1 from "../public/Images/p-1.png";
@@ -637,43 +632,6 @@ const Home = () => {
     };
   }, []);
 
-  const [activeCard, setActiveCard] = useState(0); // First card open by default
-
-  const cards = [
-    {
-      title: "SaaS Platform Development",
-      description:
-        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
-      leftTitle: "Cyber Security Ecosystem",
-      leftSubtitle: "For E7 Cyber",
-      leftText: "We create impactful brand identities that differentiate.",
-    },
-    {
-      title: "Product Engineering",
-      description:
-        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
-      leftTitle: "Product Design & Development",
-      leftSubtitle: "For Innovators",
-      leftText: "Building scalable products with cutting-edge technology.",
-    },
-    {
-      title: "MVP Development",
-      description:
-        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
-      leftTitle: "Rapid Prototyping",
-      leftSubtitle: "For Startups",
-      leftText: "Quickly validate ideas with minimum viable products.",
-    },
-    {
-      title: "Cloud & Infrastructure",
-      description:
-        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
-      leftTitle: "Cloud Solutions",
-      leftSubtitle: "For Enterprises",
-      leftText: "Scalable and secure cloud infrastructure solutions.",
-    },
-  ];
-
   return (
     <>
       <style jsx>{`
@@ -1086,51 +1044,37 @@ const Home = () => {
         </section>
 
         {/* our services  */}
-
-        <section className="our_servives">
-          <div className="our_servives_hed">
+        <section className="services">
+          <div className="services_hed">
             <span>Our Services</span>
             <h1>
               Performance-Driven Solutions <br /> That Turn Traffic Into Revenue
             </h1>
           </div>
-          <div className="services_card">
-            <div className="services_card_left">
-              <Image
-                src={img_mobile}
-                alt="Service demonstration"
-                style={{ width: "100%", height: "auto" }}
-              />
-              <br />
-              <h3>
-                {cards[activeCard].leftTitle} <br />{" "}
-                {cards[activeCard].leftSubtitle}
-              </h3>{" "}
-              <br />
-              <p>{cards[activeCard].leftText}</p>
-            </div>
-
-            <div className="services_card_right">
-              {cards.map((card, index) => (
-                <div
-                  key={index}
-                  className={`services_card_right_card ${
-                    activeCard === index ? "active" : ""
-                  }`}
-                  onMouseEnter={() => setActiveCard(index)}
-                >
-                  <h1>{card.title}</h1>
-                  <div className="card_content">
-                    <p>{card.description}</p>
-                    <button>Explore Now!</button>
-                  </div>
+          
+          {/* open cards  */}
+          <div className="services_cards">
+            <div className="cards">
+              <div className="cards_left">
+                <div className="cards_left_img">
+                  <Image
+                    alt="Discovery Icon"
+                    src="/Images/insights2.png"
+                    className="process_image"
+                    width={100}
+                    height={10}
+                  />
                 </div>
-              ))}
-            </div>
-          </div>
+                <div className="cards_left_text">
+                  <h3>Cyber Security Ecosystem For E7 Cyber</h3>
+                  <p>
+                    We create impactful brand identities that differentiate.
+                  </p>
+                </div>
+              </div>
 
-          <div className="bottom_button">
-            <button>See all services</button>
+              <div className="cards_right"></div>
+            </div>
           </div>
         </section>
 
@@ -1174,7 +1118,15 @@ const Home = () => {
               </div>
               <div className="card">
                 <div className="card_img">
-                  <img src={workmanimg.src} alt="iamge" />
+                  <Image
+                    src={workmanimg}
+                    alt="E7 Cyber project"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
                 <div className="card_text">
                   <div className="card_text_left">
@@ -1194,7 +1146,15 @@ const Home = () => {
             <div className="center_cards">
               <div className="center_card">
                 <div className="center_card_img">
-                  <img src={p1.src} alt="" />
+                  <Image
+                    src={p1}
+                    alt="E7 Cyber project"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
                 <div className="center_card_text">
                   <div className="center_card_text_left">
@@ -1210,7 +1170,15 @@ const Home = () => {
               </div>
               <div className="center_card">
                 <div className="center_card_img">
-                  <img src={p2.src} alt="" />
+                  <Image
+                    src={p2}
+                    alt="E7 Cyber project"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
                 <div className="center_card_text">
                   <div className="center_card_text_left">
@@ -1226,7 +1194,15 @@ const Home = () => {
               </div>
               <div className="center_card">
                 <div className="center_card_img">
-                  <img src={p3.src} alt="" />
+                  <Image
+                    src={p3}
+                    alt="E7 Cyber project"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
                 <div className="center_card_text">
                   <div className="center_card_text_left">
@@ -1245,7 +1221,15 @@ const Home = () => {
             <div className="top_cards">
               <div className="card">
                 <div className="card_img">
-                  <img src={b1.src} alt="iamge" />
+                  <Image
+                    src={b1}
+                    alt="E7 Cyber project"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
                 <div className="card_text">
                   <div className="card_text_left">
@@ -1262,7 +1246,15 @@ const Home = () => {
               </div>
               <div className="card">
                 <div className="card_img">
-                  <img src={b2.src} alt="iamge" />
+                  <Image
+                    src={b2}
+                    alt="E7 Cyber project"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </div>
                 <div className="card_text">
                   <div className="card_text_left">
