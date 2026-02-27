@@ -8,13 +8,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import InsightsSection from "@/app/components/service/InsightsSection";
 import FooterSimple from "./components/FooterSimple";
 import { useRouter } from "next/navigation";
-// import logo from "../public/Images/Group 70.png";
-// import logo2 from "../public/Images/Group 71.png";
-// import logo3 from "../public/Images/Group 72.png";
-import box_img1 from "../public/Images/List → Listitem → Link.png";
-import box_img from "../public/Images/Image.png";
-import box_img2 from "../public/Images/g-img1.png";
-import box_img3 from "../public/Images/g-img.png";
+import box_img1 from "../public/Images/boy.png";
+import box_img from "../public/Images/run.jpg";
+import box_img2 from "../public/Images/con3.jpg";
+import box_img3 from "../public/Images/sky.jpg";
 import img_mobile from "../public/Images/insights2.png";
 import workimg from "../public/Images/insights2.png";
 import workmanimg from "../public/Images/workman.png";
@@ -1094,6 +1091,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+
         </section>
 
         {/* our services  */}

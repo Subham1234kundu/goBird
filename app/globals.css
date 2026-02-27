@@ -284,7 +284,7 @@
   }
 
   .businesses_cards .businesses_card h1 {
-    font-size: 32px;
+    font-size: 42px;
     font-weight: 500;
   }
 
@@ -476,7 +476,7 @@
 
 .grid-item {
   width: 100%;
-  height: 100%;
+  height: 675px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -598,7 +598,7 @@
   .grid-container {
     grid-template-columns: 1fr;
     height: auto;
-    gap: 1rem; 
+    gap: 1rem;
   }
 
   /* Tall first image */
