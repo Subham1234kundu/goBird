@@ -1029,69 +1029,60 @@ const Home = () => {
           </div>
 
           <div className="grid-wrapper">
-            <div className="grid-container">
-              {/* Left Tall */}
-              <div className="grid-item tall">
-                <Image
-                  src={box_img1}
-                  alt="Business insights"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
+            <div className="grid_card">
+              <div className="broder">
+                <h1>150%</h1>
+                <p>Solutions for Modern Problems</p>
+              </div>
+              <button>See Project</button>
+            </div>
+
+            <div className="grid_card">
+              <div className="c_card"></div>
+              <div className="c_card">
+                <p>
+                  “Smart concepts, seamless delivery. Performance you can rely
+                  on.”
+                </p>
+                <button>Create Experience with Us</button>
+              </div>
+            </div>
+
+            <div className="grid_card">
+              <div className="card_l">
+                <p>
+                  “Clear strategy, beautiful execution. Designed to deliver.”
+                </p>
+              </div>
+              <div className="card_l"></div>
+            </div>
+
+            {/*   for mobile responsive */}
+
+            <div className="mobile_grid">
+              <div className="mobile_grid_cards">
+                <div className="mobile_grid_card"></div>
+                <div className="mobile_grid_card">
+                  <p>
+                    “Smart concepts, seamless delivery. Performance you can rely
+                    on.”
+                  </p>
+                  <button>
+                    Create Experience <br /> with Us
+                  </button>
+                </div>
               </div>
 
-              {/* Middle Column */}
-              <div className="grid-col">
-                <div className="grid-item">
-                  <Image
-                    src={box_img}
-                    alt="Business insights image"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
+              <div className="mobile_grid_cards">
+                <div className="mobile_grid_card">
+                  <p>
+                    “Clear strategy, beautiful execution. Designed to deliver.”
+                  </p>
                 </div>
-
-                {/* Content Box */}
-                <div className="grid-item content-box">
-                  <h1>
-                    Smart concepts, seamless delivery. Performance you can rely
-                    on.
-                  </h1>
-
-                  <button>Create Experience with Us</button>
-                </div>
-              </div>
-
-              {/* Right Column */}
-              <div className="grid-col right-col">
-                <div className="grid-item">
-                  <Image
-                    src={box_img2}
-                    alt="Business insights"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </div>
-                <div className="grid-item">
-                  <Image
-                    src={box_img3}
-                    alt="Business insights image"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </div>
+                <div className="mobile_grid_card"></div>
               </div>
             </div>
           </div>
-
         </section>
 
         {/* our services  */}
