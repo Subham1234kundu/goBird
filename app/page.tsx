@@ -19,6 +19,11 @@ import b2 from "../public/Images/b-2.png";
 // Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
+interface CardData {
+  title: string;
+  description: string;
+}
+
 const Home = () => {
   const router = useRouter();
   // Refs for all animated sections
@@ -632,6 +637,42 @@ const Home = () => {
     };
   }, []);
 
+  const [expandedIndex, setExpandedIndex] = useState<number>(0); // first card expanded by default
+
+  const rightCards: CardData[] = [
+    {
+      title: "SaaS Platform Development",
+      description:
+        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+    },
+    {
+      title: "Product Engineering",
+      description:
+        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+    },
+    {
+      title: "MVP Development",
+      description:
+        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+    },
+    {
+      title: "Cloud & Infrastructure",
+      description:
+        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+    },
+  ];
+
+  const handleMouseEnter = (index: number) => {
+    setExpandedIndex(index);
+  };
+
+  const handleMouseLeave = (index: number) => {
+    // Only revert to first card when leaving a non‑first card
+    if (index !== 0) {
+      setExpandedIndex(0);
+    }
+  };
+
   return (
     <>
       <style jsx>{`
@@ -1047,12 +1088,19 @@ const Home = () => {
         <section className="services">
           <div className="services_hed">
             <span>Our Services</span>
-            <h1>
+            {/* Desktop heading – visible on sm and above */}
+            <h1 className="hidden sm:block text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-tight sm:leading-snug mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full">
               Performance-Driven Solutions <br /> That Turn Traffic Into Revenue
             </h1>
+
+            {/* Mobile heading – visible below sm */}
+            <h1 className="block sm:hidden ">
+              A Proven, Data-Backed Process That{" "}
+              <span>Converts Strategy Into Results</span>
+            </h1>
           </div>
-          
-          {/* open cards  */}
+
+          {/* open cards */}
           <div className="services_cards">
             <div className="cards">
               <div className="cards_left">
@@ -1073,7 +1121,32 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="cards_right"></div>
+              {/* Right side cards with interactive hover */}
+              <div className="cards_right">
+                {rightCards.map((card, index) => {
+                  const isExpanded = expandedIndex === index;
+                  return (
+                    <div
+                      key={index}
+                      className={`cards_right_card ${
+                        isExpanded ? "expanded" : ""
+                      }`}
+                      onMouseEnter={() => handleMouseEnter(index)}
+                      onMouseLeave={() => handleMouseLeave(index)}
+                    >
+                      <h1>{card.title}</h1>
+                      <div className="extra-content">
+                        <p>{card.description}</p>
+                        <button>Explore Now!</button>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                <div className="btn">
+                  <button>See all services</button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1085,7 +1158,9 @@ const Home = () => {
             <span>Our Work</span>
             <h1>
               A Proven, Data-Backed Process That <br />{" "}
-              <span>Converts Strategy Into Results</span>
+              <span style={{ color: "#A7A7A7" }}>
+                Converts Strategy Into Results
+              </span>
             </h1>
           </div>
 
@@ -1842,17 +1917,17 @@ const Home = () => {
             className="flex flex-col sm:flex-row justify-between items-start w-full my-8 sm:my-10 md:my-16 xl:my-30 gap-[0.3rem] sm:gap-6 md:gap-8"
           >
             {/* Testimonials */}
-            <p className="text-[#2D2C2C] text-[21px] font-medium sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-tight order-1 sm:order-2">
+            <p className="text-[#2D2C2C] text-[21px] font-medium sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-tight order-1 sm:order-2 max-sm:text-[16px] max-sm:font-normal">
               Testimonials
             </p>
 
             {/* Satisfaction block */}
             <div className="flex items-start flex-col gap-[0.3rem] sm:gap-2 leading-tight order-2 sm:order-1">
-              <p className="text-[28px] font-medium sm:text-2xl md:text-3xl">
+              <p className="text-[28px] font-medium sm:text-2xl md:text-3xl max-sm:text-[32px] max-sm:font-medium max-sm:text-[#000A1B]">
                 98% client
               </p>
 
-              <p className="text-[28px] font-medium sm:text-2xl md:text-3xl text-[#3B3B3D73]">
+              <p className="text-[28px] font-medium sm:text-2xl md:text-3xl text-[#3B3B3D73] max-sm:text-[32px] max-sm:font-medium">
                 satisfaction rate
               </p>
             </div>
@@ -1916,17 +1991,17 @@ const Home = () => {
           >
             {/* Left heading */}
             <div className="flex items-start text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[64px] font-medium text-black flex-col gap-1 leading-tight order-2 sm:order-1">
-              <p className="text-[26px] sm:text-2xl md:text-3xl">
+              <p className="text-[26px] sm:text-2xl md:text-3xl max-sm:text-[32px] max-sm:font-medium max-sm:text-black">
                 Insights from Grobird
               </p>
 
-              <p className="text-[24px] sm:text-2xl md:text-3xl text-[#3B3B3D73]">
+              <p className="text-[24px] sm:text-2xl md:text-3xl text-[#3B3B3D73] max-sm:text-[32px] max-sm:font-medium">
                 Experts
               </p>
             </div>
 
             {/* Blogs title */}
-            <p className="text-[#2D2C2C] text-[18px] sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed order-1 sm:order-2">
+            <p className="text-[#2D2C2C] text-[18px] sm:text-xl md:text-2xl lg:text-3xl xl:text-[42px] leading-relaxed order-1 sm:order-2 max-sm:text-[16px] max-sm:font-normal max-sm:text-[#000A1B]">
               Blogs
             </p>
           </div>
