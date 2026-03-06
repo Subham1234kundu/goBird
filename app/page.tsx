@@ -22,7 +22,37 @@ gsap.registerPlugin(ScrollTrigger);
 interface CardData {
   title: string;
   description: string;
+  route: string;
 }
+
+interface FAQData {
+  question: string;
+  answer: string;
+}
+
+const faqData: FAQData[] = [
+  {
+    question:
+      "How does Grobird handle AI and data compliance (DPDP, GDPR, EU AI Act)?",
+    answer:
+      "Grobird designs governance‑first architectures with in‑country processing, selective encryption, robust access controls, and detailed audit trails mapped to DPDP, GDPR, and emerging AI regulations.",
+  },
+  {
+    question: "What types of organizations does Grobird typically work with?",
+    answer:
+      "Mid‑size and large enterprises in fintech, banking, healthcare, logistics, retail, education, manufacturing, and enterprise SaaS, as well as high‑growth founders building B2B platforms.",
+  },
+  {
+    question: "Who owns the IP and source code for projects?",
+    answer:
+      "For client projects, the client owns the IP and source code once commercial terms are met. For venture studio engagements, IP is shared according to the agreed equity‑plus‑fee model.",
+  },
+  {
+    question: "How does Grobird work with in‑house teams?",
+    answer:
+      "Grobird integrates with internal product, compliance, and IT teams, providing architecture, development, and managed services while respecting existing tools and processes.",
+  },
+];
 
 const Home = () => {
   const router = useRouter();
@@ -57,6 +87,40 @@ const Home = () => {
   const stat2Ref = useRef<HTMLHeadingElement>(null);
   const stat3Ref = useRef<HTMLHeadingElement>(null);
   const stat4Ref = useRef<HTMLHeadingElement>(null);
+
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const faqAnswerRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const toggleFaq = (index: number) => {
+    const isOpening = openFaqIndex !== index;
+
+    // Close others
+    faqData.forEach((_, i) => {
+      if (i !== index) {
+        const otherAnswer = faqAnswerRefs.current[i];
+        if (otherAnswer) {
+          gsap.to(otherAnswer, {
+            height: 0,
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.inOut",
+          });
+        }
+      }
+    });
+
+    setOpenFaqIndex(isOpening ? index : null);
+
+    const answer = faqAnswerRefs.current[index];
+    if (answer) {
+      gsap.to(answer, {
+        height: isOpening ? "auto" : 0,
+        opacity: isOpening ? 1 : 0,
+        duration: 0.5,
+        ease: "power3.inOut",
+      });
+    }
+  };
 
   useEffect(() => {
     // Kill existing ScrollTrigger animations only
@@ -641,24 +705,28 @@ const Home = () => {
 
   const rightCards: CardData[] = [
     {
-      title: "SaaS Platform Development",
+      title: "Enterprise Platforms & Custom Software",
       description:
-        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+        "Building high-performance, bespoke software ecosystems that transform complex enterprise requirements into seamless, pixel-perfect digital reality.",
+      route: "/services/servisPages/customSoftwareDevelopment",
     },
     {
-      title: "Product Engineering",
+      title: "Venture Studio & Product Engineering",
       description:
-        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+        "Translating ambitious visions into robust, market-ready products with a focus on scalable architecture, resilient code, and frictionless user journeys.",
+      route: "/services/servisPages/productEngineering",
     },
     {
-      title: "MVP Development",
+      title: "AI Governance & Compliance Platforms",
       description:
-        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+        "Strategizing regulation-aligned roadmaps that de-risk digital transformation while optimizing your tech stack for governance-first growth and efficiency.",
+      route: "/services/servisPages/itConsulting",
     },
     {
-      title: "Cloud & Infrastructure",
+      title: "Cloud, Data Residency & FinOps",
       description:
-        "Shape human-centered experiences that seamlessly blend beauty and functionality, turning complex ideas into intuitive products.",
+        "Engineering secure, automated cloud foundations with deep observability and regulatory guardrails, ensuring your infrastructure stays agile and compliant.",
+      route: "/services/servisPages/Cloud&Infrastructure",
     },
   ];
 
@@ -731,21 +799,20 @@ const Home = () => {
             {/* Heading - Centered and larger on mobile */}
             <h1
               ref={heroHeadingRef}
-              className="text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-tight sm:leading-snug mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full max-sm:text-[45px] max-sm:font-normal max-sm:px-0 max-sm:-mt-20"
+              className="text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-[1.1] mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full max-sm:text-[45px] max-sm:font-normal max-sm:px-0 max-sm:-mt-20"
             >
-              Transforming Ideas into <br className="hidden xs:block" />{" "}
-              Scalable Digital Solutions
+              Governance-First AI Infrastructure <br className="hidden xs:block" />{" "}
+              for Ambitious Enterprises
             </h1>
 
             {/* Description - Centered and larger on mobile */}
 
             <p
               ref={heroDescRef}
-              className="text-white font-light mt-4 sm:mt-2 text-base sm:text-sm md:text-lg lg:text-xl xl:text-3xl leading-relaxed max-w-[90%] sm:max-w-full 2xl:max-w-6xl mb-8 sm:mb-7 xl:mb-8 2xl:mb-10 px-4 sm:px-4 text-center max-sm:px-0 max-sm:text-base max-sm:font-light max-sm:leading-5 max-sm:tracking-[-0.01em]"
+              className="text-white font-light mt-4 sm:mt-2 text-sm sm:text-xs md:text-base lg:text-lg xl:text-2xl leading-relaxed max-w-[90%] sm:max-w-full 2xl:max-w-6xl mb-8 sm:mb-7 xl:mb-8 2xl:mb-10 px-4 sm:px-4 text-center max-sm:px-0 max-sm:text-sm max-sm:font-light max-sm:leading-5 max-sm:tracking-[-0.01em]"
             >
-              Grobird accelerates innovation through IT consulting, software{" "}
-              <br className="hidden sm:block" /> development, and cloud
-              solutions.
+              Grobird builds secure, regulation-aligned AI platforms for
+              enterprises moving faster
             </p>
 
             {/* Buttons - Stacked vertically on mobile, horizontal on desktop */}
@@ -855,8 +922,8 @@ const Home = () => {
               <p>Successfully delivered high- quality projects</p>
             </div>
             <div className="businesses_card">
-              <h1>97%</h1>
-              <p>Client satisfaction based on surveys</p>
+              <h1>95%</h1>
+              <p>platform uptime for managed clients</p>
             </div>
             <div className="businesses_card">
               <h1>5+</h1>
@@ -919,9 +986,8 @@ const Home = () => {
           <div className="our_prosess_hed">
             <span>Our Process</span>
             <h1>
-              A Proven, Data-Backed Process That{" "}
-              <br className="hidden sm:block" />
-              <span>Converts Strategy Into Results</span>
+              How Grobird De‑Risks AI and <br className="hidden sm:block" />
+              <span>Digital Transformation</span>
             </h1>
           </div>
 
@@ -975,11 +1041,11 @@ const Home = () => {
                 <div className="our_box_content_num">
                   <h1>
                     {/* Shown only on small screens (below sm) */}
-                    <span className="sm:hidden">Deep Dive & Discovery</span>
+                    <span className="sm:hidden">Build & Integrate</span>
 
                     {/* Shown only on larger screens (sm and above) */}
                     <span className="hidden sm:inline">
-                      Launch & <br /> Execute
+                      Build & <br /> Integrate
                     </span>
                   </h1>
                   <span style={{ color: "#fff" }}> ( 02 )</span>
@@ -987,8 +1053,8 @@ const Home = () => {
                 <br />
 
                 <p>
-                  With strategy locked, we roll out high-impact campaigns,
-                  creative content, and across key channels.
+                  Design and develop modular, API‑first platforms, workflows,
+                  and AI agents that plug into your existing stack securely.
                 </p>
               </div>
             </div>
@@ -1008,7 +1074,7 @@ const Home = () => {
                 <div className="our_box_content_num">
                   <h1>
                     {/* Shown only on small screens (below sm) */}
-                    <span className="sm:hidden">Deep Dive & Discovery</span>
+                    <span className="sm:hidden">Optimize & Scale</span>
 
                     {/* Shown only on larger screens (sm and above) */}
                     <span className="hidden sm:inline">
@@ -1020,8 +1086,8 @@ const Home = () => {
                 <br />
 
                 <p>
-                  We continuously test, analyze, and refine. From A/B testing
-                  to, our team fine-tunes your campaigns.
+                  Run, monitor, and continuously optimize your platforms with
+                  observability, FinOps, and automated compliance controls.
                 </p>
               </div>
             </div>
@@ -1090,13 +1156,13 @@ const Home = () => {
             <span>Our Services</span>
             {/* Desktop heading – visible on sm and above */}
             <h1 className="hidden sm:block text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-tight sm:leading-snug mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full">
-              Performance-Driven Solutions <br /> That Turn Traffic Into Revenue
+              Performance-Driven Solutions<br />for Regulated & High‑Growth Teams
             </h1>
 
             {/* Mobile heading – visible below sm */}
             <h1 className="block sm:hidden ">
-              A Proven, Data-Backed Process That{" "}
-              <span>Converts Strategy Into Results</span>
+              How Grobird De‑Risks AI and <br />
+              <span>Digital Transformation</span>
             </h1>
           </div>
 
@@ -1128,16 +1194,19 @@ const Home = () => {
                   return (
                     <div
                       key={index}
-                      className={`cards_right_card ${
-                        isExpanded ? "expanded" : ""
-                      }`}
+                      className={`cards_right_card ${isExpanded ? "expanded" : ""
+                        }`}
                       onMouseEnter={() => handleMouseEnter(index)}
                       onMouseLeave={() => handleMouseLeave(index)}
+                      onClick={() => router.push(card.route)}
                     >
                       <h1>{card.title}</h1>
                       <div className="extra-content">
                         <p>{card.description}</p>
-                        <button>Explore Now!</button>
+                        <button onClick={(e) => {
+                          e.stopPropagation();
+                          router.push(card.route);
+                        }}>Explore Now!</button>
                       </div>
                     </div>
                   );
@@ -1157,10 +1226,7 @@ const Home = () => {
           <div className="our_work_hed">
             <span>Our Work</span>
             <h1>
-              A Proven, Data-Backed Process That <br />{" "}
-              <span style={{ color: "#A7A7A7" }}>
-                Converts Strategy Into Results
-              </span>
+              Enterprise & Venture Results
             </h1>
           </div>
 
@@ -1376,7 +1442,7 @@ const Home = () => {
             >
               <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
                 <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">
-                  IT Consulting
+                  AI Governance & Compliance Platforms
                 </p>
                 <Image
                   src="/Images/arrowBlack.png"
@@ -1397,7 +1463,7 @@ const Home = () => {
                     01
                   </div>
                   <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">
-                    IT Consulting
+                    AI Governance & Compliance Platforms
                   </h3>
                   <div className="flex justify-between items-end gap-4">
                     <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
@@ -1432,7 +1498,7 @@ const Home = () => {
               >
                 <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
                   <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">
-                    Custom Software Development
+                    Enterprise Platforms & Custom Software
                   </p>
                   <Image
                     src="/Images/arrowBlack.png"
@@ -1453,7 +1519,7 @@ const Home = () => {
                       02
                     </div>
                     <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">
-                      Custom Software Development
+                      Enterprise Platforms & Custom Software
                     </h3>
                     <div className="flex justify-between items-end gap-4">
                       <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
@@ -1485,7 +1551,7 @@ const Home = () => {
               >
                 <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
                   <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">
-                    Cloud & Infrastructure
+                    Cloud, Data Residency & FinOps
                   </p>
                   <Image
                     src="/Images/arrowBlack.png"
@@ -1506,7 +1572,7 @@ const Home = () => {
                       03
                     </div>
                     <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">
-                      Cloud & Infrastructure
+                      Cloud, Data Residency & FinOps
                     </h3>
                     <div className="flex justify-between items-end gap-4">
                       <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
@@ -1540,7 +1606,7 @@ const Home = () => {
               >
                 <div className="service-text-content w-full h-full flex justify-between items-end p-4 px-6 md:p-6 md:px-10 lg:pr-24 lg:p-6 lg:pb-10 lg:px-14 absolute inset-0">
                   <p className="text-[#000000] text-xl md:text-2xl lg:text-3xl xl:text-[42px] font-light">
-                    Product Engineering
+                    Venture Studio & Product Engineering
                   </p>
                   <Image
                     src="/Images/arrowBlack.png"
@@ -1561,7 +1627,7 @@ const Home = () => {
                       04
                     </div>
                     <h3 className="text-white text-2xl md:text-3xl lg:text-[42px] font-medium mt-3">
-                      Product Engineering
+                      Venture Studio & Product Engineering
                     </h3>
                     <div className="flex justify-between items-end gap-4">
                       <p className="text-white/80 text-sm md:text-base lg:text-lg xl:text-2xl leading-relaxed">
@@ -2074,131 +2140,43 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col w-full px-0 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[0] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                What kind of teams use Relay?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[1] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Does Relay work with Slack and Microsoft Teams?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[2] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Is there a free trial?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[3] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Is my data secure?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[4] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Can I collaborate with my engineering team inside Relay?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[5] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Does Relay support multi-channel communication?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[6] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Can I customize how Relay works for my team?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
+            {faqData.map((item, index) => (
+              <div
+                key={index}
+                className="w-full flex flex-col border border-[#68636352] rounded-md overflow-hidden"
+              >
+                <div
+                  ref={(el) => {
+                    if (el) faqItemsRef.current[index] = el;
+                  }}
+                  onClick={() => toggleFaq(index)}
+                  className="p-2 px-4 md:p-3 md:px-7 w-full flex items-center justify-between gap-4 cursor-pointer hover:bg-black/5 transition-colors"
+                >
+                  <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                    {item.question}
+                  </p>
+                  <Image
+                    src="/Images/serviseImages/plus.png"
+                    alt="toggle"
+                    width={22}
+                    height={22}
+                    className={`w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0 transition-transform duration-300 ${
+                      openFaqIndex === index ? "rotate-45" : ""
+                    }`}
+                  />
+                </div>
+                <div
+                  ref={(el) => {
+                    faqAnswerRefs.current[index] = el;
+                  }}
+                  className="px-4 md:px-7 overflow-hidden h-0 opacity-0"
+                >
+                  <p className="text-[#5A5A5A] text-sm sm:text-base md:text-lg lg:text-xl pb-6">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -2233,14 +2211,13 @@ const Home = () => {
             className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-start text-start pl-[3rem] sm:px-6 md:px-6 gap-5 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl"
           >
             {/* Heading */}
-            <h2 className="text-black text-[30px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[100px] font-light leading-tight">
-              Ideas take <br className="sm:hidden" /> flight here
+            <h2 className="text-black text-[30px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[80px] font-light leading-tight">
+              Ready to Build Governance‑Ready AI <br className="hidden md:block" /> and Digital Infrastructure?
             </h2>
 
             {/* Description */}
-            <p className="text-black font-light text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[32px] leading-relaxed max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl">
-              From concept to code, we transform bold visions into living
-              digital experiences that soar.
+            <p className="text-black font-light text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[32px] leading-relaxed max-w-xs sm:max-w-md md:max-w-4xl lg:max-w-5xl">
+              Book a 45‑minute roadmap session with Grobird’s <br className="hidden md:block" /> architecture and compliance leaders.
             </p>
 
             {/* Desktop buttons */}
@@ -2249,7 +2226,7 @@ const Home = () => {
                 onClick={() => router.push("/contact")}
                 className="bg-[#FF672C] text-white px-4 sm:px-6 lg:px-18 font-medium py-1.5 sm:py-2 md:py-3 rounded-full text-xs sm:text-sm md:text-[17px] hover:bg-[#e55a24] transition-colors w-full sm:w-auto"
               >
-                Talk to Us
+                Book Strategy Session
               </button>
 
               <button
@@ -2265,7 +2242,7 @@ const Home = () => {
               onClick={() => router.push("/contact")}
               className="sm:hidden bg-white text-black px-8 py-4 rounded-[30px] font-medium mt-2"
             >
-              Get In Touch
+              Book Strategy Session
             </button>
           </div>
 

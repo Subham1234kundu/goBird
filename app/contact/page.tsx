@@ -1178,13 +1178,13 @@ const Contact = () => {
             ref={statCounter4Ref}
             className="flex text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold max-sm:text-[42px] max-sm:font-semibold max-sm:pl-6"
           >
-            97
+            95
             <span className="text-[#F95524] max-sm:text-[14px] max-sm:font-normal max-sm:text-[#5A5A5A] max-sm:tracking-[-0.3px]">
               %
             </span>
           </h3>
           <p className="text-[#5A5A5A] text-xs sm:text-sm xl:text-[18px] max-sm:text-[14px] max-sm:font-normal max-sm:pl-6 max-sm:pr-4">
-            Client satisfaction based on surveys
+           platform uptime for managed clients
           </p>
         </div>
       </div>

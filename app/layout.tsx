@@ -19,8 +19,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: "Grobird - Transforming Ideas into Scalable Digital Solutions",
-  description: "Grobird accelerates innovation through IT consulting, software development, and cloud solutions. We build technology that builds businesses.",
+  title: "Grobird - Governance-First AI Infrastructure for Ambitious Enterprises",
+  description: "Grobird builds secure, regulation-aligned AI platforms for enterprises moving faster.",
   icons: {
     icon: [
       { url: '/Images/logo.png', sizes: '32x32', type: 'image/png' },
@@ -30,15 +30,15 @@ export const metadata: Metadata = {
     apple: '/Images/logo.png',
   },
   openGraph: {
-    title: "Grobird - Transforming Ideas into Scalable Digital Solutions",
-    description: "Grobird accelerates innovation through IT consulting, software development, and cloud solutions.",
+    title: "Grobird - Governance-First AI Infrastructure for Ambitious Enterprises",
+    description: "Grobird builds secure, regulation-aligned AI platforms for enterprises moving faster.",
     images: ['/Images/logo.png'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Grobird - Transforming Ideas into Scalable Digital Solutions",
-    description: "Grobird accelerates innovation through IT consulting, software development, and cloud solutions.",
+    title: "Grobird - Governance-First AI Infrastructure for Ambitious Enterprises",
+    description: "Grobird builds secure, regulation-aligned AI platforms for enterprises moving faster.",
     images: ['/Images/logo.png'],
   },
 };

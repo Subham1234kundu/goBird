@@ -9,6 +9,35 @@ import FooterSimple from "@/app/components/FooterSimple";
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface FAQData {
+  question: string;
+  answer: string;
+}
+
+const faqData: FAQData[] = [
+  {
+    question:
+      "How does Grobird handle AI and data compliance (DPDP, GDPR, EU AI Act)?",
+    answer:
+      "Grobird designs governance‑first architectures with in‑country processing, selective encryption, robust access controls, and detailed audit trails mapped to DPDP, GDPR, and emerging AI regulations.",
+  },
+  {
+    question: "What types of organizations does Grobird typically work with?",
+    answer:
+      "Mid‑size and large enterprises in fintech, banking, healthcare, logistics, retail, education, manufacturing, and enterprise SaaS, as well as high‑growth founders building B2B platforms.",
+  },
+  {
+    question: "Who owns the IP and source code for projects?",
+    answer:
+      "For client projects, the client owns the IP and source code once commercial terms are met. For venture studio engagements, IP is shared according to the agreed equity‑plus‑fee model.",
+  },
+  {
+    question: "How does Grobird work with in‑house teams?",
+    answer:
+      "Grobird integrates with internal product, compliance, and IT teams, providing architecture, development, and managed services while respecting existing tools and processes.",
+  },
+];
+
 const Services = () => {
   const router = useRouter();
   const imageContainerRef = useRef<HTMLDivElement>(null);
@@ -31,12 +60,45 @@ const Services = () => {
   const faqItemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const testimonialImageRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const faqAnswerRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const toggleFaq = (index: number) => {
+    const isOpening = openFaqIndex !== index;
+
+    // Close others
+    faqData.forEach((_, i) => {
+      if (i !== index) {
+        const otherAnswer = faqAnswerRefs.current[i];
+        if (otherAnswer) {
+          gsap.to(otherAnswer, {
+            height: 0,
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.inOut",
+          });
+        }
+      }
+    });
+
+    setOpenFaqIndex(isOpening ? index : null);
+
+    const answer = faqAnswerRefs.current[index];
+    if (answer) {
+      gsap.to(answer, {
+        height: isOpening ? "auto" : 0,
+        opacity: isOpening ? 1 : 0,
+        duration: 0.5,
+        ease: "power3.inOut",
+      });
+    }
+  };
 
   const titles = [
-    "IT Consulting",
-    "Custom Software Development",
-    "Cloud & Infrastructure",
-    "Product Engineering",
+    "AI Governance & Compliance Platforms",
+    "Enterprise Platforms & Custom Software",
+    "Cloud, Data Residency & FinOps",
+    "Venture Studio & Product Engineering",
   ];
 
   const routes = [
@@ -50,7 +112,7 @@ const Services = () => {
     {
       image: "/Images/serviseImages/mediumImage/m1.png",
       backgroundImage: "/Images/serviseImages/BigImage/b1.png",
-      category: "IT Consulting",
+      category: "AI Governance & Compliance Platforms",
       title: "Strategic guidance for a digital-first world",
       description:
         "We help businesses define IT strategies, assess systems, and create roadmaps for transformation.",
@@ -65,7 +127,7 @@ const Services = () => {
     {
       image: "/Images/serviseImages/mediumImage/m2.png",
       backgroundImage: "/Images/serviseImages/BigImage/b2.png",
-      category: "Custom Software",
+      category: "Enterprise Platforms & Custom Software",
       title: "Tailored solutions for your unique needs",
       description:
         "From enterprise applications to consumer-facing apps, we build software that drives growth.",
@@ -80,7 +142,7 @@ const Services = () => {
     {
       image: "/Images/serviseImages/mediumImage/m3.png",
       backgroundImage: "/Images/serviseImages/BigImage/b3.png",
-      category: "Cloud Services",
+      category: "Cloud, Data Residency & FinOps",
       title: "Scalable infrastructure for modern business",
       description:
         "Secure, reliable, and scalable cloud solutions to power your digital operations.",
@@ -95,7 +157,7 @@ const Services = () => {
     {
       image: "/Images/serviseImages/mediumImage/m4.png",
       backgroundImage: "/Images/serviseImages/BigImage/b4.png",
-      category: "Product Engineering",
+      category: "Venture Studio & Product Engineering",
       title: "Innovation from concept to launch",
       description:
         "End-to-end product engineering services to bring your innovative ideas to life.",
@@ -933,8 +995,7 @@ const Services = () => {
               style={{ fontWeight: 300 }}
             >
               <span className="hidden sm:inline">
-                From strategy to <br /> execution, Grobird covers <br /> the
-                full lifecycle of digital <br /> solutions.
+                From Governance‑Ready <br /> Strategy to Always‑on <br /> Operations
               </span>
               <span
                 className="sm:hidden block"
@@ -947,15 +1008,14 @@ const Services = () => {
                   letterSpacing: "0px",
                 }}
               >
-                From strategy to execution, Grobird covers the full lifecycle of
-                digital solutions.
+                From Governance‑Ready Strategy to Always‑on Operations
               </span>
             </h1>
             <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-[25px] sm:leading-10">
               <span className="hidden sm:inline">
-                Whether you&apos;re rethinking IT infrastructure, building
-                custom software, or scaling digital products — we help you move
-                with speed and confidence.
+                Grobird plans, builds, and operates AI, data, and digital
+                platforms so enterprises and founders get secure, compliant
+                systems that scale.
               </span>
               <span
                 className="sm:hidden block"
@@ -969,9 +1029,9 @@ const Services = () => {
                   letterSpacing: "-0.01em",
                 }}
               >
-                Whether you&apos;re rethinking IT infrastructure, building
-                custom software, or scaling digital products — we help you move
-                with speed and confidence.
+                Grobird plans, builds, and operates AI, data, and digital
+                platforms so enterprises and founders get secure, compliant
+                systems that scale.
               </span>
             </h3>
             <button className="hidden sm:block mt-8 sm:mt-16 md:mt-20 bg-white border border-white rounded-full text-black text-xs sm:text-sm xl:text-[18px] px-8 sm:px-12 py-3 w-fit">
@@ -1510,8 +1570,7 @@ const Services = () => {
 
             {/* Description paragraph */}
             <p className="industries-description text-[#2D2C2C] text-md sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] leading-relaxed lg:w-[25%]">
-              Every industry has its own challenges, and at Grobird we tailor
-              software to meet those unique needs
+              Grobird works in regulated and high‑growth sectors where compliance, resilience, and time‑to‑market matter most.
             </p>
 
             {/* Mobile style overrides (only screens ≤640px) */}
@@ -2131,131 +2190,42 @@ const Services = () => {
           </div>
 
           <div className="flex flex-col w-full px-0 md:px-6 lg:px-10 items-center gap-3 md:gap-5">
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[0] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                What kind of teams use Relay?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[1] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Does Relay work with Slack and Microsoft Teams?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[2] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Is there a free trial?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[3] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Is my data secure?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[4] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Can I collaborate with my engineering team inside Relay?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[5] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Does Relay support multi-channel communication?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
-
-            <div
-              ref={(el) => {
-                if (el) faqItemsRef.current[6] = el;
-              }}
-              className="border-[#68636352] rounded-md p-2 px-4 md:p-3 md:px-7 border w-full flex items-center justify-between gap-4"
-            >
-              <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
-                Can I customize how Relay works for my team?
-              </p>
-              <Image
-                src="/Images/serviseImages/plus.png"
-                alt="plus"
-                width={22}
-                height={22}
-                className="w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0"
-              />
-            </div>
+            {faqData.map((item, index) => (
+              <div
+                key={index}
+                className="w-full flex flex-col border border-[#68636352] rounded-md overflow-hidden"
+              >
+                <div
+                  ref={(el) => {
+                    if (el) faqItemsRef.current[index] = el;
+                  }}
+                  onClick={() => toggleFaq(index)}
+                  className="p-2 px-4 md:p-3 md:px-7 w-full flex items-center justify-between gap-4 cursor-pointer hover:bg-black/5 transition-colors"
+                >
+                  <p className="text-[#111111] text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[24px]">
+                    {item.question}
+                  </p>
+                  <Image
+                    src="/Images/serviseImages/plus.png"
+                    alt="toggle"
+                    width={22}
+                    height={22}
+                    className={`w-[18px] h-[18px] sm:w-[20px] sm:h-[20px] md:w-[22px] md:h-[22px] flex-shrink-0 transition-transform duration-300 ${openFaqIndex === index ? "rotate-45" : ""
+                      }`}
+                  />
+                </div>
+                <div
+                  ref={(el) => {
+                    faqAnswerRefs.current[index] = el;
+                  }}
+                  className="px-4 md:px-7 overflow-hidden h-0 opacity-0"
+                >
+                  <p className="text-[#5A5A5A] text-sm sm:text-base md:text-lg lg:text-xl pb-6">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
