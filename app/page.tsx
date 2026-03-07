@@ -52,6 +52,43 @@ const faqData: FAQData[] = [
     answer:
       "Grobird integrates with internal product, compliance, and IT teams, providing architecture, development, and managed services while respecting existing tools and processes.",
   },
+  {
+    question: "What services does Grobird offer?",
+    answer:
+      "Grobird provides AI governance, cloud infrastructure, platform engineering, and venture studio services to help businesses scale securely and efficiently.",
+  },
+  {
+    question: "How long does a typical project take?",
+    answer:
+      "Project timelines vary based on scope. A typical initial engagement lasts 4–8 weeks, with ongoing support and maintenance available.",
+  },
+  {
+    question: "What industries do you specialize in?",
+    answer:
+      "We work across multiple industries including finance, healthcare, e‑commerce, and technology, with a focus on compliance and security.",
+  },
+  {
+    question: "Do you offer ongoing support after launch?",
+    answer:
+      "Yes, we provide managed services and support packages to ensure your systems run smoothly and stay up‑to‑date.",
+  },
+
+  {
+    question: "What does a typical first engagement look like?",
+    answer:
+      "Most clients start with a 2–4 week discovery and architecture phase to clarify goals, risks, and roadmap before committing to a build or managed program.",
+  },
+  {
+    question:
+      "Can Grobird work with our in‑house engineering and compliance teams?",
+    answer:
+      "Yes. Engagements are designed to complement in‑house teams, with clear ownership, documentation, and knowledge transfer.",
+  },
+  {
+    question: "How do venture studio engagements work?",
+    answer:
+      "For selected founders, Grobird combines development fees with long‑term equity participation, acting as a technical co‑founder and scaling partner.",
+  },
 ];
 
 const Home = () => {
@@ -801,8 +838,8 @@ const Home = () => {
               ref={heroHeadingRef}
               className="text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-[1.1] mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full max-sm:text-[45px] max-sm:font-normal max-sm:px-0 max-sm:-mt-20"
             >
-              Governance-First AI Infrastructure <br className="hidden xs:block" />{" "}
-              for Ambitious Enterprises
+              Governance-First AI Infrastructure{" "}
+              <br className="hidden xs:block" /> for Ambitious Enterprises
             </h1>
 
             {/* Description - Centered and larger on mobile */}
@@ -1156,7 +1193,9 @@ const Home = () => {
             <span>Our Services</span>
             {/* Desktop heading – visible on sm and above */}
             <h1 className="hidden sm:block text-white text-4xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-[82px] font-light leading-tight sm:leading-snug mb-4 sm:mb-1 px-4 sm:px-2 text-center w-full">
-              Performance-Driven Solutions<br />for Regulated & High‑Growth Teams
+              Performance-Driven Solutions
+              <br />
+              for Regulated & High‑Growth Teams
             </h1>
 
             {/* Mobile heading – visible below sm */}
@@ -1194,8 +1233,9 @@ const Home = () => {
                   return (
                     <div
                       key={index}
-                      className={`cards_right_card ${isExpanded ? "expanded" : ""
-                        }`}
+                      className={`cards_right_card ${
+                        isExpanded ? "expanded" : ""
+                      }`}
                       onMouseEnter={() => handleMouseEnter(index)}
                       onMouseLeave={() => handleMouseLeave(index)}
                       onClick={() => router.push(card.route)}
@@ -1203,10 +1243,14 @@ const Home = () => {
                       <h1>{card.title}</h1>
                       <div className="extra-content">
                         <p>{card.description}</p>
-                        <button onClick={(e) => {
-                          e.stopPropagation();
-                          router.push(card.route);
-                        }}>Explore Now!</button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            router.push(card.route);
+                          }}
+                        >
+                          Explore Now!
+                        </button>
                       </div>
                     </div>
                   );
@@ -1225,9 +1269,7 @@ const Home = () => {
         <section className="our_work">
           <div className="our_work_hed">
             <span>Our Work</span>
-            <h1>
-              Enterprise & Venture Results
-            </h1>
+            <h1>Enterprise & Venture Results</h1>
           </div>
 
           <div className="wors_cards">
@@ -2212,12 +2254,15 @@ const Home = () => {
           >
             {/* Heading */}
             <h2 className="text-black text-[30px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[80px] font-light leading-tight">
-              Ready to Build Governance‑Ready AI <br className="hidden md:block" /> and Digital Infrastructure?
+              Ready to Build Governance‑Ready AI{" "}
+              <br className="hidden md:block" /> and Digital Infrastructure?
             </h2>
 
             {/* Description */}
             <p className="text-black font-light text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[32px] leading-relaxed max-w-xs sm:max-w-md md:max-w-4xl lg:max-w-5xl">
-              Book a 45‑minute roadmap session with Grobird’s <br className="hidden md:block" /> architecture and compliance leaders.
+              Book a 45‑minute roadmap session with Grobird’s{" "}
+              <br className="hidden md:block" /> architecture and compliance
+              leaders.
             </p>
 
             {/* Desktop buttons */}
