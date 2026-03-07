@@ -34,6 +34,10 @@ const Contact = () => {
     email: "",
     phone: "",
     message: "",
+    organizationSize: "",
+    region: "",
+    primaryInterest: "",
+    hearAbout: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -407,12 +411,16 @@ const Contact = () => {
     setError("");
     setSuccess(false);
 
-    // Validation
+    // Validation - updated to check all new fields
     if (
       !formData.name.trim() ||
       !formData.email.trim() ||
       !formData.phone.trim() ||
-      !formData.message.trim()
+      !formData.message.trim() ||
+      !formData.organizationSize.trim() ||
+      !formData.region.trim() ||
+      !formData.primaryInterest.trim() ||
+      !formData.hearAbout.trim()
     ) {
       setError("All fields are required");
       return;
@@ -437,13 +445,17 @@ const Contact = () => {
         return;
       }
 
-      // Success - reset form
+      // Success - reset form with all new fields
       setSuccess(true);
       setFormData({
         name: "",
         email: "",
         phone: "",
         message: "",
+        organizationSize: "",
+        region: "",
+        primaryInterest: "",
+        hearAbout: "",
       });
       setLoading(false);
 
@@ -459,9 +471,14 @@ const Contact = () => {
 
   // Handle input changes
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target as
+      | HTMLInputElement
+      | HTMLTextAreaElement
+      | HTMLSelectElement;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -1118,7 +1135,7 @@ const Contact = () => {
                     <option value="Comoros">Comoros</option>
                     <option value="Congo">Congo</option>
                     <option value="Costa Rica">Costa Rica</option>
-                    <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                    <option value="Côte d'Ivoire">Côte d&apos;Ivoire</option>
                     <option value="Croatia">Croatia</option>
                     <option value="Cuba">Cuba</option>
                     <option value="Cyprus">Cyprus</option>
