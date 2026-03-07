@@ -342,9 +342,7 @@ const CustomSoftwareDevelopment = () => {
             className="custom-software-title text-white text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light leading-tight mb-8 lg:mb-12 w-full sm:w-[90%]"
             style={{ fontWeight: 300 }}
           >
-            {/* Enterprise Internal
-            <br className="block sm:hidden" /> Systems */}
-            Enterprise Platforms <br /> Built for Security
+            Enterprise Security Platforms
           </h1>
           <h3 className="text-white font-light text-base sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] leading-[25px] sm:leading-10">
             Grobird designs and operates line‑of‑business platforms, ERP‑lite
@@ -356,7 +354,6 @@ const CustomSoftwareDevelopment = () => {
             onClick={() => router.push("/contact")}
             className="mt-12 bg-white border border-white rounded-full text-black text-xs sm:text-sm xl:text-[18px] px-8 sm:px-12 py-2 w-fit"
           >
-           
             Book Platform Review
           </button>
         </div>
