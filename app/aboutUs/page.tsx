@@ -401,20 +401,21 @@ const AboutUs = () => {
                 ref={headingRef}
                 className="text-white text-[42px] pt-8 sm:text-3xl md:text-3xl lg:text-4xl xl:text-[82px] font-light w-full lg:w-[70%] leading-tight max-sm:font-extralight max-sm:leading-[55px]"
               >
-                We build
+                {/* We build
                 <br />
                 technology that
                 <br />
-                builds businesses
+                builds businesses */}
+                We Engineer Governance‑Ready Platforms and Ventures
               </h1>
 
               <h3
                 ref={subheadingRef}
                 className="text-white font-light text-[14px] sm:text-base md:text-md lg:text-md xl:text-[30px] 2xl:text-2xl w-full lg:w-[35%] leading-6 sm:leading-10 mt-2 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14 max-sm:font-normal max-sm:leading-[17px]"
               >
-                Whether you&apos;re rethinking IT infrastructure, building
-                custom software, or scaling digital products we help you move
-                with speed and confidence.
+                Grobird is a globally oriented technology, innovation, and
+                venture‑building partner focused on secure, compliant, and
+                scalable software and AI platforms.
               </h3>
             </div>
 
@@ -478,22 +479,22 @@ const AboutUs = () => {
             {/* Mission */}
             <div className="mb-10 sm:mb-8">
               <h3 className="text-[20px] leading-[28.6px] font-medium sm:text-2xl xl:text-[32px] mb-3 max-sm:leading-[29px]">
-                Our Mission
+                Mission:
               </h3>
               <p className="text-[16px] font-normal sm:text-lg xl:text-[24px] mb-6 sm:mb-6 leading-6 sm:leading-9 max-sm:leading-[19px] max-sm:text-white/80">
-                To empower businesses with technology that delivers measurable
-                impact and long-term value.
+                Enable responsible, regulation‑aligned AI and digital
+                infrastructure for ambitious organizations worldwide.
               </p>
             </div>
 
             {/* Vision */}
             <div>
               <h3 className="text-[20px] leading-[28.6px] font-medium sm:text-2xl xl:text-[32px] mb-3 max-sm:leading-[29px]">
-                Our Vision
+                Vision
               </h3>
               <p className="text-[16px] font-normal sm:text-lg xl:text-[24px] mb-6 sm:mb-6 leading-6 sm:leading-9 max-sm:leading-[19px] max-sm:text-white/80">
-                To be the catalyst for innovation, helping businesses thrive in
-                a digital-first world.
+                A world where every serious product and platform is
+                secure‑by‑design, observable, and compliant from day zero.
               </p>
             </div>
           </div>
@@ -719,23 +720,17 @@ const AboutUs = () => {
             className="flex flex-col sm:gap-8 w-full lg:w-[65%]"
           >
             <p className="text-[16px] font-normal leading-[36px] text-black md:text-base md:leading-10 lg:text-lg xl:text-[32px] xl:mt-20 md:mt-16px">
-              GroBird began with a simple belief &mdash; technology should not
-              just solve problems, it should inspire growth. What started as a
-              small team of passionate engineers and designers has now evolved
-              into a full-scale digital partner trusted by businesses worldwide.
+              Grobird began with a simple belief: technology should not only
+              solve problems, it should reduce risk and unlock growth. From
+              early custom builds to complex enterprise platforms and
+              venture‑backed SaaS products, the team has delivered 200+
+              transformative systems worldwide.
             </p>
 
             <p className="text-[#3D3D3DDB] text-[16px] font-normal leading-[36px] md:text-base md:leading-10 lg:text-lg xl:text-[32px]">
-              Over the years, we&apos;ve delivered 100+ transformative projects,
-              empowered 50+ global clients, and expanded our expertise across
-              consulting, development, hosting, and design. But at the heart of
-              every milestone lies one constant &mdash; our commitment to
-              crafting human-centered solutions that create lasting impact.
-            </p>
-            <p className="text-[#3D3D3DDB] text-[16px] font-normal leading-[36px] md:text-base md:leading-10 lg:text-lg xl:text-[32px]">
-              From our very first line of code to the innovative platforms we
-              build today, GroBird has always been about more than technology.
-              We are about people, ideas, and the journeys that shape them.
+              Across every engagement, one philosophy stays constant:
+              governance‑first, modular, API‑driven engineering that balances
+              innovation with compliance.
             </p>
           </div>
         </div>
@@ -839,7 +834,7 @@ const AboutUs = () => {
                 0<span className="text-[#F95524]">x</span>
               </h3>
               <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">
-                Higher Client Retention
+                higher client retention on managed programs
               </p>
             </div>
 
@@ -856,7 +851,7 @@ const AboutUs = () => {
                 0<span className="text-[#F95524]">+</span>
               </h3>
               <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">
-                Successfully delivered high-quality projects
+                projects across fintech, healthcare, logistics, and SaaS
               </p>
             </div>
 
@@ -873,7 +868,7 @@ const AboutUs = () => {
                 0<span className="text-[#F95524]">%</span>
               </h3>
               <p className="text-[#5A5A5A] text-[14px] sm:text-sm xl:text-[18px]">
-                Client satisfaction based on surveys
+                client satisfaction
               </p>
             </div>
 
@@ -905,8 +900,8 @@ const AboutUs = () => {
         className="flex flex-col sm:flex-row gap-4 sm:gap-1 px-4 sm:px-5 md:px-7 lg:px-9 xl:px-12 pb-2 sm:pb-3 md:pb-10 lg:pb-24 mx-auto items-start sm:items-center justify-between pt-5 lg:pt-32"
       >
         <h2 className="text-[#000A1B] flex flex-col text-[32px] font-medium sm:text-3xl md:text-4xl xl:text-[64px] 2xl:text-6xl sm:font-medium leading-tight w-full lg:w-[80%] order-2 sm:order-1">
-          <span className="text-[#3B3B3D73]">How We Help</span>
-          <span className="text-[#0B0B0B]">Businesses Grow</span>
+          <span className="text-[#3B3B3D73]">Your Long-Term </span>
+          <span className="text-[#0B0B0B]">Digital Technology Partner</span>
         </h2>
         <h3 className="text-[#000A1B] text-[14px] font-normal order-1 sm:order-2 sm:text-lg md:text-xl lg:text-2xl xl:text-[32px] lg:w-[25%] text-start sm:text-end mt-1 max-sm:text-[24px] max-sm:leading-[29px]">
           Services
