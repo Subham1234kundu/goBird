@@ -106,8 +106,7 @@ const Insights = () => {
                 leading-tight mb-8 w-full sm:w-[90%]
               "
             >
-              Ideas, trends, and <br /> lessons from the <br /> frontlines of
-              tech
+              Insights on AI <br /> and Compliance Platforms
             </h1>
             <h3
               className="
@@ -119,9 +118,9 @@ const Insights = () => {
                 w-full sm:w-[90%] leading-10 mb-12 sm:mb-16 md:mb-20
               "
             >
-              Our experts share deep dives, strategies, and stories from the
-              world of IT consulting, design, and software development so you
-              can stay ahead of the curve.
+              Deep dives on AI governance, data protection, cloud and FinOps,
+              platform modernization, and venture‑grade product building for
+              regulated and high‑growth teams.
             </h3>
           </div>
 
@@ -283,13 +282,19 @@ const Insights = () => {
         <div className="flex flex-col lg:flex-row items-stretch justify-between gap-0">
           <div className="flex flex-col justify-center items-start gap-8 lg:w-1/2 bg-[#F5F9FE] px-8 py-12 lg:px-12 lg:py-16">
             <h2 className="text-[#000A1B] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[64px] font-medium leading-tight max-sm:text-[24px] max-sm:font-medium">
-              Need a Tech Partner <br /> You Can Trust?
+              {/* Need a Tech Partner <br /> You Can Trust? */}
+              Design Your Governance‑Ready AI and Platform Roadmap
             </h2>
+
+            <p className="text-[16px]">
+              Share a few details and Grobird’s team will recommend next steps
+              tailored to your organization.
+            </p>
             <button
               onClick={() => router.push("/contact")}
               className="px-10 py-2 rounded-full text-white text-sm sm:text-base md:text-[18px] hover:opacity-90 transition-opacity max-sm:text-[18px] bg-[#FF662A] max-sm:bg-black"
             >
-              Let&apos;s Chat
+              Book Strategy Call
             </button>
           </div>
           <div className="lg:w-1/2">

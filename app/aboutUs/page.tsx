@@ -406,7 +406,7 @@ const AboutUs = () => {
                 technology that
                 <br />
                 builds businesses */}
-                We Engineer Governance‑Ready Platforms and Ventures
+                We Engineer Governance Ready Platforms and Ventures
               </h1>
 
               <h3
@@ -924,7 +924,7 @@ const AboutUs = () => {
               </h4>
 
               <h3 className="text-[16px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
-                Custom Software Development
+                Enterprise Platforms & Custom Software
               </h3>
             </div>
           </div>
@@ -947,7 +947,7 @@ const AboutUs = () => {
                 02.
               </h4>
               <h3 className="text-[17px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
-                IT Consulting
+                AI Governance & Compliance Platforms
               </h3>
             </div>
           </div>
@@ -970,7 +970,7 @@ const AboutUs = () => {
                 03.
               </h4>
               <h3 className="text-[17px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
-                Cloud & Infrastructure Services
+                Cloud, Data Residency & FinOps
               </h3>
             </div>
           </div>
@@ -993,7 +993,7 @@ const AboutUs = () => {
                 04.
               </h4>
               <h3 className="text-[17px] sm:text-base lg:text-lg xl:text-[32px] xl:font-medium ml-4 sm:ml-8 leading-none sm:leading-tight whitespace-normal sm:whitespace-normal break-words pr-4 sm:pr-0 max-w-[calc(100vw-120px)]">
-                Product Engineering
+                Venture Studio & Product Engineering
               </h3>
             </div>
           </div>
