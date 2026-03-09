@@ -57,7 +57,7 @@ export default function AdminInsights() {
             } else {
                 setError(`Failed to delete: ${delError}`);
             }
-        } catch (err) {
+        } catch (_) {
             setError("An unexpected error occurred during deletion.");
         } finally {
             setIsDeleting(false);

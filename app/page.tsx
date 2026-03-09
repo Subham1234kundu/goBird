@@ -100,16 +100,6 @@ const Home = () => {
   const heroButtonsRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const heroContentWrapperRef = useRef<HTMLDivElement>(null);
-  const startupsHeadingRef = useRef<HTMLHeadingElement>(null);
-  const startupLogosRef = useRef<HTMLDivElement>(null);
-  const servicesHeadingRef = useRef<HTMLDivElement>(null);
-  const itConsultingRef = useRef<HTMLDivElement>(null);
-  const serviceItemsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const developIdeaRef = useRef<HTMLDivElement>(null);
-  const successHeadingRef = useRef<HTMLHeadingElement>(null);
-  const statsCardsRef = useRef<HTMLDivElement>(null);
-  const boldMovesHeadingRef = useRef<HTMLDivElement>(null);
-  const boldMovesRef = useRef<(HTMLDivElement | null)[]>([]);
   const testimonialsHeadingRef = useRef<HTMLDivElement>(null);
   const testimonialImageRef = useRef<HTMLDivElement>(null);
   const insightsHeadingRef = useRef<HTMLDivElement>(null);
@@ -121,10 +111,6 @@ const Home = () => {
   const ctaCloudLeftRef = useRef<HTMLDivElement>(null);
   const ctaCloudRightRef = useRef<HTMLDivElement>(null);
   const ctaCloudBottomRef = useRef<HTMLDivElement>(null);
-  const stat1Ref = useRef<HTMLHeadingElement>(null);
-  const stat2Ref = useRef<HTMLHeadingElement>(null);
-  const stat3Ref = useRef<HTMLHeadingElement>(null);
-  const stat4Ref = useRef<HTMLHeadingElement>(null);
   const heroBgRef = useRef<HTMLDivElement>(null);
 
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -174,8 +160,9 @@ const Home = () => {
       document.body.style.overflow = "auto";
     }
 
-    const handleLoadingUpdate = (e: any) => {
-      const progress = e.detail.progress;
+    const handleLoadingUpdate = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const progress = customEvent.detail.progress;
       setLoadingProgress(progress);
       
       // If loading is done, allow a moment for the loader's exit animation
@@ -376,7 +363,7 @@ const Home = () => {
 
     // Grid Wrapper Parallax
     const gridCards = document.querySelectorAll(".grid_card");
-    gridCards.forEach((card, i) => {
+    gridCards.forEach((card) => {
       gsap.from(card, {
         y: 100,
         opacity: 0,
@@ -409,7 +396,7 @@ const Home = () => {
 
     // Our Work Cards - Mask Scale Reveal
     const workCards = document.querySelectorAll(".wors_cards .card, .wors_cards .center_card");
-    workCards.forEach((card, i) => {
+    workCards.forEach((card) => {
       const cardImg = card.querySelector("img");
       if (cardImg) {
         gsap.set(cardImg, { scale: 1.3 });

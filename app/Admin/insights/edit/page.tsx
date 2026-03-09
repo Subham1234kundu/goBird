@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense, useCallback } from "react";
 import { getInsightById, updateInsight, uploadInsightImage, deleteInsightImage } from "@/lib/services/insightService";
 import RichTextEditor from "@/components/Admin/RichTextEditor";
 import SuccessModal from "@/components/Admin/Modals/SuccessModal";
@@ -25,16 +25,7 @@ function EditInsightContent() {
     const [error, setError] = useState("");
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-    useEffect(() => {
-        if (!insightId) {
-            setError("No insight ID provided.");
-            setLoading(false);
-            return;
-        }
-        fetchInsight();
-    }, [insightId]);
-
-    const fetchInsight = async () => {
+    const fetchInsight = useCallback(async () => {
         const { data, error: fetchError } = await getInsightById(insightId!);
         if (fetchError) {
             setError(fetchError);
@@ -47,7 +38,16 @@ function EditInsightContent() {
             setCoverImagePreview(data.cover_image_url || "");
         }
         setLoading(false);
-    };
+    }, [insightId]);
+
+    useEffect(() => {
+        if (!insightId) {
+            setError("No insight ID provided.");
+            setLoading(false);
+            return;
+        }
+        fetchInsight();
+    }, [insightId, fetchInsight]);
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -108,7 +108,7 @@ function EditInsightContent() {
             } else {
                 setShowSuccessModal(true);
             }
-        } catch (err) {
+        } catch (_) {
             setError("An error occurred during the update.");
         } finally {
             setSaving(false);

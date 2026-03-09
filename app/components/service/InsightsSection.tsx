@@ -1,7 +1,7 @@
 'use client'
 
 import Image from "next/image"
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Button } from "@/components/ui/button"
@@ -15,6 +15,7 @@ interface InsightItem {
   date: string
   readTime: string
   imageAlt?: string
+  onClick?: () => void
 }
 
 interface InsightsSectionProps {
@@ -44,7 +45,7 @@ const InsightsSection = ({
             <div
               key={index}
               className="flex flex-col group cursor-pointer"
-              onClick={() => (insight as any).onClick?.()}
+              onClick={() => insight.onClick?.()}
             >
               <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden mb-6">
                 <Image
@@ -146,8 +147,8 @@ const InsightsSection = ({
               ref={(el) => {
                 if (el && index < insights.length) insightItemsRef.current[index] = el;
               }}
-              className="flex flex-col w-[280px] sm:w-[400px] lg:w-[600px] sm:snap-start flex-shrink-0"
-              onClick={() => (insight as any).onClick?.()}
+              className="flex flex-col w-[280px] sm:w-[400px] lg:w-[600px] sm:snap-start flex-shrink-0 cursor-pointer"
+              onClick={() => insight.onClick?.()}
             >
               <div className="overflow-hidden">
                 <Image
@@ -155,7 +156,7 @@ const InsightsSection = ({
                   alt={insight.imageAlt || insight.title}
                   width={600}
                   height={388}
-                  className="w-full sm:w-[400px] lg:w-[500px] h-[220px] sm:h-[300px] lg:h-[388px] xl:h-[488px] xl:w-[600px] object-cover"
+                  className="w-full sm:w-[400px] lg:w-[500px] h-[220px] sm:h-[300px] lg:h-[388px] xl:h-[488px] xl:w-[600px] object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
 
