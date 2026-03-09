@@ -1,0 +1,173 @@
+import { supabase } from '@/lib/supabase';
+import type { CreateInsightData, UpdateInsightData, Insight } from '@/lib/types/insight';
+
+// Upload cover image to Supabase storage via API route
+export async function uploadInsightImage(file: File): Promise<{ url: string | null; error: string | null }> {
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch('/api/insights/upload-image', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error('Error uploading image:', data.error);
+            return { url: null, error: data.error };
+        }
+
+        return { url: data.url, error: null };
+    } catch (error) {
+        const err = error as Error;
+        console.error('Error uploading image:', error);
+        return { url: null, error: err.message };
+    }
+}
+
+// Delete cover image from Supabase storage via API route
+export async function deleteInsightImage(imageUrl: string): Promise<{ success: boolean; error: string | null }> {
+    try {
+        const response = await fetch(`/api/insights/delete-image?imageUrl=${encodeURIComponent(imageUrl)}`, {
+            method: 'DELETE',
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error('Error deleting image:', data.error);
+            return { success: false, error: data.error };
+        }
+
+        return { success: true, error: null };
+    } catch (error) {
+        const err = error as Error;
+        console.error('Error deleting image:', error);
+        return { success: false, error: err.message };
+    }
+}
+
+// Create a new insight
+export async function createInsight(data: CreateInsightData): Promise<{ data: Insight | null; error: string | null }> {
+    try {
+        const { data: insight, error } = await supabase
+            .from('insights')
+            .insert([{
+                title: data.title,
+                category: data.category,
+                description: data.description,
+                content: data.content,
+                read_time: data.read_time,
+                cover_image_url: data.cover_image_url || null,
+            }])
+            .select()
+            .single();
+
+        if (error) {
+            console.error('Error creating insight:', error);
+            return { data: null, error: error.message };
+        }
+
+        return { data: insight, error: null };
+    } catch (error) {
+        const err = error as Error;
+        console.error('Error creating insight:', error);
+        return { data: null, error: err.message };
+    }
+}
+
+// Get all insights with pagination
+export async function getAllInsights(page: number = 1, limit: number = 10): Promise<{ data: Insight[]; count: number; error: string | null }> {
+    try {
+        const from = (page - 1) * limit;
+        const to = from + limit - 1;
+
+        const { data, error, count } = await supabase
+            .from('insights')
+            .select('*', { count: 'exact' })
+            .order('published_date', { ascending: false })
+            .range(from, to);
+
+        if (error) {
+            console.error('Error fetching insights:', error);
+            return { data: [], count: 0, error: error.message };
+        }
+
+        return { data: data || [], count: count || 0, error: null };
+    } catch (error) {
+        const err = error as Error;
+        console.error('Error fetching insights:', error);
+        return { data: [], count: 0, error: err.message };
+    }
+}
+
+// Get a single insight by ID
+export async function getInsightById(id: string): Promise<{ data: Insight | null; error: string | null }> {
+    try {
+        const { data, error } = await supabase
+            .from('insights')
+            .select('*')
+            .eq('id', id)
+            .single();
+
+        if (error) {
+            console.error('Error fetching insight:', error);
+            return { data: null, error: error.message };
+        }
+
+        return { data, error: null };
+    } catch (error) {
+        const err = error as Error;
+        console.error('Error fetching insight:', error);
+        return { data: null, error: err.message };
+    }
+}
+
+// Update an insight
+export async function updateInsight(id: string, data: UpdateInsightData): Promise<{ data: Insight | null; error: string | null }> {
+    try {
+        const { data: insight, error } = await supabase
+            .from('insights')
+            .update({
+                ...data,
+                updated_at: new Date().toISOString(),
+            })
+            .eq('id', id)
+            .select()
+            .single();
+
+        if (error) {
+            console.error('Error updating insight:', error);
+            return { data: null, error: error.message };
+        }
+
+        return { data: insight, error: null };
+    } catch (error) {
+        const err = error as Error;
+        console.error('Error updating insight:', error);
+        return { data: null, error: err.message };
+    }
+}
+
+// Delete an insight
+export async function deleteInsight(id: string): Promise<{ success: boolean; error: string | null }> {
+    try {
+        const { error } = await supabase
+            .from('insights')
+            .delete()
+            .eq('id', id);
+
+        if (error) {
+            console.error('Error deleting insight:', error);
+            return { success: false, error: error.message };
+        }
+
+        return { success: true, error: null };
+    } catch (error) {
+        const err = error as Error;
+        console.error('Error deleting insight:', error);
+        return { success: false, error: err.message };
+    }
+}

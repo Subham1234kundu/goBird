@@ -78,6 +78,11 @@ export default function AdminLayout({
       href: "/Admin/press-release",
       icon: "/Images/Admin/dashboardImage/pressRelease.png",
     },
+    {
+      name: "Insights",
+      href: "/Admin/insights",
+      icon: "/Images/Admin/dashboardImage/googleAnalytics.png",
+    },
   ];
 
   return (

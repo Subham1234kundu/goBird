@@ -23,6 +23,7 @@ interface InsightsSectionProps {
   buttonText?: string
   insights: InsightItem[]
   onButtonClick?: () => void
+  isGrid?: boolean
 }
 
 const InsightsSection = ({
@@ -30,15 +31,50 @@ const InsightsSection = ({
   titleHighlight,
   buttonText = "More articles",
   insights,
-  onButtonClick
+  onButtonClick,
+  isGrid = false
 }: InsightsSectionProps) => {
   const insightItemsRef = useRef<HTMLDivElement[]>([])
 
-  // Insights scroll animation - disabled for Locomotive Scroll compatibility
-  useEffect(() => {
-    // Animation disabled to ensure visibility with Locomotive Scroll
-    // Items will be visible immediately
-  }, [])
+  if (isGrid) {
+    return (
+      <div className="w-full bg-transparent px-4 sm:px-6 md:px-10 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 pb-20">
+          {insights.map((insight, index) => (
+            <div
+              key={index}
+              className="flex flex-col group cursor-pointer"
+              onClick={() => (insight as any).onClick?.()}
+            >
+              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden mb-6">
+                <Image
+                  src={insight.imageSrc}
+                  alt={insight.imageAlt || insight.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+
+              <h3 className="text-[#0B0B0B] text-xl lg:text-[28px] font-light leading-tight mb-4 group-hover:text-[#FF662A] transition-colors">
+                {insight.title}
+              </h3>
+
+              <div className="mt-auto">
+                <p className="text-[#666666] text-sm mb-4">
+                  {insight.category} • {insight.date} • {insight.readTime}
+                </p>
+                <div className="relative inline-block">
+                  <span className="text-[#0B0B0B] text-base border-b border-black pb-0.5 group-hover:border-[#FF662A] group-hover:text-[#FF662A] transition-colors">
+                    Read more
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full bg-transparent">
@@ -111,6 +147,7 @@ const InsightsSection = ({
                 if (el && index < insights.length) insightItemsRef.current[index] = el;
               }}
               className="flex flex-col w-[280px] sm:w-[400px] lg:w-[600px] sm:snap-start flex-shrink-0"
+              onClick={() => (insight as any).onClick?.()}
             >
               <div className="overflow-hidden">
                 <Image

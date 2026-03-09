@@ -1,6 +1,7 @@
 "use client";
 
 import PaperBird3D from "@/components/PaperBird3D";
+import CrazyLoader from "@/components/CrazyLoader";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -124,9 +125,13 @@ const Home = () => {
   const stat2Ref = useRef<HTMLHeadingElement>(null);
   const stat3Ref = useRef<HTMLHeadingElement>(null);
   const stat4Ref = useRef<HTMLHeadingElement>(null);
+  const heroBgRef = useRef<HTMLDivElement>(null);
 
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const faqAnswerRefs = useRef<(HTMLDivElement | null)[]>([]);
+  
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [isPageLoading, setIsPageLoading] = useState(true);
 
   const toggleFaq = (index: number) => {
     const isOpening = openFaqIndex !== index;
@@ -141,6 +146,7 @@ const Home = () => {
             opacity: 0,
             duration: 0.4,
             ease: "power2.inOut",
+            force3D: true,
           });
         }
       }
@@ -155,93 +161,64 @@ const Home = () => {
         opacity: isOpening ? 1 : 0,
         duration: 0.5,
         ease: "power3.inOut",
+        force3D: true,
       });
     }
   };
 
   useEffect(() => {
+    // Lock scroll during loading
+    if (isPageLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    const handleLoadingUpdate = (e: any) => {
+      const progress = e.detail.progress;
+      setLoadingProgress(progress);
+      
+      // If loading is done, allow a moment for the loader's exit animation
+      if (progress >= 100) {
+        setTimeout(() => {
+          setIsPageLoading(false);
+          document.body.style.overflow = "auto";
+          // Refresh ScrollTrigger after loader is gone
+          setTimeout(() => ScrollTrigger.refresh(), 500);
+        }, 1500); // Wait for CrazyLoader's transition
+      }
+    };
+
+    window.addEventListener('assetLoadingProgress', handleLoadingUpdate as EventListener);
+
+    // Safety timeout to hide loader if something stalls
+    const timer = setTimeout(() => {
+      setIsPageLoading(false);
+      document.body.style.overflow = "auto";
+    }, 20000); // 20s safety
+
+    return () => {
+      window.removeEventListener('assetLoadingProgress', handleLoadingUpdate as EventListener);
+      clearTimeout(timer);
+      document.body.style.overflow = "auto";
+    };
+  }, [isPageLoading]);
+
+  useEffect(() => {
+    // Enable GSAP performance features
+    gsap.config({ autoSleep: 60, force3D: true, nullTargetWarn: false });
+    gsap.ticker.lagSmoothing(1000, 16);
+
     // Kill existing ScrollTrigger animations only
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    // Reset all animated elements to initial visible state
-    const resetElements = [
-      heroHeadingRef.current,
-      heroDescRef.current,
-      startupsHeadingRef.current,
-      developIdeaRef.current,
-      successHeadingRef.current,
-      statsCardsRef.current,
-      boldMovesHeadingRef.current,
-      testimonialsHeadingRef.current,
-      testimonialImageRef.current,
-      insightsHeadingRef.current,
-    ];
-
-    // Reset testimonial elements specifically
-    if (testimonialImageRef.current) {
-      const footerQuote =
-        testimonialImageRef.current.querySelector(".footer-quote");
-      const footerAuthor =
-        testimonialImageRef.current.querySelector(".footer-author");
-      const footerPlay =
-        testimonialImageRef.current.querySelector(".footer-play");
-      if (footerQuote) gsap.set(footerQuote, { clearProps: "all" });
-      if (footerAuthor) gsap.set(footerAuthor, { clearProps: "all" });
-      if (footerPlay) gsap.set(footerPlay, { clearProps: "all" });
-    }
-
-    resetElements.forEach((el) => {
-      if (el) gsap.set(el, { clearProps: "all" });
+    // Batch animations for better performance
+    const sections = document.querySelectorAll("section, .wors_cards, .businesses_cards");
+    sections.forEach((section) => {
+      if (section instanceof HTMLElement) {
+        section.style.willChange = "transform, opacity";
+      }
     });
-
-    // Reset arrays of elements
-    serviceItemsRef.current.forEach((el) => {
-      if (el) gsap.set(el, { clearProps: "all" });
-    });
-
-    boldMovesRef.current.forEach((el) => {
-      if (el) gsap.set(el, { clearProps: "all" });
-    });
-
-    faqItemsRef.current.forEach((el) => {
-      if (el) gsap.set(el, { clearProps: "all" });
-    });
-
-    if (heroButtonsRef.current)
-      gsap.set(heroButtonsRef.current.children, { clearProps: "all" });
-    if (heroContentWrapperRef.current)
-      gsap.set(heroContentWrapperRef.current, { clearProps: "all" });
-    if (startupLogosRef.current)
-      gsap.set(startupLogosRef.current.children, { clearProps: "all" });
-
-    // Ensure CTA section elements are always visible - set inline styles
-    if (ctaBirdRef.current) {
-      ctaBirdRef.current.style.opacity = "1";
-      ctaBirdRef.current.style.visibility = "visible";
-    }
-    if (ctaContentRef.current) {
-      ctaContentRef.current.style.opacity = "1";
-      ctaContentRef.current.style.visibility = "visible";
-      const children = ctaContentRef.current.querySelectorAll("*");
-      children.forEach((child: Element) => {
-        if (child instanceof HTMLElement) {
-          child.style.opacity = "1";
-          child.style.visibility = "visible";
-        }
-      });
-    }
-    if (ctaCloudLeftRef.current) {
-      ctaCloudLeftRef.current.style.opacity = "1";
-      ctaCloudLeftRef.current.style.visibility = "visible";
-    }
-    if (ctaCloudRightRef.current) {
-      ctaCloudRightRef.current.style.opacity = "1";
-      ctaCloudRightRef.current.style.visibility = "visible";
-    }
-    if (ctaCloudBottomRef.current) {
-      ctaCloudBottomRef.current.style.opacity = "1";
-      ctaCloudBottomRef.current.style.visibility = "visible";
-    }
 
     // Hero Section Animations
     const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -259,11 +236,11 @@ const Home = () => {
       heroTl.from(
         heroDescRef.current,
         {
-          y: 30,
+          y: 40,
           opacity: 0,
-          duration: 0.8,
+          duration: 1,
         },
-        "-=0.5"
+        "-=0.9"
       );
     }
 
@@ -280,29 +257,27 @@ const Home = () => {
       );
     }
 
-    // Hero Section - Text shrinks in center position and stays pinned (graphic design style)
+    // Hero Scroll Animation
     if (heroContentWrapperRef.current && heroSectionRef.current) {
-      // Pin the text first - keeps it in center position only during hero section
       ScrollTrigger.create({
         trigger: heroSectionRef.current,
         start: "top top",
-        end: "bottom center", // Unpin when hero section is halfway scrolled
+        end: "bottom center",
         pin: heroContentWrapperRef.current,
         pinSpacing: false,
       });
 
-      // Then shrink it in place (no y movement, stays centered)
       gsap.to(heroContentWrapperRef.current, {
-        scale: 0.6, // Shrink to 60%
-        opacity: 0, // Fade out as it shrinks
-        ease: "power2.out",
+        scale: 0.5,
+        opacity: 0,
+        filter: "blur(12px)",
+        ease: "power1.inOut",
         scrollTrigger: {
           trigger: heroSectionRef.current,
           start: "top top",
-          end: "bottom center", // Complete fade by halfway point
-          scrub: 1,
+          end: "bottom center",
+          scrub: 1.2,
           onUpdate: (self) => {
-            // Dispatch custom event with scroll progress for birds
             const event = new CustomEvent("heroTextFade", {
               detail: { progress: self.progress },
             });
@@ -312,377 +287,213 @@ const Home = () => {
       });
     }
 
-    // Startups Section
-    if (startupsHeadingRef.current) {
-      gsap.from(startupsHeadingRef.current, {
-        y: 30,
+    // Impact Section (Businesses)
+    const impactCards = document.querySelectorAll(".businesses_card");
+    if (impactCards.length > 0) {
+      gsap.from(impactCards, {
+        y: 80,
         opacity: 0,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: startupsHeadingRef.current,
-          start: "top 80%",
-          end: "top 50%",
-          once: true,
-        },
-      });
-    }
-
-    if (startupLogosRef.current) {
-      gsap.from(startupLogosRef.current.children, {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
+        scale: 0.95,
+        rotateX: 10,
+        duration: 1.2,
         stagger: 0.1,
+        ease: "power4.out",
         scrollTrigger: {
-          trigger: startupLogosRef.current,
+          trigger: ".businesses",
           start: "top 80%",
           once: true,
         },
       });
-    }
 
-    // Services Section - keep visible without animation
-    if (servicesHeadingRef.current) {
-      gsap.set(servicesHeadingRef.current, { opacity: 1, x: 0 });
-    }
+      const statElements = [
+        { el: impactCards[0]?.querySelector("h1"), target: 10, suffix: "x" },
+        { el: impactCards[1]?.querySelector("h1"), target: 200, suffix: "+" },
+        { el: impactCards[2]?.querySelector("h1"), target: 95, suffix: "%" },
+        { el: impactCards[3]?.querySelector("h1"), target: 5, suffix: "+" },
+      ];
 
-    // IT Consulting section - keep visible without animation
-    if (itConsultingRef.current) {
-      gsap.set(itConsultingRef.current, { opacity: 1, y: 0 });
-    }
-
-    // Service Items Stagger
-    serviceItemsRef.current.forEach((item) => {
-      if (item) {
-        gsap.from(item, {
-          x: -30,
-          opacity: 0,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: item,
-            start: "top 85%",
-            once: true,
-          },
-        });
-      }
-    });
-
-    // Develop Idea Image
-    if (developIdeaRef.current) {
-      gsap.from(developIdeaRef.current, {
-        scale: 0.9,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: developIdeaRef.current,
-          start: "top 75%",
-          once: true,
-        },
-      });
-    }
-
-    // Success/Stats Section
-    if (successHeadingRef.current) {
-      gsap.from(successHeadingRef.current, {
-        x: -50,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: successHeadingRef.current,
-          start: "top 75%",
-          once: true,
-        },
-      });
-    }
-
-    if (statsCardsRef.current) {
-      gsap.from(statsCardsRef.current, {
-        x: 50,
-        opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: statsCardsRef.current,
-          start: "top 75%",
-          once: true,
-        },
-      });
-
-      // Animate stat numbers with counter effect
-      const statNumbers = statsCardsRef.current.querySelectorAll("h1");
-      statNumbers.forEach((stat) => {
-        const text = stat.textContent || "";
-        const numberMatch = text.match(/\d+/);
-
-        if (numberMatch) {
-          const targetNumber = parseInt(numberMatch[0]);
-          const suffix = text.match(/[+%x]/i)?.[0] || "";
-
-          // Create a counter object
+      statElements.forEach(({ el, target, suffix }) => {
+        if (el) {
           const counter = { value: 0 };
-
           gsap.to(counter, {
-            value: targetNumber,
-            duration: 2,
-            ease: "power1.inOut",
+            value: target,
+            duration: 3,
+            ease: "expo.out",
             scrollTrigger: {
-              trigger: stat,
-              start: "top 80%",
+              trigger: el,
+              start: "top 90%",
               toggleActions: "play none none none",
             },
-            onUpdate: function () {
-              const current = Math.ceil(counter.value);
-              // Preserve the HTML structure with the colored span
-              stat.innerHTML = `${current}<span class="text-[#FF662A]">${suffix}</span>`;
+            onUpdate: () => {
+              el.innerHTML = `${Math.ceil(counter.value)}<span class="text-[#FF662A]">${suffix}</span>`;
             },
           });
         }
       });
     }
 
-    // Bold Moves Section
-    if (boldMovesHeadingRef.current) {
-      gsap.set(boldMovesHeadingRef.current.children, { opacity: 1, y: 0 });
-      gsap.from(boldMovesHeadingRef.current.children, {
-        y: 30,
+    // Our Process Section
+    const processItems = document.querySelectorAll(".our_box");
+    if (processItems.length > 0) {
+      gsap.from(processItems, {
         opacity: 0,
-        duration: 0.8,
+        y: 50,
+        scale: 0.95,
+        duration: 1,
         stagger: 0.2,
+        ease: "power2.out",
         scrollTrigger: {
-          trigger: boldMovesHeadingRef.current,
-          start: "top 75%",
-          toggleActions: "play none none none",
+          trigger: ".our_process_box",
+          start: "top 85%",
+          once: true,
         },
+      });
+
+      processItems.forEach((item) => {
+        const img = item.querySelector(".process_image");
+        if (img) {
+          gsap.to(img, {
+            y: -30,
+            ease: "none",
+            scrollTrigger: {
+              trigger: item,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+        
+        // Hover effect using GSAP for smooth performance
+        item.addEventListener("mouseenter", () => {
+          gsap.to(item, { y: -10, scale: 1.02, duration: 0.4, ease: "power2.out" });
+        });
+        item.addEventListener("mouseleave", () => {
+          gsap.to(item, { y: 0, scale: 1, duration: 0.4, ease: "power2.inOut" });
+        });
       });
     }
 
-    // Bold Moves Cards Stagger
-    boldMovesRef.current.forEach((card, index) => {
-      if (card) {
-        gsap.from(card, {
-          y: 50,
-          opacity: 0,
-          duration: 0.8,
-          delay: index * 0.1,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            once: true,
-          },
-        });
-      }
+    // Grid Wrapper Parallax
+    const gridCards = document.querySelectorAll(".grid_card");
+    gridCards.forEach((card, i) => {
+      gsap.from(card, {
+        y: 100,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+          once: true,
+        },
+      });
     });
 
-    // Testimonials Section
-    if (testimonialsHeadingRef.current) {
-      gsap.set(testimonialsHeadingRef.current.children, { opacity: 1, y: 0 });
-      gsap.from(testimonialsHeadingRef.current.children, {
-        y: 30,
+    // Services Section
+    const serviceCards = document.querySelectorAll(".cards_right_card");
+    if (serviceCards.length > 0) {
+      gsap.from(serviceCards, {
+        x: 60,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: testimonialsHeadingRef.current,
+          trigger: ".services_cards",
           start: "top 75%",
-          toggleActions: "play none none none",
+          once: true,
         },
       });
     }
 
-    // Testimonial Image - No animations
-
-    // Insights Section
-    if (insightsHeadingRef.current) {
-      gsap.set(insightsHeadingRef.current.children, { opacity: 1, y: 0 });
-      gsap.from(insightsHeadingRef.current.children, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: insightsHeadingRef.current,
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
-
-    // FAQ Section - keep visible without animation
-    if (faqHeadingRef.current) {
-      gsap.set(faqHeadingRef.current, { opacity: 1, y: 0 });
-    }
-
-    // FAQ Items animation removed - keeping FAQ heading always visible
-
-    faqItemsRef.current.forEach((item, index) => {
-      if (item) {
-        gsap.from(item, {
-          x: -30,
-          opacity: 0,
-          duration: 0.6,
-          delay: index * 0.05,
+    // Our Work Cards - Mask Scale Reveal
+    const workCards = document.querySelectorAll(".wors_cards .card, .wors_cards .center_card");
+    workCards.forEach((card, i) => {
+      const cardImg = card.querySelector("img");
+      if (cardImg) {
+        gsap.set(cardImg, { scale: 1.3 });
+        gsap.to(cardImg, {
+          scale: 1,
+          duration: 1.5,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: item,
+            trigger: card,
             start: "top 90%",
             once: true,
           },
         });
       }
-    });
-
-    // CTA Section - Bird with floating animation
-    if (ctaBirdRef.current) {
-      const birdImg = ctaBirdRef.current.querySelector("img");
-      if (birdImg instanceof HTMLElement) {
-        birdImg.style.opacity = "1";
-        birdImg.style.visibility = "visible";
-      }
-
-      // Continuous floating animation only
-      gsap.to(birdImg, {
-        y: -30,
-        duration: 3.5,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-
-      // Subtle rotation animation
-      gsap.to(birdImg, {
-        rotation: 5,
-        duration: 3.5,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-    }
-
-    // CTA Content
-    if (ctaContentRef.current) {
-      const ctaTl = gsap.timeline({
+      
+      gsap.from(card, {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
         scrollTrigger: {
-          trigger: ctaContentRef.current,
-          start: "top 75%",
+          trigger: card,
+          start: "top 90%",
           once: true,
         },
       });
+    });
 
-      ctaTl
-        .from(ctaContentRef.current.querySelector("h2"), {
-          y: 50,
-          opacity: 0,
-          duration: 0.8,
-        })
-        .from(
-          ctaContentRef.current.querySelector("p"),
-          {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
+    // FAQ Section Stagger
+    const faqItems = document.querySelectorAll(".faq-item-container"); // Assuming we add this class
+    if (faqItems.length > 0) {
+      gsap.from(faqItems, {
+        y: 20,
+        opacity: 0,
+        stagger: 0.05,
+        duration: 0.6,
+        scrollTrigger: {
+          trigger: ".faq-section",
+          start: "top 80%",
+          once: true,
+        },
+      });
+    }
+
+    // CTA Section Animation
+    if (ctaBirdRef.current) {
+      gsap.fromTo(ctaBirdRef.current, 
+        { y: 200, opacity: 0, scale: 0.7 },
+        {
+          y: 0, opacity: 1, scale: 1,
+          duration: 2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ctaSectionRef.current,
+            start: "top bottom",
+            end: "top 20%",
+            scrub: 1,
           },
-          "-=0.4"
-        )
-        .from(
-          ctaContentRef.current.querySelectorAll("button"),
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.2,
-          },
-          "-=0.3"
-        );
+        }
+      );
+      
+      const birdImg = ctaBirdRef.current.querySelector("img");
+      if (birdImg) {
+        gsap.to(birdImg, {
+          y: -30,
+          rotate: 4,
+          duration: 5,
+          ease: "sine.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
+      }
     }
 
-    // Cloud Animations - Smooth continuous loop without reset
-    if (ctaCloudLeftRef.current) {
-      // Left cloud - slide in from left
-      gsap.from(ctaCloudLeftRef.current, {
-        x: -100,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power2.out",
+    // Background Parallax - Subtle
+    if (heroBgRef.current) {
+      gsap.to(heroBgRef.current, {
+        y: -100, // Reduced from -150
+        ease: "none",
         scrollTrigger: {
-          trigger: ctaSectionRef.current,
-          start: "top 70%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Smooth continuous loop - goes to 90% and back seamlessly
-      gsap.to(ctaCloudLeftRef.current, {
-        y: -10.8,
-        x: 18,
-        duration: 7.6,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        scrollTrigger: {
-          trigger: ctaSectionRef.current,
-          start: "top 70%",
-          toggleActions: "play pause resume pause",
-        },
-      });
-    }
-
-    if (ctaCloudRightRef.current) {
-      // Right cloud - slide in from right
-      gsap.from(ctaCloudRightRef.current, {
-        x: 100,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        delay: 0.2,
-        scrollTrigger: {
-          trigger: ctaSectionRef.current,
-          start: "top 70%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Smooth continuous loop - goes to 90% and back seamlessly
-      gsap.to(ctaCloudRightRef.current, {
-        y: -7.2,
-        x: -13.5,
-        duration: 9.5,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        delay: 0.5,
-        scrollTrigger: {
-          trigger: ctaSectionRef.current,
-          start: "top 70%",
-          toggleActions: "play pause resume pause",
-        },
-      });
-    }
-
-    if (ctaCloudBottomRef.current) {
-      // Bottom cloud - slide up from bottom
-      gsap.from(ctaCloudBottomRef.current, {
-        y: 50,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power2.out",
-        delay: 0.4,
-        scrollTrigger: {
-          trigger: ctaSectionRef.current,
-          start: "top 70%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Smooth continuous loop - goes to 90% and back seamlessly
-      gsap.to(ctaCloudBottomRef.current, {
-        x: 18,
-        duration: 11.4,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        delay: 0.8,
-        scrollTrigger: {
-          trigger: ctaSectionRef.current,
-          start: "top 70%",
-          toggleActions: "play pause resume pause",
+          trigger: heroSectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
         },
       });
     }
@@ -692,49 +503,8 @@ const Home = () => {
 
     // Cleanup
     return () => {
-      // Kill all ScrollTrigger instances
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-
-      // Kill all GSAP tweens
       gsap.killTweensOf("*");
-    };
-  }, []);
-
-  // Counter animation effect
-  useEffect(() => {
-    const counters = [
-      { ref: stat1Ref, target: 200, suffix: "+" },
-      { ref: stat2Ref, target: 10, suffix: "x" },
-      { ref: stat3Ref, target: 97, suffix: "%" },
-      { ref: stat4Ref, target: 5, suffix: "+" },
-    ];
-
-    counters.forEach(({ ref, target, suffix }) => {
-      if (ref.current && statsCardsRef.current) {
-        const counter = { value: 0 };
-
-        gsap.to(counter, {
-          value: target,
-          duration: 2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: statsCardsRef.current,
-            start: "top 80%",
-            once: true,
-          },
-          onUpdate: () => {
-            if (ref.current) {
-              ref.current.innerHTML = `${Math.round(
-                counter.value
-              )}<span class="text-[#FF662A]">${suffix}</span>`;
-            }
-          },
-        });
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -780,6 +550,7 @@ const Home = () => {
 
   return (
     <>
+      {isPageLoading && <CrazyLoader progress={loadingProgress} />}
       <style jsx>{`
         .service-hover-item {
           will-change: height;
@@ -819,7 +590,7 @@ const Home = () => {
           }}
         >
           {/* Image at the very top */}
-          <div className="absolute top-[120px] left-0 w-full h-[50vh] z-0">
+          <div ref={heroBgRef} className="absolute top-[120px] left-0 w-full h-[50vh] z-0">
             <Image
               src="/Images/boxes.png"
               alt="Boxes"
@@ -2165,7 +1936,7 @@ const Home = () => {
         </div>
 
         {/* question */}
-        <div className="flex flex-col gap-12 md:gap-16 lg:gap-20 mx-[4%] mb-12 md:mb-16 lg:mb-20">
+        <div className="faq-section flex flex-col gap-12 md:gap-16 lg:gap-20 mx-[4%] mb-12 md:mb-16 lg:mb-20">
           <div
             ref={faqHeadingRef}
             className="flex flex-col lg:flex-row justify-between items-start w-full mt-12 md:mt-16 lg:mt-20 mb-5 gap-6 md:gap-8"
@@ -2185,7 +1956,7 @@ const Home = () => {
             {faqData.map((item, index) => (
               <div
                 key={index}
-                className="w-full flex flex-col border border-[#68636352] rounded-md overflow-hidden"
+                className="faq-item-container w-full flex flex-col border border-[#68636352] rounded-md overflow-hidden"
               >
                 <div
                   ref={(el) => {
@@ -2241,7 +2012,7 @@ const Home = () => {
               alt="Take Flight"
               width={1000}
               height={1200}
-              className="w-full sm:w-[90%] md:w-[85%] h-[500px] sm:h-[650px] md:h-[850px] lg:h-[1050px] xl:h-[1250px] object-contain"
+              className="w-full sm:w-[90%] md:w-[85%] h-[650px] sm:h-[650px] md:h-[850px] lg:h-[1050px] xl:h-[1250px] object-contain"
               priority
             />
           </div>
@@ -2250,7 +2021,7 @@ const Home = () => {
 
           <div
             ref={ctaContentRef}
-            className="absolute top-[480px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-start text-start pl-[3rem] sm:px-6 md:px-6 gap-5 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl"
+            className="absolute top-[430px] sm:top-[620px] md:top-[820px] lg:top-[1000px] xl:top-[1050px] left-1/2 md:left-3/5 -translate-x-1/2 flex flex-col items-start text-start pl-[3rem] sm:px-6 md:px-6 gap-5 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-7xl"
           >
             {/* Heading */}
             <h2 className="text-black text-[30px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[80px] font-light leading-tight">

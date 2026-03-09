@@ -98,7 +98,7 @@ const PressReleaseMore = ({ pressReleaseId }: PressReleaseMoreProps) => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pb-12 min-w-0 pr-2 sm:pr-4 lg:pr-6">
         {/* Cover Image */}
         {pressRelease.cover_image_url && (
           <Image
@@ -109,9 +109,9 @@ const PressReleaseMore = ({ pressReleaseId }: PressReleaseMoreProps) => {
             className="w-full h-[200px] sm:h-[300px] md:h-[400px] object-cover mb-6 sm:mb-8 rounded-lg"
           />
         )}
-
+        
         {/* Press Release Content */}
-        <article className="prose prose-lg max-w-none">
+        <article className="prose prose-lg max-w-none break-words prose-h1:text-3xl sm:prose-h1:text-4xl md:prose-h1:text-5xl prose-h1:font-light prose-h2:text-2xl sm:prose-h2:text-3xl md:prose-h2:text-4xl prose-h2:font-light prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:font-normal prose-h4:text-lg sm:prose-h4:text-xl prose-h4:font-medium">
           <div
             className="text-[#212121] leading-relaxed text-base sm:text-lg"
             dangerouslySetInnerHTML={{ __html: pressRelease.content }}
@@ -145,21 +145,36 @@ const PressReleaseMore = ({ pressReleaseId }: PressReleaseMoreProps) => {
 
       {/* Related Press Releases */}
       {relatedPressReleases.length > 0 && (
-        <InsightsSection
-          title="More"
-          titleHighlight="Stories"
-          buttonText=""
-          onButtonClick={() => router.push('/pressRelease')}
-          insights={relatedPressReleases.map((pr) => ({
-            imageSrc: pr.cover_image_url || "/Images/insights1.png",
-            title: pr.title,
-            category: pr.category,
-            date: formatDate(pr.published_date),
-            readTime: calculateReadTime(pr.content),
-            imageAlt: pr.title,
-            onClick: () => router.push(`/pressRelease?id=${pr.id}`)
-          }))}
-        />
+        <div className="w-full bg-[#fafafa] py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
+            <div className="flex flex-row justify-between items-center mb-10">
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-light">
+                    More Stories
+                </h2>
+                <button
+                    onClick={() => router.push('/pressRelease')}
+                    className="hidden sm:inline-block px-6 py-2.5 rounded-full text-white text-sm bg-[#FF662A]"
+                >
+                    View all
+                </button>
+            </div>
+            <InsightsSection
+                title=""
+                titleHighlight=""
+                buttonText=""
+                isGrid={true}
+                insights={relatedPressReleases.map((pr) => ({
+                    imageSrc: pr.cover_image_url || "/Images/insights1.png",
+                    title: pr.title,
+                    category: pr.category,
+                    date: formatDate(pr.published_date),
+                    readTime: calculateReadTime(pr.content),
+                    imageAlt: pr.title,
+                    onClick: () => router.push(`/pressRelease?id=${pr.id}`)
+                }))}
+            />
+          </div>
+        </div>
       )}
 
       <div className="w-full py-12 sm:py-16 md:py-20">
