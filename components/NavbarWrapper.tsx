@@ -27,9 +27,9 @@ const Navbar = dynamic(() => import('./Navbar'), {
 function NavbarWrapper() {
   const pathname = usePathname()
 
-  // Hide navbar on all admin pages (including login and forgot password)
-  // Check case-insensitively to handle both /admin and /Admin
-  if (pathname.toLowerCase().startsWith('/admin')) {
+  // Hide navbar on the temporary home/coming-soon page and all admin pages.
+  // Check case-insensitively to handle both /admin and /Admin.
+  if (pathname === '/' || pathname.toLowerCase().startsWith('/admin')) {
     return null
   }
 
